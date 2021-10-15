@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <!-- 只读 readonly-->
+        username:<input type="text" readonly value="tom">
+        <!-- 改变框的样式(变灰) disabled 直接告诉你不可选,比较直观 -->
+        <input type="text" disabled value="jack">
+
+        <br>
+        <!-- 默认选中 checked -->
+        <input type="checkbox" checked>11
+        <input type="checkbox">22
+        <input type="radio" name="temp">33
+        <input type="radio" name="temp" checked>55
+
+        <!-- 默认选中 selected  -->
+        <select name="" id="">
+            <option value="11">上海</option>
+            <option value="22" selected>北京</option>
+            <option value="33">东海</option>
+        </select>
+
+        <br>
+        <!-- 隐藏框 -->
+        <input type="hidden" name="" id="">
+
+        <!-- 字体设置 -->
+        <font size="14" color="red">font文本</font>
+
+        <!-- 作用域内所有元素都居中  -->
+        <center>
+            <font size="14" color="red">font文本</font>
+        </center>
+
+        <!-- 跑马灯 -->
+        <marquee behavior="" direction="rleft">公告:随便写点东西</marquee>
+
+        <!-- 嵌套 可以嵌套另一个界面 -->
+        <iframe src="./test.html" frameborder="1" width="500" height="300"></iframe>
+
+        <!-- 带边框的label标签 fieldset -->
+        <fieldset>
+            <legend>
+                边框上的标题
+            </legend>
+            <form action="">
+                username: <input type="text" name="" id="">
+            </form>
+            <br>
+            带边框的label标签
+        </fieldset>
+
+
+    </form>
+</body>
+</html>
