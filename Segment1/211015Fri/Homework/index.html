@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 400px;
+            border: 0px;
+        }
+
+        tr {
+            width: 200px;
+        }
+
+        button {
+            width: 100%;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1" align="center">
+        <!-- 显示区 -->
+        <tr>
+            <td style="width: 100%;">
+                <input type="text" value="0" disabled style="width: 98%;height: 50px; text-align: end;">
+            </td>
+
+        </tr>
+        <!-- 加减乘除 -->
+        <tr>
+            <td>
+                <table border="0">
+                    <tr>
+                        <td style="width: 25%;"><button>+</button></td>
+                        <td style="width: 25%;"><button>-</button></td>
+                        <td style="width: 25%;"><button>*</button></td>
+                        <td style="width: 25%;"><button>/</button></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- 数字九宫格 -->
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td style="width: 33.3%;"><button>1</button></td>
+                        <td style="width: 33.3%;"><button>2</button></td>
+                        <td style="width: 33.3%;"><button>3</button></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 33.3%;"><button>4</button></td>
+                        <td style="width: 33.3%;"><button>5</button></td>
+                        <td style="width: 33.3%;"><button>6</button></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 33.3%;"><button>7</button></td>
+                        <td style="width: 33.3%;"><button>8</button></td>
+                        <td style="width: 33.3%;"><button>9</button></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- 最后一行 -->
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td width="67%"><button>=</button></td>
+                        <td><button>0</button></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
