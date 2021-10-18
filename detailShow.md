@@ -1,5 +1,4 @@
 ## <span id = "21S1W1">  HTML+CSS
-2021.10.13~2021.10.16期间使用HTML知识（table布局方式） + 一些CSS知识做的一些静态页面
 
 ### HTML影视
 
@@ -18,3 +17,50 @@
 ### 模仿谷歌搜索首页
 实现形式：div布局+简单css控制
 ![](http://picbed.tgz666.top/20211016151401.png?roundPic/radius/25%7CimageView2/2/w/1000/h/1618)
+
+
+## <span id = "21S1W2">  CSS进阶与兼容处理
+### 模拟58同城登录界面
+#### 原网页
+[用户登录-58同城](https://passport.58.com/login/ )
+![](http://picbed.tgz666.top/20211018192111.png?roundPic/radius/25%7CimageView2/2/w/1000/h/1618)
+
+#### 模拟网页
+![](http://picbed.tgz666.top/20211018192103.png?roundPic/radius/25%7CimageView2/2/w/1000/h/1618)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

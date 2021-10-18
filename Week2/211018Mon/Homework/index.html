@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录58同城</title>
+    <style>
+        * {
+            color: gray;
+            font-size: 12px;
+            text-align: center;
+            width: 100%px;
+            border-radius: 20px;
+        }
+
+        body{
+            background-image: url(./img/background.jpg);
+            background-size: cover;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .header{
+            padding-top: 20px;
+            height: 40px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .main-body {
+            width: 500px;
+            height: 550px;
+            background-color: #fff;
+            margin: auto;
+        }
+
+        .line {
+            margin: auto;
+            width: 300px;
+            height: 10px;
+            background-image: url(./img/58Line.png);
+            background-repeat: repeat-x;
+        }
+
+        .login-form form .input input {
+            height: 40px;
+            width: 300px;
+            border: 1px solid #000;
+        }
+
+        .login-form form .submit-btn input {
+            width: 300px;
+            height: 40px;
+            background-color: #ff552e;
+        }
+
+        .login-way,
+        .foot {
+            margin-top: 30px;
+        }
+
+        .img-size {
+            width: 200px;
+            height: 50px;
+            background-image: url(./img/58Banner.png);
+            line-height: 50px;
+            margin-left: 100px;
+        }
+
+        .login-by-qq {
+            background-position: 0px 0px;
+        }
+
+        .login-by-qq:hover {
+            background-position: 0px -50px;
+        }
+
+        .login-by-wb {
+            background-position: 0px -100px;
+        }
+
+        .login-by-wb:hover {
+            background-position: 0px -150px;
+        }
+
+        .login-by-wx {
+            background-position: 0px -200px;
+        }
+
+        .login-by-wx:hover {
+            background-position: 0px -250px;
+        }
+
+        
+       
+    </style>
+</head>
+
+<body>
+    <div class="main-body">
+        <div class="header">
+            <span style="margin-right: 200px;">
+                返回首页
+            </span>
+            <span>
+                没有账号?去注册
+            </span>
+            
+        </div>
+        <div class="logo">
+            <img src="./img/logo.png" alt="">
+        </div>
+        <div class="login-choose">
+            <!-- <div>
+                账号密码登录
+            </div>
+            <div>
+                手机号登录
+            </div> -->
+            <p>
+                <span style="margin-right: 100px; color: #fe552e; font-size: 16px;">账号密码登录</span>
+                <span style="color: #000; font-size: 16px;">手机号登录</span>
+            </p>
+            <div class="line"></div>
+        </div>
+        <div class="login-form">
+            <form action="">
+                <div class="input">
+                    <input type="text" placeholder="账户名">
+                </div>
+
+                <br>
+
+                <div class="input">
+                    <input type="text" placeholder="密码">
+                </div>
+
+                <br>
+
+                <div>
+                    <span style="margin-right: 100px;">
+                        <input type="checkbox" name="remeberPwd" class="remeberPwd">记住密码
+                        <input type="checkbox" name="loginAuto">下次自动登录
+                    </span>
+
+                    <a href="">忘记密码</a>
+                </div>
+
+                <br>
+
+                <div class="submit-btn">
+                    <input type="submit" value="登录">
+                </div>
+                <div class="login-way">
+                    <div class="img-size login-by-qq">
+                        <img src="" alt="">
+                        QQ登录
+                    </div>
+                    <div class="img-size login-by-wb">
+                        微博登录
+                    </div>
+                    <div class="img-size login-by-wx">
+                        微信登录
+                    </div>
+
+
+                </div>
+                <div class="foot">
+                    @58.com
+                    <a href="">联系客服</a>
+                    <a href="">帮助</a>
+                </div>
+            </form>
+        </div>
+        <div>
+        </div>
+    </div>
+</body>
+
+</html>
