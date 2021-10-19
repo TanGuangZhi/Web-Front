@@ -30,7 +30,10 @@
 
 
 
+### 模拟电商打折界面
+使用div+css布局
 
+![](http://picbed.tgz666.top/20211019173756.png?roundPic/radius/25%7CimageView2/2/w/1000/h/1618)
 
 
 
