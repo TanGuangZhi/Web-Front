@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+}
+
+.nav{
+    height: 100%;
+    height: 50px;
+}
+.nav ul {
+    height: 100%;
+    height: 100%;
+    overflow: hidden;
+    list-style: none;
+    background-color: #96b97d;
+}
+
+.nav ul li {
+    float: left;
+    list-style: none;
+    margin: 15px 20px;
+    color: #fff;
+}
+
+.nav ul li a{
+    width: 50px;
+    height: 100%;
+    color: #fff;
+    text-decoration: none;
+    display:inline-block;
+}
+
+.logo {
+    float: left;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.logo h1{
+    display: inline;
+}
+
+.logo h1.right{
+    color: #96b97d;
+}
+
+.search {
+    float: right;
+    height: 100%;
+    line-height: 100%;
+    margin-top: 25px;
+    margin-right: 50px;
+}
+
+.search input{
+    width: 300px;
+    height: 30px;
+    border: 1px solid #000;
+}
