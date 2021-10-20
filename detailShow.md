@@ -21,11 +21,11 @@
 
 ## <span id = "21S1W2">  CSS进阶与兼容处理
 ### 模拟58同城登录界面
-#### 原网页
+#### 58原网页
 [用户登录-58同城](https://passport.58.com/login/ )
 ![](http://picbed.tgz666.top/20211018192111.png?roundPic/radius/25%7CimageView2/2/w/1000/h/1618)
 
-#### 模拟网页
+#### 58模拟网页
 ![](http://picbed.tgz666.top/20211018192103.png?roundPic/radius/25%7CimageView2/2/w/1000/h/1618)
 
 
@@ -38,14 +38,18 @@
 
 
 
+### 使用CSS绘制图形
+![20211020175239](http://picbed.tgz666.top/20211020175239.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
+### 模拟QQ安全中心
+外联CSS+块级行级元素转化
+![20211020175310](http://picbed.tgz666.top/20211020175310.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
-
-
-
-
+### 模拟菜鸟教程首页
+原网站: [菜鸟教程 - 学的不仅是技术，更是梦想！](https://www.runoob.com )
+![20211020175513](http://picbed.tgz666.top/20211020175513.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
 
