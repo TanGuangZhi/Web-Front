@@ -1,7 +1,7 @@
 # Web-Front
 前端自学
 
-实操项目展示:[TanGuangZhi/Web-Front: 前端自学](https://github.com/TanGuangZhi/Web-Front )
+实操项目展示:[TanGuangZhi/Web-Front: 前端自学](https://github.com/TanGuangZhi/Web-Front/blob/main/detailShow.md)
 
 ## 第一阶段
 20211011~
