@@ -64,7 +64,10 @@
 ![20211021184530](http://picbed.tgz666.top/20211021184530.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
-
+### 模拟百度翻译首页
+css多层级选择器+浮动布局 
+原网址:[百度翻译，您的掌上翻译专家](https://fanyi.baidu.com/appdownload/download.html?tab=desktop&fr=pcplugin )
+![20211021192918](http://picbed.tgz666.top/20211021192918.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
 
