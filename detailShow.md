@@ -58,9 +58,10 @@
 
 
 
+### 模拟JQuery插件中心界面
+原网址: [jQuery个人中心插件](https://www.jq22.com/jquery-plugins%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83-1-jq )
 
-
-
+![20211021184530](http://picbed.tgz666.top/20211021184530.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
 
