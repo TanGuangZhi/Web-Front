@@ -10,7 +10,7 @@
 }
 
 .container>div {
-    width: 300px;
+    width: 300px  ;
     height: 600px;
     float: left;
     border: 10px solid transparent;
