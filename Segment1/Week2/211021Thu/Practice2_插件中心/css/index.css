@@ -218,7 +218,7 @@ body {
 .main {
     width: 100%;
     height: 1000px;
-    background-color: #67b1a7;
+    /* background-color: #67b1a7; */
 }
 
 .main .container{

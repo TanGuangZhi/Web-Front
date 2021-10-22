@@ -1,5 +1,5 @@
 # Web-Front
-前端自学
+前端学习
 
 实操项目展示:[TanGuangZhi/Web-Front: 前端自学](https://github.com/TanGuangZhi/Web-Front/blob/main/detailShow.md)
 
