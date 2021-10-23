@@ -31,7 +31,7 @@
 
 
 ### 模拟电商打折界面
-使用div+css布局
+锻炼: 使用div+css布局
 
 ![](http://picbed.tgz666.top/20211019173756.png?roundPic/radius/25%7CimageView2/2/w/1000/h/1618)
 
@@ -43,7 +43,7 @@
 
 
 ### 模拟QQ安全中心
-外联CSS+块级行级元素转化
+锻炼: 外联CSS+块级行级元素转化
 ![20211020175310](http://picbed.tgz666.top/20211020175310.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
@@ -65,12 +65,15 @@
 
 
 ### 模拟百度翻译首页
-css多层级选择器+浮动布局 
+锻炼: css多层级选择器+浮动布局 
 原网址:[百度翻译，您的掌上翻译专家](https://fanyi.baidu.com/appdownload/download.html?tab=desktop&fr=pcplugin )
 ![20211021192918](http://picbed.tgz666.top/20211021192918.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
+### 模拟豆瓣界面
+锻炼: css浮动+定位+awesome_icon图标
 
+![20211023162849](http://picbed.tgz666.top/20211023162849.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
 
