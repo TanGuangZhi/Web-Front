@@ -3,6 +3,9 @@
 
 实操项目展示:[TanGuangZhi/Web-Front: 前端自学](https://github.com/TanGuangZhi/Web-Front/blob/main/detailShow.md)
 
+## 工作流/学习流
+![20211026195957](http://picbed.tgz666.top/20211026195957.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
+
 # 第一阶段
 20211011~
 
