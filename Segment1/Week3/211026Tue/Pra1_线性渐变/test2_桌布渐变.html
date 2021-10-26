@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1 {
+            width: 400px;
+            height: 400px;
+            /* border: 1px solid red; */
+            background-image: repeating-linear-gradient(45deg, yellow 0px, yellow 20px, red 20px, red 50px);
+        }
+
+        .box2 {
+            width: 400px;
+            height: 400px;
+            /* border: 1px solid red; */
+            background-image: repeating-linear-gradient(-45deg, yellow 0px, yellow 20px, red 20px, red 50px);
+            opacity: .5;
+            margin-top: -400px;
+        }
+
+        .box3 {
+            width: 400px;
+            height: 400px;
+            border: 1px solid red;
+            /* background-image: repeating-linear-gradient(-45deg, yellow 0px, yellow 20px ,pink 20px,pink 50px); */
+            /* 渐变 */
+            background-image: repeating-linear-gradient(45deg,
+                    rgba(255, 0, 0, 0.3) 0px,
+                    rgba(255, 0, 0, 0.3) 30px,
+                    rgba(255, 255, 0, 0.3) 30px,
+                    rgba(255, 255, 0, 0.3) 60px),
+                repeating-linear-gradient(-45deg,
+                    rgba(255, 0, 0, 0.3) 0px,
+                    rgba(255, 0, 0, 0.3) 30px,
+                    rgba(255, 255, 0, 0.3) 30px,
+                    rgba(255, 255, 0, 0.3) 60px);
+        }
+
+        .box4 {
+            width: 400px;
+            height: 400px;
+            border: 1px solid red;
+            /* background-image: repeating-linear-gradient(-45deg, yellow 0px, yellow 20px ,pink 20px,pink 50px); */
+            /* 渐变 */
+            background-image: repeating-linear-gradient(45deg,
+                    rgba(255, 0, 0, 0.3) 0px,
+                    rgba(255, 0, 0, 0.3) 30px,
+                    rgba(255, 255, 0, 0.3) 30px,
+                    rgba(255, 255, 0, 0.3) 60px);
+        }
+
+        .box5 {
+            width: 400px;
+            height: 400px;
+            border: 1px solid red;
+            /* background-image: radial-gradient(#ccc 0,#ccc 5px,#666,5px,#666 10px,#ccc 10px); */
+            background-image: radial-gradient(#ccc 0, #666 30%, #ccc 100%);
+        }
+
+        .box6 {
+            width: 400px;
+            height: 400px;
+            border: 1px solid red;
+            /* background-image: repeating-radial-gradient(#ccc 0,#ccc 5px,#666,5px,#666 10px,#ccc 10px); */
+            background-image: repeating-radial-gradient(#ccc 0,#ccc 10%,#666 10%,#666 20%,#ccc 20%);
+        }
+
+        .nav{
+            width: 100%;
+            height: 40px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+            background-image: linear-gradient(#ccc 0%,#666 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        box
+    </div>
+    <!-- 桌布样式1 -->
+    <div class="box1">
+        box1
+    </div>
+    <div class="box2">
+        box2
+    </div>
+
+    <!-- 桌布样式2 -->
+    <div class="box3">
+
+    </div>
+
+    <!-- 样式3 -->
+    <div class="box4"></div>
+
+    <!-- 径向渐变 -->
+    <div class="box5">
+
+    </div>
+
+    <!-- 重复径向渐变 -->
+    <div class="box6">
+
+    </div>
+
+    <nav class="nav"></nav>
+</body>
+
+</html>
