@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    color: #000;
+}
+
+.container>div {
+    width: 300px  ;
+    height: 600px;
+    float: left;
+    border: 10px solid transparent;
+}
+
+.container div div {
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* border: 20px solid transparent; */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.box1 {
+    width: 300px;
+    height: 300px;
+    /* border: 1px solid black; */
+}
+
+.box1 .myImage1 {
+    height: 300px;
+    height: 200px;
+    background-image: url(../img/black\ and\ brown\ round\ ornament.jpg);
+}
+
+.box1 .myImage2 {
+    height: 300px;
+    height: 200px;
+    background-image: url(../img/油炸圈饼甜甜圈精美图片.jpg);
+}
+
+.box1 .myImage3 {
+    height: 300px;
+    height: 200px;
+    background-image: url(../img/夏日果汁非主流小清新图片大全.jpg);
+}
+
+.box2 {
+    width: 300px;
+    height: 400px;
+    /* border: 1px solid black; */
+}
+
+.box2 .myImage1 {
+    height: 300px;
+    height: 300px;
+    background-image: url(../img/blue\ lemon\ sliced\ into\ two\ halves.jpg);
+}
+
+.box2 .myImage2 {
+    height: 300px;
+    height: 300px;
+    background-image: url(../img/green\ alligator\ pear.jpg);
+}
+
+.box3 {
+    width: 300px;
+    height: 300px;
+    /* border: 1px solid black; */
+}
+
+.box3 .myImage1 {
+    width: 300px;
+    height: 200px;
+    background-image: url(../img/pile\ of\ French\ macaroons.jpg);
+}
+
+.box3 .myImage2 {
+    width: 300px;
+    height: 200px;
+    background-image: url(../img/silver\ bell\ alarm\ clock.jpg);
+}
+
+.box3 .myImage3 {
+    width: 300px;
+    height: 200px;
+    background-image: url(../img/sliced\ green\ avocado\ fruit.jpg);
+}
