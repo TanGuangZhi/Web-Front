@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    /* height: 100px; */
+    /* border: 1px solid red; */
+}
+
+.footNav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    background-color: #f0f0f0;
+}
+
+.main{
+    width: 100%;
+    height: 1000px;
+}
+
+[class *=nav] {
+    width: 200px;
+    /* border: 1px solid green; */
+}
+
+[class *=nav]:hover {
+    color: red;
+}
+
+[class *=nav] .image{
+    width: 200px;
+    height: 50px;
+    border: 1px salmon green;
+    background-image: url(../img/_首页.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+[class *=nav] .image:hover{
+    background-image: url(../img/_首页1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}

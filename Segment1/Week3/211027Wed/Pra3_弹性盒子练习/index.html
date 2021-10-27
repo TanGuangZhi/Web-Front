@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+
+        .container {
+            width: 1000px;
+            height: 1000px;
+            border: 1px solid red;
+            margin: auto;
+
+        }
+
+        h1 {
+            text-align: center;
+            color: aquamarine;
+        }
+
+        .item {
+            width: 200px;
+            height: 250px;
+            /* border: 1px solid green; */
+        }
+
+        /*  弹性容器  */
+        .content {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        /* 弹性项目*/
+        .item {
+            width: 240px;
+            background-color: #fff;
+            margin-bottom: 50px;
+            box-shadow: 0 1px 3px 0 rgb(0, 0, 0, 0.3);
+        }
+
+        .item p {
+            font-size: 36px;
+            /* height: 160px; */
+            line-height: 200px;
+            border-bottom: 1px solid #ccc;
+            margin: 0;
+        }
+
+        .item span {
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>每日游戏</h1>
+        <div class="content">
+            <div class="item">
+                <p>和平精英</p>
+                <span>27号</span>
+            </div>
+            <div class="item">
+                <p>和平精英</p>
+                <span>27号</span>
+            </div>
+            <div class="item">
+                <p>和平精英</p>
+                <span>27号</span>
+            </div>
+            <div class="item">
+                <p>和平精英</p>
+                <span>27号</span>
+            </div>
+            <div class="item">
+                <p>和平精英</p>
+                <span>27号</span>
+            </div>
+            
+            <div class="item">
+                <p>和平精英</p>
+                <span>27号</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
