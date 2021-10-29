@@ -1,4 +1,5 @@
 <!doctype html>
+
 <head>
   <style>
     :root {
@@ -16,7 +17,7 @@
       font-family: Helvetica, Arial, sans-serif;
     }
 
-    body * + * {
+    body *+* {
       margin-top: 1.5em;
     }
 
@@ -25,7 +26,7 @@
       margin: 0 auto;
     }
 
-    ul.site-nav{
+    ul.site-nav {
       /* 变成flexbox */
       display: flex;
       padding-left: 0;
@@ -35,11 +36,11 @@
       border-radius: .2em;
     }
 
-    .site-nav li{
+    .site-nav li {
       margin-top: 0;
     }
 
-    .site-nav li a{
+    .site-nav li a {
       background-color: #cc6b5a;
       color: white;
       text-decoration: none;
@@ -48,12 +49,34 @@
     }
 
     /* 选中除了第一项li的所有li */
-    .site-nav > li + li{
+    .site-nav>li+li {
       margin-left: 1.5em;
     }
 
-    .site-nav .nav-right{
+    .site-nav .nav-right {
       margin-left: auto;
+    }
+
+    .tile {
+      padding: 1.5em;
+      background-color: #fff;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex>*+* {
+      margin-top: 0;
+      margin-left: 1.5em;
+    }
+
+    .column-main {
+      flex: 66.66%;
+    }
+
+    .column-sidebar {
+      flex: 33.33%;
     }
   </style>
 </head>
@@ -87,13 +110,11 @@
             <h3>Login</h3>
             <p>
               <label for="username">Username</label>
-              <input id="username" type="text"
-                name="username"/>
+              <input id="username" type="text" name="username" />
             </p>
             <p>
               <label for="password">Password</label>
-              <input id="password" type="password"
-                name="password"/>
+              <input id="password" type="password" name="password" />
             </p>
             <button type="submit">Login</button>
           </form>
