@@ -13,6 +13,8 @@ a {
     color: #0075e5;
 }
 
+/* 头部信息开始 */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -22,14 +24,37 @@ header {
     padding: 0 20px;
 }
 
+header .right {
+    width: 150px;
+    display: flex;
+    /* flex-direction: column;
+    flex-wrap: wrap; */
+    justify-content: space-around;
+    align-items: center;
+}
+
+header .right img {
+    /* width: 100px; */
+    height: 50px;
+}
+
+header .right .info p:nth-of-type(2) {
+    color: gray;
+    font-size: 10px;
+}
+
+
+/* main区域开始 */
 main {
     width: 100%;
     margin-top: 20px;
     /* height: 500px; */
     /* border: 1px solid red; */
     display: flex;
+    overflow: hidden;
 }
 
+/* aside导航栏开始 */
 main aside {
     display: flex;
     flex-direction: column;
@@ -37,6 +62,10 @@ main aside {
     /* border: 1px solid green; */
     background-color: #fff;
     /* padding-left: 20px; */
+}
+
+main aside nav .hide img:active aside{
+    display: none;
 }
 
 main aside nav div {
@@ -48,26 +77,36 @@ main aside nav div {
     line-height: 50px;
 }
 
+main aside nav div.hide img{
+    height: 20px;
+    margin-left: 90%;
+}
+
 main aside nav div:hover {
-   background-color: #0474e0;
+    background-color: #0474e0;
 }
 
-main aside nav div>i{
+main aside nav div>i {
     margin-left: 10px;
-    }
-
-main aside nav div i:nth-of-type(2){
-float: right;
-margin-top: 20px;
-margin-right: 10px;
 }
 
+main aside nav div i:nth-of-type(2) {
+    float: right;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+
+/* 右侧article正文开始 */
 main article {
+    height: 700px;
     margin-left: 30px;
     padding: 20px;
     flex-grow: 1;
     background-color: #fff;
     /* border: 1px solid blue; */
+    overflow-y: scroll;
+
 }
 
 /* 右上输入用户部分开始 */
@@ -82,14 +121,14 @@ article .search {
 
 .search form .name, .area {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .search form .name span, .area span {
     margin: 10px 30px;
 }
 
-.search form input[type=text],select {
+.search form input[type=text], select {
     width: 150px;
     height: 40px;
     margin-top: 10px;
@@ -124,7 +163,7 @@ button, article .search form [type=submit] {
     background-color: #fff;
 }
 
-.tableShow .functionBtn{
+.tableShow .functionBtn {
     padding: 20px 0;
 }
 
