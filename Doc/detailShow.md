@@ -111,8 +111,10 @@
 ![20211029083836](http://picbed.tgz666.top/20211029083836.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
+### 使用3d效果制作旋转筛子
+锻炼：旋转+3d
 
-
+![20211029205200](http://picbed.tgz666.top/20211029205200.png?roundPic/radius/25|imageView2/2/w/1000/h/1618)
 
 
 
