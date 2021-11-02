@@ -1,0 +1,204 @@
+:root {
+    box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+.container {
+    width: 100%;
+    height: 1500px;
+    // background-color: #000;
+
+    .header {
+        width: 98%;
+        height: 100px;
+        background-color: #fff;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        padding-top: 20px;
+
+        .logo {
+            width: 100px;
+            height: 50px;
+            // border: 1px solid red;
+            margin-top: 10px;
+            background-image: url(../img/home_03.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .nav {
+            width: 50%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        // 转化a标签为block元素,用于鼠标移动上去的样式改变
+        .nav a {
+            width: 100px;
+            height: 50px;
+            // background-color: aqua;
+            display: block;
+        }
+
+        .nav,
+        .right {
+            margin-top: 20px;
+        }
+
+        .right {
+            height: 50px;
+            // border: 1px solid red;
+            display: flex;
+
+            .search {
+                margin-left: 20px;
+            }
+
+            .search input {
+                border: none;
+                outline-style: none;
+                border-bottom: 1px solid gray;
+            }
+
+            .icon img {
+                margin: 0 5px;
+            }
+        }
+    }
+
+    .main {
+        width: 100%;
+        height: 2000px;
+        // border: 1px solid red;
+        background-image: url(../img/home_18_banner.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        .banner {
+            width: 100%;
+            height: 500px;
+        }
+
+        .shopShow {
+            width: 1200px;
+            height: 1000px;
+            // border: 1px solid red;
+            margin: auto;
+
+            .upShow {
+                width: 500px;
+                height: 300px;
+                background-image: url(../img/home_20_up.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin: auto;
+                margin-top: -30px;
+            }
+
+            .mainShow {
+                width: 100%;
+                height: 100%;
+                // border: 1px solid red;
+                // background-image: url(../img/home_26_mainShow.png);
+                // background-repeat: no-repeat;
+                // background-size: cover;
+
+                .box {
+                    width: 100%;
+                    // border: 1px solid red;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+
+                    .item {
+                        flex-basis: 25%;
+                        height: 400px;
+                        padding-left: 20px;
+                        // border: 1px solid green;
+
+                        .image {
+                            width: 100%;
+                            height: 75%;
+
+                            background-image: url(../img/home_07_mainShow.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            transition: all 1s;
+                            &:hover{
+                                transform: scale(1.05);
+                            }
+                        }
+
+                        .info {
+                            width: 100%;
+                            height: 25%;
+                            text-align: center;
+                            padding-top: 20px;
+
+                            .price {
+                                color: red;
+                                font-weight: bold;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .footer {
+        width: 100%;
+        height: 200px;
+        // border: 1px solid red;
+        
+        border-top: 5px solid #f7f7f7;
+
+        .box {
+            margin: auto;
+            width: 1000px;
+            display: flex;
+        }
+
+        .item {
+            width: 25%;
+            height: 200px;
+            // border: 1px solid red;
+            display: flex;
+            align-items: center;
+            // border-right: 5px solid #f7f7f7;
+            // border-radius: 50px;
+
+            .icon {
+                width: 50%;
+                height: 50%;
+                background-image: url(../img/hone_37_footer.png);
+                background-repeat: no-repeat;
+                background-size: 100px 100px;
+            }
+        }
+
+    }
+
+    .copyRight {
+        width: 100%;
+        height: 100px;
+        color: #fff;
+        background-color: #000;
+        text-align: center;
+        padding-top: 25px;
+    }
+}
