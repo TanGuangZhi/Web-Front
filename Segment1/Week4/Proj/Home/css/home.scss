@@ -17,7 +17,7 @@ a {
 
 .container {
     width: 100%;
-    height: 1500px;
+    // height: 1500px;
     // background-color: #000;
 
     .header {
@@ -43,19 +43,90 @@ a {
             width: 50%;
             display: flex;
             justify-content: center;
-        }
 
-        // 转化a标签为block元素,用于鼠标移动上去的样式改变
-        .nav a {
-            width: 70px;
-            height: 50px;
-            // background-color: aqua;
-            display: block;
-            margin-left: 10px;
-            text-align: center;
+            .item {
+                a {
+                    // 转化a标签为block元素,用于鼠标移动上去的样式改变
+                    width: 70px;
+                    height: 50px;
+                    // background-color: aqua;
+                    display: block;
+                    margin-left: 10px;
+                    text-align: center;
 
-            &:hover {
-                border-bottom: 3px solid red;
+                    &:hover {
+                        border-bottom: 3px solid red;
+                    }
+                }
+
+                &:nth-of-type(2) {
+                    // 父相子绝
+                    position: relative;
+                }
+
+                &:nth-of-type(2):hover .secondDetail {
+                    display: block;
+                }
+
+
+                // 二级菜单展示界面
+                .secondDetail {
+                    width: 1200px;
+                    height: 300px;
+                    // 父相子绝
+                    position: absolute;
+                    left: -250px;
+                    top: 60px;
+                    display: none;
+                    z-index: 5;
+
+                    .box {
+                        width: 1200px;
+                        height: 300px;
+                        display: flex;
+                        background-color: #ffffff;
+                        justify-content: space-around;
+
+                        .secondDetailBox {
+                            flex-basis: 20%;
+                            height: 100%;
+
+                            .secondDetailBoxImage {
+                                width: 200px;
+                                height: 90%;
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                margin-left: 20px;
+                            }
+
+                            .secondDetailBoxInfo {
+                                height: 30px;
+                                line-height: 30px;
+                                margin-left: 20px;
+                            }
+
+                            &:nth-of-type(1) .secondDetailBoxImage {
+                                background-image: url(../img/secondDetail1.png);
+                            }
+
+                            &:nth-of-type(2) .secondDetailBoxImage {
+                                background-image: url(../img/secondDetail2.png);
+                            }
+
+                            &:nth-of-type(3) .secondDetailBoxImage {
+                                background-image: url(../img/secondDetail3.png);
+                            }
+
+                            &:nth-of-type(4) .secondDetailBoxImage {
+                                background-image: url(../img/secondDetail4.png);
+                            }
+
+                            &:nth-of-type(5) .secondDetailBoxImage {
+                                background-image: url(../img/secondDetail5.png);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -68,6 +139,19 @@ a {
             height: 50px;
             // border: 1px solid red;
             display: flex;
+
+            .loginAndRegister{
+                width: 150px;
+                // height: 100%;
+                a{
+                    width: 40%;
+                    // line-height: 50px;
+                    // height: 100%;
+                    display: inline-block;
+                    text-align: center;
+                    margin-bottom: 7px;
+                }
+            }
 
             .search {
                 margin-left: 20px;
@@ -97,6 +181,19 @@ a {
         overflow: hidden;
         // 父相子绝定位右侧icon图标
         position: relative;
+        margin: auto;
+
+        // 用于嵌套其他界面
+        .iframe {
+            width: 1200px;
+            height: 1200px;
+            margin: auto;
+
+            iframe {
+                width: 100%;
+                height: 100%;
+            }
+        }
 
         .banner {
             // 轮播图效果
@@ -145,18 +242,21 @@ a {
 
                 .box {
                     width: 100%;
-                    height: 40px;
+                    height: 50px;
                     // border: 1px solid red;
-                    background-color: #fff;
                     display: flex;
                     justify-content: center;
                     align-items: center;
 
                     .icon {
-                        width: 100%;
-                        height: 100%;
+                        width: 40px;
+                        height: 40px;
                         background-repeat: no-repeat;
                         background-position: center center;
+                        background-color: rgba(255, 255, 255,0.3);
+                        // background-size: 100% 100%;
+                        position: fixed;
+                        // opacity: 0.5;
                     }
 
                     &:nth-child(1) .icon {
@@ -251,7 +351,6 @@ a {
                         .image {
                             width: 100%;
                             height: 75%;
-
                             background-image: url(../img/home_07_mainShow.png);
                             background-repeat: no-repeat;
                             background-size: contain;
@@ -325,7 +424,6 @@ a {
                 background-image: url(../img/footer4.png);
             }
         }
-
     }
 
     .copyRight {
