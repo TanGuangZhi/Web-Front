@@ -26,7 +26,7 @@ a {
         background-color: #fff;
         margin: auto;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         padding-top: 20px;
 
         .logo {
@@ -42,15 +42,21 @@ a {
         .nav {
             width: 50%;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
         }
 
         // 转化a标签为block元素,用于鼠标移动上去的样式改变
         .nav a {
-            width: 100px;
+            width: 70px;
             height: 50px;
             // background-color: aqua;
             display: block;
+            margin-left: 10px;
+            text-align: center;
+
+            &:hover {
+                border-bottom: 3px solid red;
+            }
         }
 
         .nav,
@@ -71,6 +77,11 @@ a {
                 border: none;
                 outline-style: none;
                 border-bottom: 1px solid gray;
+                // 如果这个搜索按钮有点击效果,则不建议做成背景图,暂时使用margin-left往左拉实现
+                // background-image: url(../img/home_search_09.png);
+                // background-repeat: no-repeat;
+                // background-position: right;
+                // background-size: contain;
             }
 
             .icon img {
@@ -83,13 +94,117 @@ a {
         width: 100%;
         height: 2000px;
         // border: 1px solid red;
-        background-image: url(../img/home_18_banner.png);
-        background-size: contain;
-        background-repeat: no-repeat;
+        overflow: hidden;
+        // 父相子绝定位右侧icon图标
+        position: relative;
 
         .banner {
-            width: 100%;
+            // 轮播图效果
+            width: 300%;
             height: 500px;
+            display: flex;
+            animation: bannerMove 15s linear 0s infinite;
+            z-index: 1;
+
+            [class *=banner_child] {
+                width: 100%;
+                height: 100%;
+            }
+
+            .banner_child1 {
+                background-image: url(../img/banner1.png);
+                background-size: cover;
+                background-repeat: no-repeat;
+
+            }
+
+            .banner_child2 {
+                background-image: url(../img/banner4.png);
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            .banner_child3 {
+                background-image: url(../img/banner1.png);
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            // 右侧3个小图标
+            .right {
+                width: 40px;
+                height: 150px;
+                // border: 1px solid red;
+                // 子绝定位图标位置
+                position: absolute;
+                right: 20px;
+                top: 150px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                .box {
+                    width: 100%;
+                    height: 40px;
+                    // border: 1px solid red;
+                    background-color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .icon {
+                        width: 100%;
+                        height: 100%;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                    }
+
+                    &:nth-child(1) .icon {
+                        background-image: url(../img/banner-right-icon1.png);
+                    }
+
+                    &:nth-child(2) .icon {
+                        background-image: url(../img/banner-right-icon2.png);
+                    }
+
+                    &:nth-child(3) .icon {
+                        background-image: url(../img/home_search_avtar.png);
+                    }
+                }
+
+            }
+        }
+
+        // .bannerLogo{
+        //     width: 100px;
+        //     height: 50px;
+        //     // background-image: url(../img/banner_logo.png);
+        // }
+
+        @keyframes bannerMove {
+            0% {
+                margin-left: 0%;
+            }
+
+            33% {
+                margin-left: 0%;
+            }
+
+            38% {
+                margin-left: -100%;
+            }
+
+            66% {
+                margin-left: -100%;
+            }
+
+            69% {
+                margin-left: -200%;
+            }
+
+            100% {
+                margin-left: -200%;
+            }
         }
 
         .shopShow {
@@ -97,6 +212,9 @@ a {
             height: 1000px;
             // border: 1px solid red;
             margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            // flex-direction: column;
 
             .upShow {
                 width: 500px;
@@ -111,6 +229,7 @@ a {
             .mainShow {
                 width: 100%;
                 height: 100%;
+                // display: none;
                 // border: 1px solid red;
                 // background-image: url(../img/home_26_mainShow.png);
                 // background-repeat: no-repeat;
@@ -137,7 +256,8 @@ a {
                             background-repeat: no-repeat;
                             background-size: contain;
                             transition: all 1s;
-                            &:hover{
+
+                            &:hover {
                                 transform: scale(1.05);
                             }
                         }
@@ -164,7 +284,7 @@ a {
         width: 100%;
         height: 200px;
         // border: 1px solid red;
-        
+
         border-top: 5px solid #f7f7f7;
 
         .box {
@@ -185,9 +305,24 @@ a {
             .icon {
                 width: 50%;
                 height: 50%;
-                background-image: url(../img/hone_37_footer.png);
                 background-repeat: no-repeat;
                 background-size: 100px 100px;
+            }
+
+            &:nth-child(1) .icon {
+                background-image: url(../img/footer1.png);
+            }
+
+            &:nth-child(2) .icon {
+                background-image: url(../img/footer2.png);
+            }
+
+            &:nth-child(3) .icon {
+                background-image: url(../img/footer3.png);
+            }
+
+            &:nth-child(4) .icon {
+                background-image: url(../img/footer4.png);
             }
         }
 
