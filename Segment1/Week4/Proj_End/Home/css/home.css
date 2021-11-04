@@ -1,0 +1,29 @@
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+.navbar-brand img {
+  height: 50px;
+  padding-bottom: 20px;
+}
+
+.navbar-right .navbar-brand img {
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.jumbotron p {
+  text-align: left;
+}
+
+.nav-stacked li {
+  border-bottom: 1px solid gray;
+}

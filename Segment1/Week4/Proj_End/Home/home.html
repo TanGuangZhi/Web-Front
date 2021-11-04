@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+        integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
+    <!-- 引入jquery的js文件  先引入jquery文件-->
+    <!-- <script src="./js/JQuery2.1.4.js"></script> -->
+    <!-- 引入bootstrap的js文件 -->
+    <!-- <script src="./js/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" href="./css/home.min.css">
+</head>
+
+<body>
+    <!-- 采取网格化布局系统 -->
+    <div class="container-fluid">
+        <div class="row row-same-height">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- logo -->
+                    <a class="navbar-brand" href="#">
+                        <img alt="Brand" src="./img/home_03.png">
+                    </a>
+                    <!-- 头部左侧 -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">后台管理系统</a>
+                    </div>
+
+                    <!-- 输入搜索区 -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default">提交</button>
+                        </form>
+                        <!-- 头部右侧 -->
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- 头像 -->
+                            <a class="navbar-brand" href="#">
+                                <img src="./img/avatar.jpg" alt="..." class="img-rounded">
+                            </a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">船长<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">修改密码</a></li>
+                            <li><a href="#">后台系统</a></li>
+                            <li><a href="#">安全退出</a></li>
+                            <li><a href="#">常见问题解答</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <ul class="nav nav-pills nav-stacked " style="color: #000;">
+                    <li role="presentation" class="active"><a href="#" style="color: red; background-color: #fff;">首页</a></li>
+                    <li role="presentation"><a href="#" style="color: #000;">统计</a></li>
+                    <li role="presentation"><a href="#" style="color: #000;">订单管理</a></li>
+                    <li role="presentation"><a href="#" style="color: #000;">产品管理</a></li>
+                    <li role="presentation"><a href="#" style="color: #000;">库存管理</a></li>
+                    <li role="presentation"><a href="#" style="color: #000;">物流管理</a></li>
+                    <li role="presentation"><a href="#" style="color: #000;">售后管理</a></li>
+                    <li role="presentation"><a href="#" style="color: #000;">资金流水</a></li>
+                    <li role="presentation"><a href="#" style="color: #000;">会员管理</a></li>
+                </ul>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <h3 style="margin-left: 20px; margin-bottom: 20px;">首页</h3>
+                </div>
+                <!-- 每日订单展示区 -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <p
+                                    style="font-weight: bold; font-size: 14px; display: flex; justify-content: space-between;">
+                                    今日销售管理
+                                    <a class="btn btn-danger btn-xm" href="#" role="button">查看</a>
+                                </p>
+                                <p style="font-weight: bold; font-size: 26px;">￥15982.98</p>
+                                <p style="display: flex; justify-content: space-between;">比昨日上升20%
+                                    <img class="media-object" src="./img/up.png" style="width: 20px;" alt="...">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <p
+                                    style="font-weight: bold; font-size: 14px; display: flex; justify-content: space-between;">
+                                    今日销售管理
+                                    <a class="btn btn-danger btn-xm" href="#" role="button">查看</a>
+                                </p>
+                                <p style="font-weight: bold; font-size: 26px;">￥15982.98</p>
+                                <p style="display: flex; justify-content: space-between;">比昨日上升20%
+                                    <img class="media-object" src="./img/up.png" style="width: 20px;" alt="...">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <p
+                                    style="font-weight: bold; font-size: 14px; display: flex; justify-content: space-between;">
+                                    今日销售管理
+                                    <a class="btn btn-danger btn-xm" href="#" role="button">查看</a>
+                                </p>
+                                <p style="font-weight: bold; font-size: 26px;">￥15982.98</p>
+                                <p style="display: flex; justify-content: space-between;">比昨日上升20%
+                                    <img class="media-object" src="./img/up.png" style="width: 20px;" alt="...">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <p
+                                    style="font-weight: bold; font-size: 14px; display: flex; justify-content: space-between;">
+                                    今日销售管理
+                                    <a class="btn btn-danger btn-xm" href="#" role="button">查看</a>
+                                </p>
+                                <p style="font-weight: bold; font-size: 26px;">￥15982.98</p>
+                                <p style="display: flex; justify-content: space-between;">比昨日上升20%
+                                    <img class="media-object" src="./img/up.png" style="width: 20px;" alt="...">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <p style=" font-size: 30px;">支付买家数
+                                    <span style=" font-size: 14px; color: gray">2021-11-03 - 2011-11-10</span>
+                                </p>
+                                <p style="display: flex; justify-content: space-between;">
+                                    <img src="./img/data1.png" style="width: 500px; height: 300px;" alt="...">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <p style=" font-size: 30px;">实时数据
+                                    <span style=" font-size: 14px; color: gray">2021-11-03 - 2011-11-10</span>
+                                </p>
+                                <p style="display: flex; justify-content: space-between;">
+                                    <img src="./img/data2.png" style="width: 500px; height: 300px;" alt="...">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <p style=" font-size: 30px;">消费者年龄占比
+                                </p>
+                                <p style="display: flex; justify-content: space-between;">
+                                    <img src="./img/data3.png" style="height: 150px;" alt="...">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <p style=" font-size: 30px;">消费者人群分析
+                                </p>
+                                <p style="display: flex; justify-content: space-between;">
+                                    <img src="./img/data4.png" style="height: 150px;" alt="...">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <p style=" font-size: 30px;">投诉数据
+                                </p>
+                                <p style="display: flex; justify-content: space-between;">
+                                    <img src="./img/data5.png" style="height: 150px;" alt="...">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
