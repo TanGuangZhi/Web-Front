@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 2em;
+            height: 2em;
+            margin: auto;
+            perspective: 120px;
+        }
+
+        .coin {
+            width: 2em;
+            height: 2em;
+            border-radius: 50%;
+            border: 4px solid #3cefff;
+            animation: spin 1.5s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotateY(540deg);
+            }
+        }
+
+        /* 动画2 */
+
+        .balls {
+            width: 4em;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .balls div {
+            width: 0.8em;
+            height: 0.8em;
+            border-radius: 50%;
+            background-color: #3cefff;
+        }
+
+        .balls div:nth-of-type(1) {
+            transform: translateX(-100%);
+            animation: left-swing 0.5s ease-in alternate infinite;
+        }
+
+        .balls div:nth-of-type(3) {
+            transform: translateX(-95%);
+            animation: right-swing 0.5s ease-out alternate infinite;
+        }
+
+        @keyframes left-swing {
+            50% {
+                transform: translateX(95%);
+            }
+
+            100% {
+                transform: translateX(95%);
+            }
+        }
+
+
+        @keyframes right-swing {
+            50% {
+                transform: translateX(-95%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+
+        /* 动画3 */
+        .ballsUp {
+            display: flex;
+            width: 9em;
+            height: 3em;
+            border: 1px solid red;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ballsUp div {
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        .ballsUp div:nth-of-type(1) {
+            animation: floor 3s ease-out 0.5s infinite;
+        }
+
+        .ballsUp div:nth-of-type(2) {
+            animation: floor 3s ease-out 1s infinite;
+        }
+
+        .ballsUp div:nth-of-type(3) {
+            animation: floor 3s ease-out 1.5s infinite;
+        }
+
+        @keyframes floor {
+            0% {
+                transform: translateY(-0em);
+            }
+
+            16.6% {
+                transform: translateY(-1em);
+            }
+
+            33.2% {
+                transform: translateY(-2em);
+            }
+
+            49.8% {
+                transform: translateY(-2em);
+            }
+
+            66.4% {
+                transform: translateY(-1em);
+            }
+
+            83% {
+                transform: translateY(0em);
+            }
+
+            100% {}
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="coin"></div>
+    </div>
+
+
+    <div class="balls">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="ballsUp">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+</body>
+
+</html>
