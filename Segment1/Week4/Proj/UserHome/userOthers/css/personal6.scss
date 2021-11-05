@@ -1,0 +1,146 @@
+.container1 {
+    width           : 930px;
+    height          : 435px;
+    overflow        : hidden;
+    margin-top      : 30px;
+    margin-left     : 220px;
+    background-color: white;
+    // border          : 1px solid red;
+
+    .head {
+        width        : 850px;
+        height       : 97px;
+        line-height  : 97px;
+        text-align   : left;
+        margin-left  : 20px;
+        font-size    : 18px;
+        border-bottom: 1px solid #d3d3d3;
+    }
+
+    .type {
+        width      : 700px;
+        height     : 30px;
+        // border     : 1px solid red;
+        margin-left: 100px;
+        line-height: 30px;
+        font-size: 14px;
+    }
+
+    .oldpassword {
+        width      : 800px;
+        height     : 30px;
+        line-height: 30px;
+        margin-left: 170px;
+        font-weight: 700;
+        input{
+            width: 215px;
+            height: 30px;
+            border: 1px solid #d3d3d3;
+            box-sizing: border-box;
+            padding-left: 10px;
+            font-size: 14px;
+            color: #808080;
+        }
+    }
+
+    .oldtext {
+        width      : 700px;
+        height     : 30px;
+        line-height: 30px;
+        margin-left: 225px;
+        font-size: 12px;
+        color:#808080 ;
+    }
+
+    .newpassword {
+        width      : 600px;
+        height     : 30px;
+        line-height: 30px;
+        margin-left: 170px;
+        font-weight: 700;
+        input{
+            width: 215px;
+            height: 30px;
+            border: 1px solid #d3d3d3;
+            box-sizing: border-box;
+            padding-left: 10px;
+            color: #808080;
+        }
+    }
+
+    .tip {
+        width      : 510px;
+        height     : 30px;
+        line-height: 30px;
+        margin-left: 225px;
+        color:#d3d3d3 ;
+        font-size: 12px;
+    }
+
+    .repeat {
+        width      : 700px;
+        height     : 30px;
+        line-height: 30px;
+        margin-left: 143px;
+        font-weight: 700;
+        input{
+            width: 215px;
+            height: 30px;
+            border: 1px solid #d3d3d3;
+            box-sizing: border-box;
+            padding-left: 10px;
+            color: #808080;
+        }
+    }
+
+    .repassword {
+        width      : 700px;
+        height     : 30px;
+        line-height: 30px;
+        margin-left: 225px;
+        font-size: 12px;
+        color: #d3d3d3;
+    }
+
+    .ma {
+        width         : 700px;
+        height        : 30px;
+        line-height   : 30px;
+        margin-left   : 170px;
+        vertical-align: middle;
+        font-weight: 700;
+        input{
+            width: 215px;
+            height: 30px;
+            border: 1px solid #d3d3d3;
+            color: #808080;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+    }
+    .matext {
+        width      : 700px;
+        height     : 30px;
+        line-height: 30px;
+        margin-left: 225px;
+        font-size: 12px;
+        color:#d3d3d3 ;
+    }
+    .btn{
+        width: 80px;
+        height: 32px;
+        margin-left: 225px;
+        margin-top: 10px;
+        button{
+            width: 80px;
+            height:32px ;
+            background-color: #d60000;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            
+        }
+    }
+}

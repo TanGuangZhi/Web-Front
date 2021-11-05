@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decorative ornaments</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            font-size: 12px;
+            box-sizing: border-box;
+        }
+
+        /* header                                                       开始 */
+        header {
+            width: 1200px;
+            margin: 20px auto;
+            font-size: 16px;
+            color: black;
+            overflow: hidden;
+
+        }
+
+        header a {
+            color: black;
+            display: inline-block;
+            padding-right: 5px;
+        }
+
+        header a:first-child {
+            border-right: 1px solid gray;
+        }
+
+        header .logo {
+            float: left;
+        }
+
+        header .right {
+            height: 25px;
+            line-height: 25px;
+            float: right;
+            /* border: 1px solid red; */
+            vertical-align: middle;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .right span {
+            position: absolute;
+            right: 65px;
+            top: -1px;
+        }
+
+        .right input {
+            border: none;
+            border-bottom: 2px solid black;
+        }
+
+        nav ul {
+            width: 600px;
+            /* border: 1px solid red; */
+            font-size: 16px;
+            color: black;
+            list-style: none;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-between
+        }
+
+        .bcimage {
+            width: 100%;
+            height: 450px;
+            background-image: url(./image4/装饰摆件_01_02.gif);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .line {
+            width: 1200px;
+            margin: 15px auto;
+        }
+
+        /* header                                                        结束 */
+
+
+
+        /* main                                                          开始 */
+        main {
+
+            border-top: 1px rgba(128, 128, 128, 0.26) solid;
+            border-bottom: 1px rgba(128, 128, 128, 0.26) solid;
+        }
+
+        .toptop {
+            border-bottom: 1px rgba(128, 128, 128, 0.26) solid;
+            overflow: hidden;
+        }
+
+        .toptop .line {
+            width: 100px;
+            margin-left: 12%;
+            float: left;
+            font-size: 14px;
+            font-weight: 1000;
+        }
+
+        .toptop .drop {
+            float: right;
+            margin-right: 12%;
+            height: 50px;
+
+        }
+
+        .toptop .drop select {
+            width: 150px;
+            height: 30px;
+            margin: 10px 0;
+            vertical-align: middle;
+            border: 1px solid rgba(0, 0, 0, 0.377);
+            font-size: 14px;
+            font-weight: 1000;
+        }
+
+        nav a {
+            text-align: center;
+            width: 80px;
+            height: 30px;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            color: red;
+            border-bottom: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        .content-flex {
+            width: 1200px;
+            /* border: 1px solid red; */
+            margin: 30px auto 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .content-flex>div {
+            width: 270px;
+            height: 310px;
+        }
+
+        .content-flex:nth-child(5) {
+            justify-content: left;
+        }
+
+        .content-flex:nth-child(5)>div {
+            width: 270px;
+            height: 310px;
+            margin-right: 40px;
+            margin-bottom: 30px;
+        }
+
+
+        .content-flex div:hover>div:first-child {
+            width: 268px;
+            overflow: hidden;
+        }
+
+        .content-flex div:hover img {
+            transform: scale(1.1);
+        }
+
+        .content-flex>div:hover {
+            width: 270px;
+            background-color: rgba(255, 0, 0, 0.24);
+            border: 1px solid red;
+            box-shadow: 0px 0px 10px 1px red;
+        }
+
+        /* main                                                      结束 */
+
+
+
+        /* footer                                                    开始 */
+        footer .box1 {
+            width: 1000px;
+            /* border: 1px solid red; */
+            margin: 30px auto;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer .box1 span {
+            vertical-align: middle;
+        }
+
+        footer .box1 img {
+            vertical-align: middle;
+        }
+
+        .foot .box1 {
+            width: 1000px;
+            /* border: 1px solid red; */
+            margin: 30px auto;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .foot {
+            padding-right: 10px;
+            border-right: 1px solid rgba(128, 128, 128, 0.178);
+        }
+
+        footer .box2 {
+            width: auto;
+            background-color: black;
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+        }
+
+        .gu {
+            width: 50px;
+            /* border: red 1px solid; */
+            position: fixed;
+            right: 20px;
+            top: 55%;
+        }
+
+        .gu div {
+            width: 100%;
+            height: 50px;
+            margin: 10px 0;
+            text-align: center;
+            line-height: 50px;
+            border: rgba(128, 128, 128, 0.513) 1px solid;
+            background-color: rgba(128, 128, 128, 0.123);
+        }
+
+        /* footer                                                         结束 */
+    </style>
+</head>
+
+<body>
+    <div class="bcimage">
+    </div>
+    <div class="line">
+        首页 / 装饰摆件
+    </div>
+    <main>
+        <div class="toptop">
+            <div class="line">
+                装饰摆件
+            </div>
+            <div class="drop">
+                <select name="" id="">
+                    <option value="">排序方式</option>
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="content">
+            <div class="fenge"></div>
+            <div class="plate">
+                <div class="content-flex">
+                    <div>
+                        <div>
+                            <a href="./Detail page1.html">
+                                <img src="./image4/装饰摆件_01_05.gif" alt="">
+                            </a>
+
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red; ">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <a href="./Detail page1.html">
+                                <img src="./image4/装饰摆件_01_07.gif" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <a href="./Detail page1.html">
+                                <img src="./image4/装饰摆件_01_09.gif" alt="">
+                            </a>
+
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_11.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-flex">
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_17.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red; ">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_18.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_19.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_20.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-flex">
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_26.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red; ">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_27.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_28.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_29.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-flex">
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_34.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red; ">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_35.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_36.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_37.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-flex">
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_43.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red; ">688.90</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="./image4/装饰摆件_01_44.gif" alt="">
+                        </div>
+                        <div>
+                            <p>新中式客厅山水装饰画墙壁挂画</p>
+                            <p style="color: red;">688.90</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- <div class="gu">
+        <div><img src="./images/shooping.png" alt=""></div>
+        <div><img src="./images/photo.png" alt=""></div>
+        <div><img src="./images/name.png" alt=""></div>
+    </div> -->
+
+    <script>
+        function changeIframe(addr) {
+            document.getElementById("iframe").src = addr
+        }
+    </script>
+</body>
+
+</html>

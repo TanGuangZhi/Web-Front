@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+.container1{
+    width: 960px;
+    height: 435px;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-left: 220px;
+    background-color: white;
+    // border: 1px solid red;
+    .header1{
+        width: 894px;
+        height: 97px;
+        font-size: 18px;
+        text-align: left;
+        line-height: 97px;
+        margin-top: 0px;
+        margin: 0px auto;
+        border-bottom: 1px solid #d3d3d3;
+        // border: 1px solid yellow;
+    }
+    .information{
+        width: 894;
+        height: 337px;
+        display: flex;
+        position: relative;
+        // border: 1px solid bisque;
+        .userphoto{
+            width: 257px;
+            height: 337px;
+            .img{
+                height: 90px;
+                width: 90px;
+                margin-left: 75px;
+                margin-top: 88px;
+            }
+        }
+        .geren{
+            width: 670px;
+            height: 330px;
+            margin-top: 7px;
+            // border: 1px solid blue;
+            li{
+                width: 670px;
+                height: 47.5px;
+                box-sizing: border-box;
+                padding-top: 20px;
+                border-bottom: 1px solid #d3d3d3;
+            }
+            .myname{
+                color: #808080;
+            }
+            .birthday{
+                color: #808080;
+            }
+            .sex{
+                color: #808080;
+            }
+            .area{
+                color: #808080;
+            }
+            a{
+                color: red;
+                font-size: 12px;
+                float: right;
+            }
+        }
+        }
+    }

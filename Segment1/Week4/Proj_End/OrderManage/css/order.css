@@ -1,0 +1,57 @@
+.navbar-brand{
+  padding-top: 5px;
+}
+.navbar-brand img{
+  width: 123px;
+  height: 40px;
+}
+.navbar-nav li:nth-child(1) a{
+  padding-top: 5px;
+  padding-right: 1px;
+  padding-bottom: 0px;
+}
+.navbar-nav li .dropdown-toggle{
+  padding-left: 0px;
+}
+.breadcrumb{
+  margin: 0px;
+  padding-top: 15px;
+}
+.breadcrumb li::before{
+  content: "";
+  display: none;
+
+}
+.breadcrumb li a{
+  color: #777777;
+}
+.glyphicon-triangle-right{
+  float: right;
+}
+.nav-stacked li a{
+  display: inline-block;
+  width: 100%;
+
+}
+.nav-pills li .text {
+  vertical-align: middle;
+  font-size: 20px;
+}
+.glyphicon-triangle-right{
+  padding-top: 6px;
+}
+.WODE{
+  width: 30% !important;
+}
+.col-md-4{
+  padding-left: 0px;
+}
+.form-control{
+  display: inline-block !important;
+}
+.didi{
+  text-align: center;
+}
+.dada{
+  height: 150px;
+}

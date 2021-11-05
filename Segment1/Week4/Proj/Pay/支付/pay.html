@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin: auto;
+            width: 1200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+        }
+
+        p,a{
+            color: #000;
+            font-size: 14px;
+        }
+
+        .header {
+            width: 100%;
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 290px;
+        }
+
+        .logo img {
+            width: 220px;
+        }
+
+        .news {
+            width: 510px;
+            font-weight: bold;
+            height: 18px;
+        }
+
+        .user {
+            height: 980px;
+            width: 310px;
+            font-size: 13px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+
+        .user img {
+            width: 15px;
+            height: 15px;
+        }
+
+        .enter {
+            width: 80px;
+            font-weight: bold;
+        }
+
+        .search {
+            width: 160px;
+            height: 20px;
+            text-align: center;
+            color: rgb(211, 206, 206);
+            border-bottom: 1px solid gray;
+        }
+
+        .nav {
+            height: 50px;
+            border-top: 1px solid rgb(221, 218, 218);
+            border-bottom: 1px solid rgb(221, 218, 218);
+            position: relative;
+        }
+
+        .details {
+            width: 400px;
+            height: 30px;
+            font-size: 13px;
+            margin: auto;
+            margin-top: -40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav p {
+            color: rgb(221, 218, 218);
+        }
+
+        .details img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+
+        .details-2 {
+            width: 70px;
+            border: 0.5px solid red;
+            background-color: red;
+
+        }
+
+        .details-4 {
+            width: 70px;
+            border: 0.5px solid red;
+            background-color: red;
+
+        }
+
+        .list {
+            height: 100px;
+            text-align: center;
+
+        }
+
+        .list-1 {
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .banner {
+            width: 100%;
+            height: 280px;
+        }
+
+        .title {
+            height: 25px;
+            text-align: center;
+        }
+
+        .pic {
+            width: 100%;
+            height: 280px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: top;
+        }
+
+        .pic img {
+            width: 200px;
+            height: 200px;
+
+        }
+
+        .box1,
+        .box2,
+        .box3,
+        .box4,
+        .box5 {
+            width: 200px;
+            height: 200px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .banner span {
+            color: red;
+        }
+
+        .footer {
+            height: 70px;
+        }
+
+        .foot {
+            height: 60px;
+            width: 1000px;
+            margin: auto;
+            font-size: 15px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+
+        .foot1 {
+
+            width: 170px;
+            border-right: 2px solid rgb(221, 218, 218);
+        }
+
+        .foot2 {
+
+            width: 170px;
+            border-right: 2px solid rgb(221, 218, 218);
+        }
+
+        .foot3 {
+
+            width: 170px;
+            border-right: 2px solid rgb(221, 218, 218);
+        }
+
+        .buttom {
+            width: 100%;
+            height: 40px;
+            color: white;
+            background-color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <p>支付成功</p>
+            <div class="details">
+                <div class="details-1">
+                    <img src="./img2/order.png" alt="">
+                    购物车
+                </div>
+                <div class="details-2">
+                </div>
+                <div class="details-3">
+                    <img src="./img2/order.png" alt="">
+                    订单确认
+                </div>
+                <div class="details-4">
+                </div>
+                <div class="details-5">
+                    <img src="./img2/finish-order.png" alt="">
+                    完成订单
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="list-1">
+                <p>支付成功!</p>
+            </div>
+            <div class="list-2"><a href="#">返回订单页</p>
+            </div>
+        </div>
+        <div class="banner">
+            <div class="title">猜你喜欢</div>
+            <div class="pic">
+                <div class=" box1"> <img src="./img2/p1_34.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+                <div class=" box2"> <img src="./img2/p2.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+                <div class=" box3"> <img src="./img2/p3.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+                <div class=" box4"> <img src="./img2/p4.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+                <div class=" box5"> <img src="./img2/p5_42.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+            </div>
+            <div class="pic">
+                <div class=" box1"> <img src="./img2/p1_34.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+                <div class=" box2"> <img src="./img2/p2.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+                <div class=" box3"> <img src="./img2/p3.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+                <div class=" box4"> <img src="./img2/p4.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+                <div class=" box5"> <img src="./img2/p5_42.png" alt="">
+                    <p>
+                        【最佳】复古文艺风玻璃花瓶
+                        <br>
+                        <span> ￥688.00</span>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

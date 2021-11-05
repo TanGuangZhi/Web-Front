@@ -37,7 +37,8 @@ a {
             background-image: url(../img/home_03.png);
             background-repeat: no-repeat;
             background-size: contain;
-            a{
+
+            a {
                 display: block;
                 width: 100%;
                 height: 100%;
@@ -145,10 +146,11 @@ a {
             // border: 1px solid red;
             display: flex;
 
-            .loginAndRegister{
+            .loginAndRegister {
                 width: 150px;
+
                 // height: 100%;
-                a{
+                a {
                     width: 40%;
                     // line-height: 50px;
                     // height: 100%;
@@ -173,8 +175,13 @@ a {
                 // background-size: contain;
             }
 
-            .icon img {
-                margin: 0 5px;
+            .icon {
+                margin-left: -25px;
+
+                img {
+                    margin: 0 5px;
+                }
+
             }
         }
     }
@@ -188,35 +195,42 @@ a {
         position: relative;
         margin: auto;
 
-        .crumbsNav{
+        .right-list {
+            width: 50px;
+            height: 150px;
+            background-color: #f5f5f5;
+            position: fixed;
+            top: 500px;
+            right: 40px;
+        }
+
+        .right-list div {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            right: -6px;
+            top: -6px;
+        }
+
+        .crumbsNav {
             width: 100%;
             height: 50px;
             // border: 1px solid red;
             // margin: auto;
             background-color: #fff;
-            .box{
+
+            .box {
                 width: 1000px;
                 height: 50px;
                 // border: 1px solid green;
                 margin: auto;
                 color: #000;
                 line-height: 50px;
-                a{
+
+                a {
                     color: #000;
                     text-decoration: none;
                 }
-            }
-        }
-
-        // 用于嵌套其他界面
-        .iframe {
-            width: 1200px;
-            height: 100vh;
-            margin: auto;
-
-            iframe {
-                width: 100%;
-                height: 100%;
             }
         }
 
@@ -278,7 +292,7 @@ a {
                         height: 40px;
                         background-repeat: no-repeat;
                         background-position: center center;
-                        background-color: rgba(255, 255, 255,0.3);
+                        background-color: rgba(255, 255, 255, 0.3);
                         // background-size: 100% 100%;
                         position: fixed;
                         // opacity: 0.5;
@@ -297,6 +311,19 @@ a {
                     }
                 }
 
+            }
+        }
+
+
+        // 用于嵌套其他界面
+        .iframe {
+            width: 100vw;
+            height: 854px;
+            margin: auto;
+
+            iframe {
+                width: 100%;
+                height: 100%;
             }
         }
 
@@ -406,7 +433,7 @@ a {
 
     .footer {
         width: 100%;
-        height: 200px;
+        // height: 200px;
         // border: 1px solid red;
 
         border-top: 5px solid #f7f7f7;
@@ -448,6 +475,51 @@ a {
             &:nth-child(4) .icon {
                 background-image: url(../img/footer4.png);
             }
+        }
+
+        .container-4 {
+            width: 100%;
+            background-color: white;
+            height: 80px;
+        }
+
+        .service {
+            width: 1160px;
+            /* height: 80px;
+            background-color: white;
+            position: absolute;
+            bottom: 0px;
+            left: 0px; */
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .content {
+            width: 1000px;
+            height: 60px;
+            margin: auto;
+            margin-top: 10px;
+            background-color: white;
+            line-height: 60px;
+            text-align: center;
+        }
+
+        .content div {
+            box-sizing: border-box;
+            float: left;
+            width: 25%;
+            height: 60px;
+            background-color: white;
+            line-height: 60px;
+            border-right: 1px solid #ccc;
+        }
+
+        .content div:last-child {
+            border-right: 0;
+        }
+
+        .content div img {
+            vertical-align: middle;
         }
     }
 
