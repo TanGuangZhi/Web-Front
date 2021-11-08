@@ -29,10 +29,7 @@
 
 <body>
     <div class="row">
-        <div class="col-3">
-
-        </div>
-        <div class="col-9">
+        <div class="col-11 ps-5 pt-4">
             <div class="row">
                 <h3>添加产品</h3>
             </div>
@@ -44,11 +41,15 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">产品分类: </label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="box d-flex justify-content-between">
+                            <input type="email" class="form-control" style="width:60%" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <button class="btn btn-light" style="width:20%">管理分类</button>
+                        </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 d-flex justify-content-between mt-5">
                         <label for="exampleInputEmail1" class="form-label">产品参数: </label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <button class="btn btn-light" style="width:20%">管理参数</button>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">货号: </label>
@@ -68,20 +69,20 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-start">
                         <div class="col-2">
-                            <button>图片</button>
+                            <button class="btn btn-danger">图片</button>
                         </div>
                         <div class="col-2">
-                            <button>视频</button>
+                            <button class="btn btn-light">视频</button>
                         </div>
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating mt-3">
                         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
                             style="height: 300px"></textarea>
                         <label for="floatingTextarea2">+ 图片</label>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-3">
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
@@ -97,14 +98,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-end">
+
+                    <div class="row justify-content-end mt-3">
                         <div class="col-2">
-                            <button>
+                            <button class="btn btn-light">
                                 保存
                             </button>
                         </div>
                         <div class="col-2">
-                            <button>
+                            <button class="btn btn-light">
                                 取消
                             </button>
                         </div>

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   box-sizing: border-box;
 }
@@ -230,13 +231,13 @@ a {
 }
 
 .container .main .banner .banner_child2 {
-  background-image: url(../img/banner4.png);
+  background-image: url(../img/banner2.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .container .main .banner .banner_child3 {
-  background-image: url(../img/banner1.png);
+  background-image: url(../img/banner3.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -350,14 +351,111 @@ a {
 .container .main .shopShow .mainShow .box .item .image {
   width: 100%;
   height: 75%;
-  background-image: url(../img/home_07_mainShow.png);
   background-repeat: no-repeat;
   background-size: contain;
   transition: all 1s;
+  position: relative;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.container .main .shopShow .mainShow .box .item .image .inbox1 {
+  width: 230px;
+  border-top: 1px solid #fb5607;
+  position: absolute;
+  top: 20%;
+  left: 25px;
+  transform: scale(0);
+  transition: 2s;
+  transform-origin: -50% 0;
+}
+
+.container .main .shopShow .mainShow .box .item .image .inbox2 {
+  width: 240px;
+  border-top: 1px solid #ff006e;
+  position: absolute;
+  bottom: 25%;
+  left: 25px;
+  transform: scale(0);
+  transition: 2s;
+  transform-origin: 150% 0;
+}
+
+.container .main .shopShow .mainShow .box .item .image .inbox3 {
+  height: 230px;
+  border-left: 1px solid #8338ec;
+  position: absolute;
+  top: 30px;
+  left: 20%;
+  transform: scale(0);
+  transition: 2s;
+  transform-origin: 0 150%;
+}
+
+.container .main .shopShow .mainShow .box .item .image .inbox4 {
+  height: 230px;
+  border-left: 1px solid #3a86ff;
+  position: absolute;
+  top: 30px;
+  right: 20%;
+  transform: scale(0);
+  transition: 0.6s;
+  transform-origin: 0 -50%;
+}
+
+.container .main .shopShow .mainShow .box .item .image:hover .inbox {
+  transform: scale(1);
 }
 
 .container .main .shopShow .mainShow .box .item .image:hover {
   transform: scale(1.05);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(1) .image {
+  background-image: url(../img/home_07_mainShow.png);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(2) .image {
+  background-image: url(../img/首页_03.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(3) .image {
+  background-image: url(../img/首页_05.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(4) .image {
+  background-image: url(../img/首页_07.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(5) .image {
+  background-image: url(../img/首页_13.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(6) .image {
+  background-image: url(../img/首页_15.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(7) .image {
+  background-image: url(../img/首页_17.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(8) .image {
+  background-image: url(../img/首页_19.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(9) .image {
+  background-image: url(../img/首页_24.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(10) .image {
+  background-image: url(../img/首页_25.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(11) .image {
+  background-image: url(../img/首页_26.gif);
+}
+
+.container .main .shopShow .mainShow .box .item:nth-child(12) .image {
+  background-image: url(../img/首页_28.gif);
 }
 
 .container .main .shopShow .mainShow .box .item .info {

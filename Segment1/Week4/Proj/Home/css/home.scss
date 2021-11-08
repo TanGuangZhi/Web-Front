@@ -255,13 +255,13 @@ a {
             }
 
             .banner_child2 {
-                background-image: url(../img/banner4.png);
+                background-image: url(../img/banner2.jpg);
                 background-size: cover;
                 background-repeat: no-repeat;
             }
 
             .banner_child3 {
-                background-image: url(../img/banner1.png);
+                background-image: url(../img/banner3.jpg);
                 background-size: cover;
                 background-repeat: no-repeat;
             }
@@ -398,18 +398,142 @@ a {
                         flex-basis: 25%;
                         height: 400px;
                         padding-left: 20px;
-                        // border: 1px solid green;
+                        
 
+                        // border: 1px solid green;
                         .image {
                             width: 100%;
                             height: 75%;
-                            background-image: url(../img/home_07_mainShow.png);
                             background-repeat: no-repeat;
                             background-size: contain;
                             transition: all 1s;
+                            position: relative;
+                            border-radius: 10px 10px 10px 10px;
+                            // &:hover .inbox{
+                            //     width: 80%;
+                            //     height: 80%;
+                            //     transform: scale(1);
+                            //     border: 1px solid red;
+                            // }
+                            .inbox1 {
+                                width: 230px;
+                                border-top: 1px solid rgb(251,86,7);
+                                position: absolute;
+                                top: 20%;
+                                left: 25px;
+                                transform: scale(0);
+                                transition: 2s;
+                                transform-origin:-50% 0 ;
+                            }
+                            .inbox2 {
+                                width: 240px;
+                                border-top: 1px solid rgb(255,0,110);
+                                position: absolute;
+                                bottom: 25%;
+                                left: 25px;
+                                transform: scale(0);
+                                transition: 2s;
+                                transform-origin:150% 0 ;
+                            }
+                            .inbox3 {
+                                height: 230px;
+                                border-left: 1px solid rgb(131,56,236);
+                                position: absolute;
+                                top: 30px;
+                                left: 20%;
+                                transform: scale(0);
+                                transition: 2s;
+                                transform-origin:0 150% ;
+                            }
+                            .inbox4 {
+                                height: 230px;
+                                border-left: 1px solid rgb(58,134,255);
+                                position: absolute;
+                                top: 30px;
+                                right: 20%;
+                                transform: scale(0);
+                                transition: 0.6s;
+                                transform-origin:0 -50% ;
+                            }
+                            &:hover .inbox {
+                                transform: scale(1);
+                            }
+
+
 
                             &:hover {
                                 transform: scale(1.05);
+                            }
+                        }
+                        &:nth-child(1) {
+                            .image {
+                                background-image: url(../img/home_07_mainShow.png);
+                            }
+                        }
+
+                        &:nth-child(2) {
+                            .image {
+                                background-image: url(../img/首页_03.gif);
+                            }
+                        }
+
+                        &:nth-child(3) {
+                            .image {
+                                background-image: url(../img/首页_05.gif);
+                            }
+                        }
+
+                        &:nth-child(4) {
+                            .image {
+                                background-image: url(../img/首页_07.gif);
+                            }
+                        }
+
+                        &:nth-child(5) {
+                            .image {
+                                background-image: url(../img/首页_13.gif);
+                            }
+                        }
+
+                        &:nth-child(6) {
+                            .image {
+                                background-image: url(../img/首页_15.gif);
+                            }
+                        }
+
+                        &:nth-child(7) {
+                            .image {
+                                background-image: url(../img/首页_17.gif);
+                            }
+                        }
+
+                        &:nth-child(8) {
+                            .image {
+                                background-image: url(../img/首页_19.gif);
+                            }
+                        }
+
+                        &:nth-child(9) {
+                            .image {
+                                background-image: url(../img/首页_24.gif);
+                            }
+                        }
+
+                        &:nth-child(10) {
+                            .image {
+                                background-image: url(../img/首页_25.gif);
+                            }
+                        }
+
+                        &:nth-child(11) {
+                            .image {
+                                background-image: url(../img/首页_26.gif);
+                            }
+                        }
+
+                        &:nth-child(12) {
+                            .image {
+                                background-image: url(../img/首页_28.gif);
                             }
                         }
 
