@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 1. 利用所学知识完成下列题目：
+a) 用户输入2个数字，输出这两个数字的加减乘除运算结果
+b) 定义一个变量，获取用户输入的数字，依次进行+=2、-=3、/=4、%=6，并输出结果
+2. 执行下列代码（a和b变量的数据是用户输入的，需转为数字），并说明原因为什么是这个结果(每小问是独立的,假设a=2,b=3)
+a) a = a++ + b--; b = b++;  document.write(a);5 document.write(b); 
+b) a = a + a--; b = b++ + a++ ;  document.write(a); 5 document.write(b); 
+c) a +=b; b = b++;  document.write(a); 5 document.write(b); 
+d) document.write(a++ - a-- + b-- + a++); 
+e) document.write(a-- - a + b++ + a++); -->
+
+    <script>
+        // 作业1-a
+        let num1 = 10;
+        let num2 = 5;
+
+        // console.log(num1 + num2); // 15
+        // console.log(num1 - num2); // 5
+        // console.log(num1 * num2); // 50
+        // console.log(num1 / num2); // 2
+
+        // 作业1-b
+        // console.log(num1 += 2); // 12
+        // console.log(num1 -= 3); // 9
+        // console.log(num1 /= 4); // 2.25
+        // console.log(num1 %= 6); // 2.25
+
+        // 作业2-a
+        // let num1 = 10;
+        // let num2 = 5;
+        // num1 = num1++ + num2--; // 15
+        // num2 = num2++; // 4
+        // alert(num1) // 15
+        // alert(num2) // 4
+
+        // 2-b
+        // num1 = num1 + num1--; // 20
+        // num2 = num2++ + num1++; // 25
+        // alert(num1) // 21
+        // alert(num2) // 25
+
+        // 2-c
+        // num1 += num2;
+        // num2 = num2++;
+        // alert(num1) // 15
+        // alert(num2) // 5
+
+        // 2-d
+        // alert(num1++ - num1-- + num2-- + num1++) // 14
+
+        // 2-e
+        // alert(num1-- - num1 + num2++ + num1++) // 15s
+
+        // test
+        // num1 = num1++;
+        // alert(num1)
+        // alert(num1++)
+        // alert(num1+num2)
+
+        // test2
+        // num1 = num1++;
+        // alert(num1);
+        // num1 +=1;
+        // alert(num1);
+        // num1++
+        // alert(num1)
+
+        // test3
+        // let c = num1++ + ++num1 + ++num1 +num1;
+        num1 = num1++ + ++num1 + ++num1 +num1;
+        alert(num1)
+
+
+
+    </script>
+
+</body>
+
+</html>
