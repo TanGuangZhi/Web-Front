@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let time = parseInt(Math.random() * 25);
+        console.log(`时间是${time}`);
+
+        if (time > 6 && time < 11) {
+            console.log('上午');
+        } else if (time > 12 && time < 18) {
+            console.log('下午');
+        } else if ((time > 18 && time < 25) || ((time > 0 && time < 6))) {
+            console.log('晚上');
+        } else {
+            console.log('输入有误');
+        }
+    </script>
+</body>
+
+</html>

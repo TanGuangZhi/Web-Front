@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 随机ascll a-z对应的数字值,[97-122]
+        let random1 = (parseInt(Math.random() * (123 - 97)) + 97) + "";
+        let random2 = (parseInt(Math.random() * (123 - 97)) + 97) + "";
+        let random3 = (parseInt(Math.random() * (123 - 97)) + 97) + "";
+        let random4 = (parseInt(Math.random() * (123 - 97)) + 97) + "";
+
+        // 数字转字符串
+        let randomString1 = String.fromCharCode(random1); 
+        let randomString2 = String.fromCharCode(random2); 
+        let randomString3 = String.fromCharCode(random3); 
+        let randomString4 = String.fromCharCode(random4); 
+
+        console.log(randomString1 + randomString2 + randomString3 + randomString4);
+    </script>
+</body>
+
+</html>
