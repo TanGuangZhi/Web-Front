@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.用户分别输入用户名和密码(都是字符串，用不同变量保存)，进行登录验证。
+        // 只有用户名和密码都对，才提示登录成功，否则登录失败(正确账号： admin ad123)
+        // 2.第一题扩展：一样进行登录验证，只不过分为3个分支：登录成功、登录失败：用户名错误、登录失败：密码错误
+        // (1.登录，2注册，3退出)
+        // 1.输入用户和密码，匹配，匹配成功显示登录成功”，匹配失败“用户和密码有错误”
+        // 2.输入用户和密码，如果用户输入的是dmin,提示已被使用”，否则“注册成功”
+        // 3.感谢使用
+        // 输入其他：“输入错误”
+
+        let userInput;
+
+        while (userInput != 3) {
+            userInput = parseInt(prompt("请选择操作:(1.登录，2注册，3退出)"));
+            if (userInput === 1) {
+                let userName = prompt("请输入用户名");
+                let userPwd = prompt("请输入密码");
+                if (userName === "admin" && userPwd === "ad123") {
+                    console.log('登陆成功');
+                    userInput2Continue = prompt("请选择是否继续(y继续,n退出)");
+                    if(userInput2Continue==="y"){
+                        continue;
+                    }else{
+                        break;
+                    }
+                } else {
+                    console.log('账户或密码不正确,请重新输入');
+                    continue;
+                }
+
+            } else if (userInput === 2) {
+                let userName = prompt("请输入注册用户名");
+                if (userName === "admin") {
+                    console.log(`${userName}已被使用,请重新输入`);
+                    continue;
+                } else {
+                    let userPwd = prompt("请输入密码");
+                    console.log('注册成功');
+                }
+                
+            } else if (userInput === 3) {
+                console.log('感谢使用');
+            } else {
+                console.log('输入错误');
+                break;
+            }
+        }
+    </script>
+</body>
+
+</html>
