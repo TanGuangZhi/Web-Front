@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // indexOf(value)	从前往后索引，检索一个数组中是否含有指定的元素	
+        // lastIndexOf(value)	从后往前索引，检索一个数组中是否含有指定的元素	
+        // includes(item)	数组中是否包含指定的内容	
+        // find(function())	找出第一个满足「指定条件返回 true」的元素	
+        // findIndex(function())	找出第一个满足「指定条件返回 true」的元素的 index	
+        // every()	确保数组中的每个元素都满足「指定条件返回 true」，则停止遍历，此方法才返回 true	全真才为真。要求每一项都返回 true，最终的结果才返回 true
+        // some()	数组中只要有一个元素满足「指定条件返回 true」，则停止遍历，此方法就返回 true	一真即真。只要有一项返回 true，最终的结果就返回 true
+
+        let arr1 = [1, 2, 3, 4, "sdf", 4, 7];
+        let arr2 = [1, 2, "3", 4, "sdf", 4, 7];
+        let arr3 = [3, 2,  4,  4, 7];
+        // indexof
+        // console.log(`${arr1.indexOf(4)}`); // 3
+
+        // lastIndexOf
+        // console.log(`${arr1.lastIndexOf(4)}`); // 5
+
+        // includes
+        // console.log(`${arr1.includes(4)}`); // true
+        // console.log(`${arr1.includes(44)}`); // f
+        // console.log(`${arr2.includes(3)}`); // f (全匹配
+        // console.log(`${arr2.includes("3")}`); // t
+
+        // find
+        // console.log(`${arr1.find((item, index) => { // 4
+        //     return item > 3
+        // })}`);
+
+        // findIndex
+        // console.log(`${arr1.findIndex((item, index) => { // 3
+        //     return item > 3
+        // })}`);
+
+        // every
+        // console.log(`${arr3.every((item, index) => { // false
+        //     return item > 4;
+        // })}`);
+        // console.log(`${arr3.every((item, index) => { // true
+        //     return item > 1;
+        // })}`);
+
+        // some
+        // console.log(`${arr3.some((item, index) => { // true
+        //     return item > 4;
+        // })}`);
+        // console.log(`${arr3.some((item, index) => { // true
+        //     return item > 1;
+        // })}`);
+
+    </script>
+</body>
+
+</html>

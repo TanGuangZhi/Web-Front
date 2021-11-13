@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.建立三个数组，分别存储学姓名和学员语文成绩和数学成绩。需要最后在网页以表格显示出来
+        // 2.建立二个数组，做数组合并以及数组去重操作
+        // 3.制作猜拳游戏，和电脑随机猜拳比对（1.拳；2.布；3.剪比），用户每次输入后就和电脑比对，并将结果alert弹出来。3局2胜，最终在网页。每次出拳的历史纪录和比赛结果。
+        // 4.移除数组中用户指定的数据
+        // 5.显示数组里的所有奇数之和和偶数之和
+        // 6.给一个数字数组，该数组中有很多数字0，将不为0的数据存入到一个新的数组中
+        // 7.点名: 每次刷新网页运行, 在控制台 随机输出一位同学的名字 [“老赵”, “老李”, “小传”, “小黑”]，如果输出了，则数组中删除这个名字
+        // 8.打印一个倒立三角形
+        // 9.打印出一个数组中的某一个数, 出现过几次[1,1,1,2,2,2,11,3,3,11,22,33,11,11,33]
+
+        // 9
+        // let arr = [1, 1, 1, 2, 2, 2, 11, 3, 3, 11, 22, 33, 11, 11, 33,123];
+        // let arrNumCount = [];
+        // let arrNumCountIndex = 0;
+        // let isFirstFlag = true;
+        // // 先排序
+        // arr.sort();
+        // console.log(`${arr}`);
+        // // 统计
+        // for (let i = 0; i < arr.length; i++) {
+        //     // 循环重复的数字
+        //     if (arr[i] === arr[i + 1]) {
+        //         if (isFirstFlag) {
+        //             arrNumCount[arrNumCountIndex] = 1;
+        //             isFirstFlag = false;
+        //         }
+        //         arrNumCount[arrNumCountIndex]++;
+        //     // 为只有一个值设置
+        //     } else if (arr[i] !== arr[i - 1] && arr[i] !== arr[i + 1]) {
+        //         arrNumCount[arrNumCountIndex] = 1;
+        //         isFirstFlag = true;
+        //         arrNumCountIndex++;
+        //         console.log(`${arr[i]}`);
+        //     } else {
+        //         // 下一个新的数字
+        //         arrNumCountIndex++;
+        //         isFirstFlag = true;
+        //         console.log(`${arr[i]}`);
+        //     }
+        // }
+        // console.log(`${arrNumCount.join()}`);
+
+        // 8
+        // for (let i = 0; i < 20; i++) { // 控制打印这个三角形有多少行
+        //     for (let j = i; j < 20; j++) { // 控制打印这个三角形每行有多少个
+        //         document.write("*");
+        //     }
+        //     document.write("<br>");
+        // }
+
+        // 7
+        // let arrName = ["老赵",'老李',"小赚","小亏"];
+        // let random = parseInt(Math.random()*arrName.length);
+        // alert(arrName[random]);
+        // arrName.splice(random,1);
+        // console.log(`${arrName}`);
+
+        // 6
+        // let arr = [0, 0, 0, "b", "水电费", 0, 0, 0, "0", 10];
+        // let arrNew = [];
+        // let arrNewIndex = 0;
+        // for (let i = 0; i < arr.length; i++) {
+        //     const element = arr[i];
+        //     if (element !== 0) { // 采取绝对不等于0
+        //         arrNew[arrNewIndex] = element;
+        //         arrNewIndex++;
+        //     }
+        // }
+        // console.log(`${arrNew.join()}`);
+
+        // 5
+        // let arr = [1, 2, 3, "b", "水电费", 3, 4, 7, 8, 10];
+        // let ou = 0;
+        // let ji = 0;
+        // for (let i = 0; i < arr.length; i++) {
+        //     const element = arr[i];
+        //     if (element % 2 === 0) {
+        //         ou += element;
+        //     } else if (element % 2 === 1) {
+        //         ji += element;
+        //     } else {
+
+        //     }
+
+        // }
+        // console.log(`偶数之和${ou},奇数之和${ji}`);
+
+        // 4
+        // let arr = [1,2,3,"b","水电费",3];
+        // document.write(`原数组: ${arr}`);
+        // let userInput = prompt("请输入看着不爽的元素序号(从0开始)")-0;
+        // arr.splice(userInput,1);
+        // document.write(`<br>删除后的数组: ${arr}`);
+
+        // 3
+        // let recordArrOfUser = [];
+        // let recordArrOfPc = [];
+        // for (let i = 0; i < 3; i++) {
+        //     let pcNum = parseInt(Math.random() * 4);
+        //     let userNum = prompt("请输入出拳数（1.拳；2.布；3.剪刀）") - 0;
+        //     if (pcNum === userNum) {
+        //         alert("平局");
+        //         // 数组记录
+        //         recordArrOfUser[recordArrOfUser.length] = userNum;
+        //         recordArrOfPc[recordArrOfPc.length] = pcNum;
+        //         i--;
+        //         continue;
+        //     }
+        //     // 用户出拳
+        //     if (userNum === 1) {
+        //         if (pcNum === 2) {
+        //             alert("电脑赢");
+        //         } else {
+        //             alert("玩家赢");
+        //         }
+        //     }
+        //     // 用户出布
+        //     if (userNum === 2) {
+        //         if (pcNum === 1) {
+        //             alert("玩家赢");
+        //         } else {
+        //             alert("电脑赢");
+        //         }
+        //     }
+        //     // 用户剪刀
+        //     if (userNum === 3) {
+        //         if (pcNum === 1) {
+        //             alert("电脑赢");
+        //         } else {
+        //             alert("玩家赢");
+        //         }
+        //     }
+
+        //     // 数组记录
+        //     recordArrOfUser[recordArrOfUser.length] = userNum;
+        //     recordArrOfPc[recordArrOfPc.length] = pcNum;
+        //     continue;
+        // }
+
+        // console.log(`用户出拳${recordArrOfUser.join()}\n电脑出拳${recordArrOfPc.join()}`);
+
+
+        // 2
+        // let arr1 = [1, 2, 3, 1];
+        // let arr2 = ["a", "b", "c", "b", "b"];
+        // let arrNew = [];
+        // let j = 0;
+
+        // // 合并数组
+        // for (let i = 0; i < arr1.length; i++) {
+        //     arrNew[i] = arr1[i];
+        // }
+        // for (let i = 0; i < arr2.length; i++) {
+        //     arrNew[arrNew.length] = arr2[j];
+        //     j++;
+
+        // }
+        // console.log(`${arrNew.join()}`);
+
+        // // console.log(`${arr1.join("-")}`);
+        // // console.log(`${arr2.join("-")}`);
+
+
+        // // 去重数组
+        // arr1.sort();
+        // for (let i = 0; i < arr1.length; i++) {
+        //     if (arr1[i] == arr1[i + 1]) {
+        //         // 如果相邻2数相等,则删除左边第一个数字
+        //         arr1.splice(i, 1)
+        //     }
+        // }
+        // console.log(`${arr1.join()}`);
+        // arr2.sort();
+        // for (let i = 0; i < arr2.length; i++) {
+        //     if (arr2[i] == arr2[i + 1]) {
+        //         // 如果相邻2数相等,则删除左边第一个数字
+        //         arr2.splice(i, 1)
+        //         i--;
+        //     }
+        // }
+        // console.log(`${arr2.join()}`);
+
+
+
+        // 1
+        let array1 = ["张三", "李四", "王五"];
+        let array2 = [80, 90, 85];
+        let array3 = [95, 90, 96];
+
+        console.log(`------------------------\n姓名    语文成绩    数学成绩\n`);
+        for (let i = 0; i < array1.length; i++) {
+            // for (let j = 0; j < 3; j++) {
+            console.log(`${array1[i]}       ${array2[i]}       ${array3[i]}`);
+            // }
+        }
+        console.log(`------------------------`);
+
+    </script>
+</body>
+
+</html>

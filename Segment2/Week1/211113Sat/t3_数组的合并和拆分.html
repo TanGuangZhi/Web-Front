@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // concat()	合并数组：连接两个或多个数组，返回结果为新的数组	不会改变原数组
+        // join()	将数组转换为字符串，返回结果为转换后的字符串	不会改变原数组
+        // split()	将字符串按照指定的分隔符，组装为数组	不会改变原字符串
+
+        let arr1 = [1,2,3];
+        let arr2 = [4,"sdf",4,7];
+
+        // concat
+        // console.log(`${arr1.concat(arr2)}`); // 1,2,3,4,sdf,4,7
+        // console.log(`${arr1}`); // 1,2,3
+        // console.log(`${arr2}`); // 4,sdf,4,7
+
+        // join
+        // console.log(`${arr1.join("-")}`); // 1-2-3
+        // console.log(`${arr2.join("")}`); // 4sdf47
+
+        // split
+        // let stringNum = "1111,222,sdfsf,34fgfdg";
+        // console.log(`${stringNum.split(",")}`); // 1111,222,sdfsf,34fgfdg
+        // console.log(`${Array.isArray(stringNum.split(","))}`); // true
+        
+        // console.log(`${stringNum}`); // 1111,222,sdfsf,34fgfdg
+        // console.log(`${typeof stringNum}`); // string
+    </script>
+</body>
+</html>

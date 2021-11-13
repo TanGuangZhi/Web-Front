@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let array = [3, 20, 1, 4, 9, 5, 4, 8, 30, 50, 9, 19];
+        for (let i = 0; i < array.length; i++) {
+            for (let j = 0; j < array.length - i; j++) {
+                let max = array[j];
+                if (max >= array[j + 1]) {
+                    array[j] = array[j + 1];
+                    array[j + 1] = max;
+                } else {
+                    max = array[j]
+                }
+            }
+            console.log(`${array[i]}`);
+        }
+
+        // for (let i = 0; i < array.length; i++) {
+        //     let max = array[i];
+        //     for (let j = i + 1; j < array.length; j++) {
+        //         const element2 = array[j];
+        //         if (element2 > max) {
+        //             max = element2
+        //         }
+        //         array2[i] = max;
+        //     }
+        //     console.log(`${array2[i]}`);
+        // }
+    </script>
+</body>
+
+</html>

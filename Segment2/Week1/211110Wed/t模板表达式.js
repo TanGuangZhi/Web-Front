@@ -10,7 +10,6 @@
 
 // console.log(`p元素的宽度是:${width},高度是:${height}`);
 
-
 let flag = "";
 let flag2;
 if (flag2 == undefined) {

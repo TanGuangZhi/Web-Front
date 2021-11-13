@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // for 循环	这个大家都懂	
+        // forEach()	和 for 循环类似，但需要兼容 IE8 以上	forEach() 没有返回值。也就是说，它的返回值是 undefined
+        // map()	对原数组中的每一项进行加工，将组成新的数组	不会改变原数组
+        // filter()	过滤数组：返回结果是 true 的项，将组成新的数组，返回结果为新的数组	不会改变原数组
+        // reduce	接收一个函数作为累加器，返回值是回调函数累计处理的结果	
+
+        let arr1 = [1, 2, 3, 4, "sdf", 4, 7];
+        let arr2 = [1, 2, 3, 4, 4, 7, 3, 333, 7, 7, 7, , 111, 1, 2, 4, 3, 3, 222];
+        // forEach
+        // arr1.forEach(element => {
+        //     console.log(`${element}`);
+        // });
+
+        // map
+        // console.log(`${arr1.map((value, index) => { // 11,12,13,14,sdf10,14,17
+        //     return value + 10;
+        // })}`);
+
+        // arr1.forEach((value, index) => { 
+        //     return value + 10;
+        // })
+        // console.log(`${arr1}`); // 1,2,3,4,sdf,4,7 没变
+
+
+        // filter
+        // console.log(`${arr1.filter((a, b) => { // 3,4,4,7
+        //     return a > 2;
+        // })}`);
+
+        // console.log(`${arr1}`); // 1,2,3,4,sdf,4,7
+
+        // reduce
+        // arr1.reduce((pre,cur)=>{
+        //     console.log(`${pre}`);
+        //     console.log(`${cur}`);
+        //     console.log(`------------`);
+        //     return 99;
+        // },0);
+
+
+        // reduce 求某个元素出现的次数
+        // let value = 7;
+
+        // console.log(`${arr2.sort()}`);
+
+        // console.log(`${arr2.reduce((pre, item) => {
+        //     if (item == value) {
+        //         return pre += item;
+        //     } else {
+        //         return pre;
+        //     }
+        // }, 0)}`);
+
+        // reduce 求数组总和
+        // console.log(`${arr2.reduce((a, b) => {
+        //     return a + b;
+        // }, 0)}`);
+
+        // reduce 求最大值
+        // console.log(`${arr2.reduce((a, b) => {
+        //     if (a > b) {
+        //         return a;
+        //     } else {
+        //         return b;
+        //     }
+        // }, 0)}`);
+
+    </script>
+</body>
+
+</html>

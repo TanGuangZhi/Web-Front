@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // reverse()	反转数组，返回结果为反转后的数组	会改变原数组
+        // sort()	对数组的元素,默认按照Unicode 编码，从小到大进行排序	会改变原数组
+
+        let arr = [4, "sdf", 4, 7];
+
+        // reverse
+        // console.log(`${arr.reverse()}`);  // 7,4,sdf,4
+        // console.log(`${arr}`); // 7,4,sdf,4
+
+        // sort
+        console.log(`${arr.sort()}`); // 4,4,7,sdf
+        // 箭头函数,-1 负数代表逆序,即从大到小
+        console.log(`${arr.sort((a, b) => 1)}`); // 4,4,7,sdf
+        console.log(`${arr.sort((a, b) => -1)}`); // sdf,7,4,4
+
+    </script>
+</body>
+
+</html>
