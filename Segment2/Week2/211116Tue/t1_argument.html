@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 需求：定义一个函数，传入多个字符串，完成字符串拼接
+        function joinArgs() {
+            let temp = "";
+            for (let i = 0; i < arguments.length; i++) {
+                const element = arguments[i];
+                temp += element;
+            }
+            return temp;
+        }
+
+        console.log(`${joinArgs("tom", "is", "1123e")}`);
+
+        /// 练习2 定义一个push函数，至少传入两个参数丁第一个是数组，从第二个开始就要追加到数组
+        function push(params) {
+            let newArr =[];
+            for (let i = 0; i < arguments.length; i++) {
+                const element = arguments[i];
+                
+            }
+        }
+
+        push([1,23,4],5);
+    </script>
+</body>
+
+</html>

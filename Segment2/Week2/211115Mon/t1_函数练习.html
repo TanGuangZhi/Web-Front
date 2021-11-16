@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>穷举题</title>
+</head>
+
+<body>
+    <script>
+        // var count = 0;
+        // // 红球开始
+        // for (let red = 0; red <= 5; red++) {
+        //     // 黑球开始
+        //     for (let black = 0; black <= 7; black++) {
+        //         // 白球开始
+        //         for (let white = 0; white <= 9; white++) {
+        //             if (red + white + black === 12) {
+        //                 count++
+        //                 console.log(`红球:${red}黑球:${black},白球:${white}`);
+        //             }
+        //         }
+        //     }
+        // }
+        // console.log(`共${count}个`);
+
+        function heBingArray(a, b) {
+            return a.concat(b);
+        }
+
+        function heBingArray_B(arr1,arr2) {
+            // 合并数组
+            let arrNew = [];
+            for (let i = 0; i < arr1.length; i++) {
+                arrNew[arrNew.length] = arr1[i];
+            }
+            for (let i = 0; i < arr2.length; i++) {
+                arrNew[arrNew.length] = arr2[i];
+            }
+            return arrNew;
+        }
+
+        let arra = [1, 2, 3];
+        let arrb = [4, 5, 6];
+        console.log(`${heBingArray(arra, arrb)}`);
+        console.log(`${heBingArray_B(arra, arrb)}`);
+
+
+    </script>
+</body>
+
+</html>

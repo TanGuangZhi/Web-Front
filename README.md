@@ -59,7 +59,7 @@
 课程目标：通过项目掌握第一阶段 HTML、CSS 的内容、完成 PC 端页面设计和后台管理系统页面设计
 
 日更: 
-1. 学习 animation 东安湖
+1. 学习 animation 动画
 2. 学习响应式布局
 3. 学习 EM 和 REM,Bootstrap
 .

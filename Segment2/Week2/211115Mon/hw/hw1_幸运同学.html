@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 星期一：张三、李四
+        // 星期二：王五、赵六
+        // 星期三：tom
+
+        // 3
+        // 星期一：张三、李四、王五
+        // 星期二：tom、mary
+        // --------------------------------
+        // 星期一：张三
+
+        // 无同学
+
+
+
+
+        // 初始化拦截
+        function init(arr, num) {
+            // 防止传入的不是数组
+            if (!Array.isArray(arr)) {
+                return "输入的学生不是数组类型,请重新输入!"
+            }
+            // 防止传入的num不是数字
+            // if (typeof num != Number) {
+            //     return "输入的num类型不正确,请输入数字类型!"
+            // }
+
+            if (arr.length === 0) {
+                return "无同学";
+            }
+            // 人数不够则直接返回数组
+            if (arr.length < num) {
+                return arr;
+            }
+
+            return true;
+        }
+
+        // 计算分配总次
+        function caluCount(arr, num) {
+            // 算下这些随机数够分配几次
+            let count = 0;
+            let allStu = stuArr.length;
+            while (allStu > 0) {
+                count++;
+                allStu -= num;
+            }
+            return count;
+        }
+
+        // 开始分配
+        function fenPei(randomNumList, temp, num) {
+            let newArr = [];
+            for (; temp < num; temp++) {
+                newArr.push(stuArr[randomNumList[temp]])
+            }
+            return newArr;
+        }
+
+        // 获取arr.length个的随机不重复整数
+        function getUnrepeatRandomNumList(arr, num) {
+            let randomNumList = [];
+            let temp = [];
+            // 复制arr
+            let newArr = arr.slice(0, arr.length - 1);
+            for (let i = 0; i < arr.length; i++) {
+                let randomNum = parseInt(Math.random() * arr.length);
+                // 第一次出现的值塞入
+                if (randomNumList.indexOf(randomNum) === -1) {
+                    randomNumList.push(randomNum);
+                    // 删除这个元素
+                    newArr.splice(randomNum, 1)
+                } else {
+                    i--;
+                    continue;
+                }
+            }
+
+            return randomNumList;
+        }
+
+        // 主函数
+        function main(arr, num) {
+            let temp = 0;
+            if (!init(arr, num)) {
+                console.log(init(arr, num));
+            }
+            let randomNumList = getUnrepeatRandomNumList(arr, num);
+            let count = caluCount(arr, num);
+            for (let i = 1; i <= count; i++) {
+                console.log(`周${i}:`);
+                if (i === count) {
+                    console.log(`${fenPei(randomNumList, temp, arr.length)}`);
+                    break;
+                }
+                console.log(`${fenPei(randomNumList, temp, num + temp)}`);
+                temp += 3;
+            }
+        }
+
+        let stuArr = ['小明', '小红', '小黑', '小蓝', '小绿', '小紫', '小a', '小b', '小d', '小e']
+        // let stuArr = [];
+        // let stuArr = ["小明"];
+
+        main(stuArr, 3);
+
+    </script>
+</body>
+
+</html>

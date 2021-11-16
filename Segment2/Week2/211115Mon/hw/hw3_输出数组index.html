@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, "1", "2", 33, "sdfs"];
+
+        function logIndex(params, input) {
+            for (let i = 0; i < params.length; i++) {
+                const element = params[i];
+                if (input === element) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        console.log(`${logIndex(arr, 33)}`);
+    </script>
+</body>
+
+</html>

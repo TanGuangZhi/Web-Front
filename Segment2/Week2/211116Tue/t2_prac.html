@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 判断用户密码正确吗?
+        let userNameList = ["tom", "jack", "mary"];
+        let userPwdList = ["111", "222", "333"];
+
+        function judgeNameAndPwd(userInputName, userInputPwd) {
+            let userNameIndex = userNameList.indexOf(userInputName);
+            // 判断是否存在
+            if (userNameIndex != -1) {
+                if (userPwdList[userNameIndex] === userInputPwd) {
+                    return true;
+                } else {
+                    return "密码错误";
+                }
+            } else {
+                return "用户名不存在";
+            }
+        }
+
+        // 给用户3次机会
+        let flag = true;
+        for (let i = 1; i <= 3; i++) {
+            // 获取用户输入
+            let userInputName = prompt("请输入用户名");
+            let userInputPwd = "";
+            let temp = judgeNameAndPwd(userInputName, userInputPwd);
+            if (temp != "用户名不存在") {
+                userInputPwd = prompt("请输入密码");
+                temp = judgeNameAndPwd(userInputName, userInputPwd);
+            }
+            if (temp === true) {
+                console.log(`登录成功`);
+                flag = true;
+                break;
+            } else {
+                console.log(`尝试${i}次,${temp}`);
+                flag = false;
+                continue;
+            }
+        }
+
+        if (!flag) {
+            console.log(`尝试次数超过3次,登录失败`);
+        }
+
+    </script>
+</body>
+
+</html>
