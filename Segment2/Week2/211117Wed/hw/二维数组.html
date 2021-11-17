@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 二、定义一个二维数组，完成以下题目：
+        // var  arr = [
+        // ['张三',12,'男'],
+        // ['李四',45,'男'],
+        // ['王五',30,'女'],
+        // ['如花',18,'女'],
+        // ['9527',26,'男']
+        // ]
+
+
+        let arr = [
+            ['张三', 12, '男'],
+            ['李四', 45, '男'],
+            ['王五', 30, '女'],
+            ['如花', 18, '女'],
+            ['9527', 26, '男']
+        ]
+
+        // 1.获取所有的女生
+        function getAllGril(arr) {
+            let newArr = arr.filter((value) => value.indexOf("女") !== -1);
+            return newArr;
+        }
+
+        // 2.获取年龄的总和
+        function getAllAgeTotal(arr) {
+            let totalAge = 0;
+            arr.forEach(element => {
+                totalAge += element[1];
+            });
+            return totalAge;
+        }
+
+
+        // 3.判断是否有未成年
+        function findMinor(arr) {
+            return arr.some(value => value[1] < 18);
+        }
+
+        // 4.判断是否都成年
+        function findNoMinor(arr) {
+            return arr.every(value => value[1] > 18);
+        }
+
+        // 5.所有女生减5岁，所有男生加5岁
+        function setAllGirlAgeDel5(arr) {
+            return arr.map(element => {
+                if (element[2] === "女") {
+                    element[1] -= 5;
+                } else {
+                    element[1] += 5;
+                }
+                return element;
+            });
+        }
+        
+        // 6.按年龄对数组进行排序
+        function orderByAge(arr) {
+            // arr.forEach(element => {
+            //     console.log(`${element.sort()}`);
+            // });
+            return arr.sort((a, b) => a[1] - b[1]);
+        }
+
+        console.log(`${getAllGril(arr)}`); // 王五,30,女,如花,18,女
+        console.log(`${getAllAgeTotal(arr)}`); // 131
+        console.log(`${findMinor(arr)}`); // true
+        console.log(`${findNoMinor(arr)}`); // false
+        console.log(`${setAllGirlAgeDel5(arr)}`); // 张三,17,男,李四,50,男,王五,25,女,如花,13,女,9527,31,男
+        console.log(`${orderByAge(arr)}`); // 如花,13,女,张三,17,男,王五,25,女,9527,31,男,李四,50,男
+    </script>
+</body>
+
+</html>

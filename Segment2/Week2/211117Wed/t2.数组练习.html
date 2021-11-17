@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 登录验证修改
+        let user = [
+            ["admin", "ad123"],
+            ["zhangsan", "zs123"],
+            ["lisi", "ls123"],
+        ];
+
+
+        let isLogin = false;
+        user.forEach(arrChild => {
+            let userInputName = prompt("请输入用户名");
+            let userInputPwd = prompt("密码");
+            for (let i = 0; i < user.length; i++) {
+                if (arrChild[0] === userInputName && arrChild[1] === userInputPwd) {
+                    console.log(`登录成功`);
+                    isLogin = true;
+                    break;
+                }
+                console.log(`${arrChild}`);
+            }
+        });
+
+        alert(isLogin ? "登录成功" : "登录失败");
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [[4, 1, 5, 3], [6, 1, 4, 9], [5, 7, 3, 2]];
+
+        // 1. for循环
+        function func(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                const arrChild = arr[i];
+                for (let j = 0; j < arrChild.length; j++) {
+                    for (let k = 0; k < arrChild.length; k++) {
+                        if (arrChild[k] > arrChild[k + 1]) {
+                            let temp = arrChild[k+1];
+                            arrChild[k+1] = arrChild[k];
+                            arrChild[k] = temp;
+                        }
+                    }
+                }
+                console.log(`${arrChild}`);
+            }
+        }
+
+        // 2. for+sort结合
+        function func2(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                const arrChild = arr[i];
+                arrChild.sort();
+                console.log(`${arrChild}`);
+            }
+        }
+
+        // 3. forEach+sort结合
+        function func3(arr) {
+            arr.forEach(arrChild => {
+                arrChild.sort();
+                console.log(`${arrChild}`);
+            });
+        }
+
+        // 3-YH. 装逼写法(不推荐)
+        function func4(arr) {
+            arr.forEach(arrChild => console.log(`${arrChild.sort()}`));
+        }
+
+        // func(arr)
+        // func2(arr);
+        // func3(arr);
+        // func4(arr);
+    </script>
+</body>
+
+</html>
