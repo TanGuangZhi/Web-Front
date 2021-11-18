@@ -29,7 +29,7 @@
         ]
 
         // 1.获取所有的女生
-        function getAllGril(arr) {
+        function getAllGirl(arr) {
             let newArr = arr.filter((value) => value.indexOf("女") !== -1);
             return newArr;
         }
@@ -65,7 +65,7 @@
                 return element;
             });
         }
-        
+
         // 6.按年龄对数组进行排序
         function orderByAge(arr) {
             // arr.forEach(element => {
@@ -74,7 +74,7 @@
             return arr.sort((a, b) => a[1] - b[1]);
         }
 
-        console.log(`${getAllGril(arr)}`); // 王五,30,女,如花,18,女
+        console.log(`${getAllGirl(arr)}`); // 王五,30,女,如花,18,女
         console.log(`${getAllAgeTotal(arr)}`); // 131
         console.log(`${findMinor(arr)}`); // true
         console.log(`${findNoMinor(arr)}`); // false
