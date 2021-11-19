@@ -37,7 +37,7 @@
         // 2.实现一个函数，将一个字符串中的空格替换成“%20”。
         // 例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy replace
         function replaceBlank(params) {
-            return params.replace(/ /g, "%20");
+            return params.replace(/ /g, "%20")
         }
         console.log(`${replaceBlank("We Are Happy")}`); // We%20Are%20Happy
 
@@ -54,9 +54,9 @@
 
         // 5.判断输入的字符串是否是 .java 结束
         let userInput = ".java"
-        let userInput2 = "111.java"
-        console.log(`${userInput === ".java"}`); // true
-        console.log(`${userInput2 === ".java"}`); // false
+        let userInput2 = "111.java11"
+        console.log(`${userInput.endsWith(".java")}`); // true
+        console.log(`${userInput2.endsWith(".java")}`); // false
 
         // 6.某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的，
         // 加密规则如下：每位数字都加上5,然后用和除以10的余数代替该数字，再将第一位和第四位交换，第二位和第三位交换
@@ -68,7 +68,7 @@
             let newArr = arr.map(value => (value - 0) + 5);
 
             // 代替该数字这步没看懂
-            
+
             // 交换数字
             for (let index = 0; index < newArr.length / 2; index++) {
                 let temp = newArr[index];
@@ -138,7 +138,7 @@
             return outputString;
         }
 
-        console.log(`${firstWordToUpperCase("html css javascript")}`);
+        console.log(`${firstWordToUpperCase("html css javascript").trim()}`);
         // Html Css Javascript 
 
         // 10. 统计字符串中每个字符的个数.比如：”acddcca”;  
@@ -148,11 +148,7 @@
         function getIndex(arr, item) {
             let temp = 0;
             for (let index = 0; index < arr.length; index++) {
-                if (arr[index].indexOf(item) === -1) {
-                    continue;
-                } else {
-                    return index;
-                }
+                if (arr[index].indexOf(item) !== -1) return index;
             }
             return -1;
         }

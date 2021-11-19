@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 给定一个未经排序的整数数组，找到最长且连续递增的子序列，并返回该序列的长度。
+        // 如 [2,3,2,4,5,6,3]  中符合条件的是[4,5,6],程序返回数字3。
+
+        let arr = [2, 3, 2, 809, 8390482, 2389, 4, 5, 6, 3, 4, 5, 6, 7, 8, 9];
+        let outPutArr = [];
+        let max = 0;
+        let count = 1;
+        for (let index = 0; index < arr.length; index++) {
+            if (arr[index + 1] == arr[index] + 1) {
+                count++;
+            } else {
+                outPutArr.push(count);
+                max = Math.max(count,max);
+                count = 1;
+            }
+        }
+        console.log(`${max}`);
+
+    </script>
+</body>
+
+</html>

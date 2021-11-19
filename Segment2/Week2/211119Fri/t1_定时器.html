@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100%;
+            height: 800px;
+            background-color: yellow;
+        }
+
+        .box1{
+            width: 100%;
+            height: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="box">
+        <div class="box1">
+
+        </div>
+    </div> -->
+    <!-- <div class="box">
+        <div
+            style="border-radius: 50%; position: absolute; width:200px; height: 200px;background-color: rgba(red, green, blue, alpha)">
+        </div>
+    </div> -->
+    <!-- <mail href="xxx@yyy"></mail> -->
+    <!-- <b></b> -->
+    <script>
+        // function sayHi() {
+        //     alert('Hello');
+        // }
+
+        // setTimeout(sayHi, 1000);
+
+        // 迭代
+        // let num =0;
+        // setTimeout(fn=() => {
+        //     if(num==5){
+        //         console.log(`停止了,已运行${num}次`);
+        //         return;
+        //     }
+        //     var date = new Date();
+        //     console.log(`${date.getTime()}`);
+        //     num++;
+        //     setTimeout(fn,1000);
+        // }, 1000);
+
+        // while (true) {
+        //     let flag = setTimeout(fn = () => {
+        //         var date = new Date();
+        //         console.log(`${date.getTime()}`);
+        //     }, 1000);
+        //     if(flag){
+        //         setTimeout(() => {
+
+        //         }, 1000);
+        //     }
+        // }
+
+        //自定义格式化输出
+        // function getTime(str){
+        //     var now = new Date();//now等于是date对象，也就是在函数中使用的日期对象
+        //     str = str.replace(/YYYY/g,now.getFullYear());
+        //     str = str.replace(/MM/g,now.getMonth()+1);
+        //     str = str.replace(/DD/g,now.getDate());
+        //     str = str.replace(/HH/g,now.getHours());
+        //     str = str.replace(/mm/g,now.getMinutes());
+        //     var second = now.getSeconds();
+        //     var sec =second >=0 && second<10? '0'+second :second;
+        //     str = str.replace(/SS/g,sec);
+        //     return  str;
+        // }
+
+
+        // console.log(`${getTime("YYYY-MM-DD HH:mm:SS")}`);
+        // setInterval(() => {
+        //     // 代码刷新
+        //     location.reload();
+        //     // console.log(`${getTime("YYYY-MM-DD HH:mm:SS")}`);
+        // }, 1000);
+
+        // 练习：每隔一秒向页面输出一个随机颜色和位置的圆*
+        function getRandomCircle(params) {
+            let color, position, colorRandom, positionRandom;
+            let rgb = "";
+            for (let index = 0; index < 3; index++) {
+                rgb += parseInt(Math.random() * 256) + ","
+            }
+            let randomRgbA = Math.random();
+            rgb = `(${rgb}${randomRgbA})`;
+            let positionRandomX = parseInt(Math.random() * innerWidth);
+            let positionRandomY = parseInt(Math.random() * innerHeight);
+
+            let temp = `<div style="border-radius: 50%; position: absolute; width:50px; 
+            height: 50px; background-color:rgba${rgb};
+            left:${positionRandomX}px ;top:${positionRandomY}px"></div>`;
+            document.write(temp);
+        }
+
+        setInterval(() => {
+            getRandomCircle();
+        }, 1000);
+
+    </script>
+</body>
+
+</html>
