@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Headers · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/headers/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="headers.css" rel="stylesheet">
+    <script src="./main.js"></script>
+    <title>首页</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-end py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="nav-link">关于</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">退出</a></li>
+            </ul>
+        </header>
+
+        <main>
+            <h1>考题查询系统</h1>
+            <div class="title mt-5">
+                <h3 id="questionTitle">1. 语义化标签的作用是(单选题)</h3>
+            </div>
+            <div class="choose mt-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    A:&nbsp; <input type="text" class="form-control" readonly value="网页结构层次更清晰" aria-label="Text input with checkbox">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    B:&nbsp; <input type="text" class="form-control" readonly value="网页代码更美观" aria-label="Text input with checkbox">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    C:&nbsp; <input type="text" class="form-control" readonly value="更容器被搜索引擎收录" aria-label="Text input with checkbox">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    D:&nbsp; <input type="text" class="form-control" readonly value="更容易让屏幕阅读器独处网页内容" aria-label="Text input with checkbox">
+                </div>
+            </div>
+            <!-- 上一题下一题 -->
+            <div class="row d-flex justify-content-between mt-3">
+                <div class="col-3"><button class="btn btn-light" onclick="preQueClick()">上一题</button></div>
+                <div class="col-3"><button class="btn btn-light" onclick="nextQueClick()">下一题</button></div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

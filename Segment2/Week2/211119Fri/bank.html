@@ -197,10 +197,11 @@
             </div>
             <div class="col-5" id="userChooseDetail">
                 <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-3 col-form-label">收账账户:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control " id="drawMoneyAccount" value="">
-                    </div>
+                    <label for="inputPassword" class="col-sm-3 col-form-label">收账账户:
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control " id="drawMoneyAccount" value="">
+                        </div>
+                    </label>
                 </div>
 
                 <div class="input-group mb-3">
@@ -371,7 +372,7 @@
             // 当前账户金额减
             drawMoney();
             // 转账账户金额加
-            userInfo[userInfoSecond.index].userDetailInfo.money += window.document.getElementById("userInputMoney").value-0;
+            userInfo[userInfoSecond.index].userDetailInfo.money += window.document.getElementById("userInputMoney").value - 0;
             alert("转账成功");
         }
 

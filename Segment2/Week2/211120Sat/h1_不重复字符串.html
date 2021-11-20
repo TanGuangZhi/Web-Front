@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 求字符串中最长的不重复子字符串的长度
+        let string = "abcdeeabcabc";
+        for (let index = 0; index < string.length; index++) {
+            const element = string[index];
+            let lastIndex = string.indexOf(element,index+1);
+            for (let index2 = index+1; index2 < lastIndex; index2++) {
+                const element2 = string[index];
+                // if(string[index] === string[index2+1]){
+                //     console.log(`${index2-index+1}`);
+                //     break;
+                // }
+                if(string.indexOf(element2,index2)<lastIndex){
+                    lastIndex = string.indexOf(element2,index2);
+                }
+            }
+            console.log(`${lastIndex}`);
+        }
+    </script>
+</body>
+</html>
