@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 小球下落问题
+        function calu(height) {
+            let total = 100;
+            for (let index = 0; index < 10; index++) {
+                height/=2;
+                total+=parseInt(height)*2;
+            }
+            console.log(`${height}`);
+            return total;
+        }
+
+        console.log(`${calu(100)}`);
+
+        // 2. 空瓶子问题
+        // function empty(params) {
+        //     let drink = 50;
+        //     let next = 50;
+        //     while(next!=1){
+        //         let empty = next%3;
+        //         next = parseInt(next/3);
+        //         if(next === 1 && empty ===2){
+        //             drink+=2;
+        //             next=1;
+        //         }
+        //         drink+=next;
+        //     }
+        //     return drink;
+        // }
+
+        // console.log(`${empty(50)}`);
+
+        function empty(allBottle) {
+            let totalDrink = 50;
+            let empty = 0;
+            let nextDrink;
+            while(nextDrink!==0){
+                nextDrink = parseInt(allBottle/3);
+                totalDrink+=nextDrink;
+                empty+=allBottle%3;
+                if(nextDrink ===1 && empty ===2){
+                    totalDrink+=2;
+                    nextDrink=0;
+                    break;
+                }
+                allBottle = parseInt(allBottle/3) + empty;
+            }
+            return totalDrink;
+        }
+
+        console.log(`${empty(50)}`);
+    </script>
+</body>
+
+</html>

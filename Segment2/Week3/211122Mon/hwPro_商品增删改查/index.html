@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 设计一个
+
+        // user:{userName:"",userPass:"",userPhone};
+
+        // goods{goodsId:0,goodsName:"",goodsPrice:0，goodsImg:"images/goods/1.jpg",goodsNum:0，goodsSellCount:0}
+
+        // 1.实现登录，注册
+
+        // 2.对商品进行增删改    查(按照销量进行倒序排列)
+
+        // 3.prompt()....
+
+        // 4.查询显示结果alert()...
+
+        // 一个功能用一个函数
+
+        let userInfoJson = {};
+
+        let goodsInfoList = [];
+        // 随机生成指定数目个的随机商品信息
+        function goodsInit(num) {
+            for (let index = 1; index <= num; index++) {
+                let goodsInfo = {};
+                let random = parseInt(Math.random() * 50);
+                goodsInfo.goodsId = 1000 + index;
+                goodsInfo.goodsName = `商品${index}号`;
+                goodsInfo.goodsPrice = 100.00 + random;
+                goodsInfo.goodsImg = `images/goods/${index}.jpg`;
+                goodsInfo.goodsNum = 100 + random;
+                goodsInfo.goodsSellCount = 50 + random;
+                goodsInfoList.push(goodsInfo);
+            }
+        }
+
+        // 添加商品
+        function addGoods() {
+            let goodsInfo = {};
+            goodsInfo.goodsId = 1000 + goodsInfoList.length + 1;
+            goodsInfo.goodsName = prompt("请输入商品名");
+            goodsInfo.goodsPrice = prompt("请输入商品价格");
+            goodsInfo.goodsImg = prompt("请输入商品图片路径");
+            goodsInfo.goodsNum = prompt("请输入商品库存");
+            goodsInfo.goodsSellCount = 0;
+            goodsInfoList.push(goodsInfo);
+            alert(`【${goodsInfo.goodsName}】添加成功,id为${goodsInfo.goodsId}`)
+        }
+
+        // 删除商品
+        function delGoodsByid(id) {
+            let index = id - 1000 - 1;
+            goodsInfoList.splice(index, 1);
+            alert(`id为${id}的商品已删除`);
+        }
+
+        // 修改商品
+        function changeGoosByid(id) {
+            let index = id - 1000 - 1;
+            let goodsInfo = goodsInfoList[index];
+            goodsInfo.goodsId = id;
+            goodsInfo.goodsName = prompt("请输入商品名");
+            goodsInfo.goodsPrice = prompt("请输入商品价格");
+            goodsInfo.goodsImg = prompt("请输入商品图片路径");
+            goodsInfo.goodsNum = prompt("请输入商品库存");
+            goodsInfo.goodsSellCount = prompt("请输入商品已售");
+            goodsInfoList.splice(index, 1, goodsInfo);
+            alert(`修改商品信息成功`);
+        }
+
+        // 查询商品
+        function queryGoodsById(id) {
+            if (!judgeIdExit(id)) {
+                alert(`用户id${id}不存在,请核对后再尝试`);
+                return;
+            }
+            let index = id - 1000 - 1;
+            return goodsInfoList[index];
+        }
+
+        // 判断id存在否
+        function judgeIdExit(id) {
+            let index = id - 1000 - 1;
+            if (!goodsInfoList[index]) return false;
+            return goodsInfoList[index].goodsId == id ? true : false;
+        }
+
+        // 判断用户输入的id是数字否
+        function judgeUserInputIsNum(id) {
+            return typeof (id - 0) === "number" ? true : false;
+        }
+
+        function main(params) {
+            goodsInit(10);
+            while (true) {
+                let userChoose = prompt("1. 查询商品 2. 添加商品 3. 删除商品 4. 修改商品 5. 退出");
+                if (userChoose == 1) {
+                    let userInput = prompt("请输入查询商品id");
+                    console.log(`${JSON.stringify(queryGoodsById(userInput))}`);
+                } else if (userChoose == 2) {
+                    addGoods();
+                } else if (userChoose == 3) {
+                    let userInput = prompt("请输入要删除的商品id");
+                    delGoodsByid(userInput);
+                } else if (userChoose == 4) {
+                    let userInput = prompt("请输入要修改的商品id");
+                    changeGoosByid(userInput);
+                } else if (userChoose == 5 || !(userChoose)) {
+                    alert("欢迎使用,再会");
+                    break;
+                }
+                else {
+                    alert("输入有误,请重新输入!")
+                    continue;
+                }
+            }
+        }
+
+        main();
+
+    </script>
+</body>
+
+</html>
