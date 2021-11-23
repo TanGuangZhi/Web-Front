@@ -1,10 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<h2>泊秦淮</h2>
+<div class="word" id="word">
+    烟笼寒水月笼沙⑵，夜泊秦淮近酒家⑶。
+    商女不知亡国恨⑷，隔江犹唱后庭花⑸。
+</div>
+<button onclick="toBig()">放大</button>
+<button onclick="toDefault()">还原</button>
+<button onclick="tosmall()">缩小</button>
+
+<div class="hw2">
+    <input type="checkbox" id="all-id" onchange="selAll()">全选/全消
+    <hr>
+    <input type="checkbox" name="hobby" value="爱音乐">爱音乐
+    <input type="checkbox" name="hobby" value="爱编程">爱编程
+    <input type="checkbox" name="hobby" value="爱视频">爱视频
+    <input type="checkbox" name="hobby" value="爱游戏">爱游戏
+</div>
+
+<div id="hw3" style="width: 100px;height: 100px">
+    <button onclick="changeColor('red')">红</button>
+    <button onclick="changeColor('green')">绿</button>
+    <button onclick="changeColor('blue')">蓝</button>
+</div>
+
+<div class="hw4">
+    <form action="#">
+        密码:<input type="password" value="1111ddd" id="pwd">
+        <button onclick="changePwdSee()">显示密码</button>
+    </form>
+</div>
+
+<div class="hw5">
+    <p id="randomNum"></p>
+    <button onclick="getRandomNum()">获取随机数字</button>
+    <p id="winTimes"></p>
+    <p id="loseTimes"></p>
+    <p id="allTimes"></p>
+</div>
+<script>
+    //1.初始
+    let divDom = document.getElementById("word");
+    let fontSize = 15;
+    divDom.style.fontSize = fontSize + "px";
+
+    function toBig() {
+        fontSize++;
+        //1.重新设置字体大小
+        divDom.style.fontSize = fontSize + "px";
+    }
+
+    function toDefault() {
+        fontSize = 15;
+        //1.重新设置字体大小
+        divDom.style.fontSize = fontSize + "px";
+    }
+
+    function tosmall() {
+        fontSize--;
+        //1.重新设置字体大小
+        divDom.style.fontSize = fontSize + "px";
+    }
+
+    function selAll() {
+        let allDom = document.getElementById("all-id");
+        let hobbyArray = document.getElementsByName("hobby");
+        for (let i = 0; i < hobbyArray.length; i++) {
+            hobbyArray[i].checked = allDom.checked;
+        }
+    }
+
+    function toRed() {
+        let divDom = document.getElementById("hw3");
+        divDom.style.background = "red";
+    }
+
+    function toGreen() {
+        let divDom = document.getElementById("hw3");
+        divDom.style.background = "green";
+    }
+
+    function toBlue() {
+        let divDom = document.getElementById("hw3");
+        divDom.style.background = "blue";
+    }
+
+    function changeColor(color) {
+        let divDom = document.getElementById("hw3");
+        divDom.style.background = color;
+    }
+
+    let seeFlag = false;
+
+    function changePwdSee() {
+        let pwdInput = document.getElementById("pwd");
+        if (seeFlag) {
+            pwdInput.type = "password";
+            seeFlag = false;
+        } else {
+            pwdInput.type = "text";
+            seeFlag = true;
+        }
+
+    }
+
+    let totalTime = 0;
+    let wintimes = 0;
+    let losetimes = 0;
+
+    function getRandomNum() {
+        let random = "";
+        for (let i = 0; i < 3; i++) {
+            let temp = parseInt(Math.random() * 8) + 1
+            random += temp + " ";
+            temp == 8 ? wintimes++ : losetimes++;
+        }
+        totalTime++;
+        let div1Dom = document.getElementById("randomNum");
+        div1Dom.innerHTML = `本次您的幸运数字为:${random}`;
+        let div2Dom = document.getElementById("winTimes");
+        div2Dom.innerHTML = `赢的次数为:${wintimes}`;
+        let div3Dom = document.getElementById("loseTimes");
+        div3Dom.innerHTML = `失败的次数为:${losetimes}`;
+        let div4Dom = document.getElementById("allTimes");
+        div4Dom.innerHTML = `挑战的次数为:${totalTime}`;
+    }
+</script>
 </body>
 </html>

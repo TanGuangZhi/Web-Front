@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width: 1000px;
+            height: 1000px;
+        }
+        #box > div {
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <div id="box">
+
+    </div>
+    <script>
+        function generalDiv() {
+            let divDom = document.getElementById("box");
+            let colorArr = ["red", "green", "blue", "yellow"];
+            let total = 0;
+            let temp = "";
+            for (let i = 0; i < 10; i++) {
+                for (let j = 0; j < 10; j++) {
+                    let colorNum = total++ % 4;
+                    temp += `<div style= "background-color:${colorArr[colorNum]};"></div>`;
+                }
+            }
+            divDom.innerHTML = temp;
+        }
+
+        generalDiv();
+    </script>
 </body>
 </html>
