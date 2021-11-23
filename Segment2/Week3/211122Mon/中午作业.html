@@ -45,7 +45,7 @@
             let randomSting = "zxcvbnmasdfghjklqwertyuiopZXCVBNMASDFGHJKLQWERTYUIOP1234567890";
             let randomCode = "";
             for (let index = 0; index < num; index++) {
-                let randomNum = parseInt(Math.random() * (randomSting.length + 1));
+                let randomNum = parseInt(Math.random() * (randomSting.length));
                 randomCode += randomSting.charAt(randomNum) + "";
             }
             return randomCode;
@@ -54,29 +54,30 @@
         // 4.prompt中随便输入一串字符串，统计汉字的个数，字母的个数，数字的个数，其他符号的个数?
         function question4(params) {
             let userInput = prompt("请输入");
-            let arrObj = {};
+            let arrObj = {
+                englishWord: { word: 0, wordDetail: [] },
+                numWord: { word: 0, wordDetail: [] },
+                chinaWord: { word: 0, wordDetail: [] },
+                otherWord: { word: 0, wordDetail: [] }
+            };
             let obj = { word: 0, wordDetail: [] };
             for (let index = 0; index < userInput.length; index++) {
                 const element = userInput[index];
-                if (('a' < element && element < 'z') || ('A' < element && element < 'Z')) {
-                    obj.word++;
-                    obj.wordDetail.push(element);
-                    arrObj.englishWord = obj;
+                if (('a' <= element && element <= 'z') || ('A' <= element && element <= 'Z')) {
+                    arrObj.englishWord.word++;
+                    arrObj.englishWord.wordDetail.push(element);
                 }
-                else if ('0' < element && element < '9') {
-                    obj.word++;
-                    obj.wordDetail.push(element);
-                    arrObj.numWord = obj;
+                else if ('0' <= element && element <= '9') {
+                    arrObj.numWord.word++;
+                    arrObj.numWord.wordDetail.push(element);
                 }
-                else if ('一' < element && element < '龥') {
-                    obj.word++;
-                    obj.wordDetail.push(element);
-                    arrObj.chinaWord = obj;
+                else if ('一' <= element && element <= '龥') {
+                    arrObj.chinaWord.word++;
+                    arrObj.chinaWord.wordDetail.push(element);
                 }
                 else {
-                    obj.word++;
-                    obj.wordDetail.push(element);
-                    arrObj.otherWord = obj;
+                    arrObj.otherWord.word++;
+                    arrObj.otherWord.wordDetail.push(element);
                 }
 
             }
@@ -91,9 +92,9 @@
         }
 
 
-        console.log(`${question1()}`);
-        console.log(`${question2()}`);
-        console.log(`${question3(4)}`);
+        // console.log(`${question1()}`);
+        // console.log(`${question2()}`);
+        // console.log(`${question3(4)}`);
         console.log(`${JSON.stringify(question4())}`);
         // console.log(`${question5()}`);
 

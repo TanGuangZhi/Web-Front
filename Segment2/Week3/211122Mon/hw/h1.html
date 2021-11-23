@@ -141,7 +141,7 @@
             let strLeft = str.slice(0, parseInt(str.length / 2));
             let strRight = str.slice(parseInt(str.length / 2) + 1, str.length);
             let strRightReverse = strRight.split("").reverse().join("");
-            return strLeft === strRightReverse ? true : false;
+            return strLeft === strRightReverse;
         }
 
         // 15.编写一个程序，将下面的一段文本中的各个单词的字母顺序翻转，“To be or not to be”，将变成”oT eb ro ton ot eb.”。
@@ -163,23 +163,22 @@
 
 
         function main() {
-            console.log(`${hw6()}`);
-            console.log(`${hw7()}`);
-            console.log(`${hw8()}`);
-            console.log(`${hw9()}`);
-            console.log(`${hw10()}`);
-            console.log(`${hw11()}`);
-            console.log(`${hw12()}`);
-            console.log(`${hw13()}`);
-            console.log(`${hw14("avava")}`);
-            console.log(`${hw14("avavav")}`);
-            console.log(`${hw14("avasdfsdva")}`);
+            // console.log(`${hw6()}`);
+            // console.log(`${hw7()}`);
+            // console.log(`${hw8()}`);
+            // console.log(`${hw9()}`);
+            // console.log(`${hw10()}`);
+            // console.log(`${hw11()}`);
+            // console.log(`${hw12()}`);
+            // console.log(`${hw13()}`);
+            // console.log(`${hw14("avava")}`);
+            // console.log(`${hw14("avavav")}`);
+            // console.log(`${hw14("avasdfsdva")}`);
             console.log(`${hw15()}`);
-            
         }
 
         // 放开main函数即可执行
-        // main();
+        main();
     </script>
 </body>
 
