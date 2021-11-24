@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 的 CSS 文件 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+
+    <style>
+        #filmRow div img {
+            margin-top: 20px;
+        }
+
+        #filmRow div p:nth-of-type(1) {
+            color: orangered;
+            margin-top: 20px;
+        }
+
+        #filmRow div p:nth-of-type(2) {
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row text-center m-4">
+            <h2>影视中心</h2>
+        </div>
+        <div class="row text-center " id="filmRow">
+            <div class="col-3 border">
+                <img src=" ./film/1.jpg" style="width: 80%;" alt="">
+                <p>烈日灼心</p>
+                <p>￥88.88</p>
+            </div>
+        </div>
+
+        <nav aria-label="Page navigation example " class="justify-content-center">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script>
+        let filmArr = [
+            { "filmImg": "film/7.jpg", "filmName": "烈日灼心", "filmPrice": 88.88, "filmType": "动作", "id": 1 },
+            { "filmImg": "film/8.jpg", "filmName": "长津湖", "filmPrice": 89.88, "filmType": "战争", "id": 2 },
+            { "filmImg": "film/9.jpg", "filmName": "我和我的父辈", "filmPrice": 89.88, "filmType": "喜剧", "id": 3 },
+            { "filmImg": "film/10.jpg", "filmName": "熊出没", "filmPrice": 89.88, "filmType": "动画", "id": 4 },
+            { "filmImg": "film/13.jpg", "filmName": "狂野大陆", "filmPrice": 89.88, "filmType": "动画", "id": 7 },
+            { "filmImg": "film/14.jpg", "filmName": "夏洛特烦恼", "filmPrice": 89.88, "filmType": "喜剧", "id": 8 },
+            { "filmImg": "film/15.jpg", "filmName": "战狼", "filmPrice": 89.88, "filmType": "战争", "id": 9 },
+            { "filmImg": "film/6.jpg", "filmName": "黑猫警长", "filmPrice": 89.88, "filmType": "动画", "id": 10 },
+            { "filmImg": "film/5.jpg", "filmName": "后会无期", "filmPrice": 89.88, "filmType": "喜剧", "id": 11 },
+            { "filmImg": "film/2.jpg", "filmName": "年兽大作战", "filmPrice": 89.88, "filmType": "动画", "id": 14 },
+            { "filmImg": "film/4.jpg", "filmName": "葫芦娃1", "filmPrice": 89.88, "filmType": "动画", "id": 23 },
+            { "filmImg": "film/6.jpg", "filmName": "三国演义", "filmPrice": 89.88, "filmType": "名著", "id": 25 }
+        ];
+
+        let filmListDom = document.getElementById("filmRow");
+        let filmStr = ``;
+        filmArr.forEach(element => {
+            filmStr += `  <div class="col-3 border">
+                <img src=" ${element.filmImg}" style="width: 80%;" alt="">
+                <p>${element.filmName}</p>
+                <p>￥${element.filmPrice}</p>
+            </div>`
+        });
+
+        filmListDom.innerHTML = filmStr;
+
+    </script>
+
+</body>
+
+</html>
