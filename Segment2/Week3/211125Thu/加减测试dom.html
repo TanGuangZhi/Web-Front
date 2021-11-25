@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" onclick="addNum(this)">+</button>
+    <input type="text" value="0" style="width:30px;text-align: center">
+    <button type="button" onclick="minusNum(this)">-</button>
+
+    <script>
+        function addNum(params) {
+            params.nextElementSibling.value++;
+        }
+
+        function minusNum(params) {
+            params.previousElementSibling.value--;
+            // console.log(`${typeof params.innerHTML}`);
+        }
+
+        
+    </script>
+</body>
+
+</html>
