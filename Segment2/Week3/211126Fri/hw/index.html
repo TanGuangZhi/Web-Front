@@ -244,7 +244,7 @@
         function regiestBtnClick(params) {
 
             let allRegCheckFlag = allRegCheckFlagList.every(value => value);
-            if (allRegCheckFlagList.length <= 4) {
+            if (allRegCheckFlagList.length < 4) {
                 allRegCheckFlag = false;
             }
             if (!allRegCheckFlag) {

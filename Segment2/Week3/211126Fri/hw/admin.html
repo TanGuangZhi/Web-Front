@@ -64,7 +64,19 @@
                         </td>
                     </tr>
                 </tbody>
+
             </table>
+            <tfoot>
+                <nav aria-label="Page navigation example text-center ">
+                    <ul class="pagination text-center">
+                        <li class="page-item"><a class="page-link" onclick="prePage()">Previous</a></li>
+                        <!-- <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                        <li class="page-item"><a class="page-link" onclick="nextPage()">Next</a></li>
+                    </ul>
+                </nav>
+            </tfoot>
         </div>
 
         <!-- 模态框展示 -->
@@ -178,14 +190,67 @@
                 goodsType: "经历看见了",
                 goodsImg: "images/goods/6.jpg"
             },
+            { id: 7, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 8, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 9, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 10, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 11, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 12, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 13, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 14, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 15, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 16, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 17, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 18, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 19, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 20, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 21, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 22, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 23, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 24, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 25, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 26, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" }
         ];
 
 
+        // 分页方法
+        let nextBtnCount = 1;
+        let preBtnCount = 1;
+        let firstIndex = 0;
+        let lastIndex = 10;
+        function nextPage(params) {
+            // alert(1)
+            if (lastIndex < goodsJson.length) {
+                firstIndex += 10;
+                lastIndex += 10;
+                queryGoods(firstIndex, lastIndex);
+                disabledBtnInit();
+            }
 
-        function queryGoods(params) {
+        }
+
+        function prePage(params) {
+            // alert(1)
+            if (firstIndex >0) {
+                firstIndex -=10;
+                lastIndex -= 10;
+                queryGoods(firstIndex, lastIndex);
+                disabledBtnInit();
+            }
+
+        }
+
+        function queryGoods(firstIndex, lastIndex) {
             let str = ``;
             let showGoodsDom = document.getElementById("showGoods");
-            goodsJson.forEach((element, index) => {
+            if (!firstIndex || !lastIndex) {
+                firstIndex = 0;
+                lastIndex = 10;
+            }
+            let showGoodsArr = goodsJson.slice(firstIndex, lastIndex);
+           
+            showGoodsArr.forEach((element, index) => {
+                let imgRandom = parseInt(Math.random()*6)+1;
                 str += ` <tr>
                         <td>
                             <label><input type="checkbox" onclick="checkChildFlag(this.checked)" class="sel form-check-input mt-0"></label>
@@ -194,7 +259,7 @@
                         <td>${element.goodsName}</td>
                         <td>${element.goodsPrice}</td>
                         <td>${element.goodsType}</td>
-                        <td><img src="./images/goods/${element.id}.jpg" style="width: 50px;" alt="" srcset=""></td>
+                        <td><img src="./images/goods/${imgRandom}.jpg" style="width: 50px;" alt="" srcset=""></td>
                         <td> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changeGoods"
                             onclick="setIndex(${index})" data-bs-whatever="@mdo">修改</button></td>
                         <td><button class="btn btn-warning" onclick="delGoods(${index})">删除</button> </td>
@@ -209,7 +274,6 @@
 
         function check(selector, reg, alertMsg) {
             let userInputContent = document.querySelector(`#${selector}`);
-            console.log(`${userInputContent.name}`);
             let alertDom = userInputContent.nextElementSibling;
             if (reg.test((userInputContent.value))) {
                 alertDom.innerHTML = "验证通过";
@@ -241,7 +305,7 @@
 
         function checkIsCanAddOrChange(checked) {
             let allRegCheckFlag = addGoodsAllRegCheckFlagList.every(value => value);
-            if (addGoodsAllRegCheckFlagList.length <= 4) {
+            if (addGoodsAllRegCheckFlagList.length < 4) {
                 allRegCheckFlag = false;
             }
             if (!allRegCheckFlag) {
