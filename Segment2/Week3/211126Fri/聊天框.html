@@ -1,12 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+
 </head>
 <body>
-$END$
+    <textarea name="" id="talkArea" cols="60" rows="30">
+
+    </textarea>
+    <p style="display: flex">
+        <input type="text" style="width: 400px;" onkeydown="keyDownEvent(this)" id="userInput">
+        <button onclick="sentMessage()">发送</button>
+    </p>
+
+    <script>
+        function sentMessage() {
+            let userNameList = ['八戒', '悟空', '女儿国国王', '圣僧', '和尚', '白骨精'];
+            let randomNum = parseInt(Math.random() * userNameList.length);
+            let talkAreaDom = document.querySelector("#talkArea");
+            let sentMessageDom = document.querySelector("#userInput");
+            if (!sentMessageDom.value) {
+                alert("请输入聊天内容");
+            } else {
+                let message = keyWordBan(sentMessageDom.value);
+                talkAreaDom.innerHTML += userNameList[randomNum] + ": " + message + "\n";
+                sentMessageDom.value = "";
+            }
+
+        }
+
+        document.querySelector("#userInput").onkeydown=function (e) {
+            if (e.keyCode == 13) {
+                sentMessage();
+            }
+        }
+
+        function keyWordBan(message) {
+            let forbiddenWordsList = ["sb", "沙雕", "垃圾", "nc", "军火"];
+            forbiddenWordsList.forEach(element => {
+                if (message.indexOf(element) !== -1) {
+                    // 再次for循环控制输出几个*
+                    for (let index = 0; index < element.length; index++) {
+                        const element1 = element[index];
+                        message = message.replace(element1, "*");
+                    }
+                }
+            });
+            return message;
+        }
+
+    </script>
 </body>
 </html>

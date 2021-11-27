@@ -1,12 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
 </head>
 <body>
-$END$
+    <form id="addForm">
+        <p>
+            用户名:<input type="text" onblur="checkUserName()" onfocus="checkUserName()" placeholder="请输入用户名"
+                       name="userName"><span>*</span>
+        </p>
+        <p>
+            密　码:<input type="password" onblur="checkPass()" onfocus="checkPass()" placeholder="请输入密码"
+                       name="userPass"><span>*</span>
+        </p>
+        <p>
+            手机号:<input type="text" onblur="checkPhone()" onfocus="checkPhone()" placeholder="请输入手机号"
+                       name="userPhone"><span>*</span>
+        </p>
+        <p>邮　箱:<input type="text" onblur="checkEmail()" onfocus="checkEmail()" placeholder="请输入邮箱"
+                      name="email"><span>*</span></p>
+        <p>
+            <button type="button" disabled>注册用户</button>
+        </p>
+    </form>
+
+
+    <script type="text/javascript">
+        function check(selector, reg, alertMsg) {
+            let userInputContent = document.querySelector(selector);
+            let alertDom = userInputContent.nextElementSibling;
+            if (reg.test((userInputContent.value))) {
+                alertDom.innerHTML = "验证通过";
+                alertDom.style.color = "green";
+            } else {
+                alertDom.innerHTML = alertMsg;
+                alertDom.style.color = "red";
+            }
+        }
+
+        function checkUserName() {
+            let reg = /^\w{3,5}$/;
+            check("[name=userName]", reg, "必须是3-5位字母");
+        }
+
+        function checkPass() {
+            let reg = /^\d{3,6}$/;
+            check("[name=userPass]", reg, "必须是3-6位数字");
+        }
+
+        function checkPhone() {
+            let reg = /^1[3-9]\d{9}$/;
+            check("[name=userPhone]", reg, "必须是11位数字");
+        }
+
+        function checkEmail() {
+            let reg = /\w+@\w+.\w+/;
+            check("[name=email]", reg, "必须包含@与.");
+        }
+    </script>
 </body>
 </html>

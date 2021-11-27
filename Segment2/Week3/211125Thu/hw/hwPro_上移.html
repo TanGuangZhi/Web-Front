@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap 的 CSS 文件 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        crossorigin="anonymous">
+          crossorigin="anonymous">
 
 </head>
 
@@ -21,7 +21,8 @@
         <h2 class="text-center mt-5">蜗牛商城</h2>
         <div class="row justify-content-end">
             <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGoods"
-                data-bs-whatever="@mdo">添加</button>
+                    data-bs-whatever="@mdo">添加
+            </button>
         </div>
         <div class="row">
             <table class="table mt-3 table-striped table-hover shadow-sm rounded">
@@ -49,8 +50,12 @@
                         <td>1888.88</td>
                         <td>@手机</td>
                         <td><img src="../film/1.jpg" style="width: 5%;" alt="" srcset=""></td>
-                        <td><button class="btn btn-light" onclick="upMove(this)">上移</button></td>
-                        <td><button class="btn btn-light" onclick="downMove(this)">下移</button></td>
+                        <td>
+                            <button class="btn btn-light" onclick="upMove(this)">上移</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-light" onclick="downMove(this)">下移</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -68,19 +73,19 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">商品名:</label>
+                                <label for="" class="col-form-label">商品名:</label>
                                 <input type="text" class="form-control" id="addGoodsNameId">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">商品价格:</label>
+                                <label for="" class="col-form-label">商品价格:</label>
                                 <input type="text" class="form-control" id="addGoodsPriceId">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">商品类型:</label>
+                                <label for="" class="col-form-label">商品类型:</label>
                                 <input type="text" class="form-control" id="addGoodsTypeId">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">商品图片:</label>
+                                <label for="" class="col-form-label">商品图片:</label>
                                 <input type="text" class="form-control" id="addGoodsImgId">
                             </div>
                         </form>
@@ -104,23 +109,24 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">商品id:</label>
+                                <label class="col-form-label">商品id:</label>
                                 <input type="text" class="form-control" readonly id="changeGoodsIdId">
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">商品名:</label>
+                                <label class="col-form-label">商品名:</label>
                                 <input type="text" class="form-control" id="changeGoodsNameId">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">商品价格:</label>
+                                <label >
+                                ="col-form-label">商品价格:</label>
                                 <input type="text" class="form-control" id="changeGoodsPriceId">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">商品类型:</label>
+                                <label class="col-form-label">商品类型:</label>
                                 <input type="text" class="form-control" id="changeGoodsTypeId">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">商品图片:</label>
+                                <label class="col-form-label">商品图片:</label>
                                 <input type="text" class="form-control" id="changeGoodsImgId">
                             </div>
                         </form>
@@ -129,21 +135,28 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
                         <button type="button" class="btn btn-primary" onclick="changeGoods()">确认修改</button>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script>
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
         let goodsJson = [
-            { id: 1, goodsName: "蜗牛1plus", goodsPrice: 1888.88, goodsType: "sdjklf", goodsImg: "images/goods/1.jpg" },
-            { id: 2, goodsName: "蜗牛2plus", goodsPrice: 18888.88, goodsType: "手机", goodsImg: "images/goods/2.jpg" },
-            { id: 3, goodsName: "蜗牛3plus", goodsPrice: 188888.88, goodsType: "上将屡颠覆", goodsImg: "images/goods/3.jpg" },
-            { id: 4, goodsName: "蜗牛4plus", goodsPrice: 1888888.88, goodsType: "收到后方可", goodsImg: "images/goods/4.jpg" },
-            { id: 5, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
-            { id: 6, goodsName: "蜗牛6plus", goodsPrice: 188888888888.88, goodsType: "经历看见了", goodsImg: "images/goods/6.jpg" },
+            {id: 1, goodsName: "蜗牛1plus", goodsPrice: 1888.88, goodsType: "sdjklf", goodsImg: "images/goods/1.jpg"},
+            {id: 2, goodsName: "蜗牛2plus", goodsPrice: 18888.88, goodsType: "手机", goodsImg: "images/goods/2.jpg"},
+            {id: 3, goodsName: "蜗牛3plus", goodsPrice: 188888.88, goodsType: "上将屡颠覆", goodsImg: "images/goods/3.jpg"},
+            {id: 4, goodsName: "蜗牛4plus", goodsPrice: 1888888.88, goodsType: "收到后方可", goodsImg: "images/goods/4.jpg"},
+            {id: 5, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg"},
+            {
+                id: 6,
+                goodsName: "蜗牛6plus",
+                goodsPrice: 188888888888.88,
+                goodsType: "经历看见了",
+                goodsImg: "images/goods/6.jpg"
+            },
         ];
 
         function queryGoods(params) {
@@ -171,6 +184,7 @@
         }
 
         let count = goodsJson.length + 1;
+
         function addGoods() {
             let good = {};
             good.goodsName = document.getElementById("addGoodsNameId").value;
@@ -194,6 +208,7 @@
         }
 
         let changeIndex;
+
         function setIndex(index) {
             document.getElementById("changeGoodsIdId").value = index + 1;
             changeIndex = index;
@@ -241,7 +256,7 @@
             let isSecondLineTr = trDom.previousElementSibling.previousElementSibling;
             let firstLineUpBtn = document.querySelector('tr:first-child td [onclick="upMove(this)"]');
             let secondUpLineBtn = document.querySelector('tr:nth-child(2) td [onclick="upMove(this)"]');
-            if(!isSecondLineTr){
+            if (!isSecondLineTr) {
                 secondUpLineBtn.disabled = true;
                 firstLineUpBtn.disabled = false;
             }
@@ -250,11 +265,11 @@
             let isLastLineTr = trDom.nextElementSibling;
             let lastUpBtn = document.querySelector('tr:last-child td [onclick="downMove(this)"]');
             let secondLastUpBtn = document.querySelector('tr:nth-last-child(2) td [onclick="downMove(this)"]');
-            if(!isLastLineTr){
+            if (!isLastLineTr) {
                 lastUpBtn.disabled = false;
                 secondLastUpBtn.disabled = true;
             }
-            
+
             let trTemp = document.createElement("tr");
             trTemp.innerHTML = trDom.innerHTML;
 
@@ -278,8 +293,8 @@
             let isFirstLineTr = trDom.previousElementSibling;
             let firstLineUpBtn = document.querySelector('tr:first-child td [onclick="upMove(this)"]');
             let secondUpLineBtn = document.querySelector('tr:nth-child(2) td [onclick="upMove(this)"]');
-            if(!isFirstLineTr){
-                firstLineUpBtn.disabled  =false;
+            if (!isFirstLineTr) {
+                firstLineUpBtn.disabled = false;
                 secondUpLineBtn.disabled = true;
             }
 
@@ -287,7 +302,7 @@
             let isLastSecondLineTr = trDom.nextElementSibling.nextElementSibling;
             let lastUpBtn = document.querySelector('tr:last-child td [onclick="downMove(this)"]');
             let secondLastUpBtn = document.querySelector('tr:nth-last-child(2) td [onclick="downMove(this)"]');
-            if(!isLastSecondLineTr){
+            if (!isLastSecondLineTr) {
                 secondLastUpBtn.disabled = true;
                 lastUpBtn.disabled = false;
             }
@@ -303,7 +318,7 @@
             tbodyDom.replaceChild(nextTemp, trDom);
         }
 
-        function moveBtnInit(){
+        function moveBtnInit() {
             let firstUpBtn = document.querySelector('tr:first-child td [onclick="upMove(this)"]');
             let lastDownBtn = document.querySelector('tr:last-child td [onclick="downMove(this)"]');
             firstUpBtn.disabled = true;

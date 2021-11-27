@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
 </head>
+
 <body>
-$END$
+    <button onclick="sentMsgBtn(this)">发送</button>
+    <script>
+        function sentMsgBtn(dom) {
+            let count = 60;
+            dom.disabled = true;
+            dom.innerHTML = "60(s)";
+            let timer = window.setInterval(function () {
+                count--;
+                if (count >= 0) {
+                    dom.innerHTML = count + "(s)";
+                    dom.disabled = true;
+                } else {
+                    dom.disabled = false;
+                    dom.innerHTML = "发送";
+                    window.clearInterval(timer);
+                }
+            }, 1000)
+        }
+    </script>
 </body>
+
 </html>
