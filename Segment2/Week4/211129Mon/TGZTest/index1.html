@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>用户登录</h2>
+    <form id="loginForm">
+        <p>
+            用户名:<input type="text" name="userName" placeholder="请输入用户名">
+        </p>
+        <p>
+            密　码:<input type="password" name="userPass" placeholder="请输入密码">
+            <button type="button" onclick="showPwdBtn()">可见/不可见</button>
+        </p>
+        <p>
+            验证码:<input type="text" name="code" placeholder="请输入验证码">
+            <button type="button" onclick="sentMsgBtn(this)">发送</button>
+        </p>
+        <p>
+            <input type="button" value="登录" onclick="loginBtnClick()">
+        </p>
+    </form>
+</body>
+
+<script>
+    let userArr = [
+        { id: 1, userName: "jack", userPass: "123456", userPhone: "18179160008" },
+        { id: 2, userName: "rouse", userPass: "123456", userPhone: "18179160009" },
+    ];
+
+    function showPwdBtn() {
+        let inputDom = document.querySelector("[name=\"userPass\"]");
+        if (inputDom.type === "password") {
+            inputDom.type = "text";
+        } else {
+            inputDom.type = "password";
+        }
+    }
+
+    function sentMsgBtn(dom) {
+        let count = 60;
+        // 初始化,防止等待1秒才出现效果
+        dom.innerHTML = 60 + "(s)";
+        dom.disabled = true;
+        let timer = window.setInterval(function () {
+            count--;
+            if (count >= 0) {
+                dom.innerHTML = count + "(s)";
+                dom.disabled = true;
+            } else {
+                dom.disabled = false;
+                dom.innerHTML = "发送";
+                window.clearInterval(timer);
+            }
+        }, 1000)
+    }
+
+    function loginBtnClick(params) {
+        let inputNameDom = document.querySelector("[name=\"userName\"]").value;
+        let inputPwdDom = document.querySelector("[name=\"userPass\"]").value;
+        let flag = userArr.some(element => inputNameDom === element.userName && inputPwdDom === element.userPass);
+        if (flag) {
+            alert('登录成功');
+        } else {
+            alert('输入错误,请重新输入');
+        }
+    }
+</script>
+
+</html>
