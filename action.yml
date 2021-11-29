@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: TanGuangZhi/Web-Front@main
         with:
-          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          WAKATIME_API_KEY: 32632e78-62cf-426a-b184-5a542298822b
