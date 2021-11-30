@@ -161,13 +161,12 @@
                 let imgPreDom = document.querySelector(`[name=img${imgIndex - 1}]`);
 
                 if (imgIndex === 25) {
-                    imgIndex = 1;
+                    imgIndex = 0;
+                    document.querySelector(`[name=img24]`).style.transform = "scale(1.0)";
                     return;
                 }
                 imgDom.style.transform = "scale(1.2)";
-                if (imgIndex !== 1) {
-                    imgPreDom.style.transform = "scale(1.0)";
-                }
+                imgPreDom.style.transform = "scale(1.0)";
                 if (total === randomTime) {
                     lastLuckImgIndex = imgIndex;
                     let thisTotalScore = caluScore(imgIndex);

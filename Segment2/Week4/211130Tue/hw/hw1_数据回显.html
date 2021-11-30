@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 的 CSS 文件 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <table class="table mt-3 table-striped table-hover shadow-sm rounded">
+                <thead class="table-light" style="height: 60px; line-height: 60px;">
+                    <tr>
+                        <td>
+                            <label>
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" value=""
+                                        onchange="selAll(this.checked)" id="all-id"
+                                        aria-label="Radio button for following text input">全选/全消
+                                </div>
+                            </label>
+                        </td>
+                        <th scope="col">id</th>this
+                        <th scope="col">商品名称</th>
+                        <th scope="col">商品价格</th>
+                        <th scope="col">商品类型</th>
+                        <th scope="col">商品图片</th>
+                        <th scope="col">操作</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="showGoods" class="table-dark">
+                    <tr>
+                        <td>
+                            <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
+                        </td>
+                        <th scope="row">1</th>
+                        <td>蜗牛1plus</td>
+                        <td>1888.88</td>
+                        <td>@手机</td>
+                        <td><img src="../film/1.jpg" style="width: 5%;" alt="" srcset=""></td>
+                        <td>
+                            <button class="btn btn-light" onclick="upMove(this)">上移</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-light" onclick="downMove(this)">下移</button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <tfoot>
+                <nav aria-label="Page navigation example text-center ">
+                    <ul class="pagination text-center">
+                        <li class="page-item"><a class="page-link" onclick="prePage()">Previous</a></li>
+                        <!-- <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                        <li class="page-item"><a class="page-link" onclick="nextPage()">Next</a></li>
+                    </ul>
+                </nav>
+            </tfoot>
+        </div>
+    </div>
+
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+    <script>
+        let goodsJson = [
+            { id: 1, goodsName: "蜗牛1plus", goodsPrice: 1888.88, goodsType: "sdjklf", goodsImg: "images/goods/1.jpg" },
+            { id: 2, goodsName: "蜗牛2plus", goodsPrice: 18888.88, goodsType: "手机", goodsImg: "images/goods/2.jpg" },
+            { id: 3, goodsName: "蜗牛3plus", goodsPrice: 188888.88, goodsType: "上将屡颠覆", goodsImg: "images/goods/3.jpg" },
+            { id: 4, goodsName: "蜗牛4plus", goodsPrice: 1888888.88, goodsType: "收到后方可", goodsImg: "images/goods/4.jpg" },
+            { id: 5, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            {
+                id: 6,
+                goodsName: "蜗牛6plus",
+                goodsPrice: 188888888888.88,
+                goodsType: "经历看见了",
+                goodsImg: "images/goods/6.jpg"
+            },
+            { id: 7, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 8, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 9, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 10, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 11, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 12, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 13, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 14, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 15, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 16, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 17, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 18, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 19, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 20, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 21, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 22, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 23, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 24, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 25, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" },
+            { id: 26, goodsName: "蜗牛5plus", goodsPrice: 188888888.88, goodsType: "手上岛咖啡", goodsImg: "images/goods/5.jpg" }
+        ];
+
+        function queryGoods(firstIndex, lastIndex) {
+            let str = ``;
+            // let showGoodsDom = document.getElementById("showGoods");
+            if (!firstIndex || !lastIndex) {
+                firstIndex = 0;
+                lastIndex = 10;
+            }
+            let showGoodsArr = goodsJson.slice(firstIndex, lastIndex);
+
+            showGoodsArr.forEach((element, index) => {
+                let imgRandom = parseInt(Math.random() * 6) + 1;
+                str += ` <tr>
+                        <td>
+                            <label><input type="checkbox" onclick="checkChildFlag(this.checked)" class="sel form-check-input mt-0"></label>
+                        </td>
+                        <th scope="row">${element.id}</th>
+                        <td>${element.goodsName}</td>
+                        <td>${element.goodsPrice}</td>
+                        <td>${element.goodsType}</td>
+                        <td><img src="./images/goods/${imgRandom}.jpg" style="width: 50px;" alt="" srcset=""></td>
+                        <td> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changeGoods"
+                            onclick="setIndex(${index})" data-bs-whatever="@mdo">修改</button></td>
+                        <td><button class="btn btn-warning" onclick="delGoods(${index})">删除</button> </td>
+                        <td><button class="btn btn-light" onclick="upMove(this)">上移</button>
+                            <button class="btn btn-light" onclick="downMove(this)">下移</button>
+                            </td>
+                    </tr>`;
+            });
+            $("#showGoods").html(str)
+            // showGoodsDom.innerHTML = str;
+        }
+
+        queryGoods();
+    </script>
+</body>
+
+</html>

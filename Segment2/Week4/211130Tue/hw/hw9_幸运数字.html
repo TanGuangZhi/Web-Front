@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="hw5">
+        本次您的幸运数字为:<span id="randomNum"></span><br><br>
+        <button onclick="getRandomNum()">获取随机数字</button><br><br>
+        赢的次数为:<span id="winTimes">0</span><br><br>
+        失败的次数为:<span id="loseTimes">0</span><br><br>
+        挑战的次数为: <span id="allTimes">0</span><br><br>
+    </div>
+
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+
+    <script>
+        let totalTime = 0;
+        let wintimes1 = 0;
+        let losetimes2 = 0;
+        function getRandomNum() {
+            let random = "";
+            for (let i = 0; i < 3; i++) {
+                let temp = parseInt(Math.random() * 8) + 1
+                random += temp + " ";
+                temp == 8 ? wintimes1++ : losetimes2++;
+            }
+            totalTime++;
+            // let div1Dom = document.getElementById("randomNum");
+            // div1Dom.innerHTML = `本次您的幸运数字为:${random}`;
+            // let div2Dom = document.getElementById("winTimes");
+            // div2Dom.innerHTML = `赢的次数为:${wintimes}`;
+            // let div3Dom = document.getElementById("loseTimes");
+            // div3Dom.innerHTML = `失败的次数为:${losetimes}`;
+            // let div4Dom = document.getElementById("allTimes");
+            // div4Dom.innerHTML = `挑战的次数为:${totalTime}`;
+            $("#randomNum").html(random);
+            $("#winTimes").html(wintimes1);
+            $("#loseTimes").html(losetimes2);
+            $("#allTimes").html(totalTime*3);
+        }
+    </script>
+</body>
+
+</html>

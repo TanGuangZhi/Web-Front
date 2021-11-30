@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    全选全消<input type="checkbox" id="setAllId" onclick="setAll()">
+    <ul>
+        <li>
+            1<input type="checkbox">
+        </li>
+        <li>
+            2<input type="checkbox">
+        </li>
+        <li>
+            3<input type="checkbox">
+        </li>
+        <li>
+            4<input type="checkbox">
+        </li>
+    </ul>
+
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+    <script>
+        function setAll(params) {
+            let flag = $("#setAllId").prop("checked");
+            $("ul li input").prop("checked", flag);
+        }
+
+        let ulDom = document.querySelector("ul");
+        ulDom.addEventListener("click", function () {
+            let childCheckedArr = $("ul li").children("input");
+            childCheckedArr = Array.from(childCheckedArr);
+            let flag = childCheckedArr.every(value => value.checked )
+            $("#setAllId").prop("checked",flag);
+        }, false);
+    </script>
+
+</body>
+
+</html>

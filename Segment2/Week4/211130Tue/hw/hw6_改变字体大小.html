@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="poet">
+        <h3>十一月四日风雨大作二首</h3>
+        <h6>陆游 宋</h6>
+            <p>
+                风卷江湖雨暗村，四山声作海涛翻。<br>
+                溪柴火软蛮毡暖，我与狸奴不出门。<br>
+    
+                僵卧孤村不自哀，尚思为国戍轮台。<br>
+                夜阑卧听风吹雨，铁马冰河入梦来。<br>
+            </p>
+    </div>
+  
+    
+<div>
+    <button onclick="change('50')">大</button>
+    <button onclick="change('30')">中</button>
+    <button onclick="change('20')">小</button>
+</div>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+
+    <script>
+        function change(size) {
+            $("#poet").css("font-size",size+"px")
+        }
+    </script>
+</body>
+
+</html>
