@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.min.css">
+</head>
+
+<body bgcolor="#22b098">
+    <div class="container">
+        <div class="header">
+            <h2 class="score" id="score">20</h2>
+        </div>
+        <div class="main">
+            <div class="row1">
+                <img src="./images/juzi.png" alt="10" name="img1" data-luckName="juzi1">
+                <img src="./images/lingdang.png"  alt="10" name="img2">
+                <img src="./images/boos_x.png" alt="25" name="img3">
+                <img src="./images/boos.png" alt="50" name="img4">
+                <img src="./images/pingguo.png" alt="5" name="img5">
+                <img src="./images/pingguo_x.png" alt="2" name="img6">
+                <img src="./images/ningmeng.png" alt="10" name="img7">
+            </div>
+            <div class="row2">
+                <div class="left">
+                    <div class="colImgLeft">
+                        <img src="./images/lingdang_x.png" alt="10" name="img24">
+                        <img src="./images/pingguo.png" alt="5" name="img23">
+                        <img src="./images/luck1.png" alt="000" name="img22">
+                        <img src="./images/shuangxing_x.png" alt="2" name="img21">
+                        <img src="./images/shuangxing.png" alt="20" name="img20">
+                    </div>
+                </div>
+                <div class="center">
+
+                </div>
+                <div class="right">
+                    <div class="colImgRight">
+                        <img src="./images/xigua.png" alt="20" name="img8">
+                        <img src="./images/xigua_x.png" alt="2" name="img9">
+                        <img src="./images/luck2.png" alt="000000" name="img10">
+                        <img src="./images/pingguo.png" alt="5" name="img11">
+                        <img src="./images/juzi_x.png" alt="2" name="img12">
+                    </div>
+                </div>
+            </div>
+            <div class="row3">
+                <img src="./images/ningmeng.png" alt="10" name="img19">
+                <img src="./images/ningmeng_x.png" alt="2" name="img18">
+                <img src="./images/pingguo.png" alt="5" name="img17">
+                <img src="./images/shuangqi.png" alt="20" name="img16">
+                <img src="./images/shuangqi_x.png" alt="2" name="img15">
+                <img src="./images/lingdang.png" alt="10" name="img14">
+                <img src="./images/juzi.png" alt="10" name="img13">
+            </div>
+        </div>
+        <div class="footer">
+            <div class="choose">
+                <div class="box">
+                    <img src="./images/boos.png">
+                    <p id="chooseTotalNum">0</p>
+                    <div class="btnBox">
+                        <button onclick="addNum(this)">+</button>
+                        <button onclick="minusNum(this)">-</button>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./images/shuangxing.png">
+                    <p id="chooseTotalNum">0</p>
+                    <div class="btnBox">
+                        <button onclick="addNum(this)">+</button>
+                        <button onclick="minusNum(this)">-</button>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./images/shuangqi.png">
+                    <p id="chooseTotalNum">0</p>
+                    <div class="btnBox">
+                        <button onclick="addNum(this)">+</button>
+                        <button onclick="minusNum(this)">-</button>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./images/xigua.png">
+                    <p id="chooseTotalNum">0</p>
+                    <div class="btnBox">
+                        <button onclick="addNum(this)">+</button>
+                        <button onclick="minusNum(this)">-</button>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./images/lingdang.png">
+                    <p id="chooseTotalNum">0</p>
+                    <div class="btnBox">
+                        <button onclick="addNum(this)">+</button>
+                        <button onclick="minusNum(this)">-</button>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./images/ningmeng.png">
+                    <p id="chooseTotalNum">0</p>
+                    <div class="btnBox">
+                        <button onclick="addNum(this)">+</button>
+                        <button onclick="minusNum(this)">-</button>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./images/juzi.png">
+                    <p id="chooseTotalNum">0</p>
+                    <div class="btnBox">
+                        <button onclick="addNum(this)">+</button>
+                        <button onclick="minusNum(this)">-</button>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./images/pingguo.png">
+                    <p id="chooseTotalNum">0</p>
+                    <div class="btnBox">
+                        <button onclick="addNum(this)">+</button>
+                        <button onclick="minusNum(this)">-</button>
+                    </div>
+                </div>
+                <div class="box"></div><button class="startBtn" onclick="startBaiJia()">开始</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let totalScore = document.querySelector(`#score`);
+        // 消除图片大小对视觉的影响
+        function init(params) {
+            let allImgArr = document.querySelectorAll(`[name*=img]`);
+            allImgArr.forEach(element => {
+                element.style.transform = "scale(1.0)";
+            });
+        }
+        function startBaiJia(params) {
+            init();
+            let nextStartNeedScore = caluStartNextNeedScore();
+            if (nextStartNeedScore === 0) {
+                alert('请先选择!');
+                return;
+            }
+            if (nextStartNeedScore > totalScore.innerHTML) {
+                alert('骚年,充了钱你就会变得更强');
+                return;
+            }
+            updUserRemainScore(-nextStartNeedScore);
+            let imgIndex = 0;
+            let total = 0;
+            // 用于控制跑几次
+            let randomTime = parseInt(Math.random() * 26) + 15;
+            let timer = setInterval(() => {
+                imgIndex++;
+                total++;
+                // 跑马灯效果
+                let imgDom = document.querySelector(`[name=img${imgIndex}]`);
+                let imgPreDom = document.querySelector(`[name=img${imgIndex - 1}]`);
+
+                if (imgIndex === 25) {
+                    imgIndex = 1;
+                    return;
+                }
+                imgDom.style.transform = "scale(1.2)";
+                if (imgIndex !== 1) {
+                    imgPreDom.style.transform = "scale(1.0)";
+                }
+                if (total === randomTime) {
+                    lastLuckImgIndex = imgIndex;
+                    let thisTotalScore = caluScore(imgIndex);
+                    updUserRemainScore(thisTotalScore);
+                    clearInterval(timer);
+                }
+            }, 200);
+        }
+
+        // 计算用户本轮获得多少分
+        function caluScore(index) {
+            let luckImg = document.querySelector(`[name=img${index}]`);
+            let luckImgValue = luckImg.alt - 0;
+            let chooseArr = document.querySelectorAll("#chooseTotalNum");
+            let thisTotalScore = 0;
+            if (luckImgValue === 20) {
+                thisTotalScore += (chooseArr[1].innerHTML + chooseArr[2].innerHTML + chooseArr[3].innerHTML) * luckImgValue;
+            } else if (luckImgValue === 10) {
+                thisTotalScore += (chooseArr[4].innerHTML + chooseArr[5].innerHTML + chooseArr[6].innerHTML) * luckImgValue;
+            } else if (luckImgValue === 5) {
+                thisTotalScore += (chooseArr[7].innerHTML) * luckImgValue;
+            } else if (luckImgValue === 2 || luckImgValue === 25) {
+                thisTotalScore += 0;
+                let luckImgSrc = luckImg.src;
+                if (luckImgSrc.includes("boss_x")) {
+                    thisTotalScore = chooseArr[0].innerHTML * 2;
+                }
+                if (luckImgSrc.includes("shuangxing")) {
+                    thisTotalScore = chooseArr[1].innerHTML * 2;
+                }
+                if (luckImgSrc.includes("shuangqi")) {
+                    thisTotalScore = chooseArr[2].innerHTML * 2;
+                }
+                if (luckImgSrc.includes("xigua")) {
+                    thisTotalScore = chooseArr[3].innerHTML * 2;
+                }
+                if (luckImgSrc.includes("lingdang")) {
+                    thisTotalScore = chooseArr[4].innerHTML * 2;
+                }
+                if (luckImgSrc.includes("ningmeng")) {
+                    thisTotalScore = chooseArr[5].innerHTML * 2;
+                }
+                if (luckImgSrc.includes("juzi")) {
+                    thisTotalScore = chooseArr[6].innerHTML * 2;
+                }
+                if (luckImgSrc.includes("pingguo")) {
+                    thisTotalScore = chooseArr[7].innerHTML * 2;
+                }
+            } else if (luckImgValue === 50) {
+                thisTotalScore += chooseArr[0].innerHTML * luckImgValue;
+            } else {
+                alert('恭喜您中了大奖,但该功能正在等待开发中,您稍后将获得欠条一张,请耐心等待工作人员致电,谢谢');
+            }
+            return thisTotalScore;
+        }
+
+
+        // 押注
+        function addNum(params) {
+            params.parentNode.previousElementSibling.innerHTML++;
+        }
+
+        function minusNum(params) {
+            if (params.parentNode.previousElementSibling.innerHTML > 0) {
+                params.parentNode.previousElementSibling.innerHTML--;
+            }
+
+        }
+
+        // 计算本次押注共花费多少分
+        function caluStartNextNeedScore(params) {
+            let chooseArr = document.querySelectorAll("#chooseTotalNum");
+            let totalChoose = 0;
+            chooseArr.forEach(element => {
+                totalChoose += element.innerHTML - 0;
+            });
+            return totalChoose;
+        }
+
+        // 更新用户剩余分数
+        function updUserRemainScore(score) {
+            let totalScoreDom = document.querySelector(`#score`);
+            totalScoreDom.innerHTML = (totalScoreDom.innerHTML - 0) + score;
+            return totalScoreDom;
+        }
+        // 底部用户押注物品控制
+        // let chooseDom = document.querySelector("[class=choose]");
+        // chooseDom.addEventListener("click", function (e) {
+        //     let chooseHeight = e.target.height;
+        //     if (chooseHeight == 80) {
+        //         e.target.height = "100";
+        //     } else {
+        //         e.target.height = "80"
+        //     }
+        // }, false);
+    </script>
+</body>
+
+</html>
