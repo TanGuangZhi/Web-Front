@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 白色主题 -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"> -->
+    <!-- 黑色主题 -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css"> -->
+    <style>
+        p {
+            display: flex;
+        }
+
+        input,
+        textarea,
+        select {
+            margin-left: 15px;
+        }
+
+        select {
+            margin-right: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--1.密码可见/不可见切换
+        2.发送实现短信的倒计时
+        3.点击登录 根据用户名以及密码 到json数据中进行检索，
+        如果登录成功 跳转到admin.html  window.location.href="admin.html";
+    -->
+    <h2>用户登录</h2>
+    <form id="loginForm">
+        <p>
+            用户名:<input type="text" name="userName" placeholder="请输入用户名">
+        </p>
+        <p>
+            密　码:<input type="password" name="userPass" placeholder="请输入密码">
+            <button type="button" onclick="showPwdBtn()">可见/不可见</button>
+        </p>
+        <p>
+            验证码:<input type="text" name="code" placeholder="请输入验证码">
+            <button type="button" onclick="sentMsgBtn($(this))">发送</button>
+            <span></span>
+        </p>
+        <p>
+            <input type="button" value="登录" onclick="loginBtnClick()">
+        </p>
+    </form>
+    <hr>
+    <h2>用户注册</h2>
+    <form id="loginFormId">
+        <p>
+            用户名:<input type="text" placeholder="请输入用户名" name="userName"><span>*</span>
+        </p>
+        <p>
+            密　码:<input type="password" placeholder="请输入密码" name="userPass"><span>*</span>
+        </p>
+        <p>
+            手机号:<input type="text" placeholder="请输入手机号" name="userPhone"><span>*</span>
+        </p>
+        <p>邮　箱:<input type="text" placeholder="请输入邮箱" name="email"><span>*</span></p>
+        <p>
+        <p>
+            <input type="button" onclick="regiestBtnClick()" value="注册">
+        </p>
+    </form>
+
+
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+    <script src="./js/city-info.js"></script>
+    <script type="text/javascript">
+        let userArr = [
+            {
+                id: 1, userName: "jack", userPass: "123456", userPhone: "18179160007",
+                email: "981744753@qq.com", address: "上海市浦东新区燕侨大厦15楼101室"
+            }];
+        /* function login(){
+             window.location.href="admin.html";
+         }*/
+
+        // 用户登录方法组
+        function showPwdBtn() {
+            if ($('[name=userPass]').attr("type") === "password") {
+                $('[name=userPass]').attr("type", "text");
+            } else {
+                $('[name=userPass]').attr("type", "password");
+            }
+        }
+
+        function sentMsgBtn(dom) {
+            let count = 60;
+            // 初始化,防止等待1秒才出现效果
+            dom.html(60 + "(s)");
+            dom.prop("disabled", true);
+            // #TODO 优化 一函一事
+            let checkCode = generCheckCode(4);
+            showCheckCode(dom,checkCode);
+            checkCode = checkCode.toLowerCase();
+
+            let timer = window.setInterval(function () {
+               
+                let checkCodeRight = checkCheckCode(checkCode);
+                count--;
+                if (count >= 0) {
+                    dom.html(count + "(s)");
+                    dom.prop("disabled", true);
+                    if (checkCodeRight) {
+                        $('[value="登录"]').prop("disabled", false)
+                    }
+                } else {
+                    dom.html("发送");
+                    dom.prop("disabled", false);
+                    $('[value="登录"]').prop("disabled", true);
+                    showInvalidCheckCode(dom);
+                    window.clearInterval(timer);
+                }
+            }, 1000)
+        }
+
+        function generCheckCode(num) {
+            let randomSting = "zxcvbnmasdfghjklqwertyuiopZXCVBNMASDFGHJKLQWERTYUIOP1234567890";
+            let randomCode = "";
+            for (let index = 0; index < num; index++) {
+                let randomNum = parseInt(Math.random() * (randomSting.length));
+                randomCode += randomSting.charAt(randomNum) + "";
+            }
+            return randomCode;
+        }
+
+        function showCheckCode(dom, checkCode) {
+            clearInvalidCheckCode(dom);
+            let randomSeconds = (parseInt(Math.random() * 3) + 3)*1000;
+            setTimeout(() => {
+                dom.next().html(checkCode)
+            }, randomSeconds);
+        }
+
+         // 判断输入的验证码等于后台验证码否
+        function checkCheckCode(params) {
+            return $('[name="code"]').val() == params;
+        }
+
+
+        function showInvalidCheckCode(dom) {
+            dom.next().css({ "color": "gray", "text-decoration": "line-through" });
+        }
+
+        // 清除失效验证码样式
+        function clearInvalidCheckCode(dom) {
+            dom.next().html("");
+            dom.next().css({ "color": "#000", "text-decoration": "none" }); 
+        }
+
+        function loginBtnClick(params) {
+            let userInfo = [{
+                name: "admin",
+                pwd: "666666"
+            }, {
+                name: "admin2",
+                pwd: "666"
+            }]
+            let inputNameDom = $("[name=\"userName\"]").val();
+            let inputPwdDom = $("[name=\"userPass\"]").val();
+            let flag = userInfo.some(element => inputNameDom === element.name && inputPwdDom === element.pwd);
+            if (flag) {
+                window.location.href = "admin.html";
+            } else {
+                alert('输入错误,请重新输入');
+            }
+        }
+
+
+
+
+        // 用户注册方法组
+        function check(selector, reg, alertMsg) {
+            let userInputContent = $(selector);
+            let alertDom = userInputContent.next();;
+            if (reg.test((userInputContent.val()))) {
+                alertDom.html("验证通过");
+                alertDom.css("color", "green");
+                return true;
+            } else {
+                alertDom.html(alertMsg);
+                alertDom.css("color", "red");
+                return false;
+            }
+        }
+
+        function checkUserName(params) {
+            let reg = /^\w{3,5}$/;
+            allRegCheckFlagList[0] = (check("#loginFormId [name=userName]", reg, "必须是3-5位字母"));
+        }
+
+        function checkPass(params) {
+            let reg = /^\d{3,6}$/;
+            allRegCheckFlagList[1] = (check("#loginFormId [name=userPass]", reg, "必须是3-6位数字"));
+        }
+
+        function checkPhone(params) {
+            let reg = /^1[3-9]\d{9}$/;
+            allRegCheckFlagList[2] = (check("#loginFormId [name=userPhone]", reg, "必须是11位数字"));
+        }
+
+        function checkEmail(params) {
+            let reg = /\w+@\w+.\w+/;
+            allRegCheckFlagList[3] = (check("#loginFormId [name=email]", reg, "必须包含@与."));
+        }
+
+        // 使用绑定事件+命名函数的形式实现多次调用(用于用户点击注册时再次校验)
+        $('#loginFormId [name=userName]').keyup(function () {
+            checkUserName();
+        })
+        $('#loginFormId [name=userPass]').keyup(function () {
+            checkPass();
+        })
+        $('#loginFormId [name=userPhone]').keyup(function () {
+            checkPhone();
+        })
+        $('#loginFormId [name=email]').keyup(function () {
+            checkEmail();
+        })
+
+
+        function regiestBtnClick(params) {
+            let allRegCheckFlag = allRegCheckFlagList.every(value => value);
+            if (allRegCheckFlagList.length < 4) {
+                allRegCheckFlag = false;
+            }
+            if (!allRegCheckFlag) {
+                checkUserName();
+                checkPass();
+                checkPhone();
+                checkEmail();
+                return;
+            }
+            window.location.href = "admin.html";
+        }
+
+        function main() {
+            init();
+        }
+
+        function init() {
+            // 登录按钮初始不可用
+            $('[value="登录"]').prop("disabled", true);
+        }
+
+        let allRegCheckFlagList = [false];
+        main();
+    </script>
+</body>
+
+</html>

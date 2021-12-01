@@ -33,13 +33,25 @@
             $("ul li input").prop("checked", flag);
         }
 
-        let ulDom = document.querySelector("ul");
-        ulDom.addEventListener("click", function () {
-            let childCheckedArr = $("ul li").children("input");
-            childCheckedArr = Array.from(childCheckedArr);
-            let flag = childCheckedArr.every(value => value.checked )
-            $("#setAllId").prop("checked",flag);
-        }, false);
+        // let ulDom = document.querySelector("ul");
+        // ulDom.addEventListener("click", function () {
+        //     let childCheckedArr = $("ul input");
+        //     childCheckedArr = Array.from(childCheckedArr);
+        //     let flag = childCheckedArr.every(value => value.checked )
+        //     $("#setAllId").prop("checked",flag);
+        // }, false);
+
+        $("ul input").on("click", function () {
+            let flag = true;
+            $(this).each(function () {
+                if ($(this).prop("checked") === false) {
+                    flag = false;
+                    return;
+                }
+            })
+            $("#setAllId").prop("checked", flag);
+        });
+
     </script>
 
 </body>
