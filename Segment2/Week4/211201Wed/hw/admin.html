@@ -14,6 +14,9 @@
         .trClass:hover {
             color: greenyellow;
         }
+        .selected{
+            background: green !important;
+        }
     </style>
 
 </head>
@@ -127,15 +130,15 @@
                 }
             });
             alert(`${delArr}`);
-            console.log(`${delArr}`);
+            // console.log(`${delArr}`);
         }
 
         // 全选全消
         function selAll(flag) {
             $('.sel').prop("checked", flag);
             // 选中某些行,则字体变绿
-            let color = flag?"greenyellow":"";
-            $('#showGoods tr').css("color",color);
+            let color = flag ? "greenyellow" : "";
+            $('#showGoods tr').css("color", color);
         }
 
         function checkChildFlag() {
@@ -144,12 +147,13 @@
                 let trIndex = $(this).attr("data-index");
                 if ($(this).prop("checked")) {
                     // 选中这一行,则字体变绿
-                    $('#showGoods tr').eq(trIndex-1).css("color","greenyellow");
-                }else{
-                    $('#showGoods tr').eq(trIndex-1).css("color","");
-                    return flag=false;
+                    $('#showGoods tr').eq(trIndex - 1).css("color", "greenyellow");
+                } else {
+                    $('#showGoods tr').eq(trIndex - 1).css("color", "");
+                    return flag = false;
                 }
             })
+
             $('#all-id').prop("checked", flag);
         }
 
@@ -164,7 +168,20 @@
             queryGoods();
             changeTrColor();
             // 鼠标移入tr上效果
-            $('#showGoods tr').addClass("trClass");
+            // $('#showGoods tr').addClass("trClass");
+            $('#showGoods tr').on("click", function () {
+                if ($(this).hasClass("selected")) {
+                    $(this).removeClass("selected");
+                } else {
+                    $(this).addClass("selected");
+                }
+                // 这里css("color")返回的时rgb的值,不能用greenyellow来判断
+                // if ($(this).attr("color")) {
+                //     $(this).css("color", ""); 
+                // } else {
+                //     $(this).css("color", "greenyellow");
+                // }
+            })
         }
 
         let addGoodsAllRegCheckFlagList = [false];

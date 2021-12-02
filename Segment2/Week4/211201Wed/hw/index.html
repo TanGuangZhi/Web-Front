@@ -9,21 +9,11 @@
     <!-- 白色主题 -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"> -->
     <!-- 黑色主题 -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
     <style>
-        p {
-            display: flex;
-        }
-
-        input,
-        textarea,
-        select {
-            margin-left: 15px;
-        }
-
-        select {
-            margin-right: 35px;
-        }
+        p { display: flex; }
+        input, textarea, select { margin-left: 15px; }
+        select { margin-right: 35px; }
     </style>
 </head>
 
@@ -100,11 +90,11 @@
             dom.prop("disabled", true);
             // #TODO 优化 一函一事
             let checkCode = generCheckCode(4);
-            showCheckCode(dom,checkCode);
+            showCheckCode(dom, checkCode);
             checkCode = checkCode.toLowerCase();
 
             let timer = window.setInterval(function () {
-               
+
                 let checkCodeRight = checkCheckCode(checkCode);
                 count--;
                 if (count >= 0) {
@@ -135,13 +125,13 @@
 
         function showCheckCode(dom, checkCode) {
             clearInvalidCheckCode(dom);
-            let randomSeconds = (parseInt(Math.random() * 3) + 3)*1000;
+            let randomSeconds = (parseInt(Math.random() * 3) + 3) * 1000;
             setTimeout(() => {
                 dom.next().html(checkCode)
             }, randomSeconds);
         }
 
-         // 判断输入的验证码等于后台验证码否
+        // 判断输入的验证码等于后台验证码否
         function checkCheckCode(params) {
             return $('[name="code"]').val() == params;
         }
@@ -154,7 +144,7 @@
         // 清除失效验证码样式
         function clearInvalidCheckCode(dom) {
             dom.next().html("");
-            dom.next().css({ "color": "#000", "text-decoration": "none" }); 
+            dom.next().css({ "color": "#000", "text-decoration": "none" });
         }
 
         function loginBtnClick(params) {
@@ -243,13 +233,14 @@
             window.location.href = "admin.html";
         }
 
-        function main() {
-            init();
-        }
 
         function init() {
             // 登录按钮初始不可用
             $('[value="登录"]').prop("disabled", true);
+        }
+
+        function main() {
+            init();
         }
 
         let allRegCheckFlagList = [false];
