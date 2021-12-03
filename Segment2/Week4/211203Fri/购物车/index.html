@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap5/css/bootstrap.min.css">
+</head>
+
+<body style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="row mt-5">
+                <div class="col-1" style="line-height: 35px;">
+                    收货地址:
+                </div>
+                <div class="col-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>请选择地址</option>
+                        <option value="1">上海蜗牛1部</option>
+                        <option value="2">成都蜗牛2部</option>
+                        <option value="3">火星蜗牛总部</option>
+                    </select>
+                </div>
+            </div>
+            <table class="table mt-3 table-striped table-hover shadow-sm rounded">
+                <thead class="" style="background-color: #fff; height: 60px; line-height: 60px;">
+                    <tr>
+                        <td>
+                            <label>
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" value=""
+                                        onchange="selAll(this.checked)" id="all-id"
+                                        aria-label="Radio button for following text input">全选/全消
+                                </div>
+                            </label>
+                        </td>
+                        <th scope="col">id</th>
+                        <th scope="col">商品名称</th>
+                        <th scope="col">商品价格</th>
+                        <th scope="col">数量</th>
+                        <th scope="col">商品图片</th>
+                        <th scope="col">小计</th>
+                        <th scope="col">移除商品</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="showGoods" class="table-dark">
+                    <tr>
+                        <td>
+                            <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
+                        </td>
+                        <th scope="row">1</th>
+                        <td>蜗牛1plus</td>
+                        <td>
+                            <p id="goodsPrice1">
+                                <span> 1888.88 </span>
+                                <span>元</span>
+                            </p>
+                        </td>
+                        <td>
+                            <div class="d-flex">
+                                <button type="button" class="btn btn-light btn-sm" onclick="addNum(this)">+</button>
+                                <input type="text" id="goodsCound1" readonly class="form-control" style="width:60px"
+                                    value="0">
+                                <button type="button" class="btn btn-light btn-sm" onclick="minusNum(this)">-</button>
+                            </div>
+                        </td>
+                        <td><img src="./film/1.jpg" style="width: 30px;" alt="" srcset=""></td>
+                        <td>
+                            <p id="totalPrice1">
+                                <span>0 </span>
+                                <span>元</span>
+                            </p>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" onclick="delGoods(1)">移除商品</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
+                        </td>
+                        <th scope="row">2</th>
+                        <td>蜗牛1plus</td>
+                        <td>
+                            <p id="goodsPrice2">
+                                <span> 188.88 </span>
+                                <span>元</span>
+                            </p>
+                        </td>
+                        <td>
+                            <div class="d-flex">
+                                <button type="button" class="btn btn-light btn-sm" onclick="addNum(this)">+</button>
+                                <input type="text" id="goodsCound2" readonly class="form-control" style="width:60px"
+                                    value="0">
+                                <button type="button" class="btn btn-light btn-sm" onclick="minusNum(this)">-</button>
+                            </div>
+                        </td>
+                        <td><img src="./film/2.jpg" style="width: 30px;" alt="" srcset=""></td>
+                        <td>
+                            <p id="totalPrice2">
+                                <span>0 </span>
+                                <span>元</span>
+                            </p>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" onclick="delGoods(2)">移除商品</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
+                        </td>
+                        <th scope="row">3</th>
+                        <td>蜗牛1plus</td>
+                        <td>
+                            <p id="goodsPrice3">
+                                <span> 688 </span>
+                                <span>元</span>
+                            </p>
+                        </td>
+                        <td>
+                            <div class="d-flex">
+                                <button type="button" class="btn btn-light btn-sm" onclick="addNum(this)">+</button>
+                                <input type="text" id="goodsCound3" readonly class="form-control" style="width:60px"
+                                    value="0">
+                                <button type="button" class="btn btn-light btn-sm" onclick="minusNum(this)">-</button>
+                            </div>
+                        </td>
+                        <td><img src="./film/3.jpg" style="width: 30px;" alt="" srcset=""></td>
+                        <td>
+                            <p id="totalPrice3">
+                                <span>0 </span>
+                                <span>元</span>
+                            </p>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" onclick="delGoods(3)">移除商品</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <div>
+                            <td>
+                                总计:
+                                <span id="allGoodsPrice">0.00 </span>
+                                元
+                            </td>
+                            <td colspan="7" style="text-align: right;">
+                                <button class="btn btn-success" id="settlementBtn" >结算</button>
+                            </td>
+                        </div>
+
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="./bootstrap5/css/bootstrap.min.css"></script>
+    <script src="./bootstrap5/js/bootstrap.bundle.min.js"></script>
+    <script src="./bootstrap5/js/jquery-3.5.1.min.js"></script>
+    <script>
+        // ============添加数量减少数量开始============
+        function checkIsZero(params) {
+            let goodsCount = params.previousElementSibling.value;
+            return goodsCount > 0;
+        }
+
+        function addNum(params) {
+            params.nextElementSibling.value++;
+            let btnIndex = params.nextElementSibling.id;
+            btnIndex = btnIndex[btnIndex.length - 1];
+            caluTotalPrice(btnIndex);
+            checkChildFlag(); // 刷新总价
+        }
+
+        function minusNum(params) {
+            if (checkIsZero(params)) {
+                params.previousElementSibling.value--;
+                let btnIndex = params.previousElementSibling.id;
+                btnIndex = btnIndex[btnIndex.length - 1];
+                caluTotalPrice(btnIndex);
+                checkChildFlag(); // 刷新总价
+            }
+        }
+
+        function caluTotalPrice(btnIndex) {
+            let totalPriceDom = document.querySelector(`#totalPrice${btnIndex} span`);
+            let priceDom = document.querySelector(`#goodsPrice${btnIndex} span`);
+            let goodsCoundDom = document.querySelector(`#goodsCound${btnIndex}`);
+            totalPriceDom.innerHTML = (goodsCoundDom.value * priceDom.innerHTML).toFixed(2);
+        }
+
+
+        // ============全选全消开始============/
+        function selAll(flag) {
+            let childSelectList = document.getElementsByClassName("sel");
+            for (const iterator of childSelectList) {
+                iterator.checked = flag;
+            }
+            checkChildFlag(); // 刷新总价
+        }
+
+        function checkChildFlag(flag) {
+            let parentCheckedFlag = document.getElementById("all-id");
+            let childSelectList = document.getElementsByClassName("sel");
+            // object转数组
+            childSelectList = Array.from(childSelectList);
+            let allFlag = childSelectList.every(value => value.checked);
+            parentCheckedFlag.checked = allFlag;
+            caluAllGoodsPrice();
+        }
+
+        // ============计算总价左下角展示框开始============/
+        function caluAllGoodsPrice() {
+            // 检查所有checked为true的元素
+            let childSelectList = document.getElementsByClassName("sel");
+            // object转数组
+            childSelectList = Array.from(childSelectList);
+
+            // 获取checked为true的元素对应的id
+            let totalGoodsPrice = 0;
+            childSelectList.forEach(value => {
+                if (value.checked === true) {
+                    let tdDom = value.parentNode.parentNode;
+                    let idDom = tdDom.nextElementSibling;
+                    let goodsPrice = document.querySelector(`#totalPrice${idDom.innerHTML} span`).innerHTML;
+                    totalGoodsPrice += goodsPrice - 0;
+                }
+            });
+
+            console.log(`${totalGoodsPrice}`);
+            document.querySelector(`#allGoodsPrice`).innerHTML = totalGoodsPrice.toFixed(1);
+        }
+
+        // 移除商品
+        function delGoods(params) {
+            document.querySelector(`#showGoods tr:nth-child(${params})`).innerHTML = '';
+            checkChildFlag(); // 刷新总价
+        }
+
+        // 结算按钮点击事件
+        $('#settlementBtn').click(function (e) { 
+            let totalPrice = $('#allGoodsPrice').html();
+            totalPrice-=0;
+            if (totalPrice<=0) {
+                alert('请选择商品');
+            }
+        });
+    </script>
+</body>
+
+</html>
