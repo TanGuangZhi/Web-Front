@@ -11,6 +11,7 @@
 
 <body>
 
+
     <div class="container">
         <h1 class="text-center">地址管理</h1>
         <div class="row justify-content-end">
@@ -21,6 +22,15 @@
         <div class="row">
             <table class="table table-dark table-striped table-hover shadow-sm rounded">
                 <thead>
+                    <th>
+                        <label>
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="checkbox" value=""
+                                    onchange="selAll(this.checked)" id="all-id"
+                                    aria-label="Radio button for following text input">全选/全消
+                            </div>
+                        </label>
+                    </th>
                     <th>编号</th>
                     <th>地址信息</th>
                     <th>详细地址</th>
@@ -29,8 +39,9 @@
                     <th>手机号码</th>
                     <th>操作</th>
                     <th></th>
+                    <th></th>
                 </thead>
-                <tbody>
+                <tbody id="showAddressBody">
                     <tr>
                         <td>1</td>
                         <td>上海市浦东新区</td>
@@ -38,7 +49,7 @@
                         <td>0000</td>
                         <td>jack</td>
                         <td>18110739061</td>
-                        <td> <button type='button' class="btn btn-danger">删除</button></td>
+                        <td> <button type='button' class="btn btn-danger delAddressBtn">删除</button></td>
                         <td> <button type='button' class="btn btn-info">修改</button></td>
                     </tr>
                     <tr>
@@ -48,7 +59,7 @@
                         <td>1000</td>
                         <td>rouse</td>
                         <td>18110739062</td>
-                        <td> <button type='button' class="btn btn-danger">删除</button></td>
+                        <td> <button type='button' class="btn btn-danger delAddressBtn">删除</button></td>
                         <td> <button type='button' class="btn btn-info">修改</button></td>
                     </tr>
                 </tbody>
@@ -56,7 +67,63 @@
         </div>
     </div>
 
-    <!-- 模态框 -->
+    <!-- Vip模态框 -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">开通专属Vip</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="row g-5">
+                <div class="order-md-last">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-primary">请选择</span>
+                        <span class="badge bg-primary rounded-pill">3</span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">自动续费/年</h6>
+                                <small class="text-muted">Brief description</small>
+                            </div>
+                            <span class="text-muted">$12</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">6个月</h6>
+                                <small class="text-muted">Brief description</small>
+                            </div>
+                            <span class="text-muted">$8</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">3个月</h6>
+                                <small class="text-muted">Brief description</small>
+                            </div>
+                            <span class="text-muted">$5</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (USD)</span>
+                            <strong>$20</strong>
+                        </li>
+                    </ul>
+
+                    <form class="card p-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Promo code">
+                            <button type="submit" class="btn btn-secondary">Redeem</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <img src="./img/film/微信加好友二维码_166.jpg" alt="" srcset="">
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加地址模态框 -->
     <div class="modal fade" id="addAddreModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content " style="width: 600px;">
@@ -68,42 +135,42 @@
                     <form>
                         <div class="mb-3">
                             <p>
-                                收货人:<input type="text" name="userName" class="form-control" placeholder="请输入用户名">
+                                收货人:<input type="text" name="consignee" class="form-control" placeholder="请输入用户名">
                                 <span>*</span>
                             </p>
                         </div>
 
                         <div class="mb-3">
                             <p>
-                                手机号码:<input type="password" name="userPass" class="form-control" placeholder="请输入手机号码">
+                                手机号码:<input type="text" name="phone" class="form-control" placeholder="请输入手机号码">
                                 <span>*</span>
                             </p>
                         </div>
                         <div class="mb-3">
                             <p>
-                                邮政编码:<input type="password" name="userPass" class="form-control" placeholder="请输入邮政编码">
+                                邮政编码:<input type="text" name="zipCode" class="form-control" placeholder="请输入邮政编码">
                                 <span>*</span>
                             </p>
                         </div>
                         <div class="mb-3">
-                            地址:
+                            请选择地址:
                             <div class="item d-flex">
                                 <div class="box d-flex">
-                                    <p style="width: 80px;" >省份:</p>
-                                    <select class="province form-select" name="province1" onchange="getCity(this)">
+                                    <p style="width: 80px;">省份:</p>
+                                    <select class="province form-select" name="province" onchange="getCity(this)">
                                         <option value="">请选择省份</option>
                                     </select>
                                 </div>
                                 <div class="box d-flex">
-                                    <p style="width: 80px;"  class="ms-2">城市:</p>
-                                    <select class="city form-select" name="province" onchange="getDistrict(this)">
+                                    <p style="width: 80px;" class="ms-2">城市:</p>
+                                    <select class="city form-select" name="city" onchange="getDistrict(this)">
                                         <option value="">请选择城市</option>
                                     </select>
 
                                 </div>
                                 <div class="box d-flex">
                                     <p style="width: 80px;" class="ms-2">区/县:</p>
-                                    <select class="district form-select">
+                                    <select class="district form-select" name="district">
                                         <option value="">请选择县/区</option>
                                     </select>
                                 </div>
@@ -111,80 +178,27 @@
 
                             <p>
                                 详细地址:<br>
-                                <textarea id="detailAddress" cols="40" rows="10"
-                                    onfocus="getDetailAddress()"></textarea>
+                                <textarea id="detailAddress" cols="40" rows="10"></textarea>
+                                <span>*</span>
                             </p>
 
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="loginBtn" class="btn btn-primary">确认添加</button>
+                    <button type="button" id="addAddressBtn" class="btn btn-primary ">确认添加</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">返回</button>
                 </div>
             </div>
         </div>
     </div>
 
+
+
     <script src='./bootstrap5/js/jquery-3.5.1.min.js'></script>
     <script src='./bootstrap5/js/bootstrap.bundle.min.js'></script>
     <script src="./js/city-info.js"></script>
-    <script>
-        // 用户注册-地址三级联动组
-        let provinceDom = document.querySelector(".province");
-        let cityDom = document.querySelector(".city");
-        let districtDom = document.querySelector(".district");
-
-        function getProvince() {
-            let provinceArr = [];
-            let provinceTempStr = '<option value="">请选择省份</option>';
-
-            for (let i = 0; i < cityData.length; i++) {
-                if (provinceArr.indexOf(cityData[i].province) === -1) {
-                    provinceArr.push(cityData[i].province);
-                    provinceTempStr += `<option value=${cityData[i].province}>${cityData[i].province}</option>`;
-                }
-            }
-
-            provinceDom.innerHTML = provinceTempStr;
-
-        }
-
-        function getCity() {
-            // 清空县级数据,防止干扰界面
-            districtDom.innerHTML = `<option value="">请选择县/区</option>`;
-            let cityArray = [];
-            for (let i = 0; i < cityData.length; i++) {
-                //1.找到对应省份的市，并且将城市去重
-                if (provinceDom.value === cityData[i].province && cityArray.indexOf(cityData[i].city) === -1) {
-                    cityArray.push(cityData[i].city);
-                }
-            }
-            //2.将去重之后的城市全部放入对应的option中
-            let cityStr = `<option value="">请选择城市</option>`;
-            for (let city of cityArray) {
-                cityStr += ` <option value="${city}">${city}</option>`;
-            }
-            cityDom.innerHTML = cityStr;
-        }
-
-        function getDistrict() {
-            let districtStr = `<option value="">请选择县/区</option>`;
-            for (let i = 0; i < cityData.length; i++) {
-                if (cityDom.value === cityData[i].city) {
-                    districtStr += `<option value="${cityData[i].district}">${cityData[i].district}</option>`;
-                }
-            }
-            districtDom.innerHTML = districtStr;
-        }
-
-        function getDetailAddress() {
-            let detailAddrDom = document.querySelector("#detailAddress");
-
-            detailAddrDom.innerHTML = `中国${provinceDom.value}${cityDom.value}${districtDom.value}`;
-        }
-
-        getProvince();
-    </script>
+    <script src="./js/userHome.js"></script>
+    <script src="./js/utils.js"></script>
 </body>
 
 </html>

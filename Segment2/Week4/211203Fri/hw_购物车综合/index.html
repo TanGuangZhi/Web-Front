@@ -151,25 +151,28 @@
                         <div class="modal-body">
                             <!--模态框中的主题主体内容 说白了就是写表单-->
                             <form>
-                                <div class="mb-3">
-                                    <p>
-                                        用户名:<input type="text" name="userName" class="form-control"
-                                            placeholder="请输入用户名">
+                                <div class="row">
+                                    <div class="col-2">
+                                        用户名:
+                                    </div>
+                                    <div class="col-10">
+                                        <input type="text" name="userName" class="form-control" placeholder="请输入用户名">
                                         <span>*</span>
-                                    </p>
+                                    </div>
+
                                 </div>
 
-                                <div class="mb-3">
-                                    密　码:
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <input type="password" name="userPass" class="form-control"
-                                                placeholder="请输入密码">
-                                        </div>
-                                        <div class="col-3">
-                                            <button type="button" id="showPwdBtn" class="btn btn-primary">可见</button>
-                                        </div>
+
+                                <div class="row">
+                                    <div class="col-2">
+                                        密　码:
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="password" name="userPass" class="form-control" placeholder="请输入密码">
                                         <span>*</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" id="showPwdBtn" class="btn btn-primary">可见</button>
                                     </div>
                                 </div>
 
@@ -192,27 +195,51 @@
                         </div>
                         <div class="modal-body">
                             <form class="form-inline">
-                                <p>
-                                    用户名:<input type="text" name="userName" class="form-control" placeholder="请输入用户名"
-                                        style="width:260px">
-                                    <span>*</span>
-                                </p>
-                                <p>
-                                    <!-- #TODO 密码可见方法 -->
-                                    密　码:<input type="password" name="userPass" class="form-control" placeholder="请输入密码">
-                                    <button type="button" class="btn btn-primary">可见</button>
-                                    <span>*</span>
-                                </p>
-                                <p>
-                                    手机号:<input type="text" name="userPhone" class="form-control" placeholder="请输入手机号">
+                                <div class="row">
+                                    <div class="col-2">
+                                        用户名:
+                                    </div>
+                                    <div class="col-10">
+                                        <input type="text" name="userName" class="form-control" placeholder="请输入用户名"
+                                            style="width:260px">
+                                        <span>*</span>
+                                    </div>
+                                </div>
 
-                                    <span>*</span>
-                                </p>
-                                <p>
-                                    验证码:<input type="text" name="code" class="form-control" placeholder="请输入验证码">
-                                    <button type="button" id="sentMsgBtn" class="btn btn-primary">发送</button>
-                                    <span></span>
-                                </p>
+                                <div class="row">
+                                    <div class="col-2">密　码:</div>
+                                    <div class="col-6">
+                                        <input type="password" name="userPass" class="form-control" placeholder="请输入密码">
+                                        <span>*</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <!-- #TODO  -->
+                                        <button type="button" class="btn btn-primary showPwdBtn">可见</button>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">手机号:</div>
+                                    <div class="col-10">
+                                        <input type="text" name="userPhone" class="form-control" placeholder="请输入手机号">
+                                        <span>*</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2">
+                                        验证码:
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" name="code" class="form-control" placeholder="请输入验证码">
+                                        
+                                    </div>
+                                    <div class="col-3 d-flex">
+                                        <button type="button" id="sentMsgBtn" class="btn btn-primary">发送</button>
+                                        <span style="text-align: center; padding-top: 5%; padding-left: 5px;"></span>
+                                    </div>
+                                   
+                                    
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">

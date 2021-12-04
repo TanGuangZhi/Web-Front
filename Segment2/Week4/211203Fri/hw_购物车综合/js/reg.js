@@ -1,15 +1,15 @@
 // 注册模态框点击事件
 // 使用绑定事件+命名函数的形式实现多次调用(用于用户点击注册时再次校验)
-$('#regModal [name=userName]').keyup(function () {
+$("#regModal [name=userName]").on("keyup focus blur", function () {
     checkUserName("#regModal [name=userName]");
 })
-$('#regModal [name=userPass]').keyup(function () {
+$('#regModal [name=userPass]').on("keyup focus blur", function () {
     checkPass('#regModal [name=userPass]');
 })
-$('#regModal [name=userPhone]').keyup(function () {
+$('#regModal [name=userPhone]').on("keyup focus blur", function () {
     checkPhone('#regModal [name=userPhone]');
 })
-$('#regModal [name=code]').keyup(function () {
+$('#regModal [name=code]').on("keyup focus blur", function () {
     checkCode('#regModal [name=code]');
 })
 
@@ -27,7 +27,18 @@ $('#regModal #regBtn').click(function (e) {
     }
     $(this).attr("data-dismiss", "modal");
     // window.location.href = "admin.html";
-    queryGoods();
+    // queryGoods();
+    alert(`注册成功`);
+});
+
+// 密码可见
+$('#regModal .showPwdBtn').click(function (e) {
+    if ($('[name=userPass]').attr("type") === "password") {
+        $('[name=userPass]').attr("type", "text");
+    } else {
+        $('[name=userPass]').attr("type", "password");
+    }
+
 });
 
 // ================验证码区================
@@ -66,7 +77,7 @@ regObj.sentMsg = $("#regModal #sentMsgBtn").click(function (e) {
             showInvalidCheckCode(dom);
             window.clearInterval(timer);
         }
-    }, 10)
+    }, 1000)
 });
 
 function generCheckCode(num) {

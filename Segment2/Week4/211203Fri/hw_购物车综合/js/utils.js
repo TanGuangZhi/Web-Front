@@ -95,9 +95,36 @@ function checkIsCanAddOrChange(params) {
         // 提示用户哪里没通过
         for (let index = 1; index < 5; index++) {
             checkChangeMovie(index);
-            checkAddMovie(index-1);
+            checkAddMovie(index - 1);
         }
         return false;
     }
     return true;
+}
+
+// 添加地址正则检测
+let checkAddAddressArr = [{
+    sel: "#addAddreModal [name='consignee']",
+    reg: /^\w{1,30}$/,
+    alertMsg: "用户名应在1~30位合法字符之间"
+}, {
+    sel: "#addAddreModal [name='phone']",
+    reg: /^1[3-9]\d{9}$/,
+    alertMsg: "必须由11位数字组成"
+}, {
+    sel: "#addAddreModal [name='zipCode']",
+    reg: /^\d{4,9}$/,
+    alertMsg: "应为4~9位数字"
+}, {
+    sel: "#addAddreModal #changeMovieImgId",
+    reg: /^.+(\.png|\.jpg)$/,
+    alertMsg: "必须是.png或.jpg结尾"
+}, {
+    sel: "#addAddreModal #detailAddress",
+    reg: /^\w{1,50}$/,
+    alertMsg: "应在50位合法字符之间"
+}]
+
+function checkAddAddress(index) {
+    allRegCheckAddAddressList[index] = check(checkAddAddressArr[index].sel, checkAddAddressArr[index].reg, checkAddAddressArr[index].alertMsg);
 }

@@ -1,8 +1,4 @@
-function name(params) {
-    alert(`1`);
-}
-
-// ================用户登录方法组================
+// 登录模态框内按钮点击
 $('#loginModal #loginBtn').click(function (e) {
     let userInfo = [{
         name: "admin",
@@ -16,7 +12,8 @@ $('#loginModal #loginBtn').click(function (e) {
     let flag = userInfo.some(element => inputNameDom === element.name && inputPwdDom === element.pwd);
     if (flag) {
         // window.location.href = "admin.html";
-        queryGoods();
+        // queryGoods();
+        alert(`登录成功`);
     } else {
         checkUserName("#loginModal [name=userName]", "用户名输入错误或不存在");
         checkPass("#loginModal [name=userPass]");
@@ -24,6 +21,7 @@ $('#loginModal #loginBtn').click(function (e) {
     }
 });
 
+// 展示密码
 $('#loginModal #showPwdBtn').click(function (e) {
     if ($('[name=userPass]').attr("type") === "password") {
         $('[name=userPass]').attr("type", "text");
@@ -32,3 +30,11 @@ $('#loginModal #showPwdBtn').click(function (e) {
     }
 
 });
+
+// 用户输入正则判断事件绑定
+$("#loginModal [name=\"userName\"]").on("keyup focus blur", function () {
+    checkUserName("#loginModal [name=userName]", "用户名输入错误或不存在");
+})
+$("#loginModal [name=\"userPass\"]").on("keyup focus blur", function () {
+    checkPass("#loginModal [name=userPass]");
+})
