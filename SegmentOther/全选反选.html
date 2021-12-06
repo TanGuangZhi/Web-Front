@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        全选:<input type="checkbox" id="sel-all">
+        <!-- <button type='button' id="sel-all">全选</button> -->
+        <button type='button' id="sel-all-reverse">反选</button>
+        <ul>
+            <li>
+                <input type="checkbox" name="" id="">111
+            </li>
+            <li>
+                <input type="checkbox" name="" id="">222
+            </li>
+            <li>
+                <input type="checkbox" name="" id="">333
+            </li>
+            <li>
+                <input type="checkbox" name="" id="">444
+            </li>
+        </ul>
+    </div>
+
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        // 全选
+        $('#sel-all').change(function () {
+
+            $('ul input').prop("checked", $(this).prop("checked"));
+        });
+
+        // 反选
+        $('#sel-all-reverse').click(function () {
+            // #TODO 这里能不能直接用本身的这个checked取反在赋值给本身以实现反选?而不是通过each循环实现
+            // 或者切换this的指向以实现效果
+            // $('ul input').prop("checked",!$('ul input').prop("checked"));
+            // $('ul input').prop("checked", !this.prop("checked"));
+            $('ul input').each(function () {
+                $(this).prop("checked", !$(this).prop("checked"));
+            });
+        });
+
+    </script>
+</body>
+
+</html>

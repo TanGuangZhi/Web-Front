@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .addClass {
+            background-color: red;
+        }
+
+        .chickClass {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+
+    <script>
+        // $('tr').on(("mouseover"),function (e) { 
+        //     // $(this).css("background-color","red")
+        //     $(this).addClass("addClass");
+        // });
+        // 点击这一行任意位置去将本行复选框选中
+        $('tr').on(("click"), function (e) {
+            console.log(`${$(this).find("input").prop("checked")}`);
+            if (!$(this).find("input").prop("checked")) {
+                // alert(`1`);
+                // $(this).find("input").prop("checked",true);
+                $(this).addClass("chickClass");
+                // $(this).css("color","green")
+            } else {
+                // console.log(`${$(this).find("input").prop("checked")}`);
+                // $(this).find("input").prop("checked",false);
+                // console.log(`${$(this).find("input").prop("checked")}`);
+                $(this).removeClass("chickClass");
+                // $(this).css("color","")
+            }
+        });
+            // $('tr').mouseout(function (e) {
+            //     // $(this).css("background-color","")
+            //     $(this).removeClass("addClass");
+            // });
+    </script>
+</body>
+
+</html>
