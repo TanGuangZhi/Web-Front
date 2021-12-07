@@ -1,6 +1,5 @@
 // 搜索方法绑定事件
 $("#searchBtn").click(function (e) {
-
     queryGoods("", "", true);
 });
 
@@ -213,7 +212,7 @@ $('#delByBatchBtn').on("click", function () {
 
     $('.sel').each(function () {
         if ($(this).prop("checked")) {
-            delArr.push($(this).attr("data-index"));
+            delArr.push($(this).attr("data-index")); 
         }
     });
     let isOk = confirm("您确定要删除吗?");//点击确定 true  取消 false

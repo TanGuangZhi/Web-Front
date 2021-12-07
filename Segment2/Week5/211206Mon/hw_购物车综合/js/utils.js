@@ -1,6 +1,6 @@
 function check(selector, reg, alertMsg) {
     let userInputContent = $(selector);
-    let alertDom = userInputContent.parent().find("span");;
+    let alertDom = userInputContent.parent().find("span");
     if (reg.test((userInputContent.val()))) {
         alertDom.html("验证通过");
         alertDom.css("color", "green");
@@ -13,7 +13,9 @@ function check(selector, reg, alertMsg) {
 }
 
 // 用户注册/登录方法检测
+
 function checkUserName(sel, warning) {
+    if (!checkUserNameExit()) return;
     if (!warning) warning = "必须是3-5位字母";
     let reg = /^\w{3,5}$/;
     allRegCheckFlagList[0] = (check(sel, reg, warning));
@@ -32,6 +34,21 @@ function checkPhone(sel) {
 function checkCode(sel) {
     let reg = /^[a-zA-Z0-9]{4}$/;
     allRegCheckFlagList[3] = (check(sel, reg, "验证码不正确或失效"));
+}
+
+// 检查用户名是否已被注册过
+function checkUserNameExit(params) {
+    let flag = true;
+    userInfo.forEach(element => {
+        if (element.name === $('#regModal [name=userName]').val()) {
+            let alertDom = $('#regModal [name=userName]').parent().find("span");
+            alertDom.html("用户名已存在");
+
+            alertDom.css("color", "red");
+            flag = false;
+        }
+    });
+    return flag;
 }
 
 // 添加电影模态框检测

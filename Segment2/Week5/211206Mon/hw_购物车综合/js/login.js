@@ -10,12 +10,16 @@ $('#loginModal #loginBtn').click(function (e) {
         // window.location.href = "admin.html";
         // queryGoods();
         remeberMe(inputNameDom, inputPwdDom);
+        showOtherBtn();
+        hideSomeBtn();
         $('#userInfo #userName').html(inputNameDom);
+
         alert(`登录成功`);
+        location.reload();
     } else {
-        checkUserName("#loginModal [name=userName]", "用户名输入错误或不存在");
-        checkPass("#loginModal [name=userPass]");
-        // alert('输入错误,请重新输入');
+        // checkUserName("#loginModal [name=userName]", "用户名输入错误或不存在");
+        // checkPass("#loginModal [name=userPass]");
+        alert('输入错误,请重新输入');
     }
 });
 
@@ -29,33 +33,51 @@ $('#loginModal #showPwdBtn').click(function (e) {
 });
 
 // 用户输入正则判断事件绑定
-$("#loginModal [name=\"userName\"]").on("keyup focus blur", function () {
-    checkUserName("#loginModal [name=userName]", "用户名输入错误或不存在");
-});
+// $("#loginModal [name=\"userName\"]").on("keyup focus blur", function () {
+//     checkUserName("#loginModal [name=userName]", "用户名输入错误或不存在");
+// });
 
-$("#loginModal [name=\"userPass\"]").on("keyup focus blur", function () {
-    checkPass("#loginModal [name=userPass]");
-});
+// $("#loginModal [name=\"userPass\"]").on("keyup focus blur", function () {
+//     checkPass("#loginModal [name=userPass]");
+// });
 
 // 记住我事件触发本地缓存事件
 function remeberMe(inputNameDom, inputPwdDom) {
-    if ($('#remeberMe').prop("checked")) {
-        let userInfo = {
-            name: inputNameDom,
-            pwd: inputPwdDom
-        }
-        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    let userInfo = {
+        name: inputNameDom,
+        pwd: inputPwdDom
     }
+    if ($('#remeberMe').prop("checked")) {
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    } else {
+        sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+    }
+}
+
+function showOtherBtn(params) {
+    $('#shoppingCartBtn').prop("hidden", false);
+    $('#userHomeBtn').prop("hidden", false);
+    $('#backstageBtn').prop("hidden", false);
+    $('#logOutBtn').prop("hidden", false);
+}
+
+function hideSomeBtn(params) {
+    $('[data-bs-target="#loginModal"]').prop("hidden", true);
+    $('[data-bs-target="#regModal"]').prop("hidden", true);
 }
 
 // init
 function init(params) {
-    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    if (userInfo) {
+    let temp = JSON.parse(localStorage.getItem("userInfo")) || JSON.parse(sessionStorage.getItem("userInfo"));
+    userInfo = temp || userInfo;
+    if (temp) {
         $("#loginModal [name=\"userName\"]").val(userInfo.name);
         $("#loginModal [name=\"userPass\"]").val(userInfo.pwd);
-        $('#loginModal #remeberMe').prop("checked", true);
+        // $('#loginModal #remeberMe').prop("checked", true);
+        // 左侧显示用户名
         $('#userInfo #userName').html($("[name=\"userName\"]").val());
+        hideSomeBtn();
+        showOtherBtn();
     }
 }
 
