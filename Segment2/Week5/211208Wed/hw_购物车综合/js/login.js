@@ -70,7 +70,7 @@ function hideSomeBtn(params) {
 function init(params) {
     let temp = JSON.parse(localStorage.getItem("userInfo")) || JSON.parse(sessionStorage.getItem("userInfo"));
     userInfo = temp || userInfo;
-    console.log(`${JSON.parse(sessionStorage.getItem("userInfo"))}`);
+    // console.log(`${JSON.parse(sessionStorage.getItem("userInfo"))}`);
     if (temp) {
         $("#loginModal [name=\"userName\"]").val(userInfo.name);
         $("#loginModal [name=\"userPass\"]").val(userInfo.pwd);

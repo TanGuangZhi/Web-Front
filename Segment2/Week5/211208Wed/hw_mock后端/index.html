@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="gbk">
+    <title>Title</title>
+</head>
+<body>
+    <button type="button" id="queryBtn">查询电影</button>
+    <button type="button" id="delBtn">删除电影</button>
+    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+        $("#queryBtn").click(function () {
+            $.ajax({
+                url:"http://192.168.11.52:8080/queryFilm",
+                dataType:"json",
+                success:function (res){
+                    alert(JSON.stringify(res));
+                }
+            });
+        });
+        $("#delBtn").click(function () {
+           $.ajax({
+               url:"http://192.168.11.52:8080/deleteFilm",
+               dataType:"text",
+               success:function (res) {
+                   alert(res);
+               }
+           })
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <link rel='stylesheet' href='./bootstrap5/css/bootstrap.min.css'>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 电影内容 -->
+        <div id="movieArea">
+            <!-- 主内容 -->
+            <h2 class="text-center mt-5">蜗牛商城</h2>
+            <div class="row justify-content-end">
+                <form class="form-check-inline" action="">
+                    商品名称: <input type="text" placeholder="请输入商品名称" id="goodsName">
+                    商品类型: <select name="" id="goodsType">
+                        <option value="手机">手机</option>
+                        <option value="手上岛咖啡">手上岛咖啡	</option>
+                    </select>
+                    <!-- 商品价格: <select name="" id="">
+                        <option value="">111</option>
+                    </select> -->
+                    <button type="button" class="btn btn-primary" id="searchBtn" >搜索</button>
+                </form>
+                <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMovie"
+                    data-bs-whatever="@mdo">添加
+                </button>
+                <button class="col-2 btn btn-danger" id="delByBatchBtn">批量删除 </button>
+            </div>
+            <div class="row">
+                <table class="table mt-3 table-striped table-hover shadow-sm rounded">
+                    <thead class="table-light" style="height: 60px; line-height: 60px;">
+                        <tr>
+                            <td>
+                                <label>
+                                    <div class="input-group-text">
+                                        <input class="form-check-input mt-0" type="checkbox" value=""
+                                            onchange="selAll(this.checked)" id="all-id"
+                                            aria-label="Radio button for following text input">全选/全消
+                                    </div>
+                                </label>
+                            </td>
+                            <th scope="col">id</th>
+                            <th scope="col">商品名称</th>
+                            <th scope="col">商品价格</th>
+                            <th scope="col">商品类型</th>
+                            <th scope="col">商品图片</th>
+                            <th scope="col">操作</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="showGoods" class="table-dark">
+                        <tr>
+                            <td>
+                                <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)"
+                                        class="sel"></label>
+                            </td>
+                            <th scope="row">1</th>
+                            <td>蜗牛1plus</td>
+                            <td>1888.88</td>
+                            <td>@手机</td>
+                            <td><img src="../film/1.jpg" style="width: 5%;" alt="" srcset=""></td>
+                            <td>
+                                <button class="btn btn-light" onclick="upMove(this)">上移</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-light" onclick="downMove(this)">下移</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <tfoot>
+                    <nav aria-label="Page navigation example text-center ">
+                        <ul class="pagination text-center">
+                            <li class="page-item"><a class="page-link" onclick="prePage()">Previous</a></li>
+                            <div class="d-flex" id="pageFootNum">
+                                <!-- <li class="page-item active"><a class="page-link" href="#" data-index="1">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#" data-index="2">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#" data-index="3">3</a></li> -->
+                            </div>
+                            <li class="page-item"><a class="page-link" onclick="nextPage()">Next</a></li>
+                        </ul>
+                    </nav>
+                </tfoot>
+            </div>
+
+            <!-- 模态框展示 -->
+            <!-- 添加商品模态框 -->
+            <div class="modal fade" id="addMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <h2 class="text-center">添加电影</h2>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="" class="col-form-label">电影名:</label>
+                                    <input type="text" class="form-control" id="addMovieNameId">
+                                    <span class="alertMsgSpan">*</span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="col-form-label">电影价格:</label>
+                                    <input type="text" class="form-control" id="addMoviePriceId">
+                                    <span class="alertMsgSpan">*</span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="col-form-label">电影类型:</label>
+                                    <input type="text" class="form-control" id="addMovieTypeId">
+                                    <span class="alertMsgSpan">*</span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="col-form-label">电影图片:</label>
+                                    <input type="text" class="form-control" name="" id="addMovieImgId">
+                                    <span class="alertMsgSpan">*</span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="addMovieBtn">确认添加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 修改商品模态框 -->
+        <div class="modal fade" id="changeMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <h2 class="text-center">修改电影</h2>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="col-form-label">电影id:</label>
+                                <input type="text" class="form-control" readonly id="changeMovieIdId">
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label">电影名:</label>
+                                <input type="text" class="form-control" id="changeMovieNameId">
+                                <span class="alertMsgSpan">*</span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label">电影价格:</label>
+                                <input type="text" class="form-control" id="changeMoviePriceId">
+                                <span class="alertMsgSpan">*</span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label">电影类型:</label>
+                                <input type="text" class="form-control" id="changeMovieTypeId">
+                                <span class="alertMsgSpan">*</span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label">电影图片:</label>
+                                <input type="text" class="form-control" id="changeMovieImgId">
+                                <span class="alertMsgSpan">*</span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="changeMovieBtn">确认修改</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script src='./bootstrap5/js/jquery-3.5.1.min.js'></script>
+    <script src='./bootstrap5/js/bootstrap.bundle.min.js'></script>
+    <script src="./js/mock.js"></script>
+    <script src="./js/server.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/reg.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/utils.js"></script>
+</body>
+
+</html>

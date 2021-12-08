@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+    <script src="./mockjs学习/mock.js"></script>
+    <script>
+        let userList2 = Mock.mock({
+            "userList|20-30": [
+                {
+                    "id|+1": 1,
+                    "userName": "@name",
+                    "userPass": "123456",
+                    "userImg|+1": /userimg\/img[0-9]\.jpg/,
+                    "address": "@city(true)",
+                    "userPhone": /1[3-9]\d{9}/,
+                    "userEmail": /[1-9]\d{4,10}@(qq|gmail|168)\.com/
+                }
+            ]
+        });
+        Mock.mock("/user/queryUser", "get", function () {
+            return {
+                mas: "success",
+                status: 200,
+                "list": userList2.userList
+            }
+        });
+        $.ajax({
+            url: "/user/queryUser",
+            dataType: "json",
+            success: function (response) {
+                // response.forEach(element => {
+                //     console.log(...[element]);
+                //     console.log(element);
+                // });
+                let temp = JSON.stringify(response);
+                console.log(`${temp}`);
+                console.log(`${typeof temp}`);
+                console.log(`${(temp[0])}`);
+                // console.log(`${JSON.parse(response)}`);
+            }
+        });
+        
+    </script>
+</body>
+
+</html>

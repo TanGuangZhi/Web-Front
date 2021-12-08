@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./mock.js"></script>
+    <script>
+        // let str1 = Mock.mock({
+        //     "userName|1-3": "abc",
+        //     email: '@email'
+        // });
+        // let Random = Mock.Random;
+        // console.log(`${JSON.stringify(str1)}`);
+        // console.log(`${Random.cname()}`);
+        // let userList = Mock.mock({
+        //     "userList|20-30":[
+        //         {
+        //             "id|+1":1,
+        //             "userName":"@name",
+        //             "userPass":"123456",
+        //             "userImg|+1":["images/1.jpg","images/2.jpg","images/3.jpg"],
+        //             "address":"@city(true)",
+        //             "userPhone|+1":12580,
+        //             "number|100-200":5,
+        //         }
+        //     ]
+        // });
+        // console.log(`${JSON.stringify(userList)}`);
+        // let userList2 = Mock.mock({
+        //     "userList|20-30":[
+        //         {
+        //             "id|+1":1,
+        //             "userName":"@name",
+        //             "userPass":"123456",
+        //             "userImg|+1":/userimg\/img[0-9]\.jpg/,
+        //             "address":"@city(true)",
+        //             "userPhone":/1[3-9]\d{9}/,
+        //             "userEmail":/[1-9]\d{4,10}@(qq|gmail|168)\.com/
+        //         }
+        //     ]
+        // });
+        // console.log(`${JSON.stringify(userList2)}`);
+        let userList2 = Mock.mock({
+            "userList|20-30":[
+                {
+                    "id|+1":1,
+                    "userName":"@name",
+                    "userPass":"123456",
+                    "userImg|+1":/userimg\/img[0-9]\.jpg/,
+                    "address":"@city(true)",
+                    "userPhone":/1[3-9]\d{9}/,
+                    "userEmail":/[1-9]\d{4,10}@(qq|gmail|168)\.com/
+                }
+            ]
+        });
+        console.log(`${JSON.stringify(userList2)}`);
+    </script>
+</body>
+
+</html>
