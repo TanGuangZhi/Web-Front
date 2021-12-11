@@ -16,6 +16,7 @@ $('#regModal [name=code]').on("keyup focus blur", function () {
 
 // 内部注册按钮点击事件
 $('#regModal #regBtn').click(function (e) {
+    // 正则验证
     let allRegCheckFlag = allRegCheckFlagList.every(value => value);
     if (allRegCheckFlagList.length < 4) {
         allRegCheckFlag = false;
@@ -28,14 +29,36 @@ $('#regModal #regBtn').click(function (e) {
         checkCode('#regModal [name=code]');
         return;
     }
-    $(this).attr("data-dismiss", "modal");
-    // window.location.href = "admin.html";
-    // queryGoods();
-    storageUserInfo();
-    // window.location.href = "#";
-    alert(`注册成功,正在重新登录`);
-    location.reload();
+    $.ajax({
+        type: "post",
+        url: "/end/regUser",
+        data: {
+            "userName": $('#regModal [name=userName]').val(),
+            "userPass":$('#regModal [name=userPass]').val(),
+            "userPhone": $("#regModal [name=userPhone]").val(),
+            "type": "user",
+        },
+        dataType: "json",
+        success: function (response) {
+            console.log(`${response}`);
+            $(this).attr("data-dismiss", "modal");
+            // storageUserInfo();
+            alert(`注册成功,正在重新登录`);
+            location.reload();
+        }
+    });
 });
+
+// 存储用户信息
+function storageUserInfo(params) {
+    let userJson = {
+        userName: $('#regModal [name=userName]').val(),
+        userPass: $('#regModal [name=userPass]').val()
+    }
+    userInfoListInDB.push(userJson);
+    localStorage.setItem("loginUserInfo", JSON.stringify(userInfo));
+    sessionStorage.setItem("loginUserInfo", JSON.stringify(userJson));
+}
 
 // 密码可见
 $('#regModal .showPwdBtn').click(function (e) {
@@ -47,30 +70,6 @@ $('#regModal .showPwdBtn').click(function (e) {
 
 });
 
-// 检查用户名是否已被注册过
-// function checkUserNameExit(params) {
-//     userInfo.forEach(element => {
-//         if (element.name === $('#regModal [name=userName]').val()) {
-//             let alertDom = $('#regModal [name=userName]').parent().find("span");
-//             alertDom.html("用户名已存在");
-
-//             alertDom.css("color", "red");
-//             return false;
-//         }
-//     });
-//     return true;
-// }
-
-// 存储用户信息
-function storageUserInfo(params) {
-    let userJson = {
-        name: $('#regModal [name=userName]').val(),
-        pwd: $('#regModal [name=userPass]').val()
-    }
-    userInfo.push(userJson);
-    localStorage.setItem("userInfo", JSON.stringify(userJson));
-    sessionStorage.setItem("userInfo", JSON.stringify(userJson));
-}
 // ================验证码区================
 let regObj = {};
 
@@ -122,7 +121,9 @@ function generCheckCode(num) {
 
 function showCheckCode(dom, checkCode) {
     clearInvalidCheckCode(dom);
-    let randomSeconds = (parseInt(Math.random() * 3) + 3) * 1000;
+    // let randomSeconds = (parseInt(Math.random() * 3) + 3) * 1000;
+    // #TODO 测试用
+    let randomSeconds = (parseInt(Math.random() * 3) + 3);
     setTimeout(() => {
         dom.next().html(checkCode)
     }, randomSeconds);
@@ -144,11 +145,11 @@ function clearInvalidCheckCode(dom) {
     dom.next().css({ "color": "#000", "text-decoration": "none" });
 }
 
-
+let allRegCheckFlagList = [false];
 // 注销用户登录
-$('#logOutBtn').click(function () {
-    // localStorage.removeItem("userInfo");
-    sessionStorage.removeItem("userInfo");
+// $('#logOutBtn').click(function () {
+//     // localStorage.removeItem("userInfo");
+//     sessionStorage.removeItem("userInfo");
 
-    location.reload();
-})
+//     location.reload();
+// })

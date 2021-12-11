@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <!--1.登录的模态框-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="loginModalLabel">用户登录</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline text-center" id="loginFormId">
+                        <p>
+                            用户名:<input type="text" name="userName" class="form-control" style="width:260px" placeholder="请输入用户名">
+                        </p>
+                        <p>
+                            密　码:<input type="password" name="userPass" class="form-control" placeholder="请输入密码">
+                            <button type="button" class="btn btn-default" id="showPwdBtn">可见</button>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary" id="loginBtn">登录</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="regModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" >用户注册</h4>
+                </div>
+                <div class="modal-body" style="padding-left:80px">
+                    <form class="form-inline" id="regForm">
+                        <p>
+                            用户名:<input type="text" name="userName"  class="form-control" placeholder="请输入用户名" style="width:260px">
+                            <span>*</span>
+                        </p>
+                        <p>
+                            密　码:<input type="password"  name="userPass" class="form-control" placeholder="请输入密码">
+                            <button type="button" class="btn btn-default showPwdBtn">可见</button>
+                            <span>*</span>
+                        </p>
+                        <p>
+                            手机号:<input type="text" name="userPhone" class="form-control" placeholder="请输入手机号" style="width:260px">
+                            <span>*</span>
+                        </p>
+
+                        <p style="padding-left:100px">
+                            <button type="button" class="btn btn-primary" disabled id="regBtn">注册</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row" style="background: linear-gradient(to top,lightgray,#ffffff);line-height: 50px" >
+            <div class="col-md-12 text-right">
+                <span id="userNameShow">用户名为:charles　</span>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-out"> </span> 登 录</button>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#regModal"><span class="glyphicon glyphicon-plus"></span> 注册</button>
+                <a  href="#" class="btn btn-danger" id="goEndManger" style="margin-right: 150px"><span class="glyphicon glyphicon-user"></span> 进入后台管理系统</a>
+            </div>
+        </div>
+    </div>
+ <div class="container">
+
+        <div class="row">
+            <h3 style="line-height: 50px" class="col-md-12 text-center h2">蜗牛学苑毕业学员信息</h3>
+        </div>
+
+        <div class="row text-center" id="stuShowArea">
+            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">
+               <a href="#" style="text-decoration: none">
+                <p style="margin-top:20px">
+                    <img src="images/1.jpg" class=" img-circle"  style="width: 200px;">
+                </p>
+                <p>姓名:张三</p>
+                <p style="color: gray">
+                    2019-4月-2019-10进入蜗牛学院
+                </p>
+                <p style="color: orange">
+                    毕业薪资:12000￥
+                </p>
+               </a>
+            </div>
+        </div>
+      
+    </div>
+    <script src="script/jquery-3.5.1.js" type="text/javascript"></script>
+    <script  type="text/javascript" src="script/bootstrap.js"></script>
+    <script src="./end/mock.js"></script>
+    <script src="./end/server.js"></script>
+    <script src="./script/index.js"></script>
+    <script type="text/javascript">
+    
+
+
+    </script>
+</body>
+</html>

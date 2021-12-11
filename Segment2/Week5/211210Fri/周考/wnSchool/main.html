@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<!--1.添加的模态框-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="addModalLabel">添加学生</h4>
+            </div>
+            <div class="modal-body">
+                <form  class="text-center form-inline" id="addFormId">
+                    <p>
+                        <img src="" height="120px"  class="showBackImg" width="120px" id="addImg">
+                    </p>
+
+                    <p>
+                        学生名称:<input type="text" name="stuName" class="form-control" style="width:260px" placeholder="请输入学生姓名">
+                    </p>
+                    <p>
+                        毕业薪资:<input type="text" name="salary" class="form-control" style="width:260px" placeholder="请输入毕业薪资">
+                    </p>
+                    <p>
+                        毕业时间:<input type="text" name="stuTime" class="form-control" style="width:260px" placeholder="请输入入学-毕业时间">
+                    </p>
+                    <p>
+                        学习方向:<input type="text" name="stuLesson" class="form-control" style="width:260px" placeholder="请输入学习方向">
+                    </p>
+                    <p>
+                        学员照片:<input type="text" name="stuImg" readonly class="form-control"placeholder="请选择宣传图片">
+                        <button type="button" class="btn btn-default uploadImgBtn">上传</button>
+                    </p>
+
+                    <p>
+                        <button type="button" class="btn btn-primary" id="addStuBtn">添加</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">返回</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--2.修改的模态框-->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="updateModalLabel">修改学生</h4>
+            </div>
+            <div class="modal-body">
+                <form class="text-center form-inline" id="updateFormId">
+                    <div data-id="" hidden></div>
+                    <p>
+                        <img src="" class="showBackImg" height="120px" width="120px" id="updateImg">
+                    </p>
+                    <p>
+                        学员编号:<input readonly  type="text" name="id" class="form-control" style="width:260px" placeholder="请输入学员名称">
+                    </p>
+                    <p>
+                        学生名称:<input type="text" name="stuName" class="form-control" style="width:260px" placeholder="请输入学生姓名">
+                    </p>
+                    <p>
+                        毕业薪资:<input type="text" name="salary" class="form-control" style="width:260px" placeholder="请输入毕业薪资">
+                    </p>
+                    <p>
+                        毕业时间:<input type="text" name="stuTime" class="form-control" style="width:260px" placeholder="请输入入学-毕业时间">
+                    </p>
+                    <p>
+                        学习方向:<input type="text" name="stuLesson" class="form-control" style="width:260px" placeholder="请输入学习方向">
+                    </p>
+                    <p>
+                        学员照片:<input type="text" name="stuImg" readonly class="form-control"placeholder="请选择宣传图片">
+                        <button type="button" class="btn btn-default uploadImgBtn">上传</button>
+                    </p>
+
+                    <p>
+                        <button type="button" class="btn btn-primary" id="updStuBtn">修改</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">返回</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row" style="margin-top: 20px;line-height: 100px">
+        <div class="col-md-12 text-right">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                <span class="glyphicon glyphicon-plus"></span>添加
+            </button>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <table class="table-bordered col-md-12 text-center" >
+            <tr style="line-height: 50px">
+                <td>学生编号</td>
+                <td>学生姓名</td>
+                <td>入学时间</td>
+                <td>学习方向</td>
+                <td>照片</td>
+                <td>就业薪资</td>
+                <td colspan="2">操作</td>
+            </tr>
+            <tbody id="showInfoBody">
+                <tr>
+                    <td class="text-center">1</td>
+                    <td>张三</td>
+                    <td>2019年4月-2019年10月</td>
+                    <td>java开发</td>
+                    <td>
+                        <img src="images/0.jpg" class="img-circle" width="60px" >
+                    </td>
+                    <td>
+                       12000￥
+                    </td>
+                    <td>
+                        <button class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>删除
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-info" data-toggle="modal" data-target="#updateModal">
+                            <span class="glyphicon glyphicon-heart"></span>修改
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+           
+        </table>
+    </div>
+</div>
+    <script src="script/jquery-3.5.1.js" type="text/javascript"></script>
+    <script  type="text/javascript" src="script/bootstrap.js"></script>
+    <script src="./end/mock.js"></script>
+    <script src="./end/server.js"></script>
+    <script src="./script/main.js"></script>
+</body>
+</html>

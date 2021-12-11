@@ -39,7 +39,7 @@ function checkCode(sel) {
 // 检查用户名是否已被注册过
 function checkUserNameExit(params) {
     let flag = true;
-    userInfo.forEach(element => {
+    userInfoList.forEach(element => {
         if (element.name === $('#regModal [name=userName]').val()) {
             let alertDom = $('#regModal [name=userName]').parent().find("span");
             alertDom.html("用户名已存在");
@@ -52,9 +52,10 @@ function checkUserNameExit(params) {
 }
 
 // 添加电影模态框检测
+let allAddRegCheckFlagList = [false];
 let checkAddMovieArr = [{
     sel: "#addMovie #addMovieNameId",
-    reg: /^\w{1,30}$/,
+    reg: /^[a-zA-Z0-9一-龥]{1,30}$/,
     alertMsg: "商品名应在1~30位合法字符之间"
 }, {
     sel: "#addMovie #addMoviePriceId",
@@ -62,26 +63,40 @@ let checkAddMovieArr = [{
     alertMsg: "必须是数字类型"
 }, {
     sel: "#addMovie #addMovieTypeId",
-    reg: /^\w{1,10}$/,
-    alertMsg: "商品类型应在1~10位合法字符之间"
+    reg: /^[a-zA-Z0-9一-龥]{1,10}$/,
+    alertMsg: "请选择电影类型"
 }, {
     sel: "#addMovie #addMovieImgId",
     reg: /^.+(\.png|\.jpg)$/,
     alertMsg: "必须是.png或.jpg结尾"
 }]
 
+// 检测是否可以正确修改
+function checkIsCanAdd() {
+    let allRegCheckFlag = allAddRegCheckFlagList.every(value => value);
+    if (!allRegCheckFlag) {
+        // 提示用户哪里没通过
+        for (let index = 0; index < 3; index++) {
+            checkAddMovie(index);
+        }
+        return false;
+    }
+    return true;
+}
+
 function checkAddMovie(index) {
-    allRegCheckFlagList[index] = check(checkAddMovieArr[index].sel, checkAddMovieArr[index].reg, checkAddMovieArr[index].alertMsg);
+    allAddRegCheckFlagList[index] = check(checkAddMovieArr[index].sel, checkAddMovieArr[index].reg, checkAddMovieArr[index].alertMsg);
 }
 
 // 修改电影模态框检测
+let allChangeRegCheckFlagList = [true];
 let checkChangeMovieArr = [{
     sel: "",
     reg: /^$/,
     alertMsg: ""
 }, {
     sel: "#changeMovie #changeMovieNameId",
-    reg: /^\w{1,30}$/,
+    reg: /^[a-zA-Z0-9一-龥]{1,30}$/,
     alertMsg: "商品名应在1~30位合法字符之间"
 }, {
     sel: "#changeMovie #changeMoviePriceId",
@@ -89,7 +104,7 @@ let checkChangeMovieArr = [{
     alertMsg: "必须是数字类型"
 }, {
     sel: "#changeMovie #changeMovieTypeId",
-    reg: /^\w{1,10}$/,
+    reg: /^[a-zA-Z0-9一-龥]{1,10}$/,
     alertMsg: "商品类型应在1~10位合法字符之间"
 }, {
     sel: "#changeMovie #changeMovieImgId",
@@ -98,21 +113,16 @@ let checkChangeMovieArr = [{
 }]
 
 function checkChangeMovie(index) {
-    allRegCheckFlagList[0] = true; // 特殊处理id位置
-    allRegCheckFlagList[index] = check(checkChangeMovieArr[index].sel, checkChangeMovieArr[index].reg, checkChangeMovieArr[index].alertMsg);
+    allChangeRegCheckFlagList[index] = check(checkChangeMovieArr[index].sel, checkChangeMovieArr[index].reg, checkChangeMovieArr[index].alertMsg);
 }
 
-// 检测是否可以正确添加或修改
-function checkIsCanAddOrChange(params) {
-    let allRegCheckFlag = allRegCheckFlagList.every(value => value);
-    if (allRegCheckFlagList.length < 4) {
-        allRegCheckFlag = false;
-    }
+// 检测是否可以正确修改
+function checkIsCanChange() {
+    let allRegCheckFlag = allChangeRegCheckFlagList.every(value => value);
     if (!allRegCheckFlag) {
         // 提示用户哪里没通过
-        for (let index = 1; index < 5; index++) {
+        for (let index = 1; index < 4; index++) {
             checkChangeMovie(index);
-            checkAddMovie(index - 1);
         }
         return false;
     }

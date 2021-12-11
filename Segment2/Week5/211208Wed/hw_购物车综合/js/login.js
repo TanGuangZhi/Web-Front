@@ -3,23 +3,28 @@
 // 登录模态框内按钮点击
 $('#loginModal #loginBtn').click(function (e) {
 
-    let inputNameDom = $("[name=\"userName\"]").val();
-    let inputPwdDom = $("[name=\"userPass\"]").val();
-    let flag = userInfo.some(element => inputNameDom === element.name && inputPwdDom === element.pwd);
-    if (flag) {
-        // window.location.href = "admin.html";
-        // queryGoods();
-        remeberMe(inputNameDom, inputPwdDom);
-        showOtherBtn();
+    let inputNameDomValue = $("[name=\"userName\"]").val();
+    let inputPwdDomValue = $("[name=\"userPass\"]").val();
+    // userInfo = JSON.parse(localStorage.getItem("loginUserInfo")) || userInfo;
+    let userFlag = userInfoList.some(element => inputNameDomValue === element.userName && inputPwdDomValue === element.userPass);
+    let adminFlag = adminInfo.some(element => inputNameDomValue === element.userName && inputPwdDomValue === element.userPass);
+    if (userFlag) {
+        remeberMe(inputNameDomValue, inputPwdDomValue, "user");
+        showOtherBtn("user");
         hideSomeBtn();
-        $('#userInfo #userName').html(inputNameDom);
+        $('#userInfo #userName').html(inputNameDomValue);
 
-        alert(`登录成功`);
         location.reload();
-    } else {
-        // checkUserName("#loginModal [name=userName]", "用户名输入错误或不存在");
-        // checkPass("#loginModal [name=userPass]");
+    } else if (adminFlag) {
+        remeberMe(inputNameDomValue, inputPwdDomValue, "admin");
+        showOtherBtn("admin");
+        hideSomeBtn();
+        $('#userInfo #userName').html(inputNameDomValue);
+        location.reload();
+    }
+    else {
         alert('输入错误,请重新输入');
+        return;
     }
 });
 
@@ -42,23 +47,30 @@ $('#loginModal #showPwdBtn').click(function (e) {
 // });
 
 // 记住我事件触发本地缓存事件
-function remeberMe(inputNameDom, inputPwdDom) {
-    let userInfo = {
-        name: inputNameDom,
-        pwd: inputPwdDom
+function remeberMe(inputNameDom, inputPwdDom, userType) {
+    let loginUserInfo = {
+        userName: inputNameDom,
+        userPass: inputPwdDom,
+        userType: userType
     }
     if ($('#remeberMe').prop("checked")) {
-        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+        localStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
+        sessionStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
     } else {
-        sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+        sessionStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
     }
 }
 
-function showOtherBtn(params) {
-    $('#shoppingCartBtn').prop("hidden", false);
-    $('#userHomeBtn').prop("hidden", false);
-    $('#backstageBtn').prop("hidden", false);
-    $('#logOutBtn').prop("hidden", false);
+function showOtherBtn(type) {
+    if (type == "admin") {
+        $('#backstageBtn').prop("hidden", false);
+        $('#logOutBtn').prop("hidden", false);
+
+    } else {
+        $('#shoppingCartBtn').prop("hidden", false);
+        $('#userHomeBtn').prop("hidden", false);
+        $('#logOutBtn').prop("hidden", false);
+    }
 }
 
 function hideSomeBtn(params) {
@@ -66,27 +78,56 @@ function hideSomeBtn(params) {
     $('[data-bs-target="#regModal"]').prop("hidden", true);
 }
 
-// init
-function init(params) {
-    let temp = JSON.parse(localStorage.getItem("userInfo")) || JSON.parse(sessionStorage.getItem("userInfo"));
-    userInfo = temp || userInfo;
-    // console.log(`${JSON.parse(sessionStorage.getItem("userInfo"))}`);
-    if (temp) {
-        $("#loginModal [name=\"userName\"]").val(userInfo.name);
-        $("#loginModal [name=\"userPass\"]").val(userInfo.pwd);
+
+
+// 从后端查询用户
+function queryUserInfoFromEnd(params) {
+    $.ajax({
+        type: "get",
+        url: "/end/queryUser",
+        dataType: "json",
+        success: function (response) {
+            userInfoList = Array.from(response.userInfoList);
+            adminInfoList = Array.from(response.adminInfoList);
+            console.log(`${JSON.stringify(userInfoList)}`);
+        }
+    });
+}
+
+function judgeCookie(params) {
+    let loginerInfoSession = JSON.parse(sessionStorage.getItem("loginUserInfo"));
+    let loginerInfoLocal = JSON.parse(localStorage.getItem("loginUserInfo"));
+    const status = [null, undefined, {}, "", 0, NaN];
+    // 如果local有缓存,则自动填充`用户名与密码
+    if (!status.includes(loginerInfoLocal)) {
+        $("#loginModal [name=\"userName\"]").val(loginerInfoLocal.userName);
+        $("#loginModal [name=\"userPass\"]").val(loginerInfoLocal.userPass);
+    } else if (!status.includes(loginerInfoSession)) { // 如果session有缓存,则左侧填充用户名,代表已登录,并对按钮进行操作
+        $("#loginModal [name=\"userName\"]").val(loginerInfoSession.userName);
+        $("#loginModal [name=\"userPass\"]").val(loginerInfoSession.userPass);
         // $('#loginModal #remeberMe').prop("checked", true);
         // 左侧显示用户名
-        $('#userInfo #userName').html($("[name=\"userName\"]").val());
+        $('#userInfo #userName').html(loginerInfoSession.userName);
+        showOtherBtn(loginerInfoSession.userType);
         hideSomeBtn();
-        showOtherBtn();
     }
 }
 
-let userInfo = [{
-    name: "admin",
-    pwd: "666"
-}, {
-    name: "admin2",
-    pwd: "666"
-}]
+// 注销用户登录
+$('#logOutBtn').click(function () {
+    // localStorage.removeItem("userInfo");
+    sessionStorage.removeItem("loginUserInfo");
+
+    location.reload();
+})
+
+// init
+function init(params) {
+    // 1. 从数据库查询用户
+    queryUserInfoFromEnd();
+    // 2. 判断缓存
+    judgeCookie();
+}
+
+let userInfoList, adminInfoList;
 init();

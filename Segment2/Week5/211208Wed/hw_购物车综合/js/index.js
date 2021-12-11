@@ -12,7 +12,6 @@ $("#secondNav ul li").hover(function () {
 // 二级菜单停留动画效果
 $("#secondNav #secondType").hover(function () {
     // over
-    console.log(`1`);
     $(this).stop(true);
 }, function () {
     // out
@@ -21,13 +20,15 @@ $("#secondNav #secondType").hover(function () {
 );
 
 // 一级菜单鼠标移入移出动画效果
+let lastTimeAnimateIndex;
 $('#firstNav ul li').hover(function () {
     // over
-    $(this).stop(true, true);
     $('.firstTypeList').slideDown(500);
 }, function () {
     // out
-    $('.firstTypeList').slideUp(500);
+    // lastTimeAnimateIndex = $(this).attr("data-index");
+    $(".firstTypeList").stop(true,true);
+    $('.firstTypeList').slideUp(100);
 }
 );
 

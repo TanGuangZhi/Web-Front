@@ -20,12 +20,12 @@
                     商品名称: <input type="text" placeholder="请输入商品名称" id="goodsName">
                     商品类型: <select name="" id="goodsType">
                         <option value="手机">手机</option>
-                        <option value="手上岛咖啡">手上岛咖啡	</option>
+                        <option value="手上岛咖啡">手上岛咖啡 </option>
                     </select>
                     <!-- 商品价格: <select name="" id="">
                         <option value="">111</option>
                     </select> -->
-                    <button type="button" class="btn btn-primary" id="searchBtn" >搜索</button>
+                    <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
                 </form>
                 <button class="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMovie"
                     data-bs-whatever="@mdo">添加
@@ -79,13 +79,13 @@
                 <tfoot>
                     <nav aria-label="Page navigation example text-center ">
                         <ul class="pagination text-center">
-                            <li class="page-item"><a class="page-link" onclick="prePage()">Previous</a></li>
+                            <!-- <li class="page-item"><a class="page-link" onclick="prePage()">Previous</a></li> -->
                             <div class="d-flex" id="pageFootNum">
                                 <!-- <li class="page-item active"><a class="page-link" href="#" data-index="1">1</a></li>
                                 <li class="page-item"><a class="page-link" href="#" data-index="2">2</a></li>
                                 <li class="page-item"><a class="page-link" href="#" data-index="3">3</a></li> -->
                             </div>
-                            <li class="page-item"><a class="page-link" onclick="nextPage()">Next</a></li>
+                            <!-- <li class="page-item"><a class="page-link" onclick="nextPage()">Next</a></li> -->
                         </ul>
                     </nav>
                 </tfoot>
@@ -98,7 +98,10 @@
                     <div class="modal-content">
                         <h2 class="text-center">添加电影</h2>
                         <div class="modal-body">
-                            <form>
+                            <form id="addMovieForm">
+                                <div class="row justify-content-center">
+                                    <img src="./img/film/1.jpg" class="showBackImg" alt="" style="width: 150px;">
+                                </div>
                                 <div class="mb-3">
                                     <label for="" class="col-form-label">电影名:</label>
                                     <input type="text" class="form-control" id="addMovieNameId">
@@ -111,13 +114,30 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="col-form-label">电影类型:</label>
-                                    <input type="text" class="form-control" id="addMovieTypeId">
+                                    <select name="filmType" class="form-select" style="width: 251px" id="addMovieTypeId">
+                                        <option value="">请选择电影类型</option>
+                                        <option value="武侠">武侠</option>
+                                        <option value="喜剧">喜剧</option>
+                                        <option value="动画">动画</option>
+                                        <option value="动漫">动漫</option>
+                                        <option value="战争">战争</option>
+                                        <option value="名著">名著</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control" id="addMovieTypeId" style="width: 100px;"> -->
                                     <span class="alertMsgSpan">*</span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="col-form-label">电影图片:</label>
-                                    <input type="text" class="form-control" name="" id="addMovieImgId">
-                                    <span class="alertMsgSpan">*</span>
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <input type="text" class="form-control" id="addMovieImgId" readonly>
+
+                                        </div>
+                                        <div class="col-3">
+                                            <button type="button" class="btn btn-light uploadImgBtn">上传</button>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -137,6 +157,9 @@
                     <h2 class="text-center">修改电影</h2>
                     <div class="modal-body">
                         <form>
+                            <div class="row justify-content-center">
+                                <img src="./img/film/1.jpg" class="showBackImg" alt="" style="width: 150px;">
+                            </div>
                             <div class="mb-3">
                                 <label class="col-form-label">电影id:</label>
                                 <input type="text" class="form-control" readonly id="changeMovieIdId">
@@ -154,12 +177,21 @@
                             <div class="mb-3">
                                 <label class="col-form-label">电影类型:</label>
                                 <input type="text" class="form-control" id="changeMovieTypeId">
+                            
                                 <span class="alertMsgSpan">*</span>
                             </div>
                             <div class="mb-3">
                                 <label class="col-form-label">电影图片:</label>
-                                <input type="text" class="form-control" id="changeMovieImgId">
-                                <span class="alertMsgSpan">*</span>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" id="changeMovieImgId" readonly>
+
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="btn btn-light uploadImgBtn">上传</button>
+
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -177,11 +209,9 @@
 
     <script src='./bootstrap5/js/jquery-3.5.1.min.js'></script>
     <script src='./bootstrap5/js/bootstrap.bundle.min.js'></script>
-    <script src="./js/mock.js"></script>
-    <script src="./js/server.js"></script>
-    <script src="./js/login.js"></script>
-    <script src="./js/reg.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="./end/mock.js"></script>
+    <script src="./end/backStageServer.js"></script>
+    <script src="./js/backStage.js"></script>
     <script src="./js/utils.js"></script>
 </body>
 
