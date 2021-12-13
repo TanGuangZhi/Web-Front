@@ -5,7 +5,7 @@ if(movieStr!=null){
     mockMovieList=JSON.parse(movieStr);
 }else{
     let movieData=Mock.mock({
-        "movieList|20-30": [
+        "movieList|10-15": [
             {
                 "id|+1": 1,
                 "movieName": /(蜗牛|犀牛)\d(pro|plus)/,

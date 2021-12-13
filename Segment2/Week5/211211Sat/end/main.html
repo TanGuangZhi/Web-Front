@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel='stylesheet' href='../bootstrap5/css/bootstrap.min.css'>
     <style>
-        .container nav #leftPageNav{
+        .container nav #leftPageNav {
             height: 800px;
         }
     </style>
@@ -15,45 +15,33 @@
 <body>
 <div class="container">
     <div class="row shadow-lg">
+        <!--        左侧nav-->
         <div class="col-2 border-end">
-            <div class="avatar mt-5">
+            <div class="avatar mt-5 text-center">
                 <img src="./img/energyDrink.jpg" class="rounded-circle" width="50px" alt="">
             </div>
             <nav class="border-top mt-5" id="leftPageNav">
                 <ul class="nav flex-column">
                     <li class="nav-item border-bottom">
-                        <a class="nav-link active" target="showCenterFrame" aria-current="page" href="editInfo.html">用户管理</a>
-                    </li>
-                    <li class="nav-item  border-bottom">
-                        <a class="nav-link" target="showCenterFrame" href="editOrder.html">商品管理</a>
+                        <a class="nav-link active" target="showCenterFrame" aria-current="page" href="index.html">首页</a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a class="nav-link" target="showCenterFrame" href="editAddress.html">订单管理</a>
+                        <a class="nav-link active" target="showCenterFrame" aria-current="page" href="userManger.html">用户管理</a>
+                    </li>
+                    <li class="nav-item  border-bottom">
+                        <a class="nav-link" target="showCenterFrame" href="goodsManger.html">商品管理</a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a class="nav-link" target="showCenterFrame" href="orderManger.html">订单管理</a>
                     </li>
                 </ul>
             </nav>
         </div>
         <div class="col-10">
-            <div class="row shadow-sm p-3 mb-3 bg-body rounded">
-                this is header
-            </div>
-            <div class="row breadcrumb">
-                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Library</li>
-                    </ol>
-                </nav>
-            </div>
+            <iframe src="header.html" width="100%" height="150px" frameborder="0"></iframe>
             <main>
-                <div class="row row-col-2">
-                    <div class="col">
-                        <img src="./img/image_84.png" width="100%" alt="">
-                    </div>
-                    <div class="col">
-                        <img src="./img/image_83.png" width="100%" alt="">
-                    </div>
-                </div>
+                <iframe src="index.html" width="100%" height="1200px" name="showCenterFrame" scrolling=""
+                        frameborder="0"></iframe>
             </main>
 
         </div>

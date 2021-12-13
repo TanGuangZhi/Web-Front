@@ -1,92 +1,106 @@
 // 模拟后端数据(DB)
-let mockMovieList=[];
-let movieStr=localStorage.getItem("movieList");
-if(movieStr!=null){
-    mockMovieList=JSON.parse(movieStr);
-}else{
-    let movieData=Mock.mock({
-        "movieList|20-30": [
+let mockgoodsList = [];
+let goodsStr = localStorage.getItem("goodsList");
+if (goodsStr != null) {
+    mockgoodsList = JSON.parse(goodsStr);
+} else {
+    let goodsData = Mock.mock({
+        "goodsList|20-30": [
             {
                 "id|+1": 1,
-                "movieName": /(蜗牛|犀牛)\d(pro|plus)/,
-                "moviePrice": /[1-9]{3,5}\.[8-9]{1,2}/,
-                "movieType": /(手机|平板|功能机)/,
-                "movieImg": /\.\/img\/([1-4])\.jpg/,   // \/ 等价于"/"   \. 等于"."
-                "movieStatus":"right"
+                "goodsName": /(蜗牛|犀牛)\d(pro|plus)/,
+                "goodsPrice": /[1-9]{3,5}\.[8-9]{1,2}/,
+                "goodsColor": /(太空黑|琉璃彩|土豪金)/,
+                "goodsMemory": /(64|256|512|1T)/,
+                "goodsType": /(手机|平板|笔记本|智能穿戴)/,
+                "goodsImg": /\.\/img\/banner([15])\.png/,   // \/ 等价于"/"   \. 等于"."
+                "goodsDetailInfo": /(1|2|3)/,
+                "goodsComment|3-6":[{
+                    commenter:"@cname",
+                    content:"@csentence(10,25)",
+                    date:"@date"
+                }],
+                "goodsStatus": "right"
             }
         ]
     });
-    mockMovieList=movieData.movieList;
-    localStorage.setItem("movieList",JSON.stringify(mockMovieList));
+    mockgoodsList = goodsData.goodsList;
+    localStorage.setItem("goodsList", JSON.stringify(mockgoodsList));
 }
 
-
+// 查询评论方法
+Mock.mock("/comment/queryComment", "post", function (obj) {
+    let requestData = decodeURI(obj.body);//index=0
+    let jsonObj = converter(requestData);//{"index":"0"}
+    console.log(1)
+    return mockgoodsList[jsonObj.id].goodsComment;
+});
 
 // 查询商品方法
-Mock.mock("/movie/queryMovie", "get", function (obj) {
-    return mockMovieList.filter(value=>value.movieStatus=="right");
+Mock.mock("/goods/querygoods", "get", function (obj) {
+    return mockgoodsList.filter(value => value.goodsStatus == "right");
 });
 
 // 添加商品方法
-Mock.mock("/movie/addMovie", "post", function (obj) {
+Mock.mock("/goods/addgoods", "post", function (obj) {
     //decodeURI:获取客户端发送过来的数据进行解码
     let requestData = decodeURI(obj.body);//index=0
     let jsonObj = converter(requestData);//{"index":"0"}
-    mockMovieList.push(jsonObj);
-    localStorage.setItem("movieList",JSON.stringify(mockMovieList));
+    mockgoodsList.push(jsonObj);
+    localStorage.setItem("goodsList", JSON.stringify(mockgoodsList));
     return {
         "status": "200",
         "message": "添加成功",
-        "list": mockMovieList
+        "list": mockgoodsList
     };
 });
 
 // 删除商品方法
-Mock.mock("/movie/deleteMovie", "post", function (obj) {
+Mock.mock("/goods/deletegoods", "post", function (obj) {
     //decodeURI:获取客户端发送过来的数据进行解码
     let requestData = decodeURI(obj.body);//index=0
     let jsonObj = converter(requestData);//{"index":"0"}
-    mockMovieList[jsonObj.index].movieStatus = "deleted";
-    localStorage.setItem("movieList",JSON.stringify(mockMovieList));
+    mockgoodsList[jsonObj.index].goodsStatus = "deleted";
+    localStorage.setItem("goodsList", JSON.stringify(mockgoodsList));
     return {
         "status": "200",
         "message": "删除成功",
-        "list": mockMovieList
+        "list": mockgoodsList
     };
 });
 
 // 批量删除商品方法
-Mock.mock("/movie/deleteMovieBatch", "post", function (obj) {
+Mock.mock("/goods/deletegoodsBatch", "post", function (obj) {
     //decodeURI:获取客户端发送过来的数据进行解码
     let requestData = unescape(decodeURI(obj.body));//index=0
-    let delArr =  requestData.split("=")[1];
-    delArr= delArr.split(",");
+    let delArr = requestData.split("=")[1];
+    delArr = delArr.split(",");
     let delLength = 0; // 消除删除一个数后对后续删除造成的影响
     delArr.forEach(element => {
-        mockMovieList[element].movieStatus = "deleted";
+        mockgoodsList[element].goodsStatus = "deleted";
     });
-    localStorage.setItem("movieList",JSON.stringify(mockMovieList));
+    localStorage.setItem("goodsList", JSON.stringify(mockgoodsList));
     return {
         "status": "200",
         "message": "批量删除成功",
-        "list": mockMovieList
+        "list": mockgoodsList
     };
 });
 
 // 修改商品方法
-Mock.mock("/movie/updateMovie", "post", function (obj) {
+Mock.mock("/goods/updategoods", "post", function (obj) {
     //decodeURI:获取客户端发送过来的数据进行解码
     let requestData = decodeURI(obj.body);//index=0
     let jsonObj = converter(requestData);//{"index":"0"}
-    mockMovieList[jsonObj.index].movieName = jsonObj.movieName;
-    mockMovieList[jsonObj.index].moviePrice = jsonObj.moviePrice;
-    mockMovieList[jsonObj.index].movieType = jsonObj.movieType;
-    mockMovieList[jsonObj.index].movieImg = jsonObj.movieImg;
-    localStorage.setItem("movieList",JSON.stringify(mockMovieList));
+    mockgoodsList[jsonObj.index].goodsName = jsonObj.goodsName;
+    mockgoodsList[jsonObj.index].goodsPrice = jsonObj.goodsPrice;
+    mockgoodsList[jsonObj.index].goodsType = jsonObj.goodsType;
+    mockgoodsList[jsonObj.index].goodsImg = jsonObj.goodsImg;
+    localStorage.setItem("goodsList", JSON.stringify(mockgoodsList));
     return {
         "status": "200",
         "message": "修改成功",
-        "list": mockMovieList
+        "list": mockgoodsList
     };
 });
 

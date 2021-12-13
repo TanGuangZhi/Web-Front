@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <link rel='stylesheet' href='../../bootstrap5/css/bootstrap.min.css'>
+    <style type="text/css">
+        #secondNav {
+            position: relative;
+        }
+
+
+        #secondNav #secondType {
+            position: absolute;
+            z-index: 1;
+            background: white;
+            top: 42px;
+        }
+
+        #firstNav li {
+            line-height: 24px;
+            /* border: 1px solid #808080; */
+        }
+
+        .firstTypeList,
+        #secondType {
+            display: none;
+        }
+
+        .firstTypeList {
+            position: absolute;
+            z-index: 1;
+            background: white;
+            border: 1px solid gray;
+            padding-top: 20px;
+        }
+
+        .firstTypeList div {
+            float: left;
+            width: 16.5%;
+            text-align: center;
+        }
+
+        .firstTypeList div p {
+            color: orangered;
+        }
+
+        .goodsList img {
+            margin-top: 15px;
+        }
+
+        .goodsList p:nth-of-type(1) {
+            color: gray;
+        }
+
+        .goodsList p:nth-of-type(2) {
+            color: orangered;
+        }
+
+        div.img {
+
+            background-size: cover;
+            height: 400px;
+            /*background-color: #000;*/
+
+        }
+    </style>
+</head>
+
+<body>
+<div class="container ps-5 bg-body rounded">
+    <!-- 头部导航栏 -->
+    <header>
+        <div class="row shadow rounded-3 mb-3" style="background: #333333;color: white;line-height: 60px">
+            <div class="col-3" id="userInfo">
+                <img src="../index/img/liuHuaQiang.jpg" class="rounded-circle" style="width: 30px;" alt="" srcset="">
+                <span id="userName"></span>
+            </div>
+
+            <div class="col-md-9 text-end">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-primary">登录</button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#regModal" class="btn btn-primary">注册</button>
+                <a href="./shoppingCart.html" class="btn btn-warning" id="shoppingCartBtn" hidden> 购物车</a>
+                <a href="./userHome.html" class="btn btn-success" id="userHomeBtn" hidden> 个人中心</a>
+                <a href="./backStage.html" class="btn btn-danger" id="backstageBtn" hidden>进入后台</a>
+                <button type="button" class="btn btn-danger" id="logOutBtn" hidden>注销</button>
+            </div>
+        </div>
+<!--        <iframe src="../template/head.html" width="100%" height="80px" frameborder="0"></iframe>-->
+    </header>
+    <!-- 二级导航栏 -->
+    <div class="row mt-2 mb-3 shadow-sm" id="secondNav">
+        <ul class="nav justify-content-around border rounded-3" style="line-height: 50px;">
+            <li class="nav-item"><a class="nav-link text-dark" href="">蜗牛手机max</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="">蜗牛手机max</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="">蜗牛手机max</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="">蜗牛手机max</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="">蜗牛手机max</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="">蜗牛手机max</a></li>
+        </ul>
+        <!--显示二级分类商品的div-->
+        <div class="container-fluid" id="secondType">
+            <div class="row text-center">
+                <div class="col-md-2 table-bordered">
+                    <img src="img/goods/1.jpg" width="80%" style="margin-top: 15px">
+                    <p style="color: gray;margin-top: 10px">蜗牛70plus</p>
+                    <p style="color: orangered">价格:9999元</p>
+                </div>
+                <div class="col-md-2 table-bordered">
+                    <img src="img/goods/1.jpg" width="80%" style="margin-top: 15px">
+                    <p style="color: gray;margin-top: 10px">蜗牛70plus</p>
+                    <p style="color: orangered">价格:9999元</p>
+                </div>
+                <div class="col-md-2 table-bordered">
+                    <img src="img/goods/1.jpg" width="80%" style="margin-top: 15px">
+                    <p style="color: gray;margin-top: 10px">蜗牛70plus</p>
+                    <p style="color: orangered">价格:9999元</p>
+                </div>
+                <div class="col-md-2 table-bordered">
+                    <img src="img/goods/1.jpg" width="80%" style="margin-top: 15px">
+                    <p style="color: gray;margin-top: 10px">蜗牛70plus</p>
+                    <p style="color: orangered">价格:9999元</p>
+                </div>
+                <div class="col-md-2 table-bordered">
+                    <img src="img/goods/1.jpg" width="80%" style="margin-top: 15px">
+                    <p style="color: gray;margin-top: 10px">蜗牛70plus</p>
+                    <p style="color: orangered">价格:9999元</p>
+                </div>
+                <div class="col-md-2 table-bordered">
+                    <img src="img/goods/1.jpg" width="80%" style="margin-top: 15px">
+                    <p style="color: gray;margin-top: 10px">蜗牛70plus</p>
+                    <p style="color: orangered">价格:9999元</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 一级导航栏 -->
+    <div class="row " id="firstNav">
+        <div class="col-2 p-0 mt-0 shadow-sm">
+            <ul class="nav flex-column nav-tabs border rounded-3 ">
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=1><a class="nav-link text-dark"
+                                                                                       href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=2><a class="nav-link text-dark"
+                                                                                       href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=3><a class="nav-link text-dark"
+                                                                                       href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=4><a class="nav-link text-dark"
+                                                                                       href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=5><a class="nav-link text-dark"
+                                                                                       href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=6><a class="nav-link text-dark"
+                                                                                       href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=7><a class="nav-link text-dark"
+                                                                                       href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=8><a class="nav-link text-dark"
+                                                                                       href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=9><a class="nav-link text-dark"
+                                                                                       href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=10><a class="nav-link text-dark"
+                                                                                        href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=11><a class="nav-link text-dark"
+                                                                                        href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=12><a class="nav-link text-dark"
+                                                                                        href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=13><a class="nav-link text-dark"
+                                                                                        href="">蜗牛手机max</a>
+                </li>
+                <li class="nav-item border-bottom rounded-3 shadow-sm" data-index=14><a class="nav-link text-dark"
+                                                                                        href="">蜗牛手机max</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-10">
+            <div class="firstTypeList">
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+                <div>
+                    <img src="img/goods/1.jpg" alt="" width="60px">
+                    <p>价格:9999元</p>
+                </div>
+            </div>
+            <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/banner1.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    </div>
+                    <!--                    <div class="carousel-item">-->
+                    <!--                        <img src="./img/banner6.jpg" class="d-block w-100" alt="...">-->
+                    <!--                        <div class="carousel-caption d-none d-md-block">-->
+                    <!--                            <h5>Second slide label</h5>-->
+                    <!--                            <p>Some representative placeholder content for the second slide.</p>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <div class="carousel-item">
+                        <img src="img/banner5.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Some representative placeholder content for the third slide.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- 后台数据展示区 -->
+    <div class="row row-cols-3" id="showGoods">
+        <div class="col">
+            <div class="card">
+                <img src="./img/banner5.png" alt="" >
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional
+                        content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 模态框展示 -->
+    <!-- 1.登录模态框 模态框id具有唯一性:loginModal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">用户登录</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!--模态框中的主题主体内容 说白了就是写表单-->
+                    <form>
+                        <div class="row">
+                            <div class="col-2">
+                                用户名:
+                            </div>
+                            <div class="col-10">
+                                <input type="text" name="userName" class="form-control" placeholder="请输入用户名">
+                                <span>*</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-2">
+                                密　码:
+                            </div>
+                            <div class="col-6">
+                                <input type="password" name="userPass" class="form-control" placeholder="请输入密码">
+                                <span>*</span>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" id="showPwdBtn" class="btn btn-primary">可见</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input type="checkbox" name="" value="" id="remeberMe"> <label for="remeberMe">记住我</label>
+
+                    <button type="button" id="loginBtn" class="btn btn-primary">登录</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--2.注册模态框 模态框具有唯一性:regModal -->
+    <div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">用户注册</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline">
+                        <div class="row">
+                            <div class="col-2">
+                                用户名:
+                            </div>
+                            <div class="col-10">
+                                <input type="text" name="userName" class="form-control" placeholder="请输入用户名"
+                                       style="width:260px">
+                                <span>*</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-2">密　码:</div>
+                            <div class="col-6">
+                                <input type="password" name="userPass" class="form-control" placeholder="请输入密码">
+                                <span>*</span>
+                            </div>
+                            <div class="col-3">
+                                <!-- #TODO  -->
+                                <button type="button" class="btn btn-primary showPwdBtn">可见</button>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">手机号:</div>
+                            <div class="col-10">
+                                <input type="text" name="userPhone" class="form-control" placeholder="请输入手机号">
+                                <span>*</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                验证码:
+                            </div>
+                            <div class="col-6">
+                                <input type="text" name="code" class="form-control" placeholder="请输入验证码">
+                            </div>
+                            <div class="col-3 d-flex">
+                                <button type="button" id="sentMsgBtn" class="btn btn-primary">发送</button>
+                                <span style="text-align: center; padding-top: 5%; padding-left: 5px;"></span>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="regBtn" class="btn btn-primary">注册</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src='../../bootstrap5/js/jquery-3.5.1.min.js'></script>
+<script src='../../bootstrap5/js/bootstrap.bundle.min.js'></script>
+<script src="js/mock.js"></script>
+<script src="js/mainEnd.js"></script>
+<script src="js/main.js"></script>
+<!--<script src="../goodsDetailPage/js/goodsDetail.js"></script>-->
+<script src="./js/userEnd.js"></script>
+<script src="./js/login.js"></script>
+<script src="js/index.js"></script>
+</body>
+
+</html>
