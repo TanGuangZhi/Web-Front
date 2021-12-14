@@ -83,6 +83,46 @@ $("#smallImg li img").click(function () {
     $("#bigImg").attr("src", $(this).attr("src"));
 })
 
+// 添加至购物车
+$("#addToShoppingCartBtn").click(function (e) {
+    // alert(`添加购物车成功`);
+    // 从缓存中获取当前登录的用户
+    let loginerInfoLocal = JSON.parse(localStorage.getItem("loginUserInfo"));
+    let userInfoList = JSON.parse(localStorage.getItem("userInfoList"));
+    let loginUserInfo,userIndex;
+    for (let index = 0; index < userInfoList.length; index++) {
+        const element = userInfoList[index];
+        if(element.userName == loginerInfoLocal.userName){
+            loginUserInfo = element;
+            userIndex = index;
+        }
+        
+    }
+    let shoppingCart = {
+        id:id+1,
+        count:"1"
+    }
+    loginUserInfo.shoppingCartList.push(shoppingCart);
+    mergeDulShopping(loginUserInfo.shoppingCartList);
+    userInfoList[userIndex] = loginUserInfo;
+    localStorage.setItem("userInfoList", JSON.stringify(userInfoList));
+});
+
+// 叠加相同商品
+function mergeDulShopping(list){
+    for (let index = 0; index < list.length; index++) {
+        const element1 = list[index];
+        for (let index2 = index+1; index2 < list.length; index2++) {
+            const element2 = list[index2];
+            if(element1.id===element2.id){
+                list[index].count++;
+                list.splice(index2,1);
+                index--;
+            }
+        }
+    }
+}
+
 function init(id) {
     goodsArr = getDataFromLocalStorage();
     $("#goodsName").html(goodsArr[id].goodsName);

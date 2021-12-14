@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=j, initial-scale=">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>hhh</h1>
+    <header>
+        this is text
+        <!-- <iframe src="./header.html" frameborder="0"></iframe> -->
+    </header>
+    <button type="button" id="testChangeIframe" >切换iframe</button>
+
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+    <script>
+        $('#testChangeIframe').click(function (e) { 
+            $("header").html( '<iframe src="./header.html" frameborder="0"></iframe>')
+        });
+    </script>
+
+</body>
+
+</html>

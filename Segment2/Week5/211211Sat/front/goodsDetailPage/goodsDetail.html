@@ -22,10 +22,7 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <iframe src="../template/head.html" width="100%" height="80px" frameborder="0"></iframe>
-    </header>
+<div class="container-fluid m-0 p-0">
     <!--    choose-->
     <div class="row">
         <!--        banner-->
@@ -107,9 +104,20 @@
                     </div>
                 </div>
             </div>
-            <div class="buttonGroup">
-                <button type="button" class="btn btn-warning">add to cart</button>
-                <button type="button" class="btn btn-danger" id="buyNowBtn">买它!</button>
+            <div class="buttonGroup d-flex align-items-center">
+                <div class="col-3 bg-light bg-gradient p-2">
+                    <div class="count d-flex">
+                        <input class="form-control form-control-sm me-2" type="text" id="count" style="width: 70px;" value="1" readonly placeholder="" aria-label=".form-control-sm example">
+                        <button type="button" class="btn btn-outline-secondary btn-sm me-1" id="addShoppingBtn" style="width: 40px;">-</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="minusShoppingBtn" style="width: 40px;">+</button>
+                    </div>
+
+                </div>
+                <div class="col-9 ms-5">
+                    <button type="button" class="btn btn-warning" id="addToShoppingCartBtn">添加购物车</button>
+                    <button type="button" class="btn btn-danger" id="buyNowBtn">买它!</button>
+
+                </div>
             </div>
         </div>
         <div class="row mt-5">

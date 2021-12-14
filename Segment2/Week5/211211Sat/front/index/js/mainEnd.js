@@ -26,6 +26,7 @@ if (goodsStr != null) {
     });
     mockgoodsList = goodsData.goodsList;
     localStorage.setItem("goodsList", JSON.stringify(mockgoodsList));
+    localStorage.setItem("shoppingCartList", JSON.stringify(mockgoodsList));
 }
 
 // 查询评论方法
