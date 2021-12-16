@@ -265,18 +265,60 @@
             </div>
         </div>
         <!-- 后台数据展示区 -->
-        <div class="row row-cols-3" id="showGoods">
-            <div class="col">
-                <div class="card">
-                    <img src="./img/banner5.png" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional
-                            content. This content is a little bit longer.</p>
+        
+        <div class="row">
+            <table class="table mt-3 table-striped table-hover shadow-sm rounded">
+                <tbody class="table-dark">
+                    <div class="row row-cols-3" id="showGoods">
+                        <div class="col">
+                            <div class="card">
+                                <img src="./img/banner5.png" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                                        additional
+                                        content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <img src="./img/banner5.png" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                                        additional
+                                        content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <img src="./img/banner5.png" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                                        additional
+                                        content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <tfoot>
+                            <nav aria-label="Page navigation example text-center ">
+                                <ul class="pagination text-center mt-5" id="pageFoot">
+                                    <li class="page-item"><a class="page-link" onclick="prePage()">Previous</a></li>
+                                    <div class="d-flex" id="pageFootNum">
+                                        <li class="page-item active"><a class="page-link" href="#" data-index="1">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#" data-index="2">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#" data-index="3">3</a></li>
+                                    </div>
+                                    <li class="page-item"><a class="page-link" onclick="nextPage()">Next</a></li>
+                                </ul>
+                            </nav>
+                        </tfoot>
                     </div>
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
 
     </div>

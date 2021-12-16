@@ -15,10 +15,10 @@ if (goodsStr != null) {
                 "goodsType": /(手机|平板|笔记本|智能穿戴)/,
                 "goodsImg": /\.\/img\/banner([15])\.png/,   // \/ 等价于"/"   \. 等于"."
                 "goodsDetailInfo": /(1|2|3)/,
-                "goodsComment|3-6":[{
-                    commenter:"@cname",
-                    content:"@csentence(10,25)",
-                    date:"@date"
+                "goodsComment|3-6": [{
+                    commenter: "@cname",
+                    content: "@csentence(10,25)",
+                    date: "@date"
                 }],
                 "goodsStatus": "right"
             }
@@ -29,17 +29,74 @@ if (goodsStr != null) {
     localStorage.setItem("shoppingCartList", JSON.stringify(mockgoodsList));
 }
 
-// 查询评论方法
-Mock.mock("/comment/queryComment", "post", function (obj) {
-    let requestData = decodeURI(obj.body);//index=0
+// 查询商品方法
+Mock.mock("/goods/querygoods", "post", function (obj) {
+    let goodsList = JSON.parse(localStorage.getItem("goodsList"));
+    allGoodsInfoList = goodsList;
+    localStorage.setItem("allGoodsInfoList", JSON.stringify(allGoodsInfoList));
+    allGoodsInfoList = allGoodsInfoList.filter(value => value.goodsStatus == "right");
+
+    let requestData = decodeURI(obj.body);
     let jsonObj = converter(requestData);//{"index":"0"}
-    console.log(1)
-    return mockgoodsList[jsonObj.id].goodsComment;
+    let limitGoodsName, limitGoodsType;
+    try {
+        // 条件查询开始
+        limitGoodsName = jsonObj["limit[GoodsName]"] ?? JSON.parse(localStorage.getItem("limitGoodsName"));
+        limitGoodsType = jsonObj["limit[GoodsType]"] ?? JSON.parse(localStorage.getItem("limitGoodsType"));
+        localStorage.setItem("limitGoodsName", JSON.stringify(limitGoodsName));
+        localStorage.setItem("limitGoodsType", JSON.stringify(limitGoodsType));
+
+        let goodsSearchedByRulesArr = [];
+        goodsList.forEach(element => {
+            // 使用indexof实现名字模糊查询
+            let nameTemp = element.goodsName.indexOf(limitGoodsName) != -1 || !limitGoodsName;
+            // 此处逻辑:如果已有数组中类型等于界面输入,OK
+            // 或者界面输入的是空字符串,代表查询全部,则也OK
+            let typeTemp = element.goodsType == limitGoodsType || !limitGoodsType;
+            // let statusTemp = element.checkStatus == checkStatus || !checkStatus;
+            if (nameTemp && typeTemp) {
+                goodsSearchedByRulesArr.push(element);
+            }
+
+        });
+        nowAllInfoList = goodsSearchedByRulesArr;
+        // localStorage.setItem("nowAllInfoList", JSON.stringify(nowAllInfoList));
+
+    } catch (error) {
+
+    }
+
+    let temp = parseInt(jsonObj.nowPage);//接收传递过来的页码
+    if (temp < 0) {//说明点了上一页或者下一页
+        if (temp == -3 && nowPage > 1) {//说明点了上一页,并且当前页数不是第一页
+            nowPage--;
+        }
+
+        if (temp == -2 && nowPage < Math.ceil(nowAllInfoList.length / pageCount)) {//点了下一页，并且当前不是最后一页
+            nowPage++;
+        }
+    } else {//说明点了 数字页码
+        nowPage = temp;
+    }
+
+    let list = [];
+    let returnList = {};
+    //防止取出最后一页的时候出现数组越界问题endIndex 一定会<=nowAllInfoList.length
+    let endIndex = nowPage * pageCount <= nowAllInfoList.length ? nowPage * pageCount : nowAllInfoList.length;
+    for (let i = (nowPage - 1) * pageCount; i < endIndex; i++) {
+        list.push(nowAllInfoList[i]);
+    }
+    returnList.nowPage = nowPage;
+    returnList.list = list;
+    return returnList;
 });
 
-// 查询商品方法
-Mock.mock("/goods/querygoods", "get", function (obj) {
-    return mockgoodsList.filter(value => value.goodsStatus == "right");
+//动态商品生成数字页码
+let nowPage = 1;//当前显示的页数
+let pageCount = 9;//一页显示的最大数据条数
+Mock.mock("/goods/queryGoodsPage", "get", function (obj) {
+    console.log(`1`);
+    return Math.ceil(mockgoodsList.length / pageCount);
 });
 
 // 添加商品方法
@@ -105,6 +162,42 @@ Mock.mock("/goods/updategoods", "post", function (obj) {
     };
 });
 
+
+// ============================模拟后端评论数据(DB)
+let mockCommentList = [];
+let commentStr = localStorage.getItem("commentList");
+if (commentStr != null) {
+    mockCommentList = JSON.parse(commentStr);
+} else {
+    let commentData = Mock.mock({
+        "commentList|20-30": [
+            {
+                "goodsId|+1": 1,
+                "comment|3-6": [{
+                    "userId": /[1-9]/,
+                    commenter: "@cname",
+                    content: "@csentence(10,25)",
+                    date: "@date"
+                }],
+            }
+        ]
+    });
+    mockCommentList = commentData.commentList;
+    localStorage.setItem("commentList", JSON.stringify(mockCommentList));
+}
+
+// 查询评论方法
+Mock.mock("/comment/queryComment", "post", function (obj) {
+    let requestData = decodeURI(obj.body);
+    let jsonObj = converter(requestData);
+    let goodsId = jsonObj.id;
+    for (let index = 0; index < mockCommentList.length; index++) {
+        const element = mockCommentList[index];
+        if (element.goodsId == goodsId) {
+            return element;
+        }
+    }
+});
 
 Mock.mock("/user/addUser", "post", function (obj) {
     let requestData = decodeURI(obj.body);

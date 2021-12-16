@@ -22,8 +22,6 @@ function toggleGoodsDetail() {
         '更大的显示屏，令整体使用体验大大提升。各种内容更加一目了然，各种操作更加游刃有余。我们的大胆创新和万千巧思，在 Series 7 上体现得淋漓尽致。'
     ];
     let infoIndex = goodsArr[id].goodsDetailInfo - 1;
-    console.log(infoIndex)
-    console.log(id)
     let detailImg = ` <div class="row rounded-2 mt-5">
                     <img src=" ./img/mba.jpg" class="rounded-3 p-0 " alt="">
                     <img src=" ./img/mba1.png" alt="" class="rounded-3 mt-4 p-0">
@@ -41,7 +39,7 @@ function queryComment(id) {
         data: `id=${id}`,
         dataType: "json",
         success: function (commentList) {
-            console.log(commentList)
+            commentList = commentList.comment;
             let str = `<div class="row row-cols-3">`;
             commentList.forEach(element => {
                 str += `

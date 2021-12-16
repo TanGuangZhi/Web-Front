@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <div class="row shadow-lg">
         <!--        左侧nav-->
         <div class="col-2 border-end">
@@ -38,9 +38,23 @@
             </nav>
         </div>
         <div class="col-10">
-            <iframe src="header.html" width="100%" height="150px" frameborder="0"></iframe>
+            <!-- header -->
+            <div class="container-fluid">
+                <div class="row shadow-sm p-3 mb-3 bg-body rounded">
+                   <h2>后台管理系统</h2>
+                </div>
+                <div class="row breadcrumb">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- main -->
             <main>
-                <iframe src="index.html" width="100%" height="1200px" name="showCenterFrame" scrolling=""
+                <iframe src="index.html" width="100%" height="1500px" name="showCenterFrame" scrolling=""
                         frameborder="0"></iframe>
             </main>
 

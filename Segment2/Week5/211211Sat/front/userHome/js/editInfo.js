@@ -6,7 +6,7 @@ $("#target").submit(function (e) {
     // 获取用户输入信息
     userInfo.userId = loginerInfoLocal.userId;
     userInfo.userName = $("[name=userName]").val();
-    userInfo.userPwd = $("[name=userPwd]").val();
+    userInfo.userPass = $("[name=userPwd]").val();
     userInfo.userAvatar = $("[name=userAvatar]").val();
     userInfo.userPhone = $("[name=userPhone]").val();
     
@@ -15,9 +15,9 @@ $("#target").submit(function (e) {
     let userInfoList = JSON.parse(localStorage.getItem("userInfoList"));
     for (let index = 0; index < userInfoList.length; index++) {
         const element = userInfoList[index];
-        if (element.id == userInfo.userId) {
+        if (element.userId == userInfo.userId) {
             element.userName = userInfo.userName;
-            element.userPwd = userInfo.userPwd;
+            element.userPass = userInfo.userPass;
             element.userAvatar = userInfo.userAvatar;
             element.userPhone = userInfo.userPhone;
         }

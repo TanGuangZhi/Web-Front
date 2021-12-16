@@ -9,9 +9,12 @@ $('#loginModal #loginBtn').click(function (e) {
     let userId;
     for (let index = 0; index < userInfoList.length; index++) {
         const element = userInfoList[index];
-        if (element.userName === inputNameDomValue && inputPwdDomValue === element.userPass) { }
-        userFlag = true;
-        userId = element.id;
+        if (element.userName === inputNameDomValue && inputPwdDomValue === element.userPass) {
+            userFlag = true;
+            userId = element.userId;
+            break;
+        }
+
     }
     if (userFlag) {
         remeberMe(inputNameDomValue, inputPwdDomValue, "user", userId);
@@ -69,6 +72,7 @@ function showOtherBtn(type) {
         $('#logOutBtn').prop("hidden", false);
 
     } else {
+        $('#indexBtn').prop("hidden", false);
         $('#shoppingCartBtn').prop("hidden", false);
         $('#userHomeBtn').prop("hidden", false);
         $('#logOutBtn').prop("hidden", false);
