@@ -1,86 +1,72 @@
+// ===========================模拟用户信息
 // 管理员信息
 let adminInfo = [{
-    userName: "admin",
+    userId: "boss",
+    userName: "kunkka",
     userPass: "666",
-    userType: "admin"
+    // userType: "boss",
+    userAvatar: /\.\/img\/avatar\/boss\.png/,
 }, {
-    userName: "admin2",
+    userId: "admin1",
+    userName: "Kunkka1",
     userPass: "666",
-    userType: "admin"
+    "userStatus": "right",
+    userType: "admin",
+    userAvatar: "./img/avatar/adminAvatar1.png",
+}, {
+    userId: "admin2",
+    userName: "Kunkka2",
+    userPass: "666",
+    "userStatus": "right",
+    userType: "admin",
+    userAvatar: "./img/avatar/adminAvatar2.png",
 }]
 
 let userInfoList, adminInfoList;
+let userShoppingCartList = [];
 
 
 
-// 模拟后端数据(DB)
-let userInfoListDB = [];
+// 模拟后端用户数据(DB)
 let userStr = localStorage.getItem("userInfoList");
 if (userStr != null) {
     userInfoList = JSON.parse(userStr);
 } else {
     //模拟后端用户数据(DB)
     let mockUserData = Mock.mock({
-        "userInfoList|20-30": [
+        "userInfoList|50-100": [
             {
-                "id|+1": 1,
+                "userId|+1": 1,
                 "userName": "@last",
                 "userPass": "1234",
                 "userType": "user",
-                "userAvatar": /\.\/img\/film\/([0-9])\.jpg/,   // \/ 等价于"/"   \. 等于"."
+                "userStatus": "right",
+                "userAvatar": /\.\/img\/avatar\/userAvatar([0-9])\.png/,   // \/ 等价于"/"   \. 等于"."
             }
         ]
     });
     userInfoList = mockUserData.userInfoList;
+    localStorage.setItem("userInfoLastId", JSON.stringify(userInfoList.length));
     userInfoList = userDeDuplication();
-    getMockShoppingCart();
-    console.log(userInfoList);
+    // console.log(userInfoList);
     localStorage.setItem("userInfoList", JSON.stringify(userInfoList));
     localStorage.setItem("adminInfoList", JSON.stringify(adminInfo));
 }
 
 // 用户去重
 function userDeDuplication(params) {
-    let tempArr = [];
-    let flag = true;
+    let tempArr = []; // 用于去重
+    let tempArr2 = [];
     userInfoList.forEach(element => {
-        for (let index = 0; index < tempArr.length; index++) {
-            const element2 = tempArr[index];
-            if (element2.userName == element.userName) {
-                flag = false;
-            }
-
+        if (tempArr.indexOf(element.userName)===-1) {
+            tempArr.push(element.userName);
+            tempArr2.push(element);
         }
-        if (flag) tempArr.push(element);
 
     });
-    return tempArr;
+    return tempArr2;
 }
 
-// console.log(JSON.stringify(mockUserData));
-
-// 模拟购物车内容
-function getMockShoppingCart(params) {
-    let goodsList = JSON.parse(localStorage.getItem("goodsList"));
-    for (let index = 0; index < userInfoList.length; index++) {
-        let randomCount = parseInt(Math.random() * 15) + 1;
-        let shoppingCartList = [];
-        let tempArr = [];// 用于去重
-        for (let index = 0; index < randomCount; index++) {
-            let shoppingCart = {};
-            let randomId = parseInt(Math.random() * goodsList.length);
-            shoppingCart.id = randomId;
-            shoppingCart.count = randomId % 3 + 1;// 别太多..
-            if (tempArr.indexOf(randomId) === -1) {
-                shoppingCartList.push(shoppingCart);
-                tempArr.push(randomId);
-            }
-        }
-
-        userInfoList[index].shoppingCartList = shoppingCartList
-    }
-    // return shoppingCartList;
-}
 
 // 查询用户
 Mock.mock("/end/user/queryUser", "get", function (obj) {
@@ -101,6 +87,36 @@ Mock.mock("/end/regUser", "post", function (obj) {
 
 
 
+// ==================模拟后端用户购物车数据(DB)
+let userShoppingCartStr = localStorage.getItem("userShoppingCartList");
+if (userShoppingCartStr != null) {
+    userShoppingCartList = JSON.parse(userShoppingCartStr);
+} else {
+    let goodsList = JSON.parse(localStorage.getItem("goodsList"));
+    for (let index = 0; index < userInfoList.length; index++) {
+        let randomCount = parseInt(Math.random() * 15) + 1;
+        let tempArr = [];// 用于去重
+        // 控制生成多少条数据
+        let shoppingCartList = [];
+        for (let index2 = 0; index2 < randomCount; index2++) {
+            let shoppingCart = {};
+            let randomId = parseInt(Math.random() * goodsList.length);
+            shoppingCart.goodsId = randomId;
+            shoppingCart.goodsCount = randomId % 3 + 1;// 别太多..
+            if (tempArr.indexOf(randomId) === -1) {
+                shoppingCartList.push(shoppingCart);
+                tempArr.push(randomId);
+            }
+        }
+        userShoppingCartList.push({ userId: userInfoList[index].userId, shoppingCartList: shoppingCartList });
+    }
+    localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
+}
+
+// 查询购物车
+Mock.mock("/end/user/queryShoppingCart", "post", function (obj) {
+    return userShoppingCartList;
+})
 
 function converter(str) {
     let fieldArray = str.split("&");

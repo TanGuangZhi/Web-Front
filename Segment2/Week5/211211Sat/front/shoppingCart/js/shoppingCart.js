@@ -1,83 +1,82 @@
 // 从缓存中获取当前登录的用户
 let loginerInfoLocal = JSON.parse(localStorage.getItem("loginUserInfo"));
-let userInfoList = JSON.parse(localStorage.getItem("userInfoList"));
-let loginUserInfo;
+userInfoList = JSON.parse(localStorage.getItem("userInfoList"));
+let loginUserInfo, userShoppingCartListTemp, loginerShoppingCartList;
 
 // 查询购物车商品方法
 let tempArr = [];
 function getShoppingCart(params) {
-    let str = ``;
-    loginUserInfo = userInfoList.filter(element => element.userName == loginerInfoLocal.userName);
-    let goodsList = JSON.parse(localStorage.getItem("goodsList"));
-    let shoppingCartList = loginUserInfo[0].shoppingCartList;
-    tempArr = shoppingCartList;
-    // shoppingCartList = delDulShopping(shoppingCartList);
-    for (let index = 0; index < shoppingCartList.length; index++) {
-        const element = shoppingCartList[index];
-        let goods;
-        goodsList.forEach(element2 => {
-            if (element2.id == element.id) {
-                goods = element2;
-                return;
+    $.ajax({
+        type: "post",
+        url: "/end/user/queryShoppingCart",
+        dataType: "json",
+        success: function (response) {
+            let str = ``;
+            // 获取登录用户的购物车内容
+            loginUserInfo = userInfoList.filter(element => element.userId == loginerInfoLocal.userId);
+            let shoppingCartList = response.filter(element => element.userId == loginUserInfo[0].userId);
+
+            userShoppingCartListTemp = response;
+            loginerShoppingCartList = shoppingCartList;
+            shoppingCartList = shoppingCartList[0].shoppingCartList;
+
+            let goodsList = JSON.parse(localStorage.getItem("goodsList"));
+            tempArr = shoppingCartList;
+            // shoppingCartList = delDulShopping(shoppingCartList);
+
+            for (let index = 0; index < shoppingCartList.length; index++) {
+                const element = shoppingCartList[index];
+                let goods;
+                // 获取购物车中对应的商品信息
+                goodsList.forEach(element2 => {
+                    if (element2.id == element.goodsId) {
+                        goods = element2;
+                        return;
+                    }
+                });
+                if (goods) {
+                    str += `
+                    <tr>
+                            <td>
+                                <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" data-index=${index} class="sel"></label>
+                            </td>
+                            <th scope="row">${goods.id}</th>
+                            <td>${goods.goodsName}</td>
+                            <td>
+                                <p id="goodsPrice${index}">
+                                    <span> ${goods.goodsPrice} </span>
+                                    <span>元</span>
+                                </p>
+                            </td>
+                            <td data-index=${index}>
+                                <div class="d-flex">
+                                    <button type="button" class="btn btn-light btn-sm" onclick="addNum(this)">+</button>
+                                    <input type="text" id="goodsCound${index}" readonly class="form-control" style="width:60px"
+                                           value="${element.goodsCount}">
+                                    <button type="button" class="btn btn-light btn-sm" onclick="minusNum(this)">-</button>
+                                </div>
+                            </td>
+                            <td><img src="${goods.goodsImg}" style="width: 30px;" alt="" srcset=""></td>
+                            <td>
+                                <p id="totalPrice${index}">
+                                    <span>${(element.goodsCount * goods.goodsPrice).toFixed(1)} </span>
+                                    <span>元</span>
+                                </p>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" onclick="delGoods(${goods.goodsId},${index})">移除商品</button>
+                            </td>
+                        </tr>
+                        `;
+                }
+                $("#showGoods").html(str);
             }
-        });
-        str += `
-            <tr>
-                    <td>
-                        <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" data-index=${index} class="sel"></label>
-                    </td>
-                    <th scope="row">${goods.id}</th>
-                    <td>${goods.goodsName}</td>
-                    <td>
-                        <p id="goodsPrice${index}">
-                            <span> ${goods.goodsPrice} </span>
-                            <span>元</span>
-                        </p>
-                    </td>
-                    <td data-index=${index}>
-                        <div class="d-flex">
-                            <button type="button" class="btn btn-light btn-sm" onclick="addNum(this)">+</button>
-                            <input type="text" id="goodsCound${index}" readonly class="form-control" style="width:60px"
-                                   value="${element.count}">
-                            <button type="button" class="btn btn-light btn-sm" onclick="minusNum(this)">-</button>
-                        </div>
-                    </td>
-                    <td><img src="${goods.goodsImg}" style="width: 30px;" alt="" srcset=""></td>
-                    <td>
-                        <p id="totalPrice${index}">
-                            <span>${(element.count * goods.goodsPrice).toFixed(1)} </span>
-                            <span>元</span>
-                        </p>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger" onclick="delGoods(${goods.id},${index})">移除商品</button>
-                    </td>
-                </tr>
-                `;
-    }
+
+        }
+    });
 
 
-    $("#showGoods").html(str);
 }
-
-// 购物车商品去重
-// function delDulShopping(params) {
-//     let tempArr = [];
-//     let flag = true;
-//     params.forEach(element => {
-//         for (let index = 0; index < tempArr.length; index++) {
-//             const element2 = tempArr[index];
-//             if (element2.id == element.id) {
-//                 flag = false;
-//                 break;
-//             }
-
-//         }
-//         if (flag) tempArr.push(element);
-
-//     });
-//     return tempArr;
-// }
 
 // ============添加数量减少数量开始============
 function checkIsZero(params) {
@@ -152,13 +151,16 @@ function caluAllGoodsPrice() {
 
 // 移除商品
 function delGoods(id, index) {
-    userInfoList.forEach((element) => {
-        if (element.userName == loginerInfoLocal.userName) {
-            element.shoppingCartList.splice(index, 1);
+    loginerShoppingCartList[0].shoppingCartList.splice(index, 1);
+    for (let index = 0; index < userShoppingCartListTemp.length; index++) {
+        const element = userShoppingCartListTemp[index];
+        if (element.userId == loginerShoppingCartList[0].userId) {
+            userShoppingCartListTemp[index] = loginerShoppingCartList[0];
         }
-    });
+
+    }
     $('#showGoods tr').eq(index).remove();
-    localStorage.setItem("userInfoList", JSON.stringify(userInfoList));
+    localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartListTemp));
     // document.querySelector(`#showGoods tr:nth-child(${index})`).innerHTML = '';
     checkChildFlag(); // 刷新总价
 }
@@ -171,36 +173,42 @@ $('#settlementBtn').click(function (e) {
     //     alert('请选择商品与地址');
     //     return;
     // }
-    setShoppingOrderInfo()
+    setOrderInfo()
     // alert('结算成功');
 
 });
 
-function setShoppingOrderInfo(params) {
+function setOrderInfo(params) {
     let date = new Date();
-    let userOrderList = [];
-     // 检查所有checked为true的元素
-     let childSelectList = document.getElementsByClassName("sel");
-     // object转数组
-     childSelectList = Array.from(childSelectList);
- 
-     // 获取checked为true的元素对应的id
-     childSelectList.forEach(value => {
-         if (value.checked === true) {
-             // let trDom = value.parentNode.parentNode;
-             // let idDom = trDom.nextElementSibling;
-             let index = $(value).attr("data-index");
-             let shoppingOrder = {
-                orderId: date.getTime()+index,
-                orderTime:formatDate(date),
-                goodsId:tempArr[index].id,
-                goodsCount:tempArr[index].count,
-                orderStatus:"待收货"
+    let userOrderList = {};
+    // 检查所有checked为true的元素
+    let childSelectList = document.getElementsByClassName("sel");
+    // object转数组
+    childSelectList = Array.from(childSelectList);
+
+    let userId = loginerInfoLocal.userId
+
+    // 获取checked为true的元素对应的id
+    let shoppingOrderList = [];
+    childSelectList.forEach(value => {
+        if (value.checked === true) {
+            // let trDom = value.parentNode.parentNode;
+            // let idDom = trDom.nextElementSibling;
+            let index = $(value).attr("data-index");
+            let shoppingOrder = {
+                orderId: date.getTime() + index,
+                orderCompTime: "待收货",
+                orderTime: formatDate(date),
+                goodsId: tempArr[index].goodsId,
+                goodsCount: tempArr[index].goodsCount,
+                orderStatus: "待收货"
             }
-            userOrderList.push(shoppingOrder);
-         }
-     });
-    
+            shoppingOrderList.push(shoppingOrder);
+        }
+    });
+    userOrderList.orderList = shoppingOrderList;
+    userOrderList.userId = userId;
+    alert(`success`);
     localStorage.setItem("userOrderList", JSON.stringify(userOrderList));
 }
 
