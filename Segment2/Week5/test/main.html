@@ -9,21 +9,16 @@
 </head>
 
 <body>
-    <h1>hhh</h1>
-    <header>
-        this is text
-        <!-- <iframe src="./header.html" frameborder="0"></iframe> -->
-    </header>
-    <button type="button" id="testChangeIframe" >切换iframe</button>
-
-    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
-        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
     <script>
-        $('#testChangeIframe').click(function (e) { 
-            $("header").html( '<iframe src="./header.html" frameborder="0"></iframe>')
-        });
-    </script>
+        let temp;
+        function test(params) {
+            params = params ?? 1;
+            console.log(params);
+        }
 
+        // test()
+        test(999)
+    </script>
 </body>
 
 </html>
