@@ -83,53 +83,107 @@ $("#smallImg li img").click(function () {
 
 // 添加至购物车
 $("#addToShoppingCartBtn").click(function (e) {
-    // alert(`添加购物车成功`);
     // 从缓存中获取当前登录的用户
     let loginerInfoLocal = JSON.parse(localStorage.getItem("loginUserInfo"));
-    let userInfoList = JSON.parse(localStorage.getItem("userInfoList"));
-    let loginUserInfo,userIndex;
-    for (let index = 0; index < userInfoList.length; index++) {
-        const element = userInfoList[index];
-        if(element.userName == loginerInfoLocal.userName){
-            loginUserInfo = element;
-            userIndex = index;
-        }
-        
+    let userId;
+    if (!loginerInfoLocal) {
+        alert('请先登录');
+        return;
+    } else {
+        userId = loginerInfoLocal.userId;
     }
-    let shoppingCart = {
-        id:id+1,
-        count:"1"
-    }
-    loginUserInfo.shoppingCartList.push(shoppingCart);
-    mergeDulShopping(loginUserInfo.shoppingCartList);
-    userInfoList[userIndex] = loginUserInfo;
-    localStorage.setItem("userInfoList", JSON.stringify(userInfoList));
-});
 
-// 叠加相同商品
-function mergeDulShopping(list){
-    for (let index = 0; index < list.length; index++) {
-        const element1 = list[index];
-        for (let index2 = index+1; index2 < list.length; index2++) {
-            const element2 = list[index2];
-            if(element1.id===element2.id){
-                list[index].count++;
-                list.splice(index2,1);
-                index--;
-            }
+    $.ajax({
+        type: "post",
+        url: "/end/user/addToShoppingCart",
+        data: { userId: userId, goodsId: id, goodsCount: 1 },
+        dataType: "json",
+        success: function (response) {
+            // let userShoppingCartList = response.shoppingCartList;
+            // console.log(response);
+            alert(`添加成功`);
         }
-    }
-}
+    });
+});
 
 function init(id) {
     goodsArr = getDataFromLocalStorage();
-    $("#goodsName").html(goodsArr[id].goodsName);
-    $("#goodsPrice").html("$" + goodsArr[id].goodsPrice);
-    $(".goodsImg").attr("src", goodsArr[id].goodsImg);
-    toggleGoodsDetail();
+    for (let index = 0; index < goodsArr.length; index++) {
+        const element = goodsArr[index];
+        if (element.id == id) {
+            $("#goodsName").html(element.goodsName);
+            $("#goodsPrice").html("$" + element.goodsPrice);
+            $(".goodsImg").attr("src", unescape(element.goodsImg));
+            toggleGoodsDetail();
+        }
+
+    }
+}
+
+// 近期浏览
+function recentlyViewed(params) {
+    // 获取userId
+    let loginerInfoLocal = JSON.parse(localStorage.getItem("loginUserInfo"));
+    let userId = loginerInfoLocal.userId;
+    if (!userId) return;
+
+    let recentlyViewedList = {}
+    let recentlyViewedArr = [];
+    let recentlyViewedListArr = [];
+    let temp = JSON.parse(localStorage.getItem("recentlyViewedListArr"));
+    if (!temp) {
+        recentlyViewedArr = [];
+
+    } else {
+        for (let index = 0; index < temp.length; index++) {
+            const element = temp[index];
+            if (element.userId == userId) {
+                recentlyViewedArr = element.recentlyViewedArr;
+            }
+
+        }
+    }
+    // 剔重,并提高相同浏览时最近一条的展示权重
+    recentlyViewedArr.unshift(id + 1);
+    for (let index = 0; index < recentlyViewedArr.length; index++) {
+        const element = recentlyViewedArr[index];
+        for (let index2 = index + 1; index2 < recentlyViewedArr.length; index2++) {
+            const element2 = recentlyViewedArr[index2];
+            if (element == element2) {
+                recentlyViewedArr.splice(index2, 1);
+            }
+        }
+
+    }
+    recentlyViewedList.recentlyViewedArr = recentlyViewedArr;
+    recentlyViewedList.userId = userId;
+    recentlyViewedListArr.push(recentlyViewedList);
+    localStorage.setItem("recentlyViewedListArr", JSON.stringify(recentlyViewedListArr));
+
+    let goodsList = JSON.parse(localStorage.getItem("goodsList"));
+    let str = ``;
+    for (let index = 0; index < recentlyViewedArr.length; index++) {
+        const element = recentlyViewedArr[index];
+        for (let index2 = 0; index2 < goodsList.length; index2++) {
+            const element2 = goodsList[index2];
+            if (element2.id == element) {
+                str += `
+                <div class="col">
+                <div class="card">
+                    <img src="${unescape(element2.goodsImg)}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">${element2.goodsName}</h5>
+                    </div>
+                </div>
+            </div>`;
+            }
+        }
+    }
+    $('#recentlyViewedArea').html(str);
 }
 
 let url = window.location.href;
 let id = url.split("id=")[1] - 1;//获得商品id
 let goodsArr;
 init(id);
+recentlyViewed();

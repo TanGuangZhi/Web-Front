@@ -1,5 +1,5 @@
 // 获取缓存中的订单
-let userId, nowGoodsId,userOrderList, userOrderListTemp;
+let userId, nowGoodsId, userOrderList, userOrderListTemp;
 function getOrderList(params) {
     userOrderList = JSON.parse(localStorage.getItem("userOrderList"));
     userId = userOrderList.userId;
@@ -12,7 +12,8 @@ function getOrderList(params) {
             <tr>
                 <td>${element.orderId}</td>
                 <td>${element.orderTime}</td>
-                <td class="orderCompTime">${element.orderStatus}</td>
+                <td class="orderCompTime">${element.orderCompTime}</td>
+                <td>${goodsList[element.goodsId].goodsName}</td>
                 <td><img src="${goodsList[element.goodsId].goodsImg}" width="50px"></td>
                 <td>${goodsList[element.goodsId].goodsPrice}元</td>
                 <td>${element.goodsCount} 件</td>
@@ -26,14 +27,16 @@ function getOrderList(params) {
     $("#showAddressBody").html(str);
 }
 
-
-
 // 确认收货
-function confirmReceiptGoods(params, orderId,goodsId) {
+function confirmReceiptGoods(params, orderId, goodsId) {
     if ($(params).hasClass("btn-info")) {
-        addComment(params,goodsId);
+        addComment(params, goodsId);
         // alert(`#TODO 添加评论`);
     } else {
+        let allUserOrderList = JSON.parse(localStorage.getItem("userOrderList"));
+        if (!allUserOrderList) {
+            allUserOrderList = [];
+        }
         for (let index = 0; index < userOrderListTemp.length; index++) {
             const element = userOrderListTemp[index];
             if (element.orderId == orderId) {
@@ -50,13 +53,15 @@ function confirmReceiptGoods(params, orderId,goodsId) {
         $(params).addClass("btn-info");
         userOrderList.orderList = userOrderListTemp;
         localStorage.setItem("userOrderList", JSON.stringify(userOrderList));
+        // allUserOrderList.push(userOrderList);
+        localStorage.setItem("allUserOrderList", JSON.stringify(allUserOrderList));
         getOrderList();
     }
 }
 
 // 添加评论模态框触发
 
-function addComment(params,goodsId) {
+function addComment(params, goodsId) {
     nowGoodsId = goodsId;
     // 触发模态框,要点2次,是个bug,不想修
     $(params).attr({ "data-bs-toggle": "modal", "data-bs-target": "#addCommentModal" })
@@ -64,7 +69,7 @@ function addComment(params,goodsId) {
 
 // 确认添加评论按钮
 $('#addCommentSureBtn').click(function (params) {
-    let userList = JSON.parse( localStorage.getItem("userInfoList"));
+    let userList = JSON.parse(localStorage.getItem("userInfoList"));
     // 获取评论用户的用户名
     let userName;
     for (let index = 0; index < userList.length; index++) {
@@ -75,19 +80,20 @@ $('#addCommentSureBtn').click(function (params) {
     }
     // 获取评论信息
     let commentList = {
-        content:$("#commentTextArea").val(),
-        date:formatDate(new Date()),
-        userId:userId,
-        commenter:userName
+        content: $("#commentTextArea").val(),
+        date: formatDate(new Date()),
+        userId: userId,
+        commenter: userName
     }
-    let mockCommentList =  JSON.parse( localStorage.getItem("commentList"));
+    let mockCommentList = JSON.parse(localStorage.getItem("commentList"));
     for (let index = 0; index < mockCommentList.length; index++) {
         const element = mockCommentList[index];
         if (element.goodsId == nowGoodsId) {
             element.comment.push(commentList);
         }
-        
+
     }
+    alert(`添加成功`);
     localStorage.setItem("commentList", JSON.stringify(mockCommentList));
 })
 

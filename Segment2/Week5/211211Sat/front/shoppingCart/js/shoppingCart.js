@@ -6,19 +6,20 @@ let loginUserInfo, userShoppingCartListTemp, loginerShoppingCartList;
 // 查询购物车商品方法
 let tempArr = [];
 function getShoppingCart(params) {
+    // 获取用户id(我知道这样写很麻烦,如果你看到,记得提醒我优化)
+    loginUserInfo = userInfoList.filter(element => element.userId == loginerInfoLocal.userId);
+    let userId = loginUserInfo[0].userId;
     $.ajax({
         type: "post",
         url: "/end/user/queryShoppingCart",
+        data: { userId: userId },
         dataType: "json",
         success: function (response) {
             let str = ``;
             // 获取登录用户的购物车内容
-            loginUserInfo = userInfoList.filter(element => element.userId == loginerInfoLocal.userId);
-            let shoppingCartList = response.filter(element => element.userId == loginUserInfo[0].userId);
-
-            userShoppingCartListTemp = response;
-            loginerShoppingCartList = shoppingCartList;
-            shoppingCartList = shoppingCartList[0].shoppingCartList;
+            let shoppingCartList = response[0].shoppingCartList;
+            // userShoppingCartListTemp = response;
+            // loginerShoppingCartList = shoppingCartList;
 
             let goodsList = JSON.parse(localStorage.getItem("goodsList"));
             tempArr = shoppingCartList;
@@ -38,9 +39,9 @@ function getShoppingCart(params) {
                     str += `
                     <tr>
                             <td>
-                                <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" data-index=${index} class="sel"></label>
+                                <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" data-id=${goods.id} data-index=${index} class="sel"></label>
                             </td>
-                            <th scope="row">${goods.id}</th>
+                            <th scope="row">${index + 1}</th>
                             <td>${goods.goodsName}</td>
                             <td>
                                 <p id="goodsPrice${index}">
@@ -64,13 +65,13 @@ function getShoppingCart(params) {
                                 </p>
                             </td>
                             <td>
-                                <button class="btn btn-danger" onclick="delGoods(${goods.goodsId},${index})">移除商品</button>
+                                <button class="btn btn-danger" onclick="delGoods(${goods.id},${index})">移除商品</button>
                             </td>
                         </tr>
                         `;
                 }
-                $("#showGoods").html(str);
             }
+            $("#showGoods").html(str);
 
         }
     });
@@ -150,29 +151,27 @@ function caluAllGoodsPrice() {
 }
 
 // 移除商品
-function delGoods(id, index) {
-    loginerShoppingCartList[0].shoppingCartList.splice(index, 1);
-    for (let index = 0; index < userShoppingCartListTemp.length; index++) {
-        const element = userShoppingCartListTemp[index];
-        if (element.userId == loginerShoppingCartList[0].userId) {
-            userShoppingCartListTemp[index] = loginerShoppingCartList[0];
+function delGoods(goodsId, index) {
+    $.ajax({
+        type: "post",
+        url: "/end/user/delShoppingCart",
+        data: { goodsId: goodsId },
+        dataType: "json",
+        success: function (response) {
+            getShoppingCart();
+            checkChildFlag(); // 刷新总价
         }
-
-    }
-    $('#showGoods tr').eq(index).remove();
-    localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartListTemp));
-    // document.querySelector(`#showGoods tr:nth-child(${index})`).innerHTML = '';
-    checkChildFlag(); // 刷新总价
+    });
 }
 
 // 结算按钮点击事件
 $('#settlementBtn').click(function (e) {
     let totalPrice = $('#allGoodsPrice').html();
     totalPrice -= 0;
-    // if (totalPrice <= 0 || $(".form-select").val() === "请选择地址") {
-    //     alert('请选择商品与地址');
-    //     return;
-    // }
+    if (totalPrice <= 0 || $(".form-select").val() === "请选择地址") {
+        alert('请选择商品与地址');
+        return;
+    }
     setOrderInfo()
     // alert('结算成功');
 
@@ -194,23 +193,73 @@ function setOrderInfo(params) {
         if (value.checked === true) {
             // let trDom = value.parentNode.parentNode;
             // let idDom = trDom.nextElementSibling;
-            let index = $(value).attr("data-index");
+            let id = $(value).attr("data-id");
+            let scIndex;
+            for (let index = 0; index < tempArr.length; index++) {
+                const element = tempArr[index];
+                if(element.goodsId == id){
+                    scIndex = index;
+                }
+            }
             let shoppingOrder = {
-                orderId: date.getTime() + index,
+                orderId: date.getTime() + scIndex,
                 orderCompTime: "待收货",
                 orderTime: formatDate(date),
-                goodsId: tempArr[index].goodsId,
-                goodsCount: tempArr[index].goodsCount,
+                goodsId: tempArr[scIndex].goodsId,
+                goodsCount: tempArr[scIndex].goodsCount,
                 orderStatus: "待收货"
             }
             shoppingOrderList.push(shoppingOrder);
+
+            let goodsId = $(value).attr("data-id");
+            for (let index = 0; index < tempArr.length; index++) {
+                const element = tempArr[index];
+                if (element.goodsId == goodsId) {
+                    tempArr.splice(index, 1);
+                }
+            }
+            for (let index = 0; index < userShoppingCartList.length; index++) {
+                const element = userShoppingCartList[index];
+                if(element.userId == userId){
+                    element.shoppingCartList = tempArr;
+                }
+                
+            }
+            localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
         }
     });
     userOrderList.orderList = shoppingOrderList;
     userOrderList.userId = userId;
     alert(`success`);
+    getShoppingCart();
+    checkChildFlag(); // 刷新总价
     localStorage.setItem("userOrderList", JSON.stringify(userOrderList));
 }
+
+// 获取用户全部地址信息
+function getUserAddressInfo(params) {
+    let userAddressList;;
+    let str = "<option selected>请选择地址</option>";
+    let userId = loginerInfoLocal.userId
+    $.ajax({
+        type: "post",
+        url: "/end/userHome/queryAddress",
+        data: { userId: userId },
+        dataType: "json",
+        success: function (response) {
+            userAddressList = response.userAddressList;
+            // 地址拼接
+            userAddressList.forEach((element, index) => {
+                let addressDetailInfo = `${element.province}${element.city}${element.county}`;
+                str += `<option value="${index}">${addressDetailInfo}</option>`
+            });
+            $('#addressSelect').html(str);
+        }
+    });
+
+}
+
+getUserAddressInfo();
 
 //格式化日期：yyyy-MM-dd
 function formatDate(date) {

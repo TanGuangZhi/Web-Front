@@ -2,76 +2,40 @@ let addressInfoJson = [];
 
 // 生成用户地址
 let userAddressList = [];
-function generUserAddress(params) {
+let temp;
+function queryUserAddress(params) {
+    let userInfo = JSON.parse(localStorage.getItem("loginUserInfo"));
+    let userId = userInfo.userId;
     $.ajax({
-        type: "get",
+        type: "post",
         url: "/end/userHome/queryAddress",
+        data: { userId: userId },
         dataType: "json",
         success: function (response) {
             let str = ``;
-            let loginerAddress = JSON.parse(localStorage.getItem("loginerAddressList"));
-            let addressCount = parseInt(Math.random() * 3) + 1;
-            if (loginerAddress) {
-                response = loginerAddress;
-                addressCount = loginerAddress.length;
-                loginerAddress.forEach((element, index) => {
-                    str += ` <tr>
-                    <td>
-                        <label><input type="checkbox" data-index=${index} onclick="checkChildFlag(this.checked)" class="sel form-check-input mt-0"></label>
-                    </td>
-                    <th scope="row">${index + 1}</th>
-                    <td>${element.province}</td>
-                    <td>${element.city}</td>
-                    <td>${element.zip}</td>
-                    <td>${element.name}</td>
-                    <td>${element.phone}</td>
-                    <td> <button class="btn btn-primary changeAddressBtn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                    aria-controls="offcanvasRight" data-index=${index} data-id=${element.id}>修改</button></td>
-                    <td><button class="btn btn-warning delAddressBtn" onclick="delAddressBtn(this,${index})" data-index="${index}">删除</button> </td>
-                </tr>`;
-                });
-                $("#showAddressBody").html(str);
-                return;
-            }
-
-            
-
-            for (let index = 0; index < addressCount; index++) {
-                let randomIndex = parseInt(Math.random() * response.length);
-                // let userAddress = {
-                //     province: response[randomIndex].province,
-                //     city: response[randomIndex].city,
-                //     county: response[randomIndex].county,
-                //     zip: response[randomIndex].zip,
-                //     phone: response[randomIndex].phone,
-                //     name: response[randomIndex].name,
-                // };
-                const element = response[randomIndex];
+            temp = response;
+            userAddressList = response.userAddressList;
+            userAddressList.forEach((element,index) => {
+                // 地址拼接
+                let addressDetailInfo = `${element.province}${element.city}${element.county}`;
                 str += ` <tr>
-                        <td>
-                            <label><input type="checkbox" data-index=${index} onclick="checkChildFlag(this.checked)" class="sel form-check-input mt-0"></label>
-                        </td>
-                        <th scope="row">${index + 1}</th>
-                        <td>${element.province}</td>
-                        <td>${element.city}</td>
-                        <td>${element.zip}</td>
-                        <td>${element.name}</td>
-                        <td>${element.phone}</td>
-                        <td> <button class="btn btn-primary changeAddressBtn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight" data-index=${index} data-id=${element.id}>修改</button></td>
-                        <td><button class="btn btn-warning delAddressBtn" onclick="delAddressBtn(this,${index})" data-index="${index}">删除</button> </td>
-                    </tr>`;
-
-                userAddressList.push(element);
-            }
+                <td>
+                    <label><input type="checkbox" data-index=${index} onclick="checkChildFlag(this.checked)" class="sel form-check-input mt-0"></label>
+                </td>
+                <th scope="row">${index + 1}</th>
+                <td>${addressDetailInfo}</td>
+                <td>${element.zip}</td>
+                <td>${element.name}</td>
+                <td>${element.phone}</td>
+                <td> <button class="btn btn-primary changeAddressBtn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight" data-index=${index} data-id="">修改</button></td>
+                <td><button class="btn btn-warning delAddressBtn" onclick="delAddressBtn(this,${index})" data-index="${index}">删除</button> </td>
+            </tr>`;
+            });
             $("#showAddressBody").html(str);
-            localStorage.setItem("loginerAddressList", JSON.stringify(userAddressList));
         }
-
     });
 }
-
-generUserAddress();
 
 // 添加按钮触发事件
 $(" [data-bs-target='#addAddreModal']").click(function (e) {
@@ -89,20 +53,23 @@ $('#addAddreModal #addAddressBtn').click(function (e) {
     addressInfo.phone = $('[name="phone"]').val();
     addressInfo.zip = $('[name="zipCode"]').val();
 
-    addressInfo.detailAddress = $('#detailAddress').val();
+    addressInfo.province = $('[name="province"]').val();
+    addressInfo.city = $('[name="city"]').val();
+    addressInfo.county = $('[name="district"]').val();
 
     userAddressList.push(addressInfo);
-    localStorage.setItem("loginerAddressList", JSON.stringify(userAddressList));
-    generUserAddress();
-    disabledBtnInit();
-
+    temp.userAddressList = userAddressList;
+    localStorage.setItem("userAddressList", JSON.stringify(temp));
+    queryUserAddress();
 });
 
 // 删除地址
 function delAddressBtn(params, index) {
-    $(params).parent().parent().remove();
+    // $(params).parent().parent().remove();
     userAddressList.splice(index, 1);
-    localStorage.setItem("loginerAddressList", JSON.stringify(userAddressList));
+    temp.userAddressList = userAddressList;
+    localStorage.setItem("userAddressList", JSON.stringify(temp));
+    queryUserAddress();
 }
 
 function clearPrevAddressInput() {
@@ -195,62 +162,10 @@ function disabledBtnInit() {
     $('tbody tr .downMove').last().prop("disabled", true);
 }
 
-// ================查询地址================
-// function queryAddress() {
-//     let str = ``;
-//     addressInfoJson.forEach((element, index) => {
-//         str += ` <tr>
-//                         <td>
-//                             <label><input type="checkbox" data-index=${index} onclick="checkChildFlag(this.checked)" class="sel form-check-input mt-0"></label>
-//                         </td>
-//                         <th scope="row">${element.id}</th>
-//                         <td>${element.address}</td>
-//                         <td>${element.detailAddress}</td>
-//                         <td>${element.zipCode}</td>
-//                         <td>${element.consignee}</td>
-//                         <td>${element.phone}</td>
-//                         <td> <button class="btn btn-primary changeAddressBtn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-//                         aria-controls="offcanvasRight" data-index=${index} data-id=${element.id}>修改</button></td>
-//                         <td><button class="btn btn-warning delAddressBtn" data-index="${index}">删除</button> </td>
-//                     </tr>`;
-//     });
-//     $("#showAddressBody").html(str);
-
-//     // 修改地址
-//     $('tbody .changeAddressBtn').on("click", function () {
-//         // alert('此为Vip独享功能,请先开通Vip');
-//     });
-
-//     // 删除地址
-//     $('tbody .delAddressBtn').on("click", function () {
-//         addressInfoJson.splice($(this).attr("data-index"), 1);
-//         queryAddress();
-//         disabledBtnInit();
-//     });
-
-//     // 上移下移行
-//     $('.upMove').on("click", function () {
-//         let nowTr = $(this).parent().parent();
-//         let prevTr = nowTr.prev();
-//         prevTr.before(nowTr);
-//         disabledBtnInit();
-//     });
-
-//     $('.downMove').on("click", function () {
-//         let nowTr = $(this).parent().parent();
-//         let nextTr = nowTr.next();
-//         nowTr.before(nextTr);
-//         disabledBtnInit();
-//     });
-
-// }
-
 
 function addressMain() {
     getProvince();
-    // queryAddress();
-    disabledBtnInit();
-
+    queryUserAddress();
 }
 
 addressMain();

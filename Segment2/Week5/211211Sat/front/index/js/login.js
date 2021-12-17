@@ -61,7 +61,7 @@ function remeberMe(inputNameDom, inputPwdDom, userType, userId) {
     if ($('#remeberMe').prop("checked")) {
         localStorage.setItem("remeberMe", "true");
     }
-    console.log(loginUserInfo);
+    // console.log(loginUserInfo);
     sessionStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
     localStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
 }
@@ -115,6 +115,17 @@ function judgeCookie(params) {
             // $('#loginModal #remeberMe').prop("checked", true);
             // 左侧显示用户名
             $('#userInfo #userName').html(loginerInfoSession.userName);
+
+            let userList = JSON.parse( localStorage.getItem("userInfoList"));
+            let userAvatar;
+            for (let index = 0; index < userList.length; index++) {
+                const element = userList[index];
+                if (element.userId == loginerInfoSession.userId) {
+                    userAvatar = element.userAvatar;
+                    break;
+                }
+            }
+            $('#userInfo #userAvatar').attr("src",userAvatar);
             showOtherBtn(loginerInfoSession.userType);
             hideSomeBtn();
         }

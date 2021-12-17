@@ -15,7 +15,7 @@
 
         #secondNav #secondType {
             position: absolute;
-            z-index: 1;
+            z-index: 10;
             background: white;
             top: 42px;
         }
@@ -32,7 +32,7 @@
 
         .firstTypeList {
             position: absolute;
-            z-index: 1;
+            z-index: 10;
             background: white;
             border: 1px solid gray;
             padding-top: 20px;
@@ -77,7 +77,7 @@
             <div class="row shadow rounded-3 mb-3" style="background: #333333;color: white;line-height: 60px">
                 <div class="col-3" id="userInfo">
                     <img src="../index/img/liuHuaQiang.jpg" class="rounded-circle" style="width: 30px;" alt=""
-                        srcset="">
+                        srcset="" id="userAvatar">
                     <span id="userName"></span>
                 </div>
 
@@ -88,9 +88,13 @@
                         class="btn btn-primary">注册</button>
                     <a href="../index/index.html" target="showMainArea" class="btn btn-primary" id="indexBtn" hidden>
                         首页</a>
-                    <a href="../shoppingCart/shoppingCart.html" target="showMainArea" class="btn btn-warning" id="shoppingCartBtn" hidden>
+                    <a href="../shoppingCart/shoppingCart.html" target="showMainArea" class="btn btn-warning"
+                        id="shoppingCartBtn" hidden>
                         购物车</a>
-                    <a href="../userHome/index.html" class="btn btn-success" target="showMainArea" id="userHomeBtn" hidden> 个人中心</a>
+                    <!-- <button type="button" class="btn btn-warning" id="recentlyViewedBtn" hidden>近期浏览</button> -->
+                    <a href="../userHome/index.html" class="btn btn-success" target="showMainArea" id="userHomeBtn"
+                        hidden> 个人中心</a>
+                    <!-- <a href="../../end/main.html" class="btn btn-success" id=""> 后台</a> -->
                     <!-- <a href="./backStage.html" class="btn btn-danger" id="backstageBtn" hidden>进入后台</a> -->
                     <button type="button" class="btn btn-danger" id="logOutBtn" hidden>注销</button>
                 </div>
@@ -98,8 +102,8 @@
         </header>
 
         <main>
-            <iframe src="./index.html" width="100%" height="2500px" scrolling="no" name="showMainArea" frameborder="0"></iframe>
-
+            <iframe src="./index.html" width="100%" height="2500px" scrolling="no" name="showMainArea"
+                frameborder="0"></iframe>
         </main>
 
 
@@ -222,7 +226,9 @@
     <script src="./js/mainEnd.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/userEnd.js"></script>
+    <script src="./js/utils.js"></script>
     <script src="./js/login.js"></script>
+    <script src="./js/reg.js"></script>
 </body>
 
 </html>

@@ -52,29 +52,6 @@ $("#searchBtn").click(function (e) {
     queryUser(null, true);
 });
 
-// 带条件查询
-function queryByRules() {
-    // 获取限制条件
-    let name = $('#userName').val();
-    let type = $('#userType').val();
-    // let checkStatus = $('#checkStatus').val();
-    // console.log(`${type}`);
-    // console.log(`${checkStatus}`);
-    let userSearchedByRulesArr = [];
-    allInfoList2.forEach(element => {
-        // 使用indexof实现名字模糊查询
-        let nameTemp = element.userName.indexOf(name) != -1 || !name;
-        // 此处逻辑:如果已有数组中类型等于界面输入,OK
-        // 或者界面输入的是空字符串,代表查询全部,则也OK
-        let typeTemp = element.userType == type || !type;
-        // let statusTemp = element.checkStatus == checkStatus || !checkStatus;
-        if (nameTemp && typeTemp) {
-            userSearchedByRulesArr.push(element);
-        }
-
-    });
-    return userSearchedByRulesArr.slice(0, 10);
-}
 
 
 // 查询一共要生成多少页码
@@ -203,6 +180,7 @@ $("#addUser #addUserBtn").click(function () {
         data: {
             "userId": userInfoLastId + 1,
             "userName": $("#addUserNameId").val(),
+            "userPass": $("#addUserPassId").val(),
             "userType": $("#addUserTypeId").val(),
             "userAvatar": $("#addUserImgId").val(),
             "userStatus": "right"
@@ -256,6 +234,26 @@ $('#changeUserBtn').click(function () {
         }
     });
 })
+
+// ============全选全消开始============/
+function selAll(flag) {
+    let childSelectList = document.getElementsByClassName("sel");
+    for (const iterator of childSelectList) {
+        iterator.checked = flag;
+    }
+    checkChildFlag(); // 刷新总价
+}
+
+function checkChildFlag(flag) {
+    let parentCheckedFlag = document.getElementById("all-id");
+    let childSelectList = document.getElementsByClassName("sel");
+    // object转数组
+    childSelectList = Array.from(childSelectList);
+    let allFlag = childSelectList.every(value => value.checked);
+    parentCheckedFlag.checked = allFlag;
+}
+
+
 // 上传随机图片
 $(".uploadImgBtn").click(function () {
     console.log(1);

@@ -1,37 +1,45 @@
 // ================查询商品================
 function queryGoods(page, limitFlag) {
-     // page不传值则默认指定为1
-     page = page ?? 1;
-     // 获取限制条件
-     let userName = $('#userName').val();
-     let userType = $('#userType').val();
- 
-     let limit;
-     if (limitFlag) {
-         limit = { userName: userName, userType: userType };
-     }
+    // page不传值则默认指定为1
+    page = page ?? 1;
+    // 获取限制条件
+    let goodsName = $('#goodsName').val();
+    let goodsType = $('#goodsType').val();
+
+    let limit;
+    if (limitFlag) {
+        limit = {goodsName:goodsName,goodsType:goodsType };
+    }
     $.ajax({
         url: "/goods/querygoods",
-        data: { "nowPage": page, "limit":limit },
-        type:"post",
+        data: { "nowPage": page, "limit": limit },
+        type: "post",
         dataType: "json",
-        success: function (goodsList) {
-            goodsList = goodsList.list;
+        success: function (response) {
+            goodsList = response.list;
             goodsArr = goodsList;
             let str = ``;
             goodsList.slice(0, 9).forEach((element, index) => {
                 str += ` <div class="col" >
                             <div class="card shadow mt-3" onclick="jumbDetail(this)" data-id=${element.id}>
-                                <img src="${element.goodsImg}" alt="" >
+                                <img src="${unescape(element.goodsImg)}" style="width:100%" alt="" >
                                 <div class="card-body">
                                     <h5 class="card-title">${element.goodsName}</h5>
-                                    <p class="card-text">￥${element.goodsPrice}</p>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <p class="card-text">￥${element.goodsPrice}</p>
+                                        </div>
+                                        <div class="col-4">
+                                        <span class="card-text">${element.goodsType}</span>
+                                        </div>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>`;
             });
             $("#showGoods").html(str);
-            pageNumActiveControl(nowPage);
+            queryPage(response.nowPage);
         }
     });
 }
@@ -56,6 +64,12 @@ function queryPage(nowPage) {
         }
     });
 }
+
+// 条件查询
+$("#searchBtn").click(function (e) {
+    queryGoods(null, true);
+});
+
 
 
 //点击数字页码完成翻页功能

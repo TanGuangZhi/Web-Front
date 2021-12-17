@@ -1,3 +1,5 @@
+let nowAllInfoList;
+
 // 模拟后端数据(DB)
 let mockgoodsList = [];
 let goodsStr = localStorage.getItem("goodsList");
@@ -8,12 +10,12 @@ if (goodsStr != null) {
         "goodsList|20-30": [
             {
                 "id|+1": 1,
-                "goodsName": /(蜗牛|犀牛)\d(pro|plus)/,
+                "goodsName": /(菠萝|苹果|锤子|大米)\d(pro|plus)/,
                 "goodsPrice": /[1-9]{3,5}\.[8-9]{1,2}/,
                 "goodsColor": /(太空黑|琉璃彩|土豪金)/,
                 "goodsMemory": /(64|256|512|1T)/,
                 "goodsType": /(手机|平板|笔记本|智能穿戴)/,
-                "goodsImg": /\.\/img\/banner([15])\.png/,   // \/ 等价于"/"   \. 等于"."
+                "goodsImg": /\.\/img\/banner([1-5])\.png/,   // \/ 等价于"/"   \. 等于"."
                 "goodsDetailInfo": /(1|2|3)/,
                 "goodsComment|3-6": [{
                     commenter: "@cname",
@@ -26,6 +28,7 @@ if (goodsStr != null) {
     });
     mockgoodsList = goodsData.goodsList;
     localStorage.setItem("goodsList", JSON.stringify(mockgoodsList));
+    localStorage.setItem("goodsListLength", JSON.stringify(mockgoodsList.length));
     localStorage.setItem("shoppingCartList", JSON.stringify(mockgoodsList));
 }
 
@@ -41,8 +44,9 @@ Mock.mock("/goods/querygoods", "post", function (obj) {
     let limitGoodsName, limitGoodsType;
     try {
         // 条件查询开始
-        limitGoodsName = jsonObj["limit[GoodsName]"] ?? JSON.parse(localStorage.getItem("limitGoodsName"));
-        limitGoodsType = jsonObj["limit[GoodsType]"] ?? JSON.parse(localStorage.getItem("limitGoodsType"));
+        limitGoodsName = jsonObj["limit[goodsName]"] ?? JSON.parse(localStorage.getItem("limitGoodsName"));
+        limitGoodsType = jsonObj["limit[goodsType]"] ?? JSON.parse(localStorage.getItem("limitGoodsType"));
+        // 持久化限制条件,防止界面刷新导致分页查询时limit条件更改
         localStorage.setItem("limitGoodsName", JSON.stringify(limitGoodsName));
         localStorage.setItem("limitGoodsType", JSON.stringify(limitGoodsType));
 
@@ -95,8 +99,8 @@ Mock.mock("/goods/querygoods", "post", function (obj) {
 let nowPage = 1;//当前显示的页数
 let pageCount = 9;//一页显示的最大数据条数
 Mock.mock("/goods/queryGoodsPage", "get", function (obj) {
-    console.log(`1`);
-    return Math.ceil(mockgoodsList.length / pageCount);
+    if(!nowAllInfoList) return;
+    return Math.ceil(nowAllInfoList.length / pageCount);
 });
 
 // 添加商品方法

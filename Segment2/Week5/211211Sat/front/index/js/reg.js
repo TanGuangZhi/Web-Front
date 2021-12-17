@@ -29,13 +29,15 @@ $('#regModal #regBtn').click(function (e) {
         checkCode('#regModal [name=code]');
         return;
     }
+    let userId = JSON.parse(localStorage.getItem("userInfoLastId"));
     $.ajax({
         type: "post",
         url: "/end/regUser",
         data: {
             "userName": $('#regModal [name=userName]').val(),
-            "userPass":$('#regModal [name=userPass]').val(),
+            "userPass": $('#regModal [name=userPass]').val(),
             "userPhone": $("#regModal [name=userPhone]").val(),
+            "userId": userId,
             "type": "user",
         },
         dataType: "json",
@@ -43,7 +45,7 @@ $('#regModal #regBtn').click(function (e) {
             console.log(`${response}`);
             $(this).attr("data-dismiss", "modal");
             // storageUserInfo();
-            alert(`注册成功,正在重新登录`);
+            alert(`注册成功,请重新登录`);
             location.reload();
         }
     });
@@ -71,9 +73,9 @@ $('#regModal .showPwdBtn').click(function (e) {
 });
 
 // ================验证码区================
-let regObj = {};
 
-regObj.sentMsg = $("#regModal #sentMsgBtn").click(function (e) {
+
+$("#regModal #sentMsgBtn").click(function (e) {
     // 手机号不正确则不让发送
     if (!allRegCheckFlagList[2]) {
         checkPhone('#regModal [name=userPhone]');
@@ -121,9 +123,9 @@ function generCheckCode(num) {
 
 function showCheckCode(dom, checkCode) {
     clearInvalidCheckCode(dom);
-    // let randomSeconds = (parseInt(Math.random() * 3) + 3) * 1000;
+    let randomSeconds = (parseInt(Math.random() * 3) + 3) * 1000;
     // #TODO 测试用
-    let randomSeconds = (parseInt(Math.random() * 3) + 3);
+    // let randomSeconds = (parseInt(Math.random() * 3) + 3);
     setTimeout(() => {
         dom.next().html(checkCode)
     }, randomSeconds);

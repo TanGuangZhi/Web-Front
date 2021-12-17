@@ -145,7 +145,6 @@ function changeMovie(params, index) {
     $(".alertMsgSpan").html("*");
     $(".alertMsgSpan").css("color", "");
 
-    allRegCheckFlagList = [false];
     // 获取行id
     let rowId = $(params).attr("data-id");
     // 展示id
@@ -155,7 +154,6 @@ function changeMovie(params, index) {
 }
 // 修改值
 $('#changeMovieBtn').click(function () {
-    if(!checkIsCanChange()) return;
     $.ajax({
         type: "post",
         url: "/movie/updateMovie",

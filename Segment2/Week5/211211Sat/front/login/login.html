@@ -206,7 +206,8 @@
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">登录</label>
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">注册</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up" style="display: true;"><label for="tab-2"
+                class="tab"></label>
             <div class="login-form">
                 <div class="sign-in-htm">
                     <div class="group">
@@ -222,7 +223,7 @@
                         <label for="check"><span class="icon"></span>记住我</label>
                     </div>
                     <div class="group">
-                        <input type="submit" class="button" value="登录">
+                        <input type="button" class="button" id="loginBtn" value="登录">
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
@@ -257,6 +258,53 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $("#loginBtn").click(function (e) {
+            // 管理员信息
+            let adminInfo = [{
+                userId: "boss",
+                userName: "kunkka",
+                userPass: "666",
+                // userType: "boss",
+                userAvatar: /\.\/img\/avatar\/boss\.png/,
+            }, {
+                userId: "admin1",
+                userName: "Kunkka1",
+                userPass: "666",
+                "userStatus": "right",
+                userType: "admin",
+                userAvatar: "./img/avatar/adminAvatar1.png",
+            }, {
+                userId: "admin2",
+                userName: "Kunkka2",
+                userPass: "666",
+                "userStatus": "right",
+                userType: "admin",
+                userAvatar: "./img/avatar/adminAvatar2.png",
+            }]
+
+        });
+
+        let userFlag = false;
+        let inputNameDomValue = $("#user").val();
+        let inputPwdDomValue = $("#pass").val();
+        for (let index = 0; index < adminInfo.length; index++) {
+            const element = adminInfo[index];
+            if (element.userName === inputNameDomValue && inputPwdDomValue === element.userPass) {
+                userFlag = true;
+                userId = element.userId;
+                break;
+            }
+
+        }
+        if (userFlag) {
+            window.location.href = "../main.html"
+        } else {
+            alert('输入错误,请重新输入');
+            return;
+        }
+    </script>
 </body>
 
 </html>

@@ -40,7 +40,7 @@ function checkCode(sel) {
 function checkUserNameExit(params) {
     let flag = true;
     userInfoList.forEach(element => {
-        if (element.name === $('#regModal [name=userName]').val()) {
+        if (element.userName === $('#regModal [name=userName]').val()) {
             let alertDom = $('#regModal [name=userName]').parent().find("span");
             alertDom.html("用户名已存在");
 

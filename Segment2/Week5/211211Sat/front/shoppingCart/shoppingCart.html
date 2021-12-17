@@ -13,16 +13,21 @@
 <div class="container-fluid m-0">
     <div class="row">
         <div class="row mt-5">
-            <div class="col-2" style="line-height: 35px; width: 90px;">
+            <div class="col-2" style="line-height: 35px; width: 110px;">
                 收货地址:
             </div>
-            <div class="col-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>请选择地址</option>
+            <div class="col-4">
+                <select class="form-select" aria-label="Default select example" id="addressSelect">
+                    <!-- <option selected>请选择地址</option>
                     <option value="1">上海蜗牛1部</option>
                     <option value="2">成都蜗牛2部</option>
-                    <option value="3">火星蜗牛总部</option>
+                    <option value="3">火星蜗牛总部</option> -->
                 </select>
+            </div>
+            <div class="col-3">
+                <a href="../userHome/editAddress.html">
+                    <button type='button' class="btn btn-primary">添加地址</button>
+                </a>
             </div>
         </div>
         <table class="table mt-3 table-striped table-hover shadow-sm rounded">
@@ -37,7 +42,7 @@
                         </div>
                     </label>
                 </td>
-                <th scope="col">id</th>
+                <th scope="col">编号</th>
                 <th scope="col">商品名称</th>
                 <th scope="col">商品价格</th>
                 <th scope="col">数量</th>
@@ -48,7 +53,7 @@
             </tr>
             </thead>
             <tbody id="showGoods" class="table-dark">
-            <tr>
+            <!-- <tr>
                 <td>
                     <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
                 </td>
@@ -78,7 +83,7 @@
                 <td>
                     <button class="btn btn-danger" onclick="delGoods(1)">移除商品</button>
                 </td>
-            </tr>
+            </tr> -->
             </tbody>
             <tfoot>
             <tr>
@@ -105,5 +110,6 @@
 <script src="../../bootstrap5/js/jquery-3.5.1.min.js"></script>
 <script src="../index/js/mock.js"></script>
 <script src="../index/js/userEnd.js"></script>
+<script src="../userHome/js/end.js"></script>
 <script src="./js/shoppingCart.js"></script>
 </html>

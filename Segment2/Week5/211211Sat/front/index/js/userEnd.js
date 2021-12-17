@@ -58,7 +58,7 @@ function userDeDuplication(params) {
     let tempArr = []; // 用于去重
     let tempArr2 = [];
     userInfoList.forEach(element => {
-        if (tempArr.indexOf(element.userName)===-1) {
+        if (tempArr.indexOf(element.userName) === -1) {
             tempArr.push(element.userName);
             tempArr2.push(element);
         }
@@ -76,16 +76,15 @@ Mock.mock("/end/user/queryUser", "get", function (obj) {
     }
 })
 
-
-
 // 用户注册
 Mock.mock("/end/regUser", "post", function (obj) {
     //decodeURI:获取客户端发送过来的数据进行解码
     let requestData = decodeURI(obj.body);//index=0
     let jsonObj = converter(requestData);//{"index":"0"}
+    userInfoList.push(jsonObj);
+    localStorage.setItem("userInfoList", JSON.stringify(userInfoList));
+    return userInfoList;
 })
-
-
 
 // ==================模拟后端用户购物车数据(DB)
 let userShoppingCartStr = localStorage.getItem("userShoppingCartList");
@@ -115,6 +114,56 @@ if (userShoppingCartStr != null) {
 
 // 查询购物车
 Mock.mock("/end/user/queryShoppingCart", "post", function (obj) {
+    let requestData = decodeURI(obj.body);//index=0
+    let jsonObj = converter(requestData);//{"index":"0"}
+    userShoppingCartList = userShoppingCartList.filter(element => element.userId == jsonObj.userId);
+    return userShoppingCartList;
+})
+
+// 添加购物车
+Mock.mock("/end/user/addToShoppingCart", "post", function (obj) {
+    let requestData = decodeURI(obj.body);//index=0
+    let jsonObj = converter(requestData);//{"index":"0"}
+    userShoppingCartList = userShoppingCartList.filter(element => element.userId == jsonObj.userId);
+    // console.log(JSON.parse(localStorage.getItem("goodsList")));
+    try {
+        if (mergeDulShopping(userShoppingCartList[0].shoppingCartList, jsonObj.goodsId)) {
+            localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
+            return userShoppingCartList;
+        }
+        userShoppingCartList[0].shoppingCartList.push(jsonObj);
+        localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
+        return userShoppingCartList;
+    } catch (error) {
+        return userShoppingCartList;
+    }
+
+})
+
+// 叠加相同商品
+function mergeDulShopping(list, goodsId) {
+    for (let index = 0; index < list.length; index++) {
+        const element = list[index];
+        if (element.goodsId == goodsId) {
+            let num = element.goodsCount - 0;
+            num += 1;
+            element.goodsCount = num;
+            return true;
+        }
+    }
+    return false;
+}
+
+// 购物车移除商品
+Mock.mock("/end/user/delShoppingCart", "post", function (obj) {
+    let requestData = decodeURI(obj.body);//index=0
+    let jsonObj = converter(requestData);//{"index":"0"}
+    userShoppingCartList[0].shoppingCartList.forEach((element, index) => {
+        if (element.goodsId == jsonObj.goodsId) {
+            userShoppingCartList[0].shoppingCartList.splice(index, 1);
+        }
+    });
+    localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
     return userShoppingCartList;
 })
 
