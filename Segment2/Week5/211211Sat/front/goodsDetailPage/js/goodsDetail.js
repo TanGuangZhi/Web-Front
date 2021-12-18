@@ -31,6 +31,22 @@ function toggleGoodsDetail() {
     $(".detailInfoShowArea").html(detailWord + detailImg);
 }
 
+// 商品数量加减
+let goodsCount = 1;
+$("#addShoppingBtn").click(function (e) {
+    goodsCount += 1;
+    $('#count').val(goodsCount);
+
+});
+$("#minusShoppingBtn").click(function (e) {
+    if (goodsCount === 1) {
+        return;
+    }
+    goodsCount -= 1;
+    $('#count').val(goodsCount);
+});
+
+
 // ================查询评论================
 function queryComment(id) {
     $.ajax({
@@ -42,15 +58,29 @@ function queryComment(id) {
             commentList = commentList.comment;
             let str = `<div class="row row-cols-3">`;
             commentList.forEach(element => {
+                let randomNum = parseInt(Math.random()*8)+1;
                 str += `
                     <div class="col">
-                        <div class="card mb-3 shadow-lg" >
+                        <div class="card mb-3 shadow text-dark bg-light" >
                             <div class="card-body">
-                                <h5 class="card-title">${element.commenter}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">${element.date}</h6>
+                                <div class="row">
+                                <div class="col-2">
+                                    <img src="../../img/avatar/randomAvatar${randomNum}.png" alt="" style="width:30px" class="rounded-circle" srcset="">
+                                </div>
+                                <div class="col-3">
+                                    <h5 class="card-title" style="margin-top:3px">${element.commenter}</h5>
+                                </div>       
+                                </div>
+
+                              
+                                <p class="card-subtitle mb-2 fs-6 text-muted">${element.date}</p>
                                 <p class="card-text" style="height: 50px">${element.content}</p>
-                                <a href="#" class="card-link">爱心</a>
-                                <a href="#" class="card-link">评论</a>
+                                <a href="#" class="card-link text-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                              </svg></a>
+                                <a href="#" class="card-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                              </svg></a>
                             </div>
                         </div>
                     </div>`;
@@ -96,12 +126,14 @@ $("#addToShoppingCartBtn").click(function (e) {
     $.ajax({
         type: "post",
         url: "/end/user/addToShoppingCart",
-        data: { userId: userId, goodsId: id, goodsCount: 1 },
+        data: { userId: userId, goodsId: id, goodsCount: goodsCount },
         dataType: "json",
         success: function (response) {
             // let userShoppingCartList = response.shoppingCartList;
             // console.log(response);
-            alert(`添加成功`);
+            // alert(`添加成功`);
+            $('#showNum').html(($('#showNum').html()-0)+goodsCount);
+            $('#showNum').prop("hidden",false);
         }
     });
 });
@@ -144,7 +176,7 @@ function recentlyViewed(params) {
         }
     }
     // 剔重,并提高相同浏览时最近一条的展示权重
-    recentlyViewedArr.unshift(id + 1);
+    recentlyViewedArr.unshift(id);
     for (let index = 0; index < recentlyViewedArr.length; index++) {
         const element = recentlyViewedArr[index];
         for (let index2 = index + 1; index2 < recentlyViewedArr.length; index2++) {
@@ -157,6 +189,7 @@ function recentlyViewed(params) {
     }
     recentlyViewedList.recentlyViewedArr = recentlyViewedArr;
     recentlyViewedList.userId = userId;
+    // 用于记录全部用户的浏览数据
     recentlyViewedListArr.push(recentlyViewedList);
     localStorage.setItem("recentlyViewedListArr", JSON.stringify(recentlyViewedListArr));
 
@@ -169,7 +202,7 @@ function recentlyViewed(params) {
             if (element2.id == element) {
                 str += `
                 <div class="col">
-                <div class="card">
+                <div class="card" data-id=${element2.id} onclick="jumbDetail(this)">
                     <img src="${unescape(element2.goodsImg)}" alt="">
                     <div class="card-body">
                         <h5 class="card-title">${element2.goodsName}</h5>
@@ -182,8 +215,26 @@ function recentlyViewed(params) {
     $('#recentlyViewedArea').html(str);
 }
 
+// 跳转详情
+function jumbDetail(params) {
+    let id = $(params).attr("data-id");
+    window.location.href = `../goodsDetailPage/goodsDetail.html?id=${id}`;
+}
+
+// 修复iframe跳转时焦点不在顶部bug
+function jumbPageTop(params) {
+    $('#goBackTopBtn').trigger("click");
+}
+
+function clickAnchor() {
+	document.getElementById('header').scrollIntoView(true);
+    // 平滑过渡
+	// document.getElementById('header').scrollIntoView({ behavior: "smooth" });
+}
+
 let url = window.location.href;
-let id = url.split("id=")[1] - 1;//获得商品id
+let id = url.split("id=")[1];//获得商品id
 let goodsArr;
 init(id);
 recentlyViewed();
+jumbPageTop();

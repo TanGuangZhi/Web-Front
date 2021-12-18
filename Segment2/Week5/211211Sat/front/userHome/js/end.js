@@ -60,12 +60,17 @@ Mock.mock("/end/userHome/queryAddress", "post", function (obj) {
     let userName;
     userList.forEach(element => {
         if (element.userId == jsonObj.userId) {
+            if (element.otherStatus == "newUser") {
+                // 新用户不需要模拟地址(设计缺陷,我的问题)
+                // return;
+            }
             userName = element.userName;
         }
     });
 
     let addressRandomList = [];
     let temp = {};
+    // 为用户生成地址
     let useraddressStr = JSON.parse(localStorage.getItem("userAddressList"));
     if (useraddressStr && useraddressStr.userId == jsonObj.userId) {
         addressRandomList = useraddressStr.userAddressList;

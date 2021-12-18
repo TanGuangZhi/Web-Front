@@ -11,14 +11,19 @@ body {
   width: 1200px;
   border: 1px solid red;
   margin: 100px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .container .outer {
   width: 310px;
   height: 100px;
-  perspective: 500px;
+  -webkit-perspective: 500px;
+          perspective: 500px;
   margin-bottom: 50px;
 }
 
@@ -26,9 +31,12 @@ body {
   width: 310px;
   height: 100px;
   border: 1px solid green;
-  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: all 1s;
   transition: all 1s;
-  transform-origin: center center -50px;
+  -webkit-transform-origin: center center -50px;
+          transform-origin: center center -50px;
 }
 
 .container .outer .item .image img {
@@ -39,11 +47,15 @@ body {
 .container .outer .item .text {
   width: 100%;
   height: 100%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ecf1f4), to(#becad9));
   background-image: linear-gradient(#ecf1f4, #becad9);
   padding: 5px 10px;
-  box-sizing: border-box;
-  transform-origin: top center;
-  transform: rotateX(-90deg);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+  -webkit-transform: rotateX(-90deg);
+          transform: rotateX(-90deg);
 }
 
 .container .outer .item .text strong {
@@ -56,5 +68,7 @@ body {
 }
 
 .container .outer .item:hover {
-  transform: rotateX(90deg);
+  -webkit-transform: rotateX(90deg);
+          transform: rotateX(90deg);
 }
+/*# sourceMappingURL=index.css.map */

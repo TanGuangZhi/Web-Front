@@ -90,7 +90,7 @@ Mock.mock("/end/deleteUser", "post", function (obj) {
     };
 });
 
-// 批量删除商品方法
+// 批量删除用户方法
 Mock.mock("/end/deleteUserBatch", "post", function (obj) {
     //decodeURI:获取客户端发送过来的数据进行解码
     let requestData = unescape(decodeURI(obj.body));//index=0
@@ -98,7 +98,12 @@ Mock.mock("/end/deleteUserBatch", "post", function (obj) {
     delArr = delArr.split(",");
     let delLength = 0; // 消除删除一个数后对后续删除造成的影响
     delArr.forEach(element => {
-        userInfoList[element].userStatus = "deleted";
+        for (let index = 0; index < userInfoList.length; index++) {
+            const element2 = userInfoList[index];
+            if (element2.userId == element) {
+                userInfoList[index].userStatus = "deleted";
+            }
+        }
     });
     localStorage.setItem("userInfoList", JSON.stringify(userInfoList));
     return {

@@ -1,23 +1,40 @@
 // 获取缓存中的订单
-let userId, nowGoodsId, userOrderList, userOrderListTemp;
+let userId, nowGoodsId, userOrderList, userOrderListTemp, allUserOrderList, nowUserIndex;
 function getOrderList(params) {
-    userOrderList = JSON.parse(localStorage.getItem("userOrderList"));
-    userId = userOrderList.userId;
-    userOrderListTemp = userOrderList.orderList;
+    allUserOrderList = JSON.parse(localStorage.getItem("allUserOrderList"));
+    let loginerInfoLocal = JSON.parse(localStorage.getItem("loginUserInfo"));
+    userId = loginerInfoLocal.userId;
+
+    for (let index = 0; index < allUserOrderList.length; index++) {
+        const element = allUserOrderList[index];
+        if (element.userId == userId) {
+            userOrderListTemp = element.orderList;
+            nowUserIndex = index;
+        }
+
+    }
     let goodsList = JSON.parse(localStorage.getItem("goodsList"));
     let str = ``;
     for (let index = 0; index < userOrderListTemp.length; index++) {
         const element = userOrderListTemp[index];
+        let goodsIndex;
+        for (let index2 = 0; index2 < goodsList.length; index2++) {
+            const element2 = goodsList[index2];
+            if (element2.id == element.goodsId) {
+                goodsIndex = index2;
+            }
+
+        }
         str += `
             <tr>
                 <td>${element.orderId}</td>
                 <td>${element.orderTime}</td>
                 <td class="orderCompTime">${element.orderCompTime}</td>
-                <td>${goodsList[element.goodsId].goodsName}</td>
-                <td><img src="${goodsList[element.goodsId].goodsImg}" width="50px"></td>
-                <td>${goodsList[element.goodsId].goodsPrice}元</td>
+                <td>${goodsList[goodsIndex].goodsName}</td>
+                <td><img src="${goodsList[goodsIndex].goodsImg}" width="50px"></td>
+                <td>${goodsList[goodsIndex].goodsPrice}元</td>
                 <td>${element.goodsCount} 件</td>
-                <td>${(goodsList[element.goodsId].goodsPrice * element.goodsCount).toFixed(1)}元</td>
+                <td>${(goodsList[goodsIndex].goodsPrice * element.goodsCount).toFixed(1)}元</td>
                 <td class="orderStatus">${element.orderStatus}</td>
                 <td><button type="button" class="btn ${element.confirmReceiptGoodsClass ?? "btn-success"} confirmReceiptGoods" onClick="confirmReceiptGoods(this,${element.orderId},${element.goodsId})">${element.confirmReceiptGoodsText ?? "确认收货"}</button></td>
                 <td><button class="btn btn-warning cancelOrder" ${element.cancelOrderProp} onClick="cancelOrder(this,${element.orderId})">取消订单</button></td>
@@ -31,12 +48,7 @@ function getOrderList(params) {
 function confirmReceiptGoods(params, orderId, goodsId) {
     if ($(params).hasClass("btn-info")) {
         addComment(params, goodsId);
-        // alert(`#TODO 添加评论`);
     } else {
-        let allUserOrderList = JSON.parse(localStorage.getItem("userOrderList"));
-        if (!allUserOrderList) {
-            allUserOrderList = [];
-        }
         for (let index = 0; index < userOrderListTemp.length; index++) {
             const element = userOrderListTemp[index];
             if (element.orderId == orderId) {
@@ -48,12 +60,8 @@ function confirmReceiptGoods(params, orderId, goodsId) {
                 break;
             }
         }
-        // userOrderList id . comptime = now
         $(params).html("添加评论");
         $(params).addClass("btn-info");
-        userOrderList.orderList = userOrderListTemp;
-        localStorage.setItem("userOrderList", JSON.stringify(userOrderList));
-        // allUserOrderList.push(userOrderList);
         localStorage.setItem("allUserOrderList", JSON.stringify(allUserOrderList));
         getOrderList();
     }
@@ -63,7 +71,7 @@ function confirmReceiptGoods(params, orderId, goodsId) {
 
 function addComment(params, goodsId) {
     nowGoodsId = goodsId;
-    // 触发模态框,要点2次,是个bug,不想修
+    // #TODO 触发模态框,要点2次,是个bug,不想修
     $(params).attr({ "data-bs-toggle": "modal", "data-bs-target": "#addCommentModal" })
 }
 

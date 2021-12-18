@@ -85,7 +85,6 @@ function hideSomeBtn(params) {
 }
 
 
-
 // 从后端查询用户
 function queryUserInfoFromEnd(params) {
     $.ajax({
@@ -130,19 +129,6 @@ function judgeCookie(params) {
             hideSomeBtn();
         }
     }
-
-    // if (!status.includes(loginerInfoLocal)) {
-    //     $("#loginModal [name=\"userName\"]").val(loginerInfoLocal.userName);
-    //     $("#loginModal [name=\"userPass\"]").val(loginerInfoLocal.userPass);
-    // } else if (!status.includes(loginerInfoSession)) { // 如果session有缓存,则左侧填充用户名,代表已登录,并对按钮进行操作
-    //     $("#loginModal [name=\"userName\"]").val(loginerInfoSession.userName);
-    //     $("#loginModal [name=\"userPass\"]").val(loginerInfoSession.userPass);
-    //     // $('#loginModal #remeberMe').prop("checked", true);
-    //     // 左侧显示用户名
-    //     $('#userInfo #userName').html(loginerInfoSession.userName);
-    //     showOtherBtn(loginerInfoSession.userType);
-    //     hideSomeBtn();
-    // }
 }
 
 // 注销用户登录

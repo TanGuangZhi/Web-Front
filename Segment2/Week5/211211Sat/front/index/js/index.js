@@ -39,7 +39,7 @@ function firstContentHeaderChildContend(params) {
         let result = params.innerText;
         if (element.goodsName.includes(result)) {
             str += `
-                <div class="col" >
+                <div class="col border border-light border-2" style="height:150px" data-id=${element.id} onclick="jumbDetail(this)">
                     <img src="${element.goodsImg}" alt="" width="60px">
                     <p style="width:100px">${element.goodsName}</p>
                     <p style="width:150px">价格:${element.goodsPrice}元</p>
@@ -118,7 +118,7 @@ function secondContentHeaderContend(params) {
         const element = goodsList[index];
         if (element.goodsType == params.innerText) {
             str += `
-                <div class="col-md-2 table-bordered" style="background: white;" data-id=${element.id + 1} onclick="jumbDetail(this)">
+                <div class="col-3  border border-light border-2" style="background: white;" data-id=${element.id} onclick="jumbDetail(this)">
                 <img src="${element.goodsImg}" width="80%" style="margin-top: 15px">
                 <p style="color: gray;margin-top: 10px">${element.goodsName}</p>
                 <p style="color: orangered">${element.goodsPrice}元</p>

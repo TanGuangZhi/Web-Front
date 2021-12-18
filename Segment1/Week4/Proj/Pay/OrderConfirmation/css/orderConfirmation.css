@@ -1,5 +1,6 @@
 :root {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 *,
@@ -7,7 +8,8 @@
 ::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 .container {
@@ -25,16 +27,22 @@
 .container .header .box {
   width: 1000px;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .container .header .left {
-  flex-basis: 10%;
+  -ms-flex-preferred-size: 10%;
+      flex-basis: 10%;
 }
 
 .container .header .right {
-  flex-basis: 80%;
+  -ms-flex-preferred-size: 80%;
+      flex-basis: 80%;
   color: #c00000;
   font-weight: bold;
 }
@@ -67,6 +75,8 @@
   width: 1000px;
   height: 600px;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -86,21 +96,31 @@
 }
 
 .container .main > .left .receiveInfo .receiveInfoHeader p {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border-bottom: 1px solid gray;
   padding-bottom: 10px;
 }
 
 .container .main > .left .receiveInfo .receiveInfoBody {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 400px;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .container .main > .left .receiveInfo .receiveInfoBody .item {
-  flex-basis: 48%;
+  -ms-flex-preferred-size: 48%;
+      flex-basis: 48%;
   height: 150px;
   border: 1px solid gray;
 }
@@ -114,9 +134,14 @@
 .container .main > .left .receiveInfo .receiveInfoBody .item .itemBody {
   height: 70%;
   background-color: #f5f5f5;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .container .main > .left .receiveInfo .receiveInfoBody .item span {
@@ -143,13 +168,20 @@
   width: 100%;
   height: 70px;
   margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .container .main > .left .payMethod .payMethodBody .box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-basis: 20%;
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
   height: 40px;
   border: 1px solid gray;
   text-align: center;
@@ -202,12 +234,17 @@
   width: 100%;
   height: 70px;
   margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .container .main > .left .express .expressBody div {
-  flex-basis: 20%;
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
   height: 40px;
   border: 1px solid gray;
   text-align: center;
@@ -241,8 +278,12 @@
 .container .main > .right .orderContent .orderContentHeader p {
   font-size: 16px;
   font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin: 0 10px;
 }
 
@@ -256,6 +297,8 @@
 .container .main > .right .orderContent .orderContentBody .item {
   width: 100%;
   height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
   padding-top: 20px;
@@ -263,14 +306,16 @@
 }
 
 .container .main > .right .orderContent .orderContentBody .item .itemImage {
-  flex-basis: 30%;
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
   background-image: url(../img/order01.png);
   background-repeat: no-repeat;
   height: 100px;
 }
 
 .container .main > .right .orderContent .orderContentBody .item .itemInfo {
-  flex-basis: 70%;
+  -ms-flex-preferred-size: 70%;
+      flex-basis: 70%;
 }
 
 .container .main > .right .orderContent .orderContentBody .item .itemInfo p {
@@ -290,8 +335,12 @@
 
 .container .main > .right .orderContent .orderContentFooter .orderContentDetail p,
 .container .main > .right .orderContent .orderContentFooter .orderContentSum p {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: 10px;
 }
 
@@ -310,3 +359,4 @@
   color: #fff;
   border: none;
 }
+/*# sourceMappingURL=orderConfirmation.css.map */

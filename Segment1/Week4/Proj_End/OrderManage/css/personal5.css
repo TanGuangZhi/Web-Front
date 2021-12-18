@@ -28,6 +28,8 @@
 .container1 .information {
   width: 894;
   height: 337px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: relative;
 }
@@ -53,7 +55,8 @@
 .container1 .information .geren li {
   width: 670px;
   height: 47.5px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-top: 20px;
   border-bottom: 1px solid #d3d3d3;
 }
@@ -79,3 +82,4 @@
   font-size: 12px;
   float: right;
 }
+/*# sourceMappingURL=personal5.css.map */

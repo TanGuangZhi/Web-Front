@@ -1,5 +1,6 @@
 :root {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 *,
@@ -7,7 +8,8 @@
 ::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 main .showMore img {
@@ -16,3 +18,4 @@ main .showMore img {
   border-radius: 20px;
   margin: auto;
 }
+/*# sourceMappingURL=index.css.map */

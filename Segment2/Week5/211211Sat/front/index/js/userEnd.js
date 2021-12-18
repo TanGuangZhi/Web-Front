@@ -41,7 +41,7 @@ if (userStr != null) {
                 "userPass": "1234",
                 "userType": "user",
                 "userStatus": "right",
-                "userAvatar": /\.\/img\/avatar\/userAvatar([0-9])\.png/,   // \/ 等价于"/"   \. 等于"."
+                "userAvatar": /\.\/img\/avatar\/userAvatar([1-9])\.png/,   // \/ 等价于"/"   \. 等于"."
             }
         ]
     });
@@ -116,37 +116,48 @@ if (userShoppingCartStr != null) {
 Mock.mock("/end/user/queryShoppingCart", "post", function (obj) {
     let requestData = decodeURI(obj.body);//index=0
     let jsonObj = converter(requestData);//{"index":"0"}
-    userShoppingCartList = userShoppingCartList.filter(element => element.userId == jsonObj.userId);
-    return userShoppingCartList;
+    let loginerUserShoppingCartList = userShoppingCartList.filter(element => element.userId == jsonObj.userId);
+    localStorage.setItem("loginerUserShoppingCartLength", JSON.stringify(loginerUserShoppingCartList[0].shoppingCartList.length));;
+    return loginerUserShoppingCartList
 })
 
 // 添加购物车
 Mock.mock("/end/user/addToShoppingCart", "post", function (obj) {
+    let nowUserSPCartList;
     let requestData = decodeURI(obj.body);//index=0
     let jsonObj = converter(requestData);//{"index":"0"}
-    userShoppingCartList = userShoppingCartList.filter(element => element.userId == jsonObj.userId);
-    // console.log(JSON.parse(localStorage.getItem("goodsList")));
-    try {
-        if (mergeDulShopping(userShoppingCartList[0].shoppingCartList, jsonObj.goodsId)) {
-            localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
-            return userShoppingCartList;
+    // 找到当前对应用户
+    nowUserSPCartList = userShoppingCartList.filter(element => element.userId == jsonObj.userId);
+
+    // #TODO 优化逻辑 211217Fri_
+    // 新用户
+    if (nowUserSPCartList.length === 0) {
+        let temp = {
+            shoppingCartList: [],
+            userId: jsonObj.userId
         }
-        userShoppingCartList[0].shoppingCartList.push(jsonObj);
+        temp.shoppingCartList.push(jsonObj);
+        userShoppingCartList.push(temp)
         localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
-        return userShoppingCartList;
-    } catch (error) {
         return userShoppingCartList;
     }
 
+    if (mergeDulShopping(nowUserSPCartList[0].shoppingCartList, jsonObj.goodsId, jsonObj.goodsCount)) {
+        localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
+    } else {
+        nowUserSPCartList[0].shoppingCartList.push(jsonObj);
+        localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
+    }
+    return userShoppingCartList;
 })
 
 // 叠加相同商品
-function mergeDulShopping(list, goodsId) {
+function mergeDulShopping(list, goodsId, goodsCount) {
     for (let index = 0; index < list.length; index++) {
         const element = list[index];
         if (element.goodsId == goodsId) {
             let num = element.goodsCount - 0;
-            num += 1;
+            num += goodsCount - 0;
             element.goodsCount = num;
             return true;
         }

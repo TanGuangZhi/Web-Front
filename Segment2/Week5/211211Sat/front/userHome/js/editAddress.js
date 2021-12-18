@@ -12,32 +12,37 @@ function queryUserAddress(params) {
         data: { userId: userId },
         dataType: "json",
         success: function (response) {
-            let str = ``;
-            temp = response;
-            userAddressList = response.userAddressList;
-            userAddressList.forEach((element,index) => {
-                // 地址拼接
-                let addressDetailInfo = `${element.province}${element.city}${element.county}`;
-                str += ` <tr>
-                <td>
-                    <label><input type="checkbox" data-index=${index} onclick="checkChildFlag(this.checked)" class="sel form-check-input mt-0"></label>
-                </td>
-                <th scope="row">${index + 1}</th>
-                <td>${addressDetailInfo}</td>
-                <td>${element.zip}</td>
-                <td>${element.name}</td>
-                <td>${element.phone}</td>
-                <td> <button class="btn btn-primary changeAddressBtn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight" data-index=${index} data-id="">修改</button></td>
-                <td><button class="btn btn-warning delAddressBtn" onclick="delAddressBtn(this,${index})" data-index="${index}">删除</button> </td>
-            </tr>`;
-            });
-            $("#showAddressBody").html(str);
+            try {
+                let str = ``;
+                temp = response;
+                userAddressList = response.userAddressList;
+                userAddressList.forEach((element, index) => {
+                    // 地址拼接
+                    let addressDetailInfo = `${element.province}${element.city}${element.county}`;
+                    str += ` <tr>
+                    <td>
+                        <label><input type="checkbox" data-index=${index} onclick="checkChildFlag(this.checked)" class="sel form-check-input mt-0"></label>
+                    </td>
+                    <th scope="row">${index + 1}</th>
+                    <td>${addressDetailInfo}</td>
+                    <td>${element.zip}</td>
+                    <td>${element.name}</td>
+                    <td>${element.phone}</td>
+                    <td> <button class="btn btn-primary changeAddressBtn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                    aria-controls="offcanvasRight" data-index=${index} data-id="">修改</button></td>
+                    <td><button class="btn btn-warning delAddressBtn" onclick="delAddressBtn(this,${index})" data-index="${index}">删除</button> </td>
+                </tr>`;
+                });
+                $("#showAddressBody").html(str);
+            } catch (error) {
+
+            }
+
         }
     });
 }
 
-// 添加按钮触发事件
+// 添加地址按钮触发事件
 $(" [data-bs-target='#addAddreModal']").click(function (e) {
     clearPrevAddressInput();
 });

@@ -18,7 +18,7 @@
             z-index: 10;
             background: white;
             /* height: 600px; */
-            top: 42px;
+            top: 62px;
         }
 
         #firstNav li {
@@ -75,7 +75,6 @@
 
 <body>
     <div class="container-fluid  bg-body rounded">
-        <!-- 二级导航栏 -->
         <div class="row mt-2 mb-3 shadow-sm" id="secondNav">
             <ul class="nav justify-content-around border rounded-3" style="line-height: 50px;" id="secondNavUl">
                 <li class="nav-item"><a class="nav-link text-dark" href="">蜗牛手机max</a></li>
@@ -170,8 +169,8 @@
                 </ul>
             </div>
             <div class="col-10">
-                <div class="row row-cols-6 firstTypeList">
-                    <div class="col">
+                <div class="row row-cols-6 firstTypeList ">
+                    <!-- <div class="col">
                         <img src="img/banner1.png" alt="" width="60px">
                         <p>价格:9999元</p>
                     </div>
@@ -194,35 +193,7 @@
                     <div class="col">
                         <img src="img/banner1.png" alt="" width="60px">
                         <p>价格:9999元</p>
-                    </div>
-                    <div class="col">
-                        <img src="img/banner1.png" alt="" width="60px">
-                        <p>价格:9999元</p>
-                    </div>
-                    <div class="col">
-                        <img src="img/banner1.png" alt="" width="60px">
-                        <p>价格:9999元</p>
-                    </div>
-                    <div class="col">
-                        <img src="img/banner1.png" alt="" width="60px">
-                        <p>价格:9999元</p>
-                    </div>
-                    <div class="col">
-                        <img src="img/banner1.png" alt="" width="60px">
-                        <p>价格:9999元</p>
-                    </div>
-                    <div class="col">
-                        <img src="img/banner1.png" alt="" width="60px">
-                        <p>价格:9999元</p>
-                    </div>
-                    <div class="col">
-                        <img src="img/banner1.png" alt="" width="60px">
-                        <p>价格:9999元</p>
-                    </div>
-                    <div class="col">
-                        <img src="img/banner1.png" alt="" width="60px">
-                        <p>价格:9999元</p>
-                    </div>
+                    </div> -->
                 </div>
                 <div id="carouselExampleCaptions" class="carousel carousel-dark slide" style="height: 700px;"
                     data-bs-ride="carousel">
@@ -273,17 +244,24 @@
         <!-- 后台数据展示区 -->
 
         <div class="row mt-4">
-            <div class="searchGoods justify-content-end">
-                <form class="form-check-inline">
-                    商品名称: <input type="text" placeholder="请输入商品名称" id="goodsName">
-                    商品类型: <select name="" id="goodsType">
-                        <option value="手机">手机</option>
-                        <option value="手上岛咖啡">手上岛咖啡 </option>
-                    </select>
+            <!-- 搜索按钮区 -->
+            <div class="searchGoods justify-content-end mb-4">
+                <form class="row  g-3 ">
+                    <div class="col-auto">
+                        商品名称: <input type="text" class="form-control" placeholder="请输入商品名称" id="goodsName">
+                    </div>
+                    <div class="col-auto">
+                        商品类型: <select name="" id="goodsType" class="form-select">
+                            <option value="手机">手机</option>
+                            <option value="手上岛咖啡">手上岛咖啡 </option>
+                        </select>
+                    </div>
                     <!--商品价格: <select name="" id="">
                             <option value="">111</option>
                         </select> -->
-                    <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
+                    <div class="col-auto pt-4">
+                        <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
+                    </div>
                 </form>
             </div>
             <table class="table mt-3 table-striped table-hover shadow-sm rounded">

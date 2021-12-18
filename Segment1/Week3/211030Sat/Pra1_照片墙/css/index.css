@@ -1,5 +1,6 @@
 :root {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 *,
@@ -7,7 +8,8 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 body {
@@ -18,14 +20,20 @@ body {
   width: 800px;
   height: 700px;
   border: 1px solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin: auto;
 }
 
 .container .show {
   border: 1px solid gold;
-  flex-basis: 80%;
+  -ms-flex-preferred-size: 80%;
+      flex-basis: 80%;
   background-image: url(../img/pic1.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -35,7 +43,8 @@ body {
 
 .container .footNav {
   border: 1px solid green;
-  flex-basis: 20%;
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
 }
 
 .container .footNav ul {
@@ -98,3 +107,4 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+/*# sourceMappingURL=index.css.map */

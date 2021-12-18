@@ -40,6 +40,7 @@ function queryUser(page, limitFlag) {
             });
             $("#showUser").html(str);
             getAllTypes();
+            $('#all-id').prop("checked",false); // 消除额外影响
             disabledBtnInit();
             queryPage(response.nowPage);
 
@@ -97,8 +98,10 @@ function getAllTypes(params) {
     let str = `<option  value="">全部</option>`;
     allInfoList2.forEach(element => {
         if (typeArr.indexOf(element.userType) === -1) {
-            typeArr.push(element.userType);
-            str += `<option>${element.userType}</option>`;
+            if (element.userType) {
+                typeArr.push(element.userType);
+                str += `<option>${element.userType}</option>`;
+            }
         }
     });
     $("#userType,#changeUserTypeId,#addUserTypeId").html(str);
@@ -150,7 +153,7 @@ $('#delByBatchBtn').on("click", function () {
 
     $('.sel').each(function () {
         if ($(this).prop("checked")) {
-            delArr.push($(this).attr("data-id") - 1);
+            delArr.push($(this).attr("data-id"));
         }
     });
     let isOk = confirm("您确定要删除吗?");//点击确定 true  取消 false
@@ -241,7 +244,7 @@ function selAll(flag) {
     for (const iterator of childSelectList) {
         iterator.checked = flag;
     }
-    checkChildFlag(); // 刷新总价
+    checkChildFlag();
 }
 
 function checkChildFlag(flag) {

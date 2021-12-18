@@ -38,11 +38,18 @@ body {
 .black .containerov .ipt1 {
   width: 390px;
   height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  box-sizing: border-box;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .black .containerov .ipt1 .box {
@@ -86,9 +93,14 @@ body {
 .black .containerov .btn1 {
   width: 100%;
   height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .black .containerov .btn1 .bao1 {
@@ -116,3 +128,4 @@ body {
   border-radius: 10px;
   border-style: none;
 }
+/*# sourceMappingURL=personal4-1.css.map */

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 :root {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 *,
@@ -8,7 +9,8 @@
 ::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 a {
@@ -26,8 +28,12 @@ a {
   height: 100px;
   background-color: #fff;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding-top: 20px;
 }
 
@@ -48,8 +54,12 @@ a {
 
 .container .header .nav {
   width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .container .header .nav .item a {
@@ -85,13 +95,17 @@ a {
 .container .header .nav .item .secondDetail .box {
   width: 1200px;
   height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: #ffffff;
-  justify-content: space-around;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .container .header .nav .item .secondDetail .box .secondDetailBox {
-  flex-basis: 20%;
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
   height: 100%;
 }
 
@@ -136,6 +150,8 @@ a {
 
 .container .header .right {
   height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -214,8 +230,11 @@ a {
 .container .main .banner {
   width: 300%;
   height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  animation: bannerMove 15s linear 0s infinite;
+  -webkit-animation: bannerMove 15s linear 0s infinite;
+          animation: bannerMove 15s linear 0s infinite;
   z-index: 1;
 }
 
@@ -248,17 +267,29 @@ a {
   position: absolute;
   right: 20px;
   top: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .container .main .banner .right .box {
   width: 100%;
   height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container .main .banner .right .box .icon {
@@ -293,6 +324,27 @@ a {
   height: 100%;
 }
 
+@-webkit-keyframes bannerMove {
+  0% {
+    margin-left: 0%;
+  }
+  33% {
+    margin-left: 0%;
+  }
+  38% {
+    margin-left: -100%;
+  }
+  66% {
+    margin-left: -100%;
+  }
+  69% {
+    margin-left: -200%;
+  }
+  100% {
+    margin-left: -200%;
+  }
+}
+
 @keyframes bannerMove {
   0% {
     margin-left: 0%;
@@ -317,8 +369,11 @@ a {
 .container .main .shopShow {
   width: 1200px;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .container .main .shopShow .upShow {
@@ -337,13 +392,19 @@ a {
 
 .container .main .shopShow .mainShow .box {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .container .main .shopShow .mainShow .box .item {
-  flex-basis: 25%;
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
   height: 400px;
   padding-left: 20px;
 }
@@ -353,6 +414,7 @@ a {
   height: 75%;
   background-repeat: no-repeat;
   background-size: contain;
+  -webkit-transition: all 1s;
   transition: all 1s;
   position: relative;
   border-radius: 10px 10px 10px 10px;
@@ -364,9 +426,12 @@ a {
   position: absolute;
   top: 20%;
   left: 25px;
-  transform: scale(0);
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 2s;
   transition: 2s;
-  transform-origin: -50% 0;
+  -webkit-transform-origin: -50% 0;
+          transform-origin: -50% 0;
 }
 
 .container .main .shopShow .mainShow .box .item .image .inbox2 {
@@ -375,9 +440,12 @@ a {
   position: absolute;
   bottom: 25%;
   left: 25px;
-  transform: scale(0);
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 2s;
   transition: 2s;
-  transform-origin: 150% 0;
+  -webkit-transform-origin: 150% 0;
+          transform-origin: 150% 0;
 }
 
 .container .main .shopShow .mainShow .box .item .image .inbox3 {
@@ -386,9 +454,12 @@ a {
   position: absolute;
   top: 30px;
   left: 20%;
-  transform: scale(0);
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 2s;
   transition: 2s;
-  transform-origin: 0 150%;
+  -webkit-transform-origin: 0 150%;
+          transform-origin: 0 150%;
 }
 
 .container .main .shopShow .mainShow .box .item .image .inbox4 {
@@ -397,17 +468,22 @@ a {
   position: absolute;
   top: 30px;
   right: 20%;
-  transform: scale(0);
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 0.6s;
   transition: 0.6s;
-  transform-origin: 0 -50%;
+  -webkit-transform-origin: 0 -50%;
+          transform-origin: 0 -50%;
 }
 
 .container .main .shopShow .mainShow .box .item .image:hover .inbox {
-  transform: scale(1);
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .container .main .shopShow .mainShow .box .item .image:hover {
-  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .container .main .shopShow .mainShow .box .item:nth-child(1) .image {
@@ -479,14 +555,20 @@ a {
 .container .footer .box {
   margin: auto;
   width: 1000px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .container .footer .item {
   width: 25%;
   height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container .footer .item .icon {
@@ -540,7 +622,8 @@ a {
 }
 
 .container .footer .content div {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   float: left;
   width: 25%;
   height: 60px;
@@ -565,3 +648,4 @@ a {
   text-align: center;
   padding-top: 25px;
 }
+/*# sourceMappingURL=home.css.map */

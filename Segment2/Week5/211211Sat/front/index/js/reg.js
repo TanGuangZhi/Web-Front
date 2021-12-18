@@ -39,6 +39,8 @@ $('#regModal #regBtn').click(function (e) {
             "userPhone": $("#regModal [name=userPhone]").val(),
             "userId": userId,
             "type": "user",
+            "userStatus": "right",
+            "otherStatus":"newUser",
         },
         dataType: "json",
         success: function (response) {

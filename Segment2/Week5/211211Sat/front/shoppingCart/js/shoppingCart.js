@@ -1,3 +1,14 @@
+// 不重要,用于替代alert默认样式
+var toastTrigger = document.getElementById('liveToastBtn')
+var toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
+    toastTrigger.addEventListener('click', function () {
+        var toast = new bootstrap.Toast(toastLiveExample)
+
+        toast.show()
+    })
+}
+
 // 从缓存中获取当前登录的用户
 let loginerInfoLocal = JSON.parse(localStorage.getItem("loginUserInfo"));
 userInfoList = JSON.parse(localStorage.getItem("userInfoList"));
@@ -164,22 +175,29 @@ function delGoods(goodsId, index) {
     });
 }
 
+
 // 结算按钮点击事件
 $('#settlementBtn').click(function (e) {
     let totalPrice = $('#allGoodsPrice').html();
     totalPrice -= 0;
     if (totalPrice <= 0 || $(".form-select").val() === "请选择地址") {
-        alert('请选择商品与地址');
+        // alert('请选择商品与地址');
+        $("#liveToastBtn").trigger("click");
         return;
     }
-    setOrderInfo()
+    else {
+        // 更新用户订单信息
+        setOrderInfo();
+        document.querySelector(`#allGoodsPrice`).innerHTML = "0.0";
+        // 提示用户是否跳转订单页
+        $('#jumbOrderMangerModalBtn').trigger("click");
+    }
     // alert('结算成功');
 
 });
 
 function setOrderInfo(params) {
     let date = new Date();
-    let userOrderList = {};
     // 检查所有checked为true的元素
     let childSelectList = document.getElementsByClassName("sel");
     // object转数组
@@ -188,7 +206,8 @@ function setOrderInfo(params) {
     let userId = loginerInfoLocal.userId
 
     // 获取checked为true的元素对应的id
-    let shoppingOrderList = [];
+    let shoppingOrder;
+    let allShoppingOrder = JSON.parse(localStorage.getItem("allShoppingOrder")) ?? [];
     childSelectList.forEach(value => {
         if (value.checked === true) {
             // let trDom = value.parentNode.parentNode;
@@ -197,11 +216,11 @@ function setOrderInfo(params) {
             let scIndex;
             for (let index = 0; index < tempArr.length; index++) {
                 const element = tempArr[index];
-                if(element.goodsId == id){
+                if (element.goodsId == id) {
                     scIndex = index;
                 }
             }
-            let shoppingOrder = {
+            shoppingOrder = {
                 orderId: date.getTime() + scIndex,
                 orderCompTime: "待收货",
                 orderTime: formatDate(date),
@@ -209,7 +228,9 @@ function setOrderInfo(params) {
                 goodsCount: tempArr[scIndex].goodsCount,
                 orderStatus: "待收货"
             }
-            shoppingOrderList.push(shoppingOrder);
+            allShoppingOrder.push(shoppingOrder);
+            localStorage.setItem("allShoppingOrder", JSON.stringify(allShoppingOrder));
+            // userOrderList.push(shoppingOrder);
 
             let goodsId = $(value).attr("data-id");
             for (let index = 0; index < tempArr.length; index++) {
@@ -220,20 +241,30 @@ function setOrderInfo(params) {
             }
             for (let index = 0; index < userShoppingCartList.length; index++) {
                 const element = userShoppingCartList[index];
-                if(element.userId == userId){
+                if (element.userId == userId) {
                     element.shoppingCartList = tempArr;
                 }
-                
             }
             localStorage.setItem("userShoppingCartList", JSON.stringify(userShoppingCartList));
         }
     });
-    userOrderList.orderList = shoppingOrderList;
-    userOrderList.userId = userId;
-    alert(`success`);
+    let allUserOrderList = JSON.parse(localStorage.getItem("allUserOrderList")) ?? [];
+    if (allUserOrderList.length == 0) {
+        allUserOrderList.push({ userId: userId, orderList: allShoppingOrder });
+
+    } else {
+        for (let index = 0; index < allUserOrderList.length; index++) {
+            const element = allUserOrderList[index];
+            if (element.userId == userId) {
+                element.orderList = (allShoppingOrder);
+            }
+        }
+    }
+    // alert(`success`);
     getShoppingCart();
     checkChildFlag(); // 刷新总价
-    localStorage.setItem("userOrderList", JSON.stringify(userOrderList));
+
+    localStorage.setItem("allUserOrderList", JSON.stringify(allUserOrderList));
 }
 
 // 获取用户全部地址信息

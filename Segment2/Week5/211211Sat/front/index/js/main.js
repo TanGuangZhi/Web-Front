@@ -8,7 +8,7 @@ function queryGoods(page, limitFlag) {
 
     let limit;
     if (limitFlag) {
-        limit = {goodsName:goodsName,goodsType:goodsType };
+        limit = { goodsName: goodsName, goodsType: goodsType };
     }
     $.ajax({
         url: "/goods/querygoods",
@@ -99,7 +99,11 @@ $("#commentBtn").click(function () {
     $(this).addClass("active");
 })
 
+
 // ================主函数================
 let goodsArr;
 queryGoods();
 queryPage();
+// showShoppingCartGoodsNum();
+// queryPage();
+// $('#showNum').html("response[0].shoppingCartList.length");

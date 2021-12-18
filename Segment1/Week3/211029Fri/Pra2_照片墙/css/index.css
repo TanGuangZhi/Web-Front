@@ -2,9 +2,15 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f7f7f7;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 100vh;
 }
 
@@ -24,6 +30,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  -webkit-transition: all 1s;
   transition: all 1s;
 }
 
@@ -36,11 +43,13 @@ body {
   background-size: cover;
   background-position: center center;
   opacity: 0.5;
+  -webkit-transition: all 1s;
   transition: all 1s;
 }
 
 .container .item:first-child {
-  transform: scale(0.4) translate(30%, 40%) rotate(-8deg);
+  -webkit-transform: scale(0.4) translate(30%, 40%) rotate(-8deg);
+          transform: scale(0.4) translate(30%, 40%) rotate(-8deg);
 }
 
 .container .item:first-child .pic1 {
@@ -48,7 +57,8 @@ body {
 }
 
 .container .item:nth-child(2) {
-  transform: scale(0.4) translate(20%, -60%) rotate(-8deg);
+  -webkit-transform: scale(0.4) translate(20%, -60%) rotate(-8deg);
+          transform: scale(0.4) translate(20%, -60%) rotate(-8deg);
 }
 
 .container .item:nth-child(2) .pic1 {
@@ -56,7 +66,8 @@ body {
 }
 
 .container .item:nth-child(3) {
-  transform: scale(0.4) translate(-30%, 20%) rotate(-8deg);
+  -webkit-transform: scale(0.4) translate(-30%, 20%) rotate(-8deg);
+          transform: scale(0.4) translate(-30%, 20%) rotate(-8deg);
 }
 
 .container .item:nth-child(3) .pic1 {
@@ -70,9 +81,11 @@ body {
 
 .container .item:hover {
   z-index: 1;
-  transform: scale(1);
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .container .item:hover .pic1 {
   opacity: 1;
 }
+/*# sourceMappingURL=index.css.map */
