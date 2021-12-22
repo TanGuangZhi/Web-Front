@@ -21,12 +21,54 @@
             position: absolute;
         }
 
-        .boxToHover{
+        .boxToHover {
             position: relative;
         }
 
-        .boxToHover img{
+        .boxToHover img {
             position: absolute;
+        }
+
+        .showDetailImg{
+            position: relative;
+            display: none;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .showDetailImg img{
+            /* display: none; */
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 500px;
+            margin: auto;
+            animation: imgShow 1.5s linear;
+        }
+
+        @keyframes imgShow {
+            /* 0%{
+                transform: rotate();
+            }
+            10%{
+                transform: rotate(30deg);
+            }
+            15%{
+                transform: rotate(-10deg);
+
+            }
+            100%{
+              transform: rotate(90deg); 
+            } */
+            from{
+                opacity: 0;
+            }to{
+                opacity: 1;
+                transform: rotate(720deg);
+            }
         }
     </style>
 </head>
@@ -39,6 +81,9 @@
         </div>
         <div class="boxToHover">
 
+        </div>
+        <div class="showDetailImg">
+            <img src="./img/dogShowDetail1.jpg" alt="">
         </div>
 
     </div>
@@ -110,18 +155,22 @@
         $(".rotateImg").click(function () {
             // over
             // $(this).css({ "transform": "scale(1.5)" });
-           
+
             // record_mouse_position
             // var e = event || window.event;
             // let thisStyle = $(this).attr("style");
             // thisStyle += ` top:${e.screenY}px; margin-left:${e.screenX}px; width:100px`
             // let thisEle = $(this);
             // $(this).attr("style", thisStyle);
-            console.log($(this)[0]);
-            $(".boxToHover").html($(this)[0]);
-            // $(this).hide();
-            $(this).removeClass("rotateImg");
+            // console.log($(this)[0]);
+            // $(".boxToHover").html($(this)[0]);
+            // // $(this).hide();
+            // $(this).removeClass("rotateImg");
             // return { 'x': e.screenX, 'y': screenY }
+
+            let randomNum = parseInt(Math.random()*7)+1;
+            $('.showDetailImg img').attr("src",`./img/dogShowDetail${randomNum}.jpg`)
+            $('.showDetailImg').css("display","block")
         });
     </script>
 </body>

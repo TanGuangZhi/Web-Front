@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        .main {
+            width: 600px;
+            height: 600px;
+        }
+
+        .num {
+            width: 200px;
+            height: 200px;
+            float: left;
+            text-align: center;
+            line-height: 200;
+            font-size: 40px;
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="main">
+            <div class="num">1</div>
+            <div class="num">2</div>
+            <div class="num">3</div>
+            <div class="num">4</div>
+            <div class="num" id="start">chou jiang</div>
+            <div class="num">5</div>
+            <div class="num">6</div>
+            <div class="num">7</div>
+            <div class="num">8</div>
+        </div>
+    </div>
+    <script>
+        // get all div element
+        let divNum = document.getElementsByClassName("num");
+        // get start btn
+        let startBtn = document.getElementById("start");
+        // set a end position
+        let stopPosition = parseInt(Math.random() * 8 + 1);
+
+        let divArr = [];
+        // set index
+        let arr = [0, 1, 2, 5, 8, 7, 6, 3]; // this is right sequence
+        // find all div by arr index,and store the div
+        for (let index = 0; index < arr.length; index++) {
+            const element = divNum[index];
+            divArr.push(divNum[arr[index]]);
+        }
+
+        // event 
+        startBtn.onclick = function () {
+            // clear exist red div bg
+            for (let index = 0; index < divArr.length; index++) {
+                const element = divArr[index];
+                element.style.background = "#fff";
+            }
+
+            stopPosition = parseInt(Math.random() * 8 + 1);
+            startBtn.innerText = "chou jiang ing";
+
+            let roundNum = 0; // round time to stop
+            let currentIndex = 0;
+
+            // control the speed between 100~500ms
+            speedFun(500);
+            function speedFun(speed) {
+                // judge round count 
+                if (roundNum != 50) {
+                    // judge speed is max (100)
+                    if (speed != 100) {
+                        // faster!
+                        speed -= 50;
+                    }
+                    roundNum++;
+                } else {
+                    // judge is lower max
+                    if (speed != 500) {
+                        speed += 50;
+                    } else {
+                        if (currentIndex == stopPosition) {
+                            // stop
+                            startBtn.innerText = "chou jiang"
+                            return;
+                        }
+                    }
+                }
+                // current position
+                currentIndex = currentIndex > 7 ? 0 : currentIndex;
+                animation(currentIndex);
+                currentIndex++;
+
+                // setTimeOut
+                setTimeout(() => {
+                    speedFun(speed);
+                }, speed);
+            }
+        }
+
+        function animation(index) {
+            if (index === 0) {
+                divArr[0].style.background = "red";
+                divArr[7].style.background = "white";
+                return;
+            }
+            divArr[index - 1].style.background = "white";
+            divArr[index].style.background = "red";
+        }
+    </script>
+</body>
+
+</html>

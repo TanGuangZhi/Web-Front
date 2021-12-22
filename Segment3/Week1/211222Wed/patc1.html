@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Game {
+            constructor() {
+                this.systemNumber = "";
+                this.userNumber = "";
+            }
+
+            welcome() {
+                // alert("welcome to game");
+                // generate random num
+                this.generateRandom();
+                // set chance time for guess
+                let chance = 4;
+                // judge if remain chance time
+                while (chance > 0) {
+                    // get user input num
+                    this.userNumber = prompt("please input num (4)")
+                    // judge sys and userInput
+                    let [a, b] = this.matchNumber();
+                    alert(`${a}A${b}B`);
+                    // console.log(a);
+                    if (a === 4) {
+                        return;
+                    } else {
+                        chance = this.judgeDupNum(chance);
+                        chance -= 1;
+                        if (chance == 0) {
+                            return;
+                        } else {
+                            alert(`remain ${chance} time chance`);
+                        }
+                    }
+
+                }
+
+            }
+
+            judgeDupNum(chance) {
+                let temp = new Set(this.userNumber);
+                if (temp.size < 4) {
+                    alert(`please don't input repeat num`);
+                    return chance += 1;
+                }
+            }
+
+            matchNumber() {
+                let [a, b] = [0, 0];
+                for (let index = 0; index < this.systemNumber.length; index++) {
+                    for (let index2 = 0; index2 < this.userNumber.length; index2++) {
+                        if (this.systemNumber[index] == this.userNumber[index2] && index !== index2) {
+                            b++;
+                        } else if (this.systemNumber[index] == this.userNumber[index2] && index === index2) {
+                            a++;
+                        }
+                    }
+                }
+                // alert(a,+"-",b);
+                return [a, b];
+            }
+
+            generateRandom() {
+                for (let index = 0; index < 4; index++) {
+                    const random = parseInt(Math.random() * 10);
+                    // remove duplicate
+                    if (this.systemNumber.includes(random)) {
+                        index--;
+                    } else {
+                        this.systemNumber += random;
+                    }
+                }
+                console.log(this.systemNumber);
+            }
+        }
+
+        const game = new Game();
+        game.welcome();
+
+
+
+    </script>
+</body>
+
+</html>
