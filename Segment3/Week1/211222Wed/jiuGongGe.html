@@ -70,7 +70,7 @@
                 element.style.background = "#fff";
             }
 
-            stopPosition = parseInt(Math.random() * 8 + 1);
+            // stopPosition = parseInt(Math.random() * 8 + 1);
             startBtn.innerText = "chou jiang ing";
 
             let roundNum = 0; // round time to stop
@@ -104,7 +104,7 @@
                 animation(currentIndex);
                 currentIndex++;
 
-                // setTimeOut
+                // setTimeOut :to avoid move too faster can't see the change
                 setTimeout(() => {
                     speedFun(speed);
                 }, speed);

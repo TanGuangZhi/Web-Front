@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <!-- 增加 -->
+        <div>
+            <h3>新增学员</h3>
+            <form>
+                <div>
+                    <label for="addName">学员姓名:</label>
+                    <input type="text" id="addName">
+                </div>
+                <div>
+                    <label for="addAge">学生年龄：</label>
+                    <input type="text" id="addAge">
+                </div>
+                <div>
+                    <span>学生性别</span>
+                    <input type="radio" id="addMale" name="addGender" value="男">
+                    <label for="addMale">男</label>
+                    <input type="radio" id="addFemale" name="addGender" value="女">
+                    <label for="addFemale">女</label>
+                </div>
+                <div>
+                    <button id="addBtn" type="button">确认新增</button>
+                </div>
+            </form>
+        </div>
+        <!-- 修改 -->
+        <div>
+            <h3>修改学员</h3>
+            <form></form>
+        </div>
+        <!-- 搜索 -->
+        <div>
+            <h3>搜索</h3>
+            <div></div>
+        </div>
+        <!-- 列表 -->
+        <div>
+            <h3>列表</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>学员编号</th>
+                        <th>学员姓名</th>
+                        <th>学员年龄</th>
+                        <th>学员性别</th>
+                        <th>学员操作</th>
+                    </tr>
+                </thead>
+                <tbody id="studentsTbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script>
+        // 建立初始数据
+        let studentsData = [
+            { id: 1, name: '张胜男', age: '23', gender: '男' },
+            { id: 2, name: '小美', age: '19', gender: '女' },
+            { id: 3, name: '李胜杰', age: '20', gender: '男' }
+        ]
+        // 初始值id
+        let newID = 4;
+
+        studentsRender();
+        //渲染学生显示
+        function studentsRender() {
+            var tbodyHTML = filterStudentsData().map(item => (
+                `<tr>
+                        <td>${item.id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.age != 0 ? item.age : '未填'}</td>
+                        <td>${item.gender}</td>
+                        <td>
+                            <button>修改</button>
+                            <button>删除</button>
+                        </td>
+                    </tr>`
+            ));
+            $('#studentsTbody').html(tbodyHTML);
+        }
+        // 筛选数据
+        function filterStudentsData() {
+            return studentsData;
+        }
+
+        // 新增数据
+        $('#addBtn').click(function (e) {
+            // 取消默认行为
+            e.preventDefault();
+
+            // 接受用户的输入数据
+            const id = newID++;
+            const name = $('#addName').val();
+            const age = $('#addAge').val() | 0;//管道符
+            const gender = $('[name=addGender]:checked').val();
+            // 验证是否为空
+            // 姓名不能为空，年龄可以为空，如果没有填年龄则显示“未填”，年龄在数据集中显示为0
+            if (name == "") {
+                alert("姓名不能为空！")
+                return;
+            }
+            //组织对称
+            let newData = { id, name, age, gender }
+            //放入数据集
+            studentsData.push(newData);
+            //重新渲染
+            studentsRender();
+        })
+    </script>
+</body>
+
+</html>

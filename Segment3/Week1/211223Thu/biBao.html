@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+    <script>
+
+        $.each(collection, function (indexInArray, valueOfElement) { 
+             
+        });
+
+
+        const books = [
+            {
+                bookname: '你不知道的javascript',
+                author: 'KYLE SIMPSON',
+                price: 79
+            },
+            {
+                bookname: 'JavaScript权威指南',
+                author: 'David Flanagan',
+                price: 139
+            },
+            {
+                bookname: 'JavaScript高级程序设计',
+                author: 'Nicholas C.Zakas',
+                price: 99
+            }
+        ]
+        function between(lower, top) {
+            return function (item) {
+                return item.price > lower && item.price < top;
+            }
+        }
+        // console.log(books.filter(between(50, 100)));
+        console.table(books.filter(between(50, 100)));
+    </script>
+</body>
+
+</html>
