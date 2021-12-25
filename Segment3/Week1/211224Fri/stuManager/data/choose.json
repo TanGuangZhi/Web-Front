@@ -1,0 +1,22 @@
+[
+    {
+        "chooseID":"1",
+        "studentID":"101",
+        "cursorID":["1","2"]
+    },
+    {
+        "chooseID":"2",
+        "studentID":"102",
+        "cursorID":["1","3"]
+    },
+    {
+        "chooseID":"3",
+        "studentID":"103",
+        "cursorID":["4"]
+    },
+    {
+        "chooseID":"4",
+        "studentID":"104",
+        "cursorID":[]
+    }
+]

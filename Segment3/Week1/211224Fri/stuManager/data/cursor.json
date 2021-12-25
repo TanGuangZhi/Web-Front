@@ -1,0 +1,22 @@
+[
+    {
+        "cursorID":"1",
+        "cursorName":"HTML"
+    },
+    {
+        "cursorID":"2",
+        "cursorName":"CSS"
+    },
+    {
+        "cursorID":"3",
+        "cursorName":"JAVASCRIPT"
+    },
+    {
+        "cursorID":"4",
+        "cursorName":"VUE"
+    },
+    {
+        "cursorID":"5",
+        "cursorName":"微信小程序"
+    }
+]

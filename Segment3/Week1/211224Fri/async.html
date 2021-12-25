@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js' crossorigin='anonymous'
+        integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4='></script>
+    <script>
+        // async function test(params) {
+        //     const res = await new Promise((resolve, reject) => {
+        //         $.ajax({
+        //             url: "http://jsonplaceholder.typicode.com/users",
+        //             success: function (response) {
+        //                 resolve(response);
+        //             }
+        //         });
+        //     });
+        //     return res;
+        // }
+
+        // // console.log(test);
+        // test().then(res => console.table(res));
+        function test(params) {
+            const res = new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "http://jsonplaceholder.typicode.com/users",
+                    success: function (response) {
+                        resolve(response);
+                    }
+                });
+            });
+            return res;
+        }
+
+        // console.log(test());
+        test().then(res => console.table(res));
+        console.log(`1`);
+    </script>
+</body>
+
+</html>
