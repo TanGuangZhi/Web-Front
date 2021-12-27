@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+        function axios(url,data,dataType,type){
+            return new Promise((resolve,reject)=>{
+                $.ajax({
+                    url,
+                    data:data!=null?data:{},
+                    dataType:dataType!=null?dataType:"json",
+                    type:type!=null?type:"get",
+                    success:(result)=>{
+                        resolve(result);
+                    },error:(error)=>{
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+
+       /* axios("js/db.js").then((result)=>{
+            console.log(result);
+        });*/
+
+        (async ()=>{
+            console.log(await axios("js/db.js"));
+        })();
+        console.log(1);
+    </script>
+</body>
+</html>
