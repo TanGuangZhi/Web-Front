@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap5/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="mian">
+            <div class="row mt-4 mb-4 justify-content-between">
+                <div class="col-5">
+                    <div class="row row-cols-2">
+                        <div class="col">
+
+                            <input type="text" class="form-control" id="searchInput" placeholder="please input name">
+                        </div>
+                        <div class="col">
+
+                            <button type='button' class="btn btn-primary" id="searchBtn">search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <button type='button' class="btn btn-success" id="addStuBtn">add</button>
+
+                </div>
+            </div>
+            <table class="table">
+                <thead id="thead">
+                    <td>
+                        <label>
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="checkbox" value=""
+                                    onchange="selAll(this.checked)" id="all-id"
+                                    aria-label="Radio button for following text input">全选/全消
+                            </div>
+                        </label>
+                    </td>
+                    <th>stuId↓</th>
+                    <th>stuName</th>
+                    <th>stuAge↓</th>
+                    <th>stuScore↓</th>
+                    <th>button</th>
+                </thead>
+                <tbody id="showTbody">
+                    <tr>
+                        <td>
+                            <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
+                        </td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>
+                            <button type='button' class="btn btn-light">change</button>
+                            <button type='button' class="btn btn-light">del</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="./bootstrap5/js/jquery-3.5.1.min.js"></script>
+    <script src="./bootstrap5/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/mock.js"></script>
+    <script src="./js/stuMock.js"></script>
+    <script>
+        function axios(url, ...params) {
+            let data = {};
+            let dataType = "json";//text/json
+            let type = "get";//get/post
+            for (let param of params) {
+                if (param == "json" || param == "text") {//改了 dataType 不能使用默认值
+                    dataType = param;
+                } else if (param == "get" || param == "post") {
+                    type = param;
+                } else {
+                    data = param;
+                }
+            }
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url,
+                    data,
+                    dataType,
+                    type,
+                    success: (result) => {
+                        resolve(result);
+                    }, error: (error) => {
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+
+        // ============全选全消开始============/
+        function selAll(flag) {
+            let childSelectList = document.getElementsByClassName("sel");
+            for (const iterator of childSelectList) {
+                iterator.checked = flag;
+            }
+            checkChildFlag();
+        }
+
+        function checkChildFlag(flag) {
+            let parentCheckedFlag = document.getElementById("all-id");
+            let childSelectList = document.getElementsByClassName("sel");
+            // object转数组
+            // childSelectList = Array.from(childSelectList);
+            childSelectList = [...childSelectList];
+            let allFlag = childSelectList.every(value => value.checked);
+            parentCheckedFlag.checked = allFlag;
+        }
+
+        function showTable(params = { stuName: "", sortCondition: "" }) {
+            axios("/end/stu/query", "post", params).then((result) => {
+                let str = ``;
+                result.forEach(element => {
+                    str += `
+                    <tr>
+                        <td>
+                            <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
+                        </td>
+                        <td>${element.stuId}</td>
+                        <td>${element.stuName}</td>
+                        <td>${element.stuAge}</td>
+                        <td>${element.stuScore}</td>
+                        <td>
+                             <button type='button' class="btn btn-light" onclick="changeStu(${element.stuId})">change</button>
+                             <button type='button' class="btn btn-light" onclick="delStu(${element.stuId})">del</button>
+                             </td>
+                    </tr>
+            `
+                });
+                $('#showTbody').html(str);
+            });
+        }
+        showTable();
+
+        let stuId = 50010;
+        $('#addStuBtn').click(() => {
+            let temp = {
+                stuId: stuId += 1,
+                stuName: "mary",
+                stuPass: "1234",
+                stuAge: "11",
+                stuScore: "99",
+                status: "right"
+            }
+            axios("/end/stu/add", "post", temp).then((result) => {
+                showTable();
+            })
+        });
+
+        function delStu(params) {
+            axios("/end/stu/del", "post", { stuId: params }).then((result) => {
+                showTable();
+            })
+        }
+
+        function changeStu(params) {
+            axios("/end/stu/change", "post", { stuId: params, stuName: "tome2" }).then((result) => {
+                showTable();
+            })
+        }
+
+        $("#searchBtn").click(function (e) {
+            e.preventDefault();
+            const stuName = $('#searchInput').val();
+            showTable({ stuName })
+        });
+        
+        // event delegate to sort by different col  
+        $("#thead").on("click", "th", function (e) {
+            e.preventDefault();
+            let sortCondition = $(this).html();
+            console.log(sortCondition);
+            // delete the last character (now mean ↓)
+            sortCondition = sortCondition.slice(0, sortCondition.length - 1);
+            showTable({ stuName: "", sortCondition });
+        });
+    </script>
+</body>
+
+</html>

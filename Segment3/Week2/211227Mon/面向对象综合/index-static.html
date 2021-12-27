@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script type="text/javascript">
+        class Student{
+            static count=1;
+            constructor(name,pass){
+                this.id=Student.count++;
+                this.name=name;
+                this.pass=pass;
+
+            }
+            toString(){
+                return this.id+","+this.name+","+this.pass;
+            }
+        }
+        let stu01=new Student("jack","1234");
+        let stu02=new Student("rouse","1234");
+        let stu03=new Student("tom","1234");
+        console.log(stu01.toString());//1
+        console.log(stu02.toString());//1
+        console.log(stu03.toString());//1
+    </script>
+</body>
+</html>
