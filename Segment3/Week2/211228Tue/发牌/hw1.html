@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Joker {
+            static id = 1;
+            constructor(color, value) {
+                this.color = color;
+                this.value = value;
+                this.id = Joker.id += 1;
+            }
+
+            getBack() {
+                return this.color + this.value;
+            }
+        }
+
+        class JokerUtil {
+            // 1.generate Joker
+            static generateJoker() {
+                let jokerArr = [];
+                let colorList = ["♢", "♣", "♡", "♤"];
+                let numList = ["3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A", "2"];
+                colorList.forEach(element => {
+                    jokerArr = [jokerArr, numList.map((item) => new Joker(element, item))];
+                    // jokerArr = jokerArr.concat(numList.map((item) => {
+                    //     return new Joker(element, item);
+                    // }));
+                });
+                // add the 2 king
+                jokerArr.push(new Joker("", "sKing"));
+                jokerArr.push(new Joker("", "bKing"));
+                return jokerArr;
+            }
+            // 2. show
+            static showJoker() {
+                console.log(jokerArr);
+            }
+            // 3. random sort 
+            static sortJokerRandom(params) {
+                return params.sort((a, b) => Math.random() - 0.5);
+            }
+            // 4. split arr
+            static splitJoker(params) {
+                let userMap = new Map();
+                let userObj = { userOne: [], userTwo: [], userThree: [], leftArr: [] };
+                for (let index = 0; index < params.length - 3; index++) {
+                    const element = params[index];
+                    if (index % 3 === 0) {
+                        // userMap.set("userOne", element);
+                        userObj.userOne.push(element);
+                    } else if (index % 3 === 1) {
+                        // userMap.set("userTwo", element);
+                        userObj.userTwo.push(element);
+                    } else {
+                        userObj.userThree.push(element);
+                        // userMap.set("userThree", element);
+                    }
+                }
+                // the king's joker
+                userObj.leftArr = (params.slice(-3));
+                return userObj;
+            }
+
+            static sortUserJoker(params) {
+                // console.log([...params]);
+                // Array.from(params).forEach(element => {
+                //     console.log(element);
+                // });
+                Object.getOwnPropertyNames(params).forEach((item) => {
+                    params[item] = params[item].sort((a, b) => {
+                        return a.id - b.id;
+                    })
+                })
+                // console.log(params);
+                // [...params].sort((a, b) => a.id - b.id);
+                return params;
+            }
+        }
+
+        let jokerArr = JokerUtil.generateJoker();
+        JokerUtil.sortJokerRandom(jokerArr);
+        // JokerUtil.showJoker();
+        jokerArr = JokerUtil.splitJoker(jokerArr);
+        console.table(JokerUtil.sortUserJoker(jokerArr));
+    </script>
+</body>
+
+</html>

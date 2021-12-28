@@ -7,6 +7,7 @@ class Student {
         this.phone = phone;
         this.score = score;
     }
+    
 }
 
 class Teacher {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1.设计一个父类
+        class Person {
+            constructor(){
+                console.log(`no params is run`);
+            }
+            // constructor(id, name, pass, phone, sex, score) {
+            //     console.log("父类构造函数被调用...");
+            //     this.id = id;
+            //     this.name = name;
+            //     this.pass = pass;
+            //     this.phone = phone;
+            //     this.sex = sex;
+            //     this.score = score;
+            // }
+        }
+
+
+        class Student extends Person {
+
+        }
+
+        let Stu = new Student();
+        Stu.id = "1";
+        console.log(Stu.id);
+    </script>
+</body>
+
+</html>

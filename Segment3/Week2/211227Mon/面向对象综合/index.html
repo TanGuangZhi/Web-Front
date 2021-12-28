@@ -284,6 +284,7 @@
                     return item instanceof Student;
                 }
             });
+
             let temp = {
                 id: params,
                 name: "kunkka",
@@ -300,6 +301,7 @@
             });
             queryData(dataArr);
         }
+
         // event delegate to sort by different col  
         $("thead").on("click", "th span", function (e) {
             e.preventDefault();
