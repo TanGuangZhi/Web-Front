@@ -30,16 +30,19 @@
                 })
             }
 
-            static sortUser(params, sortCondition = "id", order = 1) {
+            static sortUser(params, sortCondition = "id", order = 1, userType = 0) {
                 // ...[] for deep copy
                 return [...params].sort((a, b) => {
                     return (a[sortCondition] - b[sortCondition]) * order;
+                }).filter((item) => {
+                    return item.type == userType;
                 })
             }
 
             static delIdByBatch(delArr, allArr) {
                 return allArr.filter((item) => {
-                    return !delArr.includes(item.id);
+                    // only can del user
+                    return !delArr.includes(item.id) || item.type == 1;
                 })
             }
         }
@@ -52,20 +55,21 @@
         let user6 = new User("623", "1234", "18110739061", "0", "190");
         let allUser = [user1, user2, user0, user4, user5, user6];
         // console.log(allUser);
-        console.log(userUtil.query(allUser));
-        console.log(userUtil.query(allUser, { name: "123" }));
-        console.log(userUtil.query(allUser, { type: "0" }));
-        console.log(userUtil.query(allUser, { name: "123", type: "1" }));
+        // console.log(userUtil.query(allUser));
+        // console.log(userUtil.query(allUser, { name: "123" }));
+        // console.log(userUtil.query(allUser, { type: "0" }));
+        // console.log(userUtil.query(allUser, { name: "123", type: "1" }));
 
-        console.table(userUtil.sortUser(allUser));
-        console.table(userUtil.sortUser(allUser, "score"));
-        console.table(userUtil.sortUser(allUser, "score", -1));
-        console.table(userUtil.sortUser(allUser, "id"));
-        console.table(userUtil.sortUser(allUser, "id", -1));
-        console.table(userUtil.sortUser(allUser, "type"));
-        console.table(userUtil.sortUser(allUser, "type", -1));
+        // console.table(userUtil.sortUser(allUser));
+        // console.table(userUtil.sortUser(allUser, "score"));
+        // console.table(userUtil.sortUser(allUser, "score", -1));
+        // console.table(userUtil.sortUser(allUser, "id"));
+        // console.table(userUtil.sortUser(allUser, "id", -1));
+        // console.table(userUtil.sortUser(allUser, "type"));
+        // console.table(userUtil.sortUser(allUser, "type", -1));
+        console.table(userUtil.sortUser(allUser, "type", -1, 1));
 
-        console.log(userUtil.delIdByBatch([1, 2, 3], allUser));
+        console.table(userUtil.delIdByBatch([1, 2, 3, 4], allUser));
     </script>
 </body>
 

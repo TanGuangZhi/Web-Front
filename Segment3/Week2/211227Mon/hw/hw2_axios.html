@@ -30,14 +30,14 @@
 
                 </div>
             </div>
-            <table class="table">
-                <thead id="thead">
+            <table class="table table-striped table-bordered">
+                <thead id="thead" class="table-dark">
                     <td>
                         <label>
                             <div class="input-group-text">
                                 <input class="form-check-input mt-0" type="checkbox" value=""
                                     onchange="selAll(this.checked)" id="all-id"
-                                    aria-label="Radio button for following text input">全选/全消
+                                    aria-label="Radio button for following text input">
                             </div>
                         </label>
                     </td>
@@ -50,15 +50,15 @@
                 <tbody id="showTbody">
                     <tr>
                         <td>
-                            <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
+                            <label><input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
                         </td>
                         <td>1</td>
                         <td>2</td>
                         <td>3</td>
                         <td>4</td>
                         <td>
-                            <button type='button' class="btn btn-light">change</button>
-                            <button type='button' class="btn btn-light">del</button>
+                            <button type='button' class="btn btn-secondary">change</button>
+                            <button type='button' class="btn btn-danger">del</button>
                         </td>
                     </tr>
                 </tbody>
@@ -125,7 +125,7 @@
                     str += `
                     <tr>
                         <td>
-                            <label>选项<input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
+                            <label><input type="checkbox" onchange="checkChildFlag(this.checked)" class="sel"></label>
                         </td>
                         <td>${element.stuId}</td>
                         <td>${element.stuName}</td>
@@ -133,7 +133,7 @@
                         <td>${element.stuScore}</td>
                         <td>
                              <button type='button' class="btn btn-light" onclick="changeStu(${element.stuId})">change</button>
-                             <button type='button' class="btn btn-light" onclick="delStu(${element.stuId})">del</button>
+                             <button type='button' class="btn btn-danger" onclick="delStu(${element.stuId})">del</button>
                              </td>
                     </tr>
             `
@@ -175,7 +175,7 @@
             const stuName = $('#searchInput').val();
             showTable({ stuName })
         });
-        
+
         // event delegate to sort by different col  
         $("#thead").on("click", "th", function (e) {
             e.preventDefault();

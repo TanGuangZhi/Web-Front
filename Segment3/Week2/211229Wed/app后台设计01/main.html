@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+</head>
+
+<body>
+    <!--添加app的模态框-->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">添加app</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <form class="text-center form-inline" id="addForm">
+                        <p>
+                            <img src="images/app/1.png" alt="" width="100px">
+                        </p>
+                        <p>
+                            app名称:<input type="text" name="appName" placeholder="请输入app名称" class="form-control"
+                                style="width: 260px">
+                        </p>
+                        <p>
+                            app类型:
+                            <select name="appType" class="form-control" style="width: 260px">
+                                <option value="">请选择类型</option>
+                                <option value="娱乐">娱乐</option>
+                                <option value="办公">办公</option>
+                                <option value="休闲">休闲</option>
+                                <option value="教育">教育</option>
+                            </select>
+                        </p>
+
+                        <p>
+                            app平台:
+                            <select name="appPlatform" class="form-control" style="width: 260px">
+                                <option value="">请选择平台</option>
+                                <option value="魔方云">魔方云</option>
+                                <option value="云表">云表</option>
+                                <option value="软件云">软件云</option>
+                                <option value="狐表">狐表</option>
+                            </select>
+                        </p>
+                        <p>
+                            app大小:<input type="text" name="appSize" placeholder="请输入软件大小" class="form-control"
+                                style="width: 260px">
+                        </p>
+                        <p>
+                            app图片:<input type="text" name="appImg" style="width: 200px" readonly placeholder="请上传图片"
+                                class="form-control">
+                            <button type="button" class="btn btn-default" id="addImgBtn">上传</button>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary" id="addBtn">添加</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改app的模态框-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">修改app</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <form class="text-center form-inline" id="updateForm">
+                        <p>
+                            <input type="hidden" name="index">
+                        </p>
+                        <p>
+                            <img src="images/app/1.png" alt="" width="100px">
+                        </p>
+                        <p>
+                            app编号:<input type="text" name="id" readonly class="form-control" style="width: 260px">
+                        </p>
+                        <p>
+                            app名称:<input type="text" name="appName" placeholder="请输入app名称" class="form-control"
+                                style="width: 260px">
+                        </p>
+                        <p>
+                            app类型:
+                            <select name="appType" class="form-control" style="width: 260px">
+                                <option value="">请选择类型</option>
+                                <option value="娱乐">娱乐</option>
+                                <option value="办公">办公</option>
+                                <option value="休闲">休闲</option>
+                                <option value="教育">教育</option>
+                            </select>
+                        </p>
+
+                        <p>
+                            app平台:
+                            <select name="appPlatform" class="form-control" style="width: 260px">
+                                <option value="">请选择平台</option>
+                                <option value="魔方云">魔方云</option>
+                                <option value="云表">云表</option>
+                                <option value="软件云">软件云</option>
+                                <option value="狐表">狐表</option>
+                            </select>
+                        </p>
+                        <p>
+                            app大小:<input type="text" name="appSize" placeholder="请输入软件大小" class="form-control"
+                                style="width: 260px">
+                        </p>
+                        <p>
+                            app次数:<input type="text" readonly name="appCount" placeholder="下载次数" class="form-control"
+                                style="width: 260px">
+                        </p>
+                        <p>
+                            app图片:<input type="text" name="appImg" style="width: 200px" readonly placeholder="请上传图片"
+                                class="form-control">
+                            <button type="button" class="btn btn-default" id="updateUpImgBtn">上传</button>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary" id="updateAppBtn">修改</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center">app后台管理</h1>
+    <div class="container">
+        <div class="row table-bordered" style="line-height: 100px">
+            <div class="col-md-9">
+                <form class="form-inline" id="searchForm">
+                    app名称:
+                    <input type="text" name="appName" style="width: 120px" placeholder="请输入app名称" class="form-control">
+                    app类型:
+                    <select name="appType" class="form-control">
+                        <option value="">请选择类型</option>
+                        <option value="娱乐">娱乐</option>
+                        <option value="办公">办公</option>
+                        <option value="休闲">休闲</option>
+                        <option value="教育">教育</option>
+                    </select>
+                    app平台:
+                    <select name="appPlatform" class="form-control">
+                        <option value="">请选择平台</option>
+                        <option value="魔方云">魔方云</option>
+                        <option value="云表">云表</option>
+                        <option value="软件云">软件云</option>
+                        <option value="狐表">狐表</option>
+                    </select>
+                    <button type="button" class="btn btn-primary" id="searchId"><span
+                            class="glyphicon glyphicon-search"></span>搜索</button>
+                    <select id="sortId" class="form-control">
+                        <option value="0">排序规则</option>
+                        <option value="1">下载次数顺序排列</option>
+                        <option value="-1">下载次数倒序排列</option>
+                    </select>
+                </form>
+            </div>
+            <div class="col-md-3 text-right">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><span
+                        class="glyphicon glyphicon-plus"></span> 添加</button>
+                <button type="button" class="btn btn-warning" id="deleteMany"><span
+                        class="glyphicon glyphicon-remove"></span> 批量删除</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <table class="col-md-12 table-bordered text-center" style="margin-top: 30px">
+                <tr style="line-height: 60px;background: gray;color: white">
+                    <td>全选/全消 <input type="checkbox" id="allId"></td>
+                    <td>编号</td>
+                    <td>名称</td>
+                    <td>软件大小</td>
+                    <td>软件类型</td>
+                    <td>软件平台</td>
+                    <td>下载次数</td>
+                    <td>图片</td>
+                    <td colspan="2">操作</td>
+                </tr>
+                <tbody id="showTab">
+                    <tr>
+                        <td>选择 <input type="checkbox" class="sel"></td>
+                        <td>1</td>
+                        <td>王者荣耀</td>
+                        <td>2000M</td>
+                        <td>娱乐</td>
+                        <td>软件云</td>
+                        <td>100万次</td>
+                        <td><img src="images/app/1.png" width="40px"></td>
+                        <td><button type="button" class="btn btn-danger"><span
+                                    class="glyphicon glyphicon-remove"></span> 删除</button></td>
+                        <td><button type="button" data-toggle="modal" data-target="#updateModal"
+                                class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> 修改</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/myUtils.js"></script>
+    <script type="text/javascript" src="js/server.js"></script>
+    <script type="text/javascript">
+        let appList = AppDao.queryApp();
+        let nowShowDataList = [];
+        function queryApp(appList) {
+            nowShowDataList = appList;
+            $("#allId").prop("checked", false);//清空全选按钮的状态
+            let str = ``;
+            for (let app of appList) {
+                str += `<tr>
+                        <td>选择 <input type="checkbox" class="sel" onchange="checkAll()" value="${app.id}"></td>
+                        <td>${app.id}</td>
+                        <td>${app.appName}</td>
+                        <td>${app.appSize}</td>
+                        <td>${app.appType}</td>
+                        <td>${app.appPlatform}</td>
+                        <td>${app.appCount}万次</td>
+                        <td><img src="${app.appImg}" width="40px"></td>
+                        <td><button type="button" class="btn btn-danger" onclick="delData([${app.id}])"><span class="glyphicon glyphicon-remove"></span> 删除</button></td>
+                        <td><button type="button" data-toggle="modal" data-target="#updateModal" onclick="changeData(${app.id})" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> 修改</button></td>
+                    </tr>`;
+            }
+            $("#showTab").html(str);
+        }
+        queryApp(appList);
+        //1.点击搜索按钮完成多条件搜索
+        $("#searchId").click(function () {
+            //1.获得条件
+            let appName = $("#searchForm [name=appName]").val();
+            let appType = $("#searchForm [name=appType]").val();
+            let appPlatForm = $("#searchForm [name=appPlatform]").val();
+            appList = AppDao.queryApp(appType, appPlatForm, appName);
+            queryApp(appList);
+        });
+        $("#sortId").change(function () {
+            //1.获得条件
+            let appName = $("#searchForm [name=appName]").val();
+            let appType = $("#searchForm [name=appType]").val();
+            let appPlatForm = $("#searchForm [name=appPlatform]").val();
+            let sortId = parseInt($(this).val());
+            let newArr = AppDao.sortData(appList, "appCount", sortId)
+            queryApp(newArr);
+        });
+      
+        // 2.1 sel all better
+        function checkAll() {
+            let flag = Array.from($(".sel")).every(item => {
+                return $(item).prop("checked");
+            });
+            $("#allId").prop("checked", flag);
+        }
+
+        // 3. del by batch
+        $("#deleteMany").click(function () {
+            let isSure = confirm("您确定要删除吗?");
+            if (isSure) {
+                let idArray = Array.from($(".sel")).map(item => {
+                    return $(item).prop("checked") ? parseInt($(item).val()) : undefined;
+                }).filter(item => {
+                    return item != undefined;
+                });
+                if (idArray.length == 0) {
+                    alert("请先选择");
+                } else {
+                    appList = AppDao.delIdByBatch(idArray);
+                    queryApp(appList);
+                }
+            }
+        });
+        // 3.1 del data
+        function delData(idArr) {
+            let newArr = AppDao.delIdByBatch(idArr);
+            queryApp(newArr);
+        }
+
+        // 4. add data
+        $("#addBtn").click(function (e) {
+            e.preventDefault();
+            let appName = $("#addModal [name=appName]").val();
+            let appType = $("#addModal [name=appType]").val();
+            let appPlatForm = $("#addModal [name=appPlatform]").val();
+            let appCount = $("#addModal [name=appCount]").val();
+            let newArr = AppDao.addData({ appName, appType, appPlatForm, appCount });
+            queryApp(newArr);
+        });
+
+        // 5. change data
+        let changeId;
+        function changeData(thisId) {
+            // for change data
+            changeId = thisId;
+            let nowTrData = nowShowDataList.find((item) => {
+                return item.id = changeId;
+            });
+            // getDataFromTable(nowTrData);
+            let { id, appName, appSize, appPlatform, appType, appCount, appImg } = { ...nowTrData };
+            $('#updateModal [name="id"]').val(id);
+            $('#updateModal [name="appType"]').val(appType);
+            $('#updateModal [name="appPlatform"]').val(appPlatform);
+            $('#updateModal [name="appName"]').val(appName);
+            $('#updateModal [name="appCount"]').val(appCount);
+            $('#updateModal [name="appSize"]').val(appSize);
+            $('#updateModal [name="appImg"]').val(appImg);
+        }
+
+        // 5.1 change data for sure
+        $("#updateAppBtn").click(function (e) {
+            e.preventDefault();
+            let { id, appName, appSize, appPlatform, appType, appCount, appImg } = getInputDataFromPage("#updateModal");
+            // let id = changeId;
+            let newArr = AppDao.changeData({ id, appName, appSize, appPlatform, appType, appCount, appImg });
+            queryApp(newArr);
+        });
+        // u01. get input data form page
+        function getInputDataFromPage(modalId) {
+            let appName = $(`${modalId} [name=appName]`).val();
+            let appType = $(`${modalId} [name=appType]`).val();
+            let appPlatform = $(`${modalId} [name=appPlatform]`).val();
+            let appCount = $(`${modalId} [name=appCount]`).val();
+            let id = $(`${modalId} [name=id]`).val();
+            let appSize = $(`${modalId} [name=appSize]`).val();
+            let appImg = $(`${modalId} [name=appImg]`).val();
+            return { id, appName, appSize, appPlatform, appType, appCount, appImg };
+        }
+
+
+
+    </script>
+</body>
+
+</html>
