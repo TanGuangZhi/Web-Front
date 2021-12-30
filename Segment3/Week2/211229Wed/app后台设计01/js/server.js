@@ -141,7 +141,6 @@ class AppDao {
     //5.批量删除
     static delIdByBatch(delArr) {
         AppDao.appList = AppDao.appList.filter((item) => {
-            // only can del user
             return !delArr.includes(item.id);
         });
         return AppDao.appList;

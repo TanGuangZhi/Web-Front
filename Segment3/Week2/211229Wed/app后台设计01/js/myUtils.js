@@ -8,3 +8,4 @@ $("#allId").change(function () {
     $(".sel").prop("checked", $(this).prop("checked"));
 });
 
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>we-validator</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        form {
+            margin: 10px;
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 10px 0;
+            text-indent: 10px;
+            border: 1px solid #eee;
+            font-size: 16px;
+            display: block;
+            width: 100%;
+        }
+
+        p {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 0;
+            width: 100%;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="submitForm">
+        <input type="text" name="username" placeholder="用户名" />
+        <p class="error-box" id="username"></p>
+
+        <input type="password" name="pwd" placeholder="密码" />
+        <p class="error-box" id="pwd"></p>
+
+        <input type="password" name="repeatPwd" placeholder="确认密码" />
+        <p class="error-box" id="repeatPwd"></p>
+
+        <input type="number" name="phoneno" placeholder="手机号" />
+        <p class="error-box" id="phoneno"></p>
+
+        <input type="text" name="str" placeholder="中文 1-4 位" />
+        <p class="error-box" id="str"></p>
+
+        <button id="submitButton" type="button">提交</button>
+    </form>
+
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/form-serializer/dist/jquery.serialize-object.min.js"></script>
+    <script src="../../dist/we-validator.js"></script>
+
+    <script>
+        /**
+         * 注意：此demo比较简单，请结合实际项目修改
+         */
+
+        var validatorInstance = new WeValidator({
+            multiCheck: true,
+            onMessage: function (data) {
+                console.log('onMessage');
+                console.log(data);
+
+                for (var name in data) {
+                    $('#' + name).html(data[name].msg)
+                }
+            },
+            rules: {
+                username: {
+                    required: true
+                },
+                pwd: {
+                    required: true
+                },
+                repeatPwd: {
+                    required: true,
+                    equalTo: 'pwd'
+                },
+                phoneno: {
+                    required: true,
+                    mobile: true
+                },
+                str: {
+                    rangeChinese: [1, 4]
+                }
+            },
+            messages: {
+                username: {
+                    required: '请输入用户名'
+                },
+                pwd: {
+                    required: '请输入密码'
+                },
+                repeatPwd: {
+                    required: '请输入确认密码',
+                    equalTo: '两次密码不一致'
+                },
+                phoneno: {
+                    required: '请输入手机号',
+                    mobile: '手机号格式不正确'
+                }
+            }
+        });
+
+        // 提交
+        $('#submitButton').on('click', function () {
+            var data = $('#submitForm').serializeObject();
+
+            console.log(data)
+
+            $('.error-box').html('')
+
+            if (!validatorInstance.checkData(data)) return;
+
+            console.log('开始提交');
+        })
+    </script>
+</body>
+
+</html>
