@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <style>
+        #goToBackEnd,
+        #avatar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid" style="line-height:60px;background: black">
+        <div class="row text-right" id="header">
+            <div class="col-md-2">
+                <img src="./images/dog5.png" class="img-circle" id="avatar" style="margin-right: 50px;" width="50px"
+                    alt="">
+            </div>
+            <div class="col-md-10">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">登录</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#regModal">注册</button>
+                <button type="button" class="btn btn-danger" id="goToBackEnd">进入后台</button>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center">学生列表</h1>
+    <div class="container">
+        <div class="row" id="showTab">
+            <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                <img src="images/user/0.jpg" alt="" width="80%" class="img-thumbnail">
+                <p style="color: orangered;margin-top: 10px">姓名:武松</p>
+                <p style="color: gray">学校:清华大学</p>
+            </div>
+        </div>
+    </div>
+
+    <!--登录Modal-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">用户登录</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <form id="loginForm" class="form-inline">
+                        <p>
+                            用户名:<input type="text" name="userName" placeholder="请输入用户名" class="form-control">
+                        </p>
+                        <p>
+                            密　码:<input type="password" name="userPass" placeholder="请输入密码" class="form-control">
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-danger" id="loginBtn">登录</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--注册Modal-->
+    <div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">用户注册</h4>
+                </div>
+                <div class="modal-body" style="padding-left: 100px">
+                    <form id="regForm" class="form-inline">
+                        <p>
+                            用户名:<input type="text" name="userName" pattern="^[a-zA-Z]{4,8}$" msg="由4-8位字母组成"
+                                placeholder="请输入用户名" class="form-control">
+                            <span>*</span>
+                        </p>
+                        <p>
+                            密　码:<input type="password" name="userPass" pattern="^\d{6}$" msg="由6位数字组成"
+                                placeholder="请输入密码" class="form-control">
+                            <span>*</span>
+                        </p>
+                        <p>
+                            手机号:<input type="text" name="userPhone" pattern="^1[3-9]\d{9}$" msg="1开头第二位3-9组成的11位号码"
+                                placeholder="请输入手机号" class="form-control">
+                            <span>*</span>
+                        </p>
+
+                        <p style="margin-left:80px">
+                            <button type="button" class="btn btn-danger submit" id="regBtn">注册</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="script/mock.js"></script>
+
+    <script type="text/javascript" src="script/axios.js"></script>
+    <script type="text/javascript" src="script/form.js"></script>
+    <script type="text/javascript" src="script/bootstrap.js"></script>
+    <script type="text/javascript" src="script/server.js"></script>
+    <script type="text/javascript">
+        function showData(params) {
+            axios("/stu/queryStu", "post").then((res) => {
+                let str = ``;
+                for (let stu of res) {
+                    str += `   <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                                <img src="images/user/0.jpg" alt="" width="80%" class="img-thumbnail">
+                                <p style="color: orangered;margin-top: 10px">姓名:${stu.stuName}</p>
+                                <p style="color: gray">手机:${stu.stuPhone}</p>
+                             </div>`;
+                }
+                $("#showTab").html(str);
+            });
+        }
+        showData();
+        //1.点击模态框中的登录按钮
+        $("#loginBtn").click(function () {
+            axios("/user/login1", "post", "text", $("#loginForm").serialize()).then(res => {
+                if (res == "1") {
+                    alert("登录成功");
+                    $('#goToBackEnd').css("display", "inline-block");
+                    $('#avatar').css("display", "inline-block");
+                    $('[data-target="#loginModal"]').css("display", "none");
+                    $('[data-target="#regModal"]').css("display", "none");
+                } else {
+                    alert("登录失败");
+                }
+            });
+        });
+        //2.点击模态框中的用户注册，完成注册功能
+        $("#regBtn").click(function () {
+            axios("/user/regUser", "post", "text", $("#regForm").serialize()).then(res => {
+                if (res == "1") {
+                    alert("注册成功");
+                } else {
+                    alert("注册失败");
+                }
+            });
+        });
+
+        // 3.1 check user is exist?
+        $('#regForm [name=userName]').on("blur", () => {
+            axios("/user/queryUserInfo", "post", { userName: $('#regForm [name=userName]').val() }).then(res => {
+                console.log(res);
+                if (res) {
+                    alert('user exist');
+                }
+            });
+
+        })
+
+        $("#goToBackEnd").click(function (e) {
+            e.preventDefault();
+            window.location.href = "./main.html";
+        });
+
+        // user form reset to clear the prev input
+        $("#header button").click(() => {
+            let temp = document.getElementsByTagName("form");
+            for (const iterator of temp) {
+                iterator.reset();
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>

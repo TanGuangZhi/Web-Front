@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--添加学生的模态框-->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">添加学生</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="addForm" class="form-inline text-center">
+                        <p>
+                            学生名:<input type="text" name="stuName" class="form-control" placeholder="请输入学生姓名">
+
+                        </p>
+                        <p>
+                            密　码:<input type="password" name="stuPass" placeholder="请输入密码" class="form-control">
+
+                        </p>
+                        <p>
+                            手机号:<input type="text" name="stuPhone" placeholder="请输入手机号" class="form-control">
+                        </p>
+                        <p class="address">
+                            省份:
+                            <select class="province form-control" name="province">
+                                <option value="">请选择省份</option>
+                            </select>
+                            城市:
+                            <select class="city form-control" name="city">
+                                <option value="">请选择城市</option>
+                            </select>
+                            县/区:
+                            <select class="form-control district" name="district">
+                                <option value="">请选择县/区</option>
+                            </select>
+                        </p>
+                        <p>
+                            分　数: <input type="text" name="stuScore" placeholder="请输入分数" class="form-control">
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-danger" id="addBtn">添加</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改学生的模态框-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">添加学生</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="updateForm" class="form-inline text-center">
+                        <p>
+                            编　号:<input type="text" name="id" class="form-control" readonly>
+                        </p>
+                        <p>
+                            学生名:<input type="text" name="stuName" class="form-control" placeholder="请输入学生姓名">
+                        </p>
+                        <p>
+                            密　码:<input type="password" name="stuPass" placeholder="请输入密码" class="form-control">
+
+                        </p>
+                        <p>
+                            手机号:<input type="text" name="stuPhone" placeholder="请输入手机号" class="form-control">
+                        </p>
+                        <p class="address">
+                            省份:
+                            <select class="province form-control" name="province">
+                                <option value="">请选择省份</option>
+                            </select>
+                            城市:
+                            <select class="city form-control" name="city">
+                                <option value="">请选择城市</option>
+                            </select>
+                            县/区:
+                            <select class="form-control district" name="district">
+                                <option value="">请选择县/区</option>
+                            </select>
+                        </p>
+                        <p>
+                            分　数: <input type="text" name="stuScore" placeholder="请输入分数" class="form-control">
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-danger" id="changeDataBtn">修改</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center">学生管理</h1>
+    <div class="container">
+        <div class="row table-bordered" style="line-height: 100px">
+            <div class="col-md-9">
+                <form class="form-inline" id="searchForm">
+                    姓名:<input type="text" name="stuName" class="form-control" placeholder="请输入学生名字">
+                    手机号:<input type="text" name="stuPhone" class="form-control" placeholder="请输入学生手机号">
+                    <button type="button" class="btn btn-primary" id="searchId">搜索</button>
+                    <select id="sortId" class="form-control" name="sortType">
+                        <option value="0">请选择排序规则</option>
+                        <option value="1">按照成绩顺序排列</option>
+                        <option value="-1">按照成绩降序排列</option>
+                    </select>
+                </form>
+
+            </div>
+            <div class="col-md-3 text-right">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">添加</button>
+                <button type="button" class="btn btn-danger" id="delByBatch">批量删除</button>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 30px">
+            <table class="table-bordered col-md-12 text-center">
+                <tr style="line-height: 60px;background: #5bc0de">
+                    <td>全选/全消 <input type="checkbox" id="allId"></td>
+                    <td>编号</td>
+                    <td>姓名</td>
+                    <td>手机号</td>
+                    <td>详细地址</td>
+                    <td>分数</td>
+                    <td colspan="2">操作</td>
+                </tr>
+                <tbody id="showTab">
+                    <tr>
+                        <td>选择<input type="checkbox" class="sel"></td>
+                        <td>1</td>
+                        <td>jack</td>
+                        <td>10086</td>
+                        <td>上海市浦东新区</td>
+                        <td>89</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">删除</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-target="#updateModal"
+                                data-toggle="modal">修改</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="script/mock.js"></script>
+
+    <script type="text/javascript" src="script/axios.js"></script>
+    <script type="text/javascript" src="script/city-info.js"></script>
+    <script type="text/javascript" src="script/bootstrap.js"></script>
+    <script type="text/javascript" src="script/server.js"></script>
+    <script type="text/javascript">
+        let nowShowData = [];
+        function queryStu() {
+            $('#allId').prop("checked", false);
+            axios("/stu/queryStu", "post", $("#searchForm").serialize()).then((res) => {
+                nowShowData = res;
+                let str = ``;
+                for (let stu of res) {
+                    str += `<tr>
+                        <td>选择<input type="checkbox" class="sel" value="${stu.id}" onchange="checkAll()"></td>
+                        <td>${stu.id}</td>
+                        <td>${stu.stuName}</td>
+                        <td>${stu.stuPhone}</td>
+                        <td>${stu.address}</td>
+                        <td>${stu.stuScore}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="deleteStu(${stu.id})">删除</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="changeShowData(${stu.id})" data-target="#updateModal" data-toggle="modal">修改</button>
+                        </td>
+                    </tr>`;
+                }
+                $("#showTab").html(str);
+            });
+        }
+
+        //1.打开页面默认查询全部
+        queryStu();
+
+        //2.点击搜索按钮 多条件搜索
+        $("#searchId").click(function () {
+            queryStu();
+        });
+
+        //3.选择排序规则，进行排序
+        $("#sortId").change(function () {
+            queryStu();
+        });
+
+        //4.点击删除，完成删除操作
+        function deleteStu(id) {
+            axios("/stu/deleteStu", "post", { id }, "text").then((res) => {
+                if (res == "1") {
+                    // alert("删除成功");
+                    queryStu();
+                } else {
+                    alert("删除失败");
+                }
+            })
+        }
+
+        // 5. del by batch
+        $("#delByBatch").click(function (e) {
+            e.preventDefault();
+            let isSure = confirm("您确定要删除吗?");
+            if (isSure) {
+                let idArray = Array.from($(".sel")).map(item => {
+                    return $(item).prop("checked") ? parseInt($(item).val()) : undefined;
+                }).filter(item => {
+                    return item != undefined;
+                });
+                if (idArray.length == 0) {
+                    alert("请先选择");
+                } else {
+                    axios("/stu/deleteStu", "post", { idArray }, "text").then((res) => {
+                        if (res == "1") {
+                            // alert("删除成功");
+                            queryStu();
+                        } else {
+                            alert("删除失败");
+                        }
+                    })
+                }
+            }
+        });
+
+        //5.完成全选，全消的功能
+        $("#allId").change(function () {
+            $(".sel").prop("checked", $(this).prop("checked"));
+        });
+
+        //6.全选全消的优化
+        function checkAll() {
+            let flag = Array.from($(".sel")).every(item => {
+                return $(item).prop("checked");
+            });
+            $("#allId").prop("checked", flag);
+        }
+
+        // 7. addModal btn click to add new data
+        $("#addBtn").click(function () {
+            axios("/stu/addStu", "post", $("#addForm").serialize(), "text").then(res => {
+                if (res == "1") {
+                    alert("添加成功");
+                    queryStu();
+                } else {
+                    alert("添加失败");
+                }
+            })
+        });
+
+        // 8. change btn click to showBack data in change modal 
+        function changeShowData(id) {
+            let nowTrData = nowShowData.find((item) => {
+                return item.id == id;
+            })
+            $('#updateForm [name=id]').val(nowTrData.id);
+            $('#updateForm [name=stuName]').val(nowTrData.stuName);
+            $('#updateForm [name=stuPass]').val(nowTrData.stuPass);
+            $('#updateForm [name=stuPhone]').val(nowTrData.stuPhone);
+            $('#updateForm [name=province]').val(nowTrData.province);
+            $('#updateForm [name=city]').val(nowTrData.city);
+            $('#updateForm [name=district]').val(nowTrData.district);
+            $('#updateForm [name=stuScore]').val(nowTrData.stuScore);
+
+        }
+
+        // 8.1 change modal btn click to change data
+        $("#changeDataBtn").click(function (e) {
+            e.preventDefault();
+            axios("/stu/changeStu", "post", $("#updateForm").serialize(), "text").then((res) => {
+                if (res == "1") {
+                    alert("修改成功");
+                    queryStu();
+                } else {
+
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
