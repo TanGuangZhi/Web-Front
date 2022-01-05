@@ -1,5 +1,7 @@
-.vscode/launch.json
+# .vscode/launch.json
 .idea/.gitignore
 .idea/modules.xml
 .idea/vcs.xml
 .idea/WebFront.iml
+.idea
+node_modules

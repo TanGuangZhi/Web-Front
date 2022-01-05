@@ -1,3 +1,12 @@
+/*
+ * @Author: TanGuangZhi
+ * @Date: 2021-12-31 14:04:08 Fri
+ * @LastEditTime: 2022-01-04 14:57:40 Tue
+ * @LastEditors: TanGuangZhi
+ * @Description: 
+ * @KeyWords: Kw
+ */
+
 let filmData = Mock.mock({
     "list|20-30": [{
         "id|+1": 1001,//id自增
@@ -21,6 +30,8 @@ let userData = Mock.mock({
 let userList = userData.list;
 
 // ## data  
+let pageNumber = 1;
+let pageCount = 10;
 // 1. query
 Mock.mock("/film/queryFilm", "post", function (obj) {
     let requestData = decodeURI(obj.body);
@@ -31,6 +42,15 @@ Mock.mock("/film/queryFilm", "post", function (obj) {
         return item.filmName.includes(film.filmName ?? "") &&
             (item.id + "").includes(film.id ?? "");
     });
+
+    // pagination
+    // newArr = newArr.slice((pageNumber - 1) * pageCount, pageNumber * pageCount);
+    newArr = newArr.filter((item, index) => {
+        return index >= (pageNumber - 1) * pageCount && index <= pageNumber * pageCount;
+    });
+
+    // all page num
+    let allPageNum = Math.ceil(newArr.length / pageCount);
 
     // sort
     if (film.sortType != 0) {
@@ -43,7 +63,7 @@ Mock.mock("/film/queryFilm", "post", function (obj) {
         })
     }
 
-    return newArr;
+    return { newArr, allPageNum };
 });
 
 // 2.del 
@@ -69,9 +89,9 @@ Mock.mock("/film/addFilm", "post", function (obj) {
     let requestData = decodeURI(obj.body);
     let film = converter(requestData);
     // for remove repeated word
-    film.id = ++count+1000;//实现id自增
+    film.id = ++count + 1000;//实现id自增
     // can't add the same name film
-    if (filmList.find((item) => item.filmName.includes(film.filmName.replaceAll("+"," ")))) {
+    if (filmList.find((item) => item.filmName.includes(film.filmName.replaceAll("+", " ")))) {
         return "已有相同名字的电影";
     }
     filmList.push(film);

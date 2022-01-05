@@ -175,10 +175,10 @@
         function queryFilm() {
             // $('#allId').prop("checked", false);
             axios("/film/queryFilm", "post", $("#searchForm").serialize()).then((res) => {
-                nowShowData = res;
+                nowShowData = res.newArr;
                 $('#allId').prop("checked", false);
                 let str = ``;
-                for (let film of res) {
+                for (let film of res.newArr) {
                     str += `<tr>
                         <td>选择<input type="checkbox" class="sel" value="${film.id}" onchange="checkAll()"></td>
                         <td>${film.id}</td>
@@ -196,6 +196,11 @@
                     </tr>`;
                 }
                 $("#tab-show").html(str);
+
+                // pagination generate
+                for (let index = 0; index < res.allPageNum; index++) {
+                    
+                }
             });
         }
 
@@ -285,7 +290,6 @@
             $('#updateForm [name=filmType]').val(nowTrData.filmType);
             $('#updateForm [name=filmMoney]').val(nowTrData.filmMoney);
             $('#updateForm [name=filmScore]').val(nowTrData.filmScore);
-
         }
 
         // 8.1 change modal btn click to change data
