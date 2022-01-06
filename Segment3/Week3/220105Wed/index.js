@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-05 10:08:41 Wed
- * @LastEditTime: 2022-01-05 12:07:17 Wed
+ * @LastEditTime: 2022-01-05 14:28:26 Wed
  * @LastEditors: TanGuangZhi
  * @Description: learn express
  * @KeyWords: Kw
@@ -11,7 +11,7 @@
 let express = require('express');
 
 // 2. user express
-let app = express();;
+let app = express();
 
 // 3. create server,the port between 0-65535
 let server = app.listen(3001, () => {
