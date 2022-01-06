@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../css/bootstrap.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<!--1.添加图书的模态框-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" >添加图书</h4>
+            </div>
+            <div class="modal-body text-center">
+                <form class="form-inline" id="addForm">
+                    <p>
+                        <img src="../images/book/1.jpg" alt="" width="100px">
+                    </p>
+                    <p>
+                        图书名称:<input type="text" name="bookName" class="form-control" placeholder="请输入图书名" style="width: 251px">
+                    </p>
+                    <p>
+                        图书价格:<input type="text" name="bookPrice" class="form-control" placeholder="请输入图书价格" style="width: 251px">
+                    </p>
+                    <p>
+                        图书类型:
+                        <select name="bookType" class="form-control" style="width: 251px">
+                            <option value="">请选择图书类型</option>
+                            <option value="励志">励志</option>
+                            <option value="小说">小说</option>
+                            <option value="历史">历史</option>
+                            <option value="人物">人物</option>
+                        </select>
+                    </p>
+                    <p>
+                        图书图片:<input type="file" name="bookImg"  class="form-control"  placeholder="请选择图片" style="width: 251px">
+
+                    </p>
+                    <p>
+                        图书销量:<input type="text" name="bookCount" class="form-control" placeholder="请输入图书销量" style="width: 251px">
+                    </p>
+                    <p>
+                        图书数量:<input type="text" name="bookNum" class="form-control" placeholder="请输入图书数量" style="width: 251px">
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-primary" id="addBtn">添加</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">返回</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--2.修改图书的模态框-->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" >修改电影</h4>
+            </div>
+            <div class="modal-body text-center">
+                <form class="form-inline" id="updateForm">
+                    <p>
+                        <img src="../images/book/1.jpg" alt="" width="100px">
+                    </p>
+                    <p>
+                        图书编号:<input type="text" name="id" class="form-control" placeholder="请输入编号" style="width: 251px">
+                    </p>
+                    <p>
+                        图书名称:<input type="text" name="bookName" class="form-control" placeholder="请输入图书名" style="width: 251px">
+                    </p>
+                    <p>
+                        图书价格:<input type="text" name="bookPrice" class="form-control" placeholder="请输入图书价格" style="width: 251px">
+                    </p>
+                    <p>
+                        图书类型:
+                        <select name="bookType" class="form-control" style="width: 251px">
+                            <option value="">请选择图书类型</option>
+                            <option value="励志">励志</option>
+                            <option value="小说">小说</option>
+                            <option value="历史">历史</option>
+                            <option value="人物">人物</option>
+                        </select>
+                    </p>
+                    <p>
+                        图书图片:<input type="text" name="bookImg" readonly class="form-control"  placeholder="请选择图片">
+                        <button type="button" class="btn btn-default">上传</button>
+                    </p>
+                    <p>
+                        图书销量:<input type="text" name="bookCount" class="form-control" placeholder="请输入图书销量" style="width: 251px">
+                    </p>
+                    <p>
+                        图书数量:<input type="text" name="bookNum" class="form-control" placeholder="请输入图书数量" style="width: 251px">
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-primary">修改</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">返回</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row" style="line-height: 60px">
+        <div class="col-md-9">
+            <form id="searchForm" class="form-inline">
+                <input type="hidden" name="pageNum" value="1">
+                图书名:<input type="text" name="bookName" class="form-control" placeholder="请输入图书名">
+                图书类型: <select name="bookType" class="form-control">
+                            <option value="">请选择图书类型</option>
+                            <option value="励志">励志</option>
+                            <option value="小说">小说</option>
+                            <option value="历史">历史</option>
+                            <option value="人物">人物</option>
+                        </select>
+                <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
+                <select name="sortType" id="sortId" class="form-control">
+                    <option value="0">请选择排序规则</option>
+                    <option value="1">按照销量顺序排列</option>
+                    <option value="-1">按照销量倒序排列</option>
+                </select>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <button type="button" data-toggle="modal" data-target="#addModal" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>添加图书</button>
+            <button type="button" class="btn btn-danger" id="deleteManyId"><span class="glyphicon glyphicon-remove-circle"></span>批量删除</button>
+        </div>
+    </div>
+    <div class="row">
+        <table class="col-md-12 table-bordered text-center table-hover">
+            <tr style="line-height: 50px;background:aqua">
+                <td><input type="checkbox" id="allId">全选/全消</td>
+                <td>编号</td>
+                <td>图书名称</td>
+                <td>图书价格</td>
+                <td>图书类型</td>
+                <td>图书图片</td>
+                <td>图书销量</td>
+                <td>图书数量</td>
+                <td>操作</td>
+            </tr>
+            <tbody id="showTab">
+                <tr>
+                    <td>选项<input type="checkbox" class="sel"></td>
+                    <td>1</td>
+                    <td>活着</td>
+                    <td>88.88元</td>
+                    <td>小说</td>
+                    <td><img src="../images/book/2.jpg" width="50px" class="img-thumbnail"></td>
+                    <td>100万/月</td>
+                    <td>100万件</td>
+                    <td>
+                        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> 删除</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal"><span class="glyphicon glyphicon-edit"></span> 修改</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="pagination" id="pageList">
+                <li><a href="javascript:void(0)">&laquo;</a></li>
+                <li><a href="javascript:void(0)">1</a></li>
+                <li><a href="javascript:void(0)">2</a></li>
+                <li><a href="javascript:void(0)">3</a></li>
+                <li><a href="javascript:void(0)">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../script/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="../script/bootstrap.js"></script>
+<script type="text/javascript">
+    function queryBook() {
+        $.ajax({
+            url:"/queryBook",
+            dataType:"json",
+            success:function (res) {
+                let str=``;
+                for(let book of res){
+                    str+=`<tr>
+                    <td>选项<input type="checkbox" class="sel" value="${book.id}"></td>
+                    <td>${book.id}</td>
+                    <td>${book.bookName}</td>
+                    <td>${book.bookPrice}元</td>
+                    <td>${book.bookType}</td>
+                    <td><img src="../${book.bookImg}" width="50px" class="img-thumbnail"></td>
+                    <td>${book.bookCount}万/月</td>
+                    <td>${book.bookNum}万件</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="delBook(${book.id})"><span class="glyphicon glyphicon-remove"></span> 删除</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal"><span class="glyphicon glyphicon-edit"></span> 修改</button>
+                    </td>
+                </tr>`;
+                }
+                $("#showTab").html(str);
+            }
+        });
+    }
+    queryBook();
+    $("#addBtn").click(function () {
+       $.ajax({
+         url:"/insertBook",
+         processData:false,
+         contentType:false,
+         type:"post",
+         data:new FormData($("#addForm")[0]),
+         success:function (res) {
+             if(res=="1"){
+                 alert("添加成功...");
+                 $("#addModal").modal("hide");
+                 queryBook();
+             }else {
+                 alert("添加失败...");
+             }
+         }
+       });
+    });
+</script>
+</body>
+</html>

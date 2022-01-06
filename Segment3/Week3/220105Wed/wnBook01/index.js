@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-05 18:59:01 Wed
- * @LastEditTime: 2022-01-05 21:30:42 Wed
+ * @LastEditTime: 2022-01-06 09:49:22 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Kw
@@ -75,11 +75,11 @@ app.post('/changeBook', (req, resp) => {
     let bookPrice = req.body.bookPrice;
     let bookNum = req.body.bookNum;
     let bookType = req.body.bookType;
-    fs.readFile(req.files[0].path, function (error, data) {
+    fs.readFile(req.files[0]?.path, function (error, data) {
         if (error) {
             return console.error(error);
         }
-        let fileName = Date.now() + req.files[0].originalname;//防止上传文件重复
+        let fileName = Date.now() + req.files[0]?.originalname;//防止上传文件重复
         let upPath = __dirname + "/public/images/book/" + fileName;
         fs.writeFile(upPath, data, function (error) {
             if (error) {
