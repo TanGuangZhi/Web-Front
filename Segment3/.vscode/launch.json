@@ -5,14 +5,8 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/bin/www",
+      "program": "${workspaceFolder}\\bin\\www",
       "skipFiles": ["<node_internals>/**"]
-    },
-    {
-      "type": "node",
-      "request": "attach",
-      "name": "Attach",
-      "port": 3000
     }
   ]
 }
