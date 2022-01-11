@@ -330,7 +330,29 @@
         }
       }
     });
+    // 3.点击批量删除，判断有没有选中
+    $("#deleteManyId").click(function () {
+      if (confirm("您确定要删除吗?")) {
+        let idArr = [];
+        //1.表单过滤选择器  :checked 对复选框中的结果集进行筛选  返回选中的复选框
+        if ($(".sel:checked").length > 0) {//说明选中了
+          $(".sel:checked").each(function () {
+            idArr.push($(this).val());
+          });
+          axios("/user/del", "post", { idArray: idArray.toString() }, "text",).then(res => {
+            if (res == "1") {
+              alert("批量删除成功");
+              queryBook();
+            } else {
+              alert("批量删除失败");
+            }
+          });
+        } else {
+          alert("请先选择");
+        }
 
+      }
+    });
     $("#updateBtn").click(() => {
       axios(
         "/user/update",
@@ -347,7 +369,7 @@
         }
       });
     });
-    $("#insertManyBtn").click(function () {
+    $("#insertManyBtn").click(() => {
       $.ajax({
         url: "/user/insertByBatch",
         type: "post",
@@ -365,16 +387,6 @@
         },
       });
     });
-    // upload file
-    // $("#insertManyBtn").click(function (e) {
-    //   console.log($("#insertByBatchForm")[0]);
-    //   axios(
-    //     "/user/insertByBatch",
-    //     "post",
-    //     new FormData($("#insertByBatchForm")[0]),
-    //     "false"
-    //   ).then();
-    // });
 
     //1.全选全消
     $("#allId").change(() => {
@@ -389,12 +401,6 @@
         })
       );
     };
-
-      // $("#downloadBtn").click(() => {
-      //   axios("/user/downloadData").then((response) => {
-      //     // console.log(response);
-      //   });
-      // });
   </script>
 </body>
 

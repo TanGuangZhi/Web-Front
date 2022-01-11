@@ -7,7 +7,7 @@
  * @KeyWords: Kw
  */
 
-// 1. link in module
+// 1. link in model
 let express = require('express');
 
 // 2. user express

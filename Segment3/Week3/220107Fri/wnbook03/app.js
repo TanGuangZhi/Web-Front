@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-07 19:55:32 Fri
- * @LastEditTime: 2022-01-07 21:00:27 Fri
+ * @LastEditTime: 2022-01-11 18:17:36 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Kw
@@ -49,8 +49,8 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// let server = app.listen(3000, () => {
-//   console.log(`服务器端已经开启(${server.address().port})...`);
-// });
+let server = app.listen(3000, () => {
+  console.log(`服务器端已经开启(${server.address().port})...`);
+});
 
-module.exports = app;
+// model.exports = app;

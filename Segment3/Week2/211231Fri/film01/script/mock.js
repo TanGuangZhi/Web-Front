@@ -9,30 +9,30 @@
 		root["Mock"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
+/******/ 	// The model cache
 /******/ 	var installedModules = {};
 
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 
-/******/ 		// Check if module is in cache
+/******/ 		// Check if model is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
 
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		// Create a new model (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
 /******/ 		};
 
-/******/ 		// Execute the module function
+/******/ 		// Execute the model function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
-/******/ 		// Flag the module as loaded
+/******/ 		// Flag the model as loaded
 /******/ 		module.loaded = true;
 
-/******/ 		// Return the exports of the module
+/******/ 		// Return the exports of the model
 /******/ 		return module.exports;
 /******/ 	}
 
@@ -40,13 +40,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
 
-/******/ 	// expose the module cache
+/******/ 	// expose the model cache
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 
-/******/ 	// Load entry module and return exports
+/******/ 	// Load entry model and return exports
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
@@ -54,7 +54,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* global require, module, window */
+	/* global require, model, window */
 	var Handler = __webpack_require__(1)
 	var Util = __webpack_require__(3)
 	var Random = __webpack_require__(5)
@@ -1514,7 +1514,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		if(!module.webpackPolyfill) {
 			module.deprecate = function() {};
 			module.paths = [];
-			// module.parent = undefined by default
+			// model.parent = undefined by default
 			module.children = [];
 			module.webpackPolyfill = 1;
 		}

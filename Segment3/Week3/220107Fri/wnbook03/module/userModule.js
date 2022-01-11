@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-07 19:55:32 Fri
- * @LastEditTime: 2022-01-08 17:12:42 Sat
+ * @LastEditTime: 2022-01-08 17:25:56 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Kw
@@ -10,18 +10,18 @@ class UserModule {
     userList = [
         { id: 1, userName: "tina", userPass: "1234", userScore: 100, userPhone: "110", userType: 0 },
         { id: 2, userName: "jam", userPass: "1234", userScore: 234, userPhone: "110", userType: 1 },
-        { id: 3, userName: "marry", userPass: "1234", userScore: 113, userPhone: "110", userType: 0 },
-        { id: 4, userName: "ioi", userPass: "1234", userScore: 138, userPhone: "110", userType: 0 },
-        { id: 5, userName: "pop", userPass: "1234", userScore: 106, userPhone: "110", userType: 0 },
-        { id: 6, userName: "tina", userPass: "1234", userScore: 100, userPhone: "110", userType: 0 },
-        { id: 7, userName: "tina", userPass: "1234", userScore: 100, userPhone: "110", userType: 0 },
-        { id: 8, userName: "jam", userPass: "1234", userScore: 234, userPhone: "110", userType: 1 },
-        { id: 9, userName: "marry", userPass: "1234", userScore: 113, userPhone: "110", userType: 0 },
-        { id: 10, userName: "ioi", userPass: "1234", userScore: 138, userPhone: "110", userType: 0 },
-        { id: 11, userName: "pop", userPass: "1234", userScore: 106, userPhone: "110", userType: 0 },
-        { id: 12, userName: "jam", userPass: "1234", userScore: 234, userPhone: "110", userType: 1 },
-        { id: 13, userName: "marry", userPass: "1234", userScore: 113, userPhone: "110", userType: 0 },
-        { id: 14, userName: "ioi", userPass: "1234", userScore: 138, userPhone: "110", userType: 0 },
+        { id: 3, userName: "marry1", userPass: "1234", userScore: 113, userPhone: "110", userType: 0 },
+        { id: 4, userName: "ioi1", userPass: "1234", userScore: 138, userPhone: "110", userType: 0 },
+        { id: 5, userName: "pop1", userPass: "1234", userScore: 106, userPhone: "110", userType: 0 },
+        { id: 6, userName: "tina1", userPass: "1234", userScore: 100, userPhone: "110", userType: 0 },
+        { id: 7, userName: "tina2", userPass: "1234", userScore: 100, userPhone: "110", userType: 0 },
+        { id: 8, userName: "jam1", userPass: "1234", userScore: 234, userPhone: "110", userType: 1 },
+        { id: 9, userName: "marry3", userPass: "1234", userScore: 113, userPhone: "110", userType: 0 },
+        { id: 10, userName: "ioi3", userPass: "1234", userScore: 138, userPhone: "110", userType: 0 },
+        { id: 11, userName: "pop3", userPass: "1234", userScore: 106, userPhone: "110", userType: 0 },
+        { id: 12, userName: "jam4", userPass: "1234", userScore: 234, userPhone: "110", userType: 1 },
+        { id: 13, userName: "marry4", userPass: "1234", userScore: 113, userPhone: "110", userType: 0 },
+        { id: 14, userName: "ioi4", userPass: "1234", userScore: 138, userPhone: "110", userType: 0 },
     ];
 
     queryUser(data) {
@@ -39,7 +39,7 @@ class UserModule {
         // pagination
         // newArr = newArr.slice((pageNumber - 1) * pageCount, pageNumber * pageCount);
         newArr = newArr.filter((item, index) => {
-            return index >= (pageNumber - 1) * pageCount && index <= pageNumber * pageCount;
+            return index >= (pageNumber - 1) * pageCount && index <= (pageNumber * pageCount) - 1;
         });
 
         // sort
@@ -55,7 +55,7 @@ class UserModule {
         return { newArr, allPageNum };
     }
 
-    static count = 5;
+    static count = 14;
     insertUser(user) {
         user.id = UserModule.count++;
         user.userType = 0;//默认只能添加普通用户
