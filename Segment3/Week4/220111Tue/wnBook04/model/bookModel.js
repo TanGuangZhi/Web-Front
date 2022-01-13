@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-11 19:06:53 Tue
- * @LastEditTime: 2022-01-11 21:13:57 Tue
+ * @LastEditTime: 2022-01-12 15:18:51 Wed
  * @LastEditors: TanGuangZhi
  * @Description: connect to mongoose
  * @KeyWords: NodeJs, Express, MongoDB
@@ -27,8 +27,25 @@ let dbSequence = mongoose.model("sequence", sequenceSchema, "sequence");
 
 class BookModel {
     async queryBook(limit) {
-        let queryResult = dbBook.find({});
-        // let queryResult = dbBook.find({ bookType: limit.bookType ?? "" }).sort({ bookCount: limit.sortType == 0 ? 1 : 1 });
+        // let queryResult = dbBook.find({});
+        let limitObj, sortObj = {};
+        if (limit.bookName) {
+            limitObj.bookName = { $regex: limit.bookName };
+        }
+        if (limit.bookType) {
+            limitObj.bookType = limit.bookType;
+        }
+        if (limit.sortType == 0) {
+            sortObj = { _id: 1 };
+        } else {
+            sortObj = { bookCount: limit.sortType };
+        }
+
+        console.log(limitObj);
+        let queryResult = dbBook.find(limitObj)
+            .sort(sortObj)
+            .skip(0)
+            .limit(6);
         return queryResult;
     }
 
@@ -55,6 +72,7 @@ class BookModel {
             }
         });
     }
+
 }
 
 module.exports = BookModel;

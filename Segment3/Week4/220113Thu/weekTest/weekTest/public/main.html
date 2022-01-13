@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row " style="line-height: 60px">
+            <div class="col-md-9">
+                <form id="searchForm" class="form-inline">
+                    电影名:<input type="text" name="filmName" placeholder="请输入电影名称" class="form-control">
+                    电影编号:<input type="text" name="id" placeholder="请输入电影编号" class="form-control">
+                    <button type="button" class="btn btn-primary" id="searchId">搜索</button>
+                    <select name="sortType" id="sortId" class="form-control">
+                        <option value="0">请选择排序类型</option>
+                        <option value="1">根据票房顺序排列</option>
+                        <option value="-1">根据票房倒序排列</option>
+                    </select>
+                </form>
+
+            </div>
+            <div class="col-md-3">
+                <button type="button" data-toggle="modal" data-target="#addModal" class="btn btn-info"><span
+                        class="glyphicon glyphicon-plus"></span>添加电影</button>
+                <button type="button" class="btn btn-danger" id="delByBatch"><span
+                        class="glyphicon glyphicon-remove-circle"></span>批量删除</button>
+            </div>
+        </div>
+        <div class="row">
+            <table class="col-md-12 table-bordered text-center table-hover">
+                <tr style="line-height: 50px;background:aqua">
+                    <td><input type="checkbox" id="allId"></td>
+                    <td>编号</td>
+                    <td>电影名</td>
+                    <td>电影价格</td>
+                    <td>电影类型</td>
+                    <td>票房</td>
+                    <td>评分</td>
+                    <td colspan="2">操作</td>
+                </tr>
+                <tbody id="tab-show">
+                    <tr>
+                        <td>选项<input type="checkbox" class="sel"></td>
+                        <td>1</td>
+                        <td>熊出没</td>
+                        <td>88.88元</td>
+                        <td>动画</td>
+                        <td>50000万元</td>
+                        <td>9.9分</td>
+                        <td>
+                            <button type="button" class="btn btn-danger"><span
+                                    class="glyphicon glyphicon-remove"></span> 删除</button>
+                            <button type="button" class="btn btn-primary" data-target="#updateModal"
+                                data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> 修改</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--1.添加电影的模态框-->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">添加电影</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <form class="form-inline" id="addForm">
+                        <p>
+                            电影名称:<input type="text" name="filmName" class="form-control" required
+                                pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的字母" placeholder="请输入电影名"
+                                style="width: 251px">
+                        </p>
+                        <p>
+                            电影价格:<input type="text" name="filmPrice" class="form-control" required
+                                pattern="^\d+\.\d+{1,10}$" title="请输入1-10位长度的数字" placeholder="请输入电影价格"
+                                style="width: 251px">
+                        </p>
+                        <p>
+                            电影类型:
+                            <select name="filmType" class="form-control" required style="width: 251px">
+                                <option value="">请选择电影类型</option>
+                                <option value="武侠">武侠</option>
+                                <option value="喜剧">喜剧</option>
+                                <option value="动画">动画</option>
+                                <option value="动漫">动漫</option>
+                                <option value="战争">战争</option>
+                                <option value="名著">名著</option>
+                            </select>
+                        </p>
+                        <p>
+                            电影票房:<input type="text" name="filmMoney" class="form-control" required pattern="^\d{1,10}$"
+                                title="请输入1-10位长度的数字" placeholder="请输入电影票房" style="width: 251px">
+                        </p>
+                        <p>
+                            电影评分:<input type="text" name="filmScore" class="form-control" required pattern="^\d{1}$"
+                                title="请输入1位长度的数字" placeholder="请输入电影评分" style="width: 251px">
+                        </p>
+                        <p>
+                            <button type="submit" class="btn btn-primary">添加</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--2.修改电影的模态框-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">修改电影</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <form class="form-inline" id="updateForm">
+                        <p>
+                            电影编号:<input type="text" name="id" class="form-control" readonly style="width: 251px">
+                        </p>
+                        <p>
+                            电影名称:<input type="text" name="filmName" class="form-control" required
+                                pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的名字" placeholder="请输入电影名"
+                                style="width: 251px">
+                        </p>
+                        <p>
+                            电影价格:<input type="text" name="filmPrice" class="form-control" required
+                                pattern="^\d+\.\d+{1,10}$" title="请输入1-10位长度的数字" placeholder="请输入电影价格"
+                                placeholder="请输入电影价格" style="width: 251px">
+                        </p>
+                        <p>
+                            电影类型:
+                            <select name="filmType" class="form-control" required style="width: 251px">
+                                <option value="">请选择电影类型</option>
+                                <option value="武侠">武侠</option>
+                                <option value="喜剧">喜剧</option>
+                                <option value="动画">动画</option>
+                                <option value="动漫">动漫</option>
+                                <option value="战争">战争</option>
+                                <option value="名著">名著</option>
+                            </select>
+                        </p>
+                        <p>
+                            电影票房:<input type="text" name="filmMoney" class="form-control" required pattern="^\d{1,10}$"
+                                title="请输入1-10位长度的数字" placeholder="请输入电影票房" style="width: 251px">
+                        </p>
+                        <p>
+                            电影评分:<input type="text" name="filmScore" class="form-control" required pattern="^\d{1}$"
+                                title="请输入1位长度的数字" placeholder="请输入电影评分" style="width: 251px">
+                        </p>
+                        <p>
+                            <button type="submit" class="btn btn-primary" id="updateBtn">修改</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="script/mock.js"></script>
+
+    <script type="text/javascript" src="script/axios.js"></script>
+    <script type="text/javascript" src="script/bootstrap.js"></script>
+    <script type="text/javascript" src="script/server.js"></script>
+    <script type="text/javascript">
+        let nowShowData = [];
+        function queryFilm() {
+            // $('#allId').prop("checked", false);
+            axios("/film/queryFilm", "post", $("#searchForm").serialize()).then((res) => {
+                nowShowData = res.newArr;
+                $('#allId').prop("checked", false);
+                let str = ``;
+                for (let film of res.newArr) {
+                    str += `<tr>
+                        <td>选择<input type="checkbox" class="sel" value="${film.id}" onchange="checkAll()"></td>
+                        <td>${film.id}</td>
+                        <td>${film.filmName?.replaceAll("+", " ")}</td>
+                        <td>${film.filmPrice}</td>
+                        <td>${film.filmType}</td>
+                        <td>${film.filmMoney}</td>
+                        <td>${film.filmScore}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="deleteFilm(${film.id})">删除</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="changeShowData(${film.id})" data-target="#updateModal" data-toggle="modal">修改</button>
+                        </td>
+                    </tr>`;
+                }
+                $("#tab-show").html(str);
+
+                // pagination generate
+                for (let index = 0; index < res.allPageNum; index++) {
+                    
+                }
+            });
+        }
+
+        // 1. init to query all film
+        queryFilm();
+
+        // 2.Multiple conditional search
+        $("#searchId").click(function () {
+            queryFilm();
+            $("#sortId").val(0);
+        });
+
+        // 3.sort
+        $("#sortId").change(function () {
+            queryFilm();
+        });
+
+        // 4. sel all 
+        $("#allId").change(function () {
+            $(".sel").prop("checked", $(this).prop("checked"));
+        });
+
+        // 4.1 sel better
+        function checkAll() {
+            let flag = [...$(".sel")].every(item => {
+                return $(item).prop("checked");
+            });
+            $("#allId").prop("checked", flag);
+        }
+
+        // 5.del data
+        function deleteFilm(id) {
+            axios("/film/deleteFilm", "post", { id }, "text").then((res) => {
+                if (res == "1") {
+                    queryFilm();
+                } else {
+                    alert("删除失败");
+                }
+            })
+        }
+
+        // 5. del by batch
+        $("#delByBatch").click(function (e) {
+            e.preventDefault();
+            let isSure = confirm("您确定要删除吗?");
+            if (isSure) {
+                let idArray = [...$(".sel")].map(item => {
+                    return $(item).prop("checked") ? parseInt($(item).val()) : undefined;
+                }).filter(item => {
+                    return item != undefined;
+                });
+                if (idArray.length == 0) {
+                    alert("请先选择");
+                } else {
+                    axios("/film/deleteFilm", "post", { idArray }, "text").then((res) => {
+                        if (res == "1") {
+                            queryFilm();
+                        } else {
+                            alert("删除失败");
+                        }
+                    })
+                }
+            }
+        });
+
+        // 7. addModal btn click to add new data
+        $("#addForm").submit(function (e) {
+            e.preventDefault();
+            axios("/film/addFilm", "post", $("#addForm").serialize(), "text").then(res => {
+                if (res == "1") {
+                    alert("添加成功");
+                    queryFilm();
+                } else {
+                    alert(`添加失败:${res}`);
+                }
+            })
+        });
+
+        // 8. change btn click to showBack data in change modal 
+        function changeShowData(id) {
+            let nowTrData = nowShowData.find((item) => {
+                return item.id == id;
+            })
+            $('#updateForm [name=id]').val(nowTrData.id);
+            $('#updateForm [name=filmName]').val(nowTrData.filmName);
+            $('#updateForm [name=filmPrice]').val(nowTrData.filmPrice);
+            $('#updateForm [name=filmType]').val(nowTrData.filmType);
+            $('#updateForm [name=filmMoney]').val(nowTrData.filmMoney);
+            $('#updateForm [name=filmScore]').val(nowTrData.filmScore);
+        }
+
+        // 8.1 change modal btn click to change data
+        $("#updateForm").submit(function (e) {
+            e.preventDefault();
+            axios("/film/changeFilm", "post", $("#updateForm").serialize(), "text").then((res) => {
+                if (res == "1") {
+                    alert("修改成功");
+                    queryFilm();
+                } else {
+
+                }
+            });
+        });
+
+        // 9. form reset to clear the prev input
+        $('[data-target="#addModal"]').click(() => {
+            let temp = document.getElementsByTagName("form");
+            for (const iterator of temp) {
+                iterator.reset();
+            }
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-11 19:06:53 Tue
- * @LastEditTime: 2022-01-11 21:17:41 Tue
+ * @LastEditTime: 2022-01-12 12:20:14 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -50,9 +50,9 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// let server = app.listen(3000, () => {
-//   console.log(`服务器成功启动(${server.address().port})...`);
-// });
+let server = app.listen(3000, () => {
+  console.log(`服务器成功启动(${server.address().port})...`);
+});
 
 
-module.exports = app;
+// module.exports = app;

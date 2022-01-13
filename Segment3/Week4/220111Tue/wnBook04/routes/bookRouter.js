@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-11 19:06:57 Tue
- * @LastEditTime: 2022-01-11 21:28:43 Tue
+ * @LastEditTime: 2022-01-12 13:57:40 Wed
  * @LastEditors: TanGuangZhi
  * @Description: user mongoose to connect to the database
  * @KeyWords: NodeJs, Express, MongoDB
@@ -42,10 +42,12 @@ router.post("/addBook", upload.array("bookImg"), async (req, resp) => {
 });
 
 router.post("/updateBook", upload.array("bookImg"), async (req, resp) => {
-    let bookImg = commonUtil.upload01(req, "images/book");
     let book = req.body;
+    book.bookImg = commonUtil.upload01(req, "images/book");
     //没有选择图片则使用原来的图片
-    if (bookImg == null) { book.bookImg = book.oldImg };
+    if (!bookImg) { book.bookImg = book.oldImg }
+    delete book.oldImg;
+
     let updateObj = await bookModel.updateBook(book);
     resp.send(updateObj.modifiedCount > 0 ? "1" : "0");
 });
