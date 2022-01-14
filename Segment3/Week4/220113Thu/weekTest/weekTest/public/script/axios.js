@@ -7,12 +7,12 @@ function axios(url,...params){
             dataType=param;
         }else if(param=="get"||param=="post"){
             type=param;
-        }else{
+        }else if(typeof param!="boolean"){
             data=param;
         }
     }
     return new Promise((resolve,reject)=>{
-        $.ajax({
+        let obj={
             url,
             data,
             dataType,
@@ -22,6 +22,11 @@ function axios(url,...params){
             },error:(error)=>{
                 reject(error);
             }
-        });
+        }
+        if(params.indexOf(false)!=-1){
+            obj.contentType=false;
+            obj.processData=false;
+        }
+        $.ajax(obj);
     });
 }

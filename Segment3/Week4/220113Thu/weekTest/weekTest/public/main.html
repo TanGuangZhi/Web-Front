@@ -1,318 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
+<head lang="en">
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="script/jquery-3.5.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function getImg(fileDom, imgDom) {
+            var file = new FileReader();
+            //将读取进来的文件对象保存到 file对象的result属性中
+            file.readAsDataURL(fileDom.files[0]);
+            file.onload = function () {//改变文件此方法就会执行一次
+                imgDom.src = this.result;
+            }
+        }
+    </script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row " style="line-height: 60px">
-            <div class="col-md-9">
-                <form id="searchForm" class="form-inline">
-                    电影名:<input type="text" name="filmName" placeholder="请输入电影名称" class="form-control">
-                    电影编号:<input type="text" name="id" placeholder="请输入电影编号" class="form-control">
-                    <button type="button" class="btn btn-primary" id="searchId">搜索</button>
-                    <select name="sortType" id="sortId" class="form-control">
-                        <option value="0">请选择排序类型</option>
-                        <option value="1">根据票房顺序排列</option>
-                        <option value="-1">根据票房倒序排列</option>
-                    </select>
-                </form>
-
-            </div>
-            <div class="col-md-3">
-                <button type="button" data-toggle="modal" data-target="#addModal" class="btn btn-info"><span
-                        class="glyphicon glyphicon-plus"></span>添加电影</button>
-                <button type="button" class="btn btn-danger" id="delByBatch"><span
-                        class="glyphicon glyphicon-remove-circle"></span>批量删除</button>
+    <!--1.添加的模态框-->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="addModalLabel">添加学生</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="text-center form-inline" id="addForm">
+                        <p>
+                            <img src="" height="200px" width="200px" id="updateImg">
+                        </p>
+                        <p>
+                            学生名称:<input type="text" name="stuName" class="form-control" style="width:400px"
+                                placeholder="请输入学生姓名" required pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的字母">
+                        </p>
+                        <p>
+                            毕业薪资:<input type="text" name="stuSalary" class="form-control" style="width:400px"
+                                placeholder="请输入毕业薪资" required pattern="^[1-9]\d{3,9}$" title="请输入符合我认知的薪资">
+                        </p>
+                        <p>
+                            毕业时间:<input type="text" name="stuTime" class="form-control" style="width:400px"
+                                placeholder="请输入入学-毕业时间">
+                        </p>
+                        <p>
+                            学习方向:<input type="text" name="type" class="form-control" style="width:400px"
+                                placeholder="请输入学习方向">
+                        </p>
+                        <p>
+                            学员照片:<input type="file" onchange="getImg(this,updateImg)" name="stuImg" class="form-control"
+                                style="width:400px" placeholder="请选择宣传图片">
+                        </p>
+                        <p>
+                            <button type="submit" class="btn btn-info" id="addBtn">确认添加</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">返回首页</button>
+                        </p>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <table class="col-md-12 table-bordered text-center table-hover">
-                <tr style="line-height: 50px;background:aqua">
-                    <td><input type="checkbox" id="allId"></td>
-                    <td>编号</td>
-                    <td>电影名</td>
-                    <td>电影价格</td>
-                    <td>电影类型</td>
-                    <td>票房</td>
-                    <td>评分</td>
+    </div>
+    <!--2.修改的模态框-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="updateModalLabel">修改学生</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="text-center form-inline" id="updateForm">
+
+                        <p>
+                            <img src="" height="200px" width="200px" id="addImg">
+                        </p>
+                        <p>
+                            学员编号:<input readonly type="text" name="_id" class="form-control" style="width:400px"
+                                placeholder="请输入学员名称">
+                        </p>
+                        <p>
+                            学生名称:<input type="text" name="stuName" class="form-control" style="width:400px"
+                                placeholder="请输入学生姓名">
+                        </p>
+                        <p>
+                            毕业薪资:<input type="text" name="stuSalary" class="form-control" style="width:400px"
+                                placeholder="请输入毕业薪资">
+                        </p>
+                        <p>
+                            毕业时间:<input type="text" name="stuTime" class="form-control" style="width:400px"
+                                placeholder="请输入入学-毕业时间">
+                        </p>
+                        <p>
+                            学习方向:<input type="text" name="stuType" class="form-control" style="width:400px"
+                                placeholder="请输入学习方向">
+                        </p>
+                        <p>
+                            学员照片:<input type="file" onchange="getImg(this,addImg)" name="stuImg" class="form-control"
+                                style="width:400px" placeholder="请选择宣传图片">
+                        </p>
+
+                        <p>
+                            <button type="button" class="btn btn-info" id="updateStuBtn">确认修改</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">返回首页</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row table-bordered" style="margin-top: 20px;line-height: 100px">
+            <div class="col-md-10 navbar-right text-center">
+                <form class="form-inline" id="searchForm">
+                    <input type="hidden" name="nowPage" value="1">
+                    学生名称: <input type="text" name="stuName" placeholder="请输入学生名称" class="form-control">
+                    <select name="sortType" id="sortId" class="form-control">
+                        <option value="0">请选择排序规则</option>
+                        <option value="1">按照薪资顺序排列</option>
+                        <option value="-1">按照薪资倒序排列</option>
+                    </select>
+                    <select name="pageCount" id="pageCount" class="form-control">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                    <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
+                        <span class="glyphicon glyphicon-plus"></span>添加
+                    </button>
+                    <button type="button" id="deleteManyId" class="btn btn-warning"><span
+                            class="glyphicon glyphicon-remove"></span>
+                        批量删除</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 20px">
+            <table class="table-bordered col-md-12 text-center">
+                <tr style="line-height: 50px">
+                    <td><input type="checkbox" name="" id="allId"></td>
+                    <td>学生编号</td>
+                    <td>学生姓名</td>
+                    <td>入学时间</td>
+                    <td>学习方向</td>
+                    <td>照片</td>
+                    <td>就业薪资</td>
                     <td colspan="2">操作</td>
                 </tr>
-                <tbody id="tab-show">
+                <tbody id="showTab">
                     <tr>
-                        <td>选项<input type="checkbox" class="sel"></td>
                         <td>1</td>
-                        <td>熊出没</td>
-                        <td>88.88元</td>
-                        <td>动画</td>
-                        <td>50000万元</td>
-                        <td>9.9分</td>
+                        <td>张三</td>
+                        <td>2019年4月-2019年10月</td>
+                        <td>java开发</td>
                         <td>
-                            <button type="button" class="btn btn-danger"><span
-                                    class="glyphicon glyphicon-remove"></span> 删除</button>
-                            <button type="button" class="btn btn-primary" data-target="#updateModal"
-                                data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> 修改</button>
+                            <img src="images/0.jpg" class="img-circle" width="60px">
+                        </td>
+                        <td>
+                            12000￥
+                        </td>
+                        <td>
+                            <button class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>删除
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#updateModal">
+                                <span class="glyphicon glyphicon-heart"></span>修改
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
-    <!--1.添加电影的模态框-->
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">添加电影</h4>
-                </div>
-                <div class="modal-body text-center">
-                    <form class="form-inline" id="addForm">
-                        <p>
-                            电影名称:<input type="text" name="filmName" class="form-control" required
-                                pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的字母" placeholder="请输入电影名"
-                                style="width: 251px">
-                        </p>
-                        <p>
-                            电影价格:<input type="text" name="filmPrice" class="form-control" required
-                                pattern="^\d+\.\d+{1,10}$" title="请输入1-10位长度的数字" placeholder="请输入电影价格"
-                                style="width: 251px">
-                        </p>
-                        <p>
-                            电影类型:
-                            <select name="filmType" class="form-control" required style="width: 251px">
-                                <option value="">请选择电影类型</option>
-                                <option value="武侠">武侠</option>
-                                <option value="喜剧">喜剧</option>
-                                <option value="动画">动画</option>
-                                <option value="动漫">动漫</option>
-                                <option value="战争">战争</option>
-                                <option value="名著">名著</option>
-                            </select>
-                        </p>
-                        <p>
-                            电影票房:<input type="text" name="filmMoney" class="form-control" required pattern="^\d{1,10}$"
-                                title="请输入1-10位长度的数字" placeholder="请输入电影票房" style="width: 251px">
-                        </p>
-                        <p>
-                            电影评分:<input type="text" name="filmScore" class="form-control" required pattern="^\d{1}$"
-                                title="请输入1位长度的数字" placeholder="请输入电影评分" style="width: 251px">
-                        </p>
-                        <p>
-                            <button type="submit" class="btn btn-primary">添加</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">返回</button>
-                        </p>
-                    </form>
-                </div>
-            </div>
+        <div class="row text-center">
+            <ul class="pagination">
+                <!-- <li><a>&laquo;</a></li>
+                <li><a>1</a></li>
+                <li><a>2</a></li>
+                <li><a>3</a></li>
+                <li><a>4</a></li>
+                <li><a>&raquo;</a></li> -->
+            </ul>
         </div>
     </div>
-    <!--2.修改电影的模态框-->
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">修改电影</h4>
-                </div>
-                <div class="modal-body text-center">
-                    <form class="form-inline" id="updateForm">
-                        <p>
-                            电影编号:<input type="text" name="id" class="form-control" readonly style="width: 251px">
-                        </p>
-                        <p>
-                            电影名称:<input type="text" name="filmName" class="form-control" required
-                                pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的名字" placeholder="请输入电影名"
-                                style="width: 251px">
-                        </p>
-                        <p>
-                            电影价格:<input type="text" name="filmPrice" class="form-control" required
-                                pattern="^\d+\.\d+{1,10}$" title="请输入1-10位长度的数字" placeholder="请输入电影价格"
-                                placeholder="请输入电影价格" style="width: 251px">
-                        </p>
-                        <p>
-                            电影类型:
-                            <select name="filmType" class="form-control" required style="width: 251px">
-                                <option value="">请选择电影类型</option>
-                                <option value="武侠">武侠</option>
-                                <option value="喜剧">喜剧</option>
-                                <option value="动画">动画</option>
-                                <option value="动漫">动漫</option>
-                                <option value="战争">战争</option>
-                                <option value="名著">名著</option>
-                            </select>
-                        </p>
-                        <p>
-                            电影票房:<input type="text" name="filmMoney" class="form-control" required pattern="^\d{1,10}$"
-                                title="请输入1-10位长度的数字" placeholder="请输入电影票房" style="width: 251px">
-                        </p>
-                        <p>
-                            电影评分:<input type="text" name="filmScore" class="form-control" required pattern="^\d{1}$"
-                                title="请输入1位长度的数字" placeholder="请输入电影评分" style="width: 251px">
-                        </p>
-                        <p>
-                            <button type="submit" class="btn btn-primary" id="updateBtn">修改</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">返回</button>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="script/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="script/mock.js"></script>
-
-    <script type="text/javascript" src="script/axios.js"></script>
+    <script src="./script/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="script/bootstrap.js"></script>
-    <script type="text/javascript" src="script/server.js"></script>
-    <script type="text/javascript">
-        let nowShowData = [];
-        function queryFilm() {
-            // $('#allId').prop("checked", false);
-            axios("/film/queryFilm", "post", $("#searchForm").serialize()).then((res) => {
-                nowShowData = res.newArr;
-                $('#allId').prop("checked", false);
+    <script src="./script/axios.js"></script>
+    <script>
+        let stuArr;
+        function queryStu(nowPage = 1) {
+            $('[name=nowPage]').val(nowPage);
+            $("#allId").prop("checked", false);
+            axios("/stu/queryStu", "post", $("#searchForm").serialize()).then(res => {
                 let str = ``;
-                for (let film of res.newArr) {
-                    str += `<tr>
-                        <td>选择<input type="checkbox" class="sel" value="${film.id}" onchange="checkAll()"></td>
-                        <td>${film.id}</td>
-                        <td>${film.filmName?.replaceAll("+", " ")}</td>
-                        <td>${film.filmPrice}</td>
-                        <td>${film.filmType}</td>
-                        <td>${film.filmMoney}</td>
-                        <td>${film.filmScore}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger" onclick="deleteFilm(${film.id})">删除</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary" onclick="changeShowData(${film.id})" data-target="#updateModal" data-toggle="modal">修改</button>
-                        </td>
-                    </tr>`;
+                stuArr = res.queryResult;
+                for (let stu of res.queryResult) {
+                    str += ` <tr>
+                        <td> <input type="checkbox" class="sel" onclick="checkAll()" value="${stu._id}"></td>
+                        <td>${stu._id}</td>
+                        <td>${stu.stuName}</td>
+                        <td>${stu.stuTime}</td>
+                        <td>${stu.stuType}</td>
+                        <td><img src="${stu.stuImg}" width="40px"></td>
+                        <td>${stu.stuSalary}</td>
+                        <td><button type="button" class="btn btn-danger" onclick="deleteStu(${stu._id})"><span class="glyphicon glyphicon-remove"></span> 删除</button></td>
+                        <td><button type="button" onclick="showStu(${stu._id})" data-toggle="modal" data-target="#updateModal" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> 修改</button></td>
+                        </tr>`;
                 }
-                $("#tab-show").html(str);
+                $("#showTab").html(str);
 
-                // pagination generate
-                for (let index = 0; index < res.allPageNum; index++) {
-                    
+                let pageStr = `<li onclick="changePage(-1)"><a href="javascript:void(0)" >&laquo;</a></li>`;
+                for (let i = 1; i <= res.lastPage; i++) {
+                    pageStr += `<li onclick="changePage(${i})"><a href="javascript:void(0)">${i}</a></li>`;
                 }
+                pageStr += `<li onclick="changePage(-2)"><a href="javascript:void(0)" >&raquo;</a></li>`;
+                $(".pagination").html(pageStr);
             });
         }
 
-        // 1. init to query all film
-        queryFilm();
-
-        // 2.Multiple conditional search
-        $("#searchId").click(function () {
-            queryFilm();
+        // 0.2. Multiple conditional search
+        $("#searchBtn").click(() => {
+            queryStu();
             $("#sortId").val(0);
         });
 
-        // 3.sort
-        $("#sortId").change(function () {
-            queryFilm();
+        // 0.3. sort
+        $("#sortId").change(() => {
+            queryStu();
         });
 
-        // 4. sel all 
-        $("#allId").change(function () {
-            $(".sel").prop("checked", $(this).prop("checked"));
+        // 0.4. pageCount change
+        $("#pageCount").change(() => {
+            queryStu();
         });
 
-        // 4.1 sel better
-        function checkAll() {
-            let flag = [...$(".sel")].every(item => {
-                return $(item).prop("checked");
-            });
-            $("#allId").prop("checked", flag);
+        function changePage(nowPage) {
+            queryStu(nowPage);
         }
+        queryStu();
 
-        // 5.del data
-        function deleteFilm(id) {
-            axios("/film/deleteFilm", "post", { id }, "text").then((res) => {
+        // 1. del
+        function deleteStu(_id) {
+            axios("/stu/deleteStu", "post", { "idArray": _id }, "text").then(res => {
                 if (res == "1") {
-                    queryFilm();
+                    queryStu();
                 } else {
                     alert("删除失败");
                 }
-            })
+            });
         }
 
-        // 5. del by batch
-        $("#delByBatch").click(function (e) {
-            e.preventDefault();
-            let isSure = confirm("您确定要删除吗?");
-            if (isSure) {
-                let idArray = [...$(".sel")].map(item => {
-                    return $(item).prop("checked") ? parseInt($(item).val()) : undefined;
-                }).filter(item => {
-                    return item != undefined;
-                });
-                if (idArray.length == 0) {
-                    alert("请先选择");
-                } else {
-                    axios("/film/deleteFilm", "post", { idArray }, "text").then((res) => {
+        // 1.1 del by batch
+        $("#deleteManyId").click(function () {
+            if (confirm("您确定要删除吗?")) {
+                let idArray = [];
+                //1.表单过滤选择器  :checked 对复选框中的结果集进行筛选  返回选中的复选框
+                if ($(".sel:checked").length > 0) {//说明选中了
+                    $(".sel:checked").each(function () {
+                        idArray.push($(this).val());
+                    });
+                    axios("/stu/deleteStu", "post", "text", { "idArray": idArray.toString() }).then(res => {
                         if (res == "1") {
-                            queryFilm();
+                            queryStu();
                         } else {
-                            alert("删除失败");
+                            alert("批量删除失败");
                         }
-                    })
+                    });
+                } else {
+                    alert("请先选择");
                 }
+
             }
         });
 
-        // 7. addModal btn click to add new data
+        // 2. insert
         $("#addForm").submit(function (e) {
             e.preventDefault();
-            axios("/film/addFilm", "post", $("#addForm").serialize(), "text").then(res => {
+            axios("/stu/addStu", "post", false, new FormData($("#addForm")[0]), "text").then(res => {
                 if (res == "1") {
-                    alert("添加成功");
-                    queryFilm();
+                    $("#addModal").modal("hide");
+                    queryStu();
                 } else {
-                    alert(`添加失败:${res}`);
+                    alert("添加失败");
                 }
             })
         });
 
-        // 8. change btn click to showBack data in change modal 
-        function changeShowData(id) {
-            let nowTrData = nowShowData.find((item) => {
-                return item.id == id;
-            })
-            $('#updateForm [name=id]').val(nowTrData.id);
-            $('#updateForm [name=filmName]').val(nowTrData.filmName);
-            $('#updateForm [name=filmPrice]').val(nowTrData.filmPrice);
-            $('#updateForm [name=filmType]').val(nowTrData.filmType);
-            $('#updateForm [name=filmMoney]').val(nowTrData.filmMoney);
-            $('#updateForm [name=filmScore]').val(nowTrData.filmScore);
+        // 3. update
+        function showStu(id) {
+            let newArr = stuArr.filter(item => {
+                return item._id == id;
+            });
+            $("#updateForm [name=_id]").val(newArr[0]._id);
+            $("#updateForm [name=stuName]").val(newArr[0].stuName);
+            $("#updateForm [name=stuType]").val(newArr[0].stuType);
+            $("#updateForm [name=stuSalary]").val(newArr[0].stuSalary);
+            $("#updateForm [name=stuTime]").val(newArr[0].stuTime);
+            $("#updateForm img").attr("src", `../${newArr[0].stuImg}`);
+            $("#updateForm [name=oldImg]").val(newArr[0].stuImg);
         }
 
-        // 8.1 change modal btn click to change data
-        $("#updateForm").submit(function (e) {
-            e.preventDefault();
-            axios("/film/changeFilm", "post", $("#updateForm").serialize(), "text").then((res) => {
+        $("#updateStuBtn").click(function () {
+            axios("/stu/updateStu", "post", "text", false, new FormData($("#updateForm")[0])).then(res => {
                 if (res == "1") {
-                    alert("修改成功");
-                    queryFilm();
+                    $("#updateModal").modal("hide");
+                    queryStu();
                 } else {
-
+                    alert("修改失败");
                 }
             });
         });
 
-        // 9. form reset to clear the prev input
-        $('[data-target="#addModal"]').click(() => {
-            let temp = document.getElementsByTagName("form");
-            for (const iterator of temp) {
-                iterator.reset();
-            }
+        // ## oth.1 sel all and better  
+        $("#allId").change(() => {
+            $(".sel").prop("checked",
+                $("#allId").prop("checked"));
+        });
 
-        })
+        let checkAll = () => {
+            $("#allId").prop("checked",
+                $('.sel:checked').length == $(".sel").length);
+        }
     </script>
 </body>
 
