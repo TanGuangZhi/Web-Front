@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <!--登录-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" >用户登录</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <form id="loginForm" class="form-inline">
+                        <p>
+                            用户名:<input type="text" name="userName" placeholder="请输入用户名" class="form-control">
+                        </p>
+                        <p>
+                            密　码:<input type="password" name="userPass" placeholder="请输入密码" class="form-control">
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-danger" id="loginBtn">登录</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--注册-->
+    <div class="modal fade" id="regModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" >用户注册</h4>
+                </div>
+                <div class="modal-body" style="padding-left: 100px">
+                    <form id="regForm" class="form-inline">
+                        <p>
+                            用户名:<input type="text" name="userName"  class="form-control">
+                            <span>*</span>
+                        </p>
+                        <p>
+                            密　码:<input type="password" name="userPass" class="form-control">
+                            <span>*</span>
+                        </p>
+                        <p>
+                            手机号:<input type="text" name="userPhone"  placeholder="请输入手机号" class="form-control">
+                            <span>*</span>
+                        </p>
+
+                        <p style="margin-left:80px">
+                            <button type="button" class="btn btn-danger submit" id="regBtn">注册</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="line-height:60px;background: black">
+        <div class="row text-right">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">登录</button>
+                <button type="button" class="btn btn-danger" >注销</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#regModal">注册</button>
+                <button type="button" class="btn btn-danger" id="adminBtn">进入后台</button>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center">图书列表</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                <img src="images/book/1.jpg" alt="" width="80%" class="img-thumbnail">
+                <p style="color: orangered;margin-top: 10px" >活着</p>
+                <p style="color: gray">价格:100.88元</p>
+            </div>
+            <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                <img src="images/book/2.jpg" alt="" width="80%" class="img-thumbnail">
+                <p style="color: orangered;margin-top: 10px" >活着</p>
+                <p style="color: gray">价格:100.88元</p>
+            </div>
+            <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                <img src="images/book/3.jpg" alt="" width="80%" class="img-thumbnail">
+                <p style="color: orangered;margin-top: 10px" >活着</p>
+                <p style="color: gray">价格:100.88元</p>
+            </div>
+            <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                <img src="images/book/4.jpg" alt="" width="80%" class="img-thumbnail">
+                <p style="color: orangered;margin-top: 10px" >活着</p>
+                <p style="color: gray">价格:100.88元</p>
+            </div>
+            <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                <img src="images/book/5.jpg" alt="" width="80%" class="img-thumbnail">
+                <p style="color: orangered;margin-top: 10px" >活着</p>
+                <p style="color: gray">价格:100.88元</p>
+            </div>
+            <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                <img src="images/book/6.jpg" alt="" width="80%" class="img-thumbnail">
+                <p style="color: orangered;margin-top: 10px" >活着</p>
+                <p style="color: gray">价格:100.88元</p>
+            </div>
+            <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                <img src="images/book/7.jpg" alt="" width="80%" class="img-thumbnail">
+                <p style="color: orangered;margin-top: 10px" >活着</p>
+                <p style="color: gray">价格:100.88元</p>
+            </div>
+            <div class="col-md-3 text-center table-bordered" style="padding-top:20px">
+                <img src="images/book/8.jpg" alt="" width="80%" class="img-thumbnail">
+                <p style="color: orangered;margin-top: 10px" >活着</p>
+                <p style="color: gray">价格:100.88元</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script/util/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="script/mock.js"></script>
+
+    <script type="text/javascript" src="script/util/axios.js"></script>
+    <script type="text/javascript" src="script/form.js"></script>
+    <script type="text/javascript" src="script/util/bootstrap.js"></script>
+    <script type="text/javascript" src="script/server.js"></script>
+    <script type="text/javascript">
+        //1.点击进入后台
+        $("#adminBtn").click(function () {
+           window.location.href="login.html";
+        });
+    </script>
+
+</body>
+</html>

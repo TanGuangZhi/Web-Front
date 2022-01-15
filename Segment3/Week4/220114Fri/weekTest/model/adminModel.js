@@ -1,39 +1,47 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-13 15:20:32 Thu
- * @LastEditTime: 2022-01-14 18:09:22 Fri
+ * @LastEditTime: 2022-01-15 11:22:19 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 let dbUtil = require('../util/dbUtil');
-let dbStuTable = dbUtil.dbStuTable;
+let dbStuTable = require("../data/stuSchema");
+let dbStuTypeTable = require("../data/stuTypeSchema");
 let dbSequence = dbUtil.dbSequence;
 
 class AdminModel {
     async queryStu(nowPage, pageCount, data) {
         let sortObj = {};
         let matchObj = {};
-        if (data.stuName != "") {
+        if (data.stuName) {
             matchObj.stuName = { $regex: data.stuName };
         }
-        if (data.sortType != 0) {
+        if (data.stuType) {
+            matchObj.stuType = data.stuType - 0;
+        }
+        if (data.sortType == 0) {
+            sortObj._id = 1;
+        } else if (data.sortType == 1 || data.sortType == -1) {
             sortObj.stuSalary = data.sortType - 0;
         } else {
             sortObj._id = 1;
         }
-        let temp = await dbStuTable.find(matchObj)
-
         return await dbStuTable.find(matchObj)
             .sort(sortObj)
             .skip((nowPage - 1) * (pageCount - 0))
             .limit(pageCount - 0);
     }
+
     async getStuCount(data) {
 
         let matchObj = {};
         if (data.stuName != "") {
             matchObj.stuName = { $regex: data.stuName };
+        }
+        if (data.stuType) {
+            matchObj.stuType = data.stuType - 0;
         }
         let stuList = await dbStuTable.aggregate([
             {
@@ -47,10 +55,11 @@ class AdminModel {
     }
 
     async addStu(stu) {
-        let sequence = await dbSequence.findOneAndUpdate({ _id: "sid" }, { $inc: { sequenceValue: 1 } });
-        stu._id = sequence.sequenceValue;
-        // console.log(stu);
-        return await dbStuTable.insertMany([stu]);
+        for (const stuOne of stu) {
+            let sequence = await dbSequence.findOneAndUpdate({ _id: "sid" }, { $inc: { sequenceValue: 1 } });
+            stuOne._id = sequence.sequenceValue;
+        }
+        return await dbStuTable.insertMany(stu);
     }
 
     async updateStu(stu) {
@@ -64,6 +73,10 @@ class AdminModel {
                 stuTime: stu.stuTime
             }
         });
+    }
+
+    async queryAllStuType() {
+        return await dbStuTypeTable.find({});
     }
 }
 

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-13 11:20:44 Thu
- * @LastEditTime: 2022-01-14 18:07:12 Fri
+ * @LastEditTime: 2022-01-15 15:58:23 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -10,6 +10,7 @@ var express = require('express');
 let multer = require("multer");
 let AdminModel = require('../model/adminModel');
 let commonUtil = require("../util/commonUtil");
+let fs = require('fs');
 
 let upload = multer({ dest: "/log" });
 var router = express.Router();
@@ -37,6 +38,11 @@ router.post('/queryStu', async (req, res, next) => {
   res.send(JSON.stringify({ queryResult, lastPage }));
 });
 
+router.get("/getAllStuType", async (req, resp) => {
+  let queryResult = await adminModel.queryAllStuType();
+  resp.send(JSON.stringify(queryResult));
+})
+
 router.post("/deleteStu", async (req, resp) => {
   let idStr = req.body.idArray;
   let idArray = idStr.split(",");
@@ -57,9 +63,30 @@ router.post("/updateStu", upload.array("stuImg"), async (req, resp) => {
   //没有选择图片则使用原来的图片
   if (!stu.stuImg) { stu.stuImg = stu.oldImg }
   delete stu.oldImg;
-  console.log(stu);
 
   let updateObj = await adminModel.updateStu(stu);
   resp.send(updateObj.modifiedCount > 0 ? "1" : "0");
 });
+
+router.get("/downloadFile", async (req, resp) => {
+  let queryResult = await adminModel.queryStu(nowPage, req.query.pageCount, req.query);
+  let csvData = commonUtil.jsonToCSV(JSON.parse(JSON.stringify(queryResult)));
+  let path = "./public/file/app.csv";
+  fs.writeFileSync(path, csvData);
+  resp.download(path);
+});
+
+router.post("/uploadFile", upload.array("uploadFile"), async (req, resp) => {
+  // 1. get temp path
+  // 2. read file
+  let data = fs.readFileSync(req.files[0].path);
+
+  // 3. data to json
+  let stuList = commonUtil.csvParse(data.toString());
+
+  // 4. write data to db
+  let arr = await adminModel.addStu(stuList);
+  resp.send(arr.length > 0 ? "1" : "0");
+})
+
 module.exports = router;
