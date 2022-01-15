@@ -1,15 +1,14 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-13 11:51:06 Thu
- * @LastEditTime: 2022-01-15 14:40:07 Sat
+ * @LastEditTime: 2022-01-15 16:47:42 Sat
  * @LastEditors: TanGuangZhi
  * @Description: to deal user data form mongoDB By mongoose
  * @KeyWords: NodeJs, Express, MongoDB
  */
 
 let dbUtil = require('../util/dbUtil');
-let dbUserTable = dbUtil.dbUserTable;
-// let dbUserTable = dbUtil.dbUserTable;
+let dbUserTable = require('../data/userSchema.js');
 let dbSequence = dbUtil.dbSequence;
 
 class UserModel {

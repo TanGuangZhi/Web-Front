@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-13 15:20:32 Thu
- * @LastEditTime: 2022-01-15 11:22:19 Sat
+ * @LastEditTime: 2022-01-15 16:21:52 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -28,14 +28,31 @@ class AdminModel {
         } else {
             sortObj._id = 1;
         }
-        return await dbStuTable.find(matchObj)
-            .sort(sortObj)
-            .skip((nowPage - 1) * (pageCount - 0))
-            .limit(pageCount - 0);
+        return await dbStuTable.aggregate([{
+            $match: matchObj
+        },
+        {
+            $lookup: {
+                from: "stuType",
+                localField: "stuType",
+                foreignField: "_id",
+                as: "stuType"
+            }
+        }, {
+            $sort: sortObj
+        }, {
+            $skip: (nowPage - 1) * (pageCount - 0)
+        }, {
+            $limit: pageCount - 0
+        }
+        ])
+        // return await dbStuTable.find(matchObj)
+        //     .sort(sortObj)
+        //     .skip((nowPage - 1) * (pageCount - 0))
+        //     .limit(pageCount - 0);
     }
 
     async getStuCount(data) {
-
         let matchObj = {};
         if (data.stuName != "") {
             matchObj.stuName = { $regex: data.stuName };
@@ -50,6 +67,7 @@ class AdminModel {
         ]);
         return await stuList.length;
     }
+
     async deleteStu(delArr) {
         return await dbStuTable.deleteMany({ _id: { $in: delArr } });
     }

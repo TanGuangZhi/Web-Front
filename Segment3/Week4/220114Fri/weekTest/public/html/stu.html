@@ -41,16 +41,20 @@
                                 placeholder="请输入毕业薪资" required pattern="^[1-9]\d{3,9}$" title="请输入符合我认知的薪资">
                         </p>
                         <p>
-                            毕业时间:<input type="text" name="stuTime" class="form-control" style="width:400px"
+                            毕业时间:<input type="text" name="stuTime" required class="form-control" style="width:400px"
                                 placeholder="请输入入学-毕业时间">
                         </p>
                         <p>
-                            学习方向:<input type="text" name="type" class="form-control" style="width:400px"
-                                placeholder="请输入学习方向">
+                            学习方向:
+                            <select name="stuType" class="form-control" required style="width: 400px">
+                                <option value="">请选择方向</option>
+                                <option value="0">java</option>
+                                <option value="1">web</option>
+                            </select>
                         </p>
                         <p>
-                            学员照片:<input type="file" onchange="getImg(this,updateImg)" name="stuImg" class="form-control"
-                                style="width:400px" placeholder="请选择宣传图片">
+                            学员照片:<input type="file" required onchange="getImg(this,updateImg)" name="stuImg"
+                                class="form-control" style="width:400px" placeholder="请选择宣传图片">
                         </p>
                         <p>
                             <button type="submit" class="btn btn-info" id="addBtn">确认添加</button>
@@ -81,24 +85,28 @@
                                 placeholder="请输入学员名称">
                         </p>
                         <p>
-                            学生名称:<input type="text" name="stuName" class="form-control" style="width:400px"
+                            学生名称:<input type="text" required name="stuName" class="form-control" style="width:400px"
                                 placeholder="请输入学生姓名">
                         </p>
                         <p>
-                            毕业薪资:<input type="text" name="stuSalary" class="form-control" style="width:400px"
+                            毕业薪资:<input type="text" required name="stuSalary" class="form-control" style="width:400px"
                                 placeholder="请输入毕业薪资">
                         </p>
                         <p>
-                            毕业时间:<input type="text" name="stuTime" class="form-control" style="width:400px"
+                            毕业时间:<input type="text" required name="stuTime" class="form-control" style="width:400px"
                                 placeholder="请输入入学-毕业时间">
                         </p>
                         <p>
-                            学习方向:<input type="text" name="stuType" class="form-control" style="width:400px"
-                                placeholder="请输入学习方向">
+                            学习方向:
+                            <select name="stuType" class="form-control" required style="width: 400px">
+                                <option value="">请选择方向</option>
+                                <option value="0">java</option>
+                                <option value="1">web</option>
+                            </select>
                         </p>
                         <p>
-                            学员照片:<input type="file" onchange="getImg(this,addImg)" name="stuImg" class="form-control"
-                                style="width:400px" placeholder="请选择宣传图片">
+                            学员照片:<input type="file" required onchange="getImg(this,addImg)" name="stuImg"
+                                class="form-control" style="width:400px" placeholder="请选择宣传图片">
                         </p>
 
                         <p>

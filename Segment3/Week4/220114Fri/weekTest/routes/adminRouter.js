@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-13 11:20:44 Thu
- * @LastEditTime: 2022-01-15 15:58:23 Sat
+ * @LastEditTime: 2022-01-15 16:37:00 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -53,7 +53,7 @@ router.post("/deleteStu", async (req, resp) => {
 router.post("/addStu", upload.array("stuImg"), async (req, resp) => {
   let stu = req.body;
   stu.stuImg = commonUtil.upload01(req, "images/stu");
-  let arr = await adminModel.addStu(stu);
+  let arr = await adminModel.addStu([stu]);
   resp.send(arr.length > 0 ? "1" : "0");
 });
 

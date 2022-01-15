@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-14 19:50:07 Fri
- * @LastEditTime: 2022-01-15 15:57:43 Sat
+ * @LastEditTime: 2022-01-15 16:25:25 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -17,6 +17,7 @@ let stuArr;
 function queryStu(nowPage = 1) {
     $('[name=nowPage]').val(nowPage);
     $("#allId").prop("checked", false);
+
     axios("/stu/queryStu", "post", $("#searchForm").serialize()).then(res => {
         let str = ``;
         stuArr = res.queryResult;
@@ -26,7 +27,7 @@ function queryStu(nowPage = 1) {
                         <td>${stu._id}</td>
                         <td>${stu.stuName}</td>
                         <td>${stu.stuTime}</td>
-                        <td>${stu.stuType}</td>
+                        <td>${stu.stuType[0]?.name}</td>
                         <td><img src="../${stu.stuImg}" width="40px"></td>
                         <td>${stu.stuSalary}</td>
                         <td><button type="button" class="btn btn-danger delStu"  data-stu-id="${stu._id}"><span class="glyphicon glyphicon-remove"></span> 删除</button></td>
@@ -65,7 +66,6 @@ function getAllStuType(stuList) {
 
 // 0.2. Multiple conditional search
 $("#searchBtn").click(() => {
-    alert(1);
     queryStu();
     $("#sortId").val(0);
 });
