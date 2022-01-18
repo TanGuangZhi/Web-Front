@@ -1,19 +1,20 @@
-<!--
- * @Author: TanGuangZhi
- * @Date: 2022-01-15 11:47:35 Sat
- * @LastEditTime: 2022-01-18 20:09:28 Tue
- * @LastEditors: TanGuangZhi
- * @Description: 
- * @KeyWords: NodeJs, Express, MongoDB
--->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
+<head lang="en">
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script type="text/javascript">
+        function getImg(fileDom, imgDom) {
+            var file = new FileReader();
+            //将读取进来的文件对象保存到 file对象的result属性中
+            file.readAsDataURL(fileDom.files[0]);
+            file.onload = function () {//改变文件此方法就会执行一次
+                imgDom.src = this.result;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="addModalLabel">添加用户</h4>
+                    <h4 class="modal-title" id="addModalLabel">添加学生</h4>
                 </div>
                 <div class="modal-body">
                     <form class="text-center form-inline" id="addForm">
@@ -32,23 +33,27 @@
                             <img src="" height="200px" width="200px" id="updateImg">
                         </p>
                         <p>
-                            用户名称:<input type="text" name="userName" class="form-control" style="width:400px"
-                                placeholder="请输入用户姓名" required pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的字母">
+                            学生名称:<input type="text" name="stuName" class="form-control" style="width:400px"
+                                placeholder="请输入学生姓名" required pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的字母">
                         </p>
                         <p>
-                            毕业薪资:<input type="text" name="userSalary" class="form-control" style="width:400px"
+                            毕业薪资:<input type="text" name="stuSalary" class="form-control" style="width:400px"
                                 placeholder="请输入毕业薪资" required pattern="^[1-9]\d{3,9}$" title="请输入符合我认知的薪资">
                         </p>
                         <p>
-                            毕业时间:<input type="text" name="userTime" class="form-control" style="width:400px"
+                            毕业时间:<input type="text" name="stuTime" required class="form-control" style="width:400px"
                                 placeholder="请输入入学-毕业时间">
                         </p>
                         <p>
-                            学习方向:<input type="text" name="type" class="form-control" style="width:400px"
-                                placeholder="请输入学习方向">
+                            学习方向:
+                            <select name="stuType" class="form-control" required style="width: 400px">
+                                <option value="">请选择方向</option>
+                                <option value="0">java</option>
+                                <option value="1">web</option>
+                            </select>
                         </p>
                         <p>
-                            用户照片:<input type="file" onchange="getImg(this,updateImg)" name="userImg"
+                            学员照片:<input type="file" required onchange="getImg(this,updateImg)" name="stuImg"
                                 class="form-control" style="width:400px" placeholder="请选择宣传图片">
                         </p>
                         <p>
@@ -67,24 +72,45 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="updateModalLabel">修改用户</h4>
+                    <h4 class="modal-title" id="updateModalLabel">修改学生</h4>
                 </div>
                 <div class="modal-body">
                     <form class="text-center form-inline" id="updateForm">
+
                         <p>
-                            用户编号:<input readonly type="text" name="_id" class="form-control" style="width:400px"
-                                placeholder="请输入用户名称">
+                            <img src="" height="200px" width="200px" id="addImg">
                         </p>
                         <p>
-                            用户名称:<input type="text" name="userName" class="form-control" style="width:400px"
-                                placeholder="请输入用户姓名">
+                            学员编号:<input readonly type="text" name="_id" class="form-control" style="width:400px"
+                                placeholder="请输入学员名称">
                         </p>
                         <p>
-                            手机号:<input type="text" name="userPhone" class="form-control" style="width:400px"
-                                placeholder="请输入手机号">
+                            学生名称:<input type="text" required name="stuName" class="form-control" style="width:400px"
+                                placeholder="请输入学生姓名">
                         </p>
                         <p>
-                            <button type="button" class="btn btn-info" id="updateUserBtn">确认修改</button>
+                            毕业薪资:<input type="text" required name="stuSalary" class="form-control" style="width:400px"
+                                placeholder="请输入毕业薪资">
+                        </p>
+                        <p>
+                            毕业时间:<input type="text" required name="stuTime" class="form-control" style="width:400px"
+                                placeholder="请输入入学-毕业时间">
+                        </p>
+                        <p>
+                            学习方向:
+                            <select name="stuType" class="form-control" required style="width: 400px">
+                                <option value="">请选择方向</option>
+                                <option value="0">java</option>
+                                <option value="1">web</option>
+                            </select>
+                        </p>
+                        <p>
+                            学员照片:<input type="file" required onchange="getImg(this,addImg)" name="stuImg"
+                                class="form-control" style="width:400px" placeholder="请选择宣传图片">
+                        </p>
+
+                        <p>
+                            <button type="button" class="btn btn-info" id="updateStuBtn">确认修改</button>
                             <button type="button" class="btn btn-info" data-dismiss="modal">返回首页</button>
                         </p>
                     </form>
@@ -118,13 +144,13 @@
             <div class="col-md-8 ">
                 <form class="form-inline" id="searchForm">
                     <input type="hidden" name="nowPage" value="1">
-                    用户名称: <input type="text" name="userName" placeholder="请输入用户名称" style="width:150px"
+                    学生名称: <input type="text" name="stuName" placeholder="请输入学生名称" style="width:150px"
                         class="form-control">
-                    <!-- <select name="userType" class="form-control" style="width: 150px">
+                    <select name="stuType" class="form-control" style="width: 150px">
                         <option value="">请选择方向</option>
                         <option value="0">java</option>
                         <option value="1">web</option>
-                    </select> -->
+                    </select>
                     <select name="sortType" id="sortId" class="form-control">
                         <option value="0">请选择排序规则</option>
                         <option value="1">按照薪资顺序排列</option>
@@ -145,7 +171,7 @@
                 <button type="button" id="deleteManyId" class="btn btn-warning"><span
                         class="glyphicon glyphicon-remove"></span>
                     批量删除</button>
-                <a class="btn btn-success" href="http://localhost:3000/user/downloadData">download</a>
+                <button type="button" class="btn btn-success" id="downloadFileBtn">download</button>
                 <button type='button' class="btn btn-primary" data-toggle="modal"
                     data-target="#uploadModal">upload</button>
             </div>
@@ -155,9 +181,12 @@
             <table class="table-bordered col-md-12 text-center">
                 <tr style="line-height: 50px">
                     <td><input type="checkbox" name="" id="allId"></td>
-                    <td>用户编号</td>
-                    <td>用户姓名</td>
-                    <td>手机号</td>
+                    <td>学生编号</td>
+                    <td>学生姓名</td>
+                    <td>入学时间</td>
+                    <td>学习方向</td>
+                    <td>照片</td>
+                    <td>就业薪资</td>
                     <td colspan="2">操作</td>
                 </tr>
                 <tbody id="showTab">
@@ -167,7 +196,7 @@
                         <td>2019年4月-2019年10月</td>
                         <td>java开发</td>
                         <td>
-                            <img src="../images/0.jpg" class="img-circle" width="60px">
+                            <img src="images/0.jpg" class="img-circle" width="60px">
                         </td>
                         <td>
                             12000￥
@@ -186,7 +215,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="row text-center justify-content-center mt-5">
+        <div class="row text-center">
             <ul class="pagination">
                 <!-- <li><a>&laquo;</a></li>
                 <li><a>1</a></li>
@@ -197,7 +226,9 @@
             </ul>
         </div>
     </div>
-
+    <script type="text/javascript" src="../script/util/jquery-3.5.1.min.js"></script>
+    <script src="../script/util/bootstrap.js"></script>
+    <script type="module" src="../script/stuPackage.js"></script>
 </body>
 
 </html>
