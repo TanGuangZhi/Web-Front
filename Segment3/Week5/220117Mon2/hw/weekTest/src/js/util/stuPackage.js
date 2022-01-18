@@ -1,24 +1,21 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-14 19:50:07 Fri
- * @LastEditTime: 2022-01-18 19:47:02 Tue
+ * @LastEditTime: 2022-01-18 19:48:44 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 
-import { $ } from "./util/jquery-3.5.1.js";
-import { axios } from "./util/axios.js";
-// import { book } from "./book.js";
+import { axios } from "./axios.js";
 
-// book();
 // 0. queryStu
 let stuArr;
 function queryStu(nowPage = 1) {
     $('[name=nowPage]').val(nowPage);
     $("#allId").prop("checked", false);
 
-    axios("/stu/queryStu", "post", $("#searchForm").serialize()).then(res => {
+    axios("http://localhost:3000/stu/queryStu", "post", $("#searchForm").serialize()).then(res => {
         let str = ``;
         stuArr = res.queryResult;
         for (let stu of res.queryResult) {
@@ -40,7 +37,7 @@ function queryStu(nowPage = 1) {
         for (let i = 1; i <= res.lastPage; i++) {
             pageStr += `<li class="page-item changePage" data-change-page-id="${i}"><a href="javascript:void(0)" class="page-link">${i}</a></li>`;
         }
-        pageStr += `<li class="page-item changePage" data-change-page-id="-2"><a href="javascript:void(0)" class="page-link" >&raquo;</a></li>`;
+        pageStr += `<li class="page-item active changePage" data-change-page-id="-2"><a href="javascript:void(0)" class="page-link" >&raquo;</a></li>`;
         $(".pagination").html(pageStr);
 
         delStu();
@@ -55,7 +52,7 @@ getAllStuType();
 
 // 0.1 get all stu learn type
 function getAllStuType(stuList) {
-    axios("/stu/getAllStuType").then((res) => {
+    axios("http://localhost:3000/stu/getAllStuType").then((res) => {
         let str = `<option value="">请选择方向</option>`;
         res.forEach((element) => {
             str += `  <option value="${element._id}">${element.name}</option>`;
@@ -94,9 +91,8 @@ queryStu();
 // 1. del
 let delStu = function () {
     $(".delStu").click(function (e) {
-        console.log(1);
         let _id = $(this).attr("data-stu-id");
-        axios("/stu/deleteStu", "post", { "idArray": _id }, "text").then(res => {
+        axios("http://localhost:3000/stu/deleteStu", "post", { "idArray": _id }, "text").then(res => {
             if (res == "1") {
                 queryStu();
             } else {
@@ -115,7 +111,7 @@ $("#deleteManyId").click(function () {
             $(".sel:checked").each(function () {
                 idArray.push($(this).val());
             });
-            axios("/stu/deleteStu", "post", "text", { "idArray": idArray.toString() }).then(res => {
+            axios("http://localhost:3000/stu/deleteStu", "post", "text", { "idArray": idArray.toString() }).then(res => {
                 if (res == "1") {
                     queryStu();
                 } else {
@@ -132,7 +128,7 @@ $("#deleteManyId").click(function () {
 // 2. insert
 $("#addForm").submit(function (e) {
     e.preventDefault();
-    axios("/stu/addStu", "post", false, new FormData($("#addForm")[0]), "text").then(res => {
+    axios("http://localhost:3000/stu/addStu", "post", false, new FormData($("#addForm")[0]), "text").then(res => {
         if (res == "1") {
             // $("#addModal").modal("hide");
             queryStu();
@@ -158,7 +154,7 @@ let showStu = function () {
 }
 
 $("#updateStuBtn").click(function () {
-    axios("/stu/updateStu", "post", false, new FormData($("#updateForm")[0])).then(res => {
+    axios("http://localhost:3000/stu/updateStu", "post", false, new FormData($("#updateForm")[0])).then(res => {
         if (res == "1") {
             // #TODO this way will error , don't know why
             // $("#updateModal").modal("hide");
@@ -172,8 +168,7 @@ $("#updateStuBtn").click(function () {
 // 4. upload
 $("#uploadFileBtn").click(function (e) {
     e.preventDefault();
-    console.log(1);
-    axios("/stu/uploadFile", "post", false, new FormData($("#uploadForm")[0])).then(res => {
+    axios("http://localhost:3000/stu/uploadFile", "post", false, new FormData($("#uploadForm")[0])).then(res => {
         console.log(res);
         if (res == "1") {
             // #TODO this way will error , don't know why
@@ -188,7 +183,7 @@ $("#uploadFileBtn").click(function (e) {
 // 4.1. download file
 $("#downloadFileBtn").click(function (e) {
     e.preventDefault();
-    axios("/stu/downloadFile", $('#searchForm').serialize()).then(res => {
+    axios("http://localhost:3000/stu/downloadFile", $('#searchForm').serialize()).then(res => {
         console.log(res);
     })
 });

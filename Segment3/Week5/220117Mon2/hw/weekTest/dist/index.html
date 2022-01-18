@@ -1,225 +1,1 @@
-<!DOCTYPE html>
-<html>
-
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="script/jquery-3.5.1.js"></script>
-    <script defer src="js/index.js"></script>
-</head>
-
-<body>
-    <!--1.登录的模态框-->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="loginModalLabel">用户登录</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-inline text-center" id="loginForm">
-                        <p>
-                            用户名:<input type="text" id="userName" name="userName" class="form-control" style="width:50%"
-                                placeholder="请输入用户名">
-                        </p>
-                        <p>
-                            密　码:<input type="password" id="userPass" name="userPass" class="form-control"
-                                style="width:50%" placeholder="请输入密码">
-                        </p>
-                        <p>
-                            记住密码:
-                            <input type="radio" name="days" value="0" checked>取消
-                            <input type="radio" name="days" value="7">一周
-                            <input type="radio" name="days" value="30">一个月
-                        </p>
-                        <p>
-                            <button type="button" class="btn btn-info" id="loginBtn">登录</button>
-                            <button type="button" class="btn btn-info" data-dismiss="modal">返回</button>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-        <div class="row" style="background: linear-gradient(to top,lightgray,#ffffff);line-height: 50px">
-            <div class="col-md-12 text-right">
-                <span>用户名为:charles　</span>
-                <button class="btn btn-info" data-toggle="modal" data-target="#loginModal"><span
-                        class="glyphicon glyphicon-user"> </span> 登 录</button>
-                <button type="button" class="btn btn-danger" id="logOut">注销</button>
-                <!-- <button type="button" class="btn btn-warning" id="goToBackEnd">进入后台</button> -->
-                <a href="./html/main.html" class="btn btn-info" style="margin-right: 150px"><span
-                        class="glyphicon glyphicon-plus"> </span>进入后台管理系统</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-
-        <div class="row">
-            <h3 style="line-height: 50px" class="col-md-12 text-center h2">蜗牛学院明星学员</h3>
-        </div>
-
-        <div class="row text-center" id="showStuTable">
-            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">
-                <a href="#" style="text-decoration: none">
-                    <p style="margin-top:20px">
-                        <img src="images/281865fd78aef276cdbe70ed3ca10a4d.jpg" class=" img-circle" width="200px">
-                    </p>
-                    <p>姓名:张三</p>
-                    <p style="color: gray">
-                        2019-4月-2019-10进入蜗牛学院
-                    </p>
-                    <p style="color: orange">
-                        毕业薪资:12000￥
-                    </p>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">
-                <a href="#" style="text-decoration: none">
-                    <p style="margin-top:20px">
-                        <img src="images/281865fd78aef276cdbe70ed3ca10a4d.jpg" class=" img-circle" width="200px">
-                    </p>
-                    <p>姓名:张三</p>
-                    <p style="color: gray">
-                        2019-4月-2019-10进入蜗牛学院
-                    </p>
-                    <p style="color: orange">
-                        毕业薪资:12000￥
-                    </p>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">
-                <a href="#" style="text-decoration: none">
-                    <p style="margin-top:20px">
-                        <img src="images/281865fd78aef276cdbe70ed3ca10a4d.jpg" class=" img-circle" width="200px">
-                    </p>
-                    <p>姓名:张三</p>
-                    <p style="color: gray">
-                        2019-4月-2019-10进入蜗牛学院
-                    </p>
-                    <p style="color: orange">
-                        毕业薪资:12000￥
-                    </p>
-                </a>
-            </div>
-
-            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">
-                <a href="javascript:void(0)" style="text-decoration: none">
-                    <p style="margin-top:20px">
-                        <img src="images/281865fd78aef276cdbe70ed3ca10a4d.jpg" class=" img-circle" width="200px">
-                    </p>
-                    <p>姓名:张三</p>
-                    <p style="color: gray">
-                        2019-4月-2019-10进入蜗牛学院
-                    </p>
-                    <p style="color: orange">
-                        毕业薪资:12000￥
-                    </p>
-                </a>
-            </div>
-
-        </div>
-        <div class="row text-center">
-            <ul class="pagination">
-                <li><a>&laquo;</a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li><a>3</a></li>
-                <li><a>4</a></li>
-                <li><a>&raquo;</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <script src="./script/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="script/bootstrap.js"></script>
-    <script src="./script/axios.js"></script>
-    <script src="./script/form.js"></script>
-    <script>
-        function queryUser(params) {
-            axios("/user/queryStu").then(res => {
-                console.log(res);
-                let str = ``;
-                res.forEach(element => {
-                    str += `<div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">
-                        <a href="javascript:void(0)" style="text-decoration: none">
-                            <p style="margin-top:20px">
-                                <img src="${element.stuImg}" class=" img-circle"  style="width:200px;height:200px">
-                            </p>
-                            <p>姓名:${element.stuName}</p>
-                            <p style="color: gray">
-                                ${element.stuTime}进入蜗牛学院
-                            </p>
-                            <p style="color: orange">
-                                毕业薪资:${element.stuSalary}
-                            </p>
-                        </a>
-                    </div>`
-                });
-                $('#showStuTable').html(str);
-            })
-        }
-
-        // 1. login modal login btn 
-        let loginUserInfo;
-        $("#loginBtn").click(function () {
-            axios("/user/login", "post", $("#loginForm").serialize()).then(res => {
-                // loginUserInfo = JSON.parse(sessionStorage.getItem("loginUserInfo"))
-                if (res.length > 0) {
-                    alert("登录成功");
-                    sessionStorage.setItem("loginUserInfo", JSON.stringify(res))
-                    window.location.reload();
-                } else {
-                    alert("登录失败");
-                }
-            });
-        });
-
-        // 1.1 login user init
-        function loginInit(params) {
-            loginUserInfo = JSON.parse(sessionStorage.getItem("loginUserInfo"))
-            if (loginUserInfo) {
-                $('#goToBackEnd').css("display", "inline-block");
-                $('#logOut').css("display", "inline-block");
-                $('#userName').val(loginUserInfo[0].userName);
-                $('#userPass').val(loginUserInfo[0].userPass);
-                $('#avatar').attr("src", "./img/dog3.png");
-                // $('[data-target="#loginModal"]').css("display", "none");
-                $('[data-target="#regModal"]').css("display", "none");
-            } else {
-                $('#goToBackEnd').css("display", "none");
-                $('#logOut').css("display", "none");
-                $('#userName').html("");
-                $('#avatar').attr("src", "./img/dog5.png");
-                $('[data-target="#loginModal"]').css("display", "inline-block");
-                $('[data-target="#regModal"]').css("display", "inline-block");
-            }
-        }
-
-        loginInit();
-        queryUser();
-
-        // 3. logOut btn click
-        $("#logOut").click(function (e) {
-            e.preventDefault();
-            sessionStorage.removeItem("loginUserInfo");
-            window.location.reload();
-        });
-
-        // 4. go to back end page 
-        $("#goToBackEnd").click(function (e) {
-            e.preventDefault();
-            window.location.href = "./main.html";
-        });
-    </script>
-</body>
-
-</html>
+<!DOCTYPE html><html><head lang="en">    <meta charset="UTF-8">    <title></title>    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">    <script type="text/javascript" src="script/jquery-3.5.1.js"></script><script defer src="js/index.js"></script></head><body>    <!--1.登录的模态框-->    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"        aria-hidden="true">        <div class="modal-dialog">            <div class="modal-content">                <div class="modal-header">                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                    <h4 class="modal-title" id="loginModalLabel">用户登录</h4>                </div>                <div class="modal-body">                    <form class="form-inline text-center" id="loginForm">                        <p>                            用户名:<input type="text" id="userName" name="userName" class="form-control" style="width:50%"                                placeholder="请输入用户名">                        </p>                        <p>                            密　码:<input type="password" id="userPass" name="userPass" class="form-control"                                style="width:50%" placeholder="请输入密码">                        </p>                        <p>                            记住密码:                            <input type="radio" name="days" value="0" checked>取消                            <input type="radio" name="days" value="7">一周                            <input type="radio" name="days" value="30">一个月                        </p>                        <p>                            <button type="button" class="btn btn-info" id="loginBtn">登录</button>                            <button type="button" class="btn btn-info" data-dismiss="modal">返回</button>                        </p>                    </form>                </div>            </div>        </div>    </div>    <div class="container-fluid">        <div class="row" style="background: linear-gradient(to top,lightgray,#ffffff);line-height: 50px">            <div class="col-md-12 text-right">                <span>用户名为:charles　</span>                <button class="btn btn-info" data-toggle="modal" data-target="#loginModal"><span                        class="glyphicon glyphicon-user"> </span> 登 录</button>                <button type="button" class="btn btn-danger" id="logOut">注销</button>                <!-- <button type="button" class="btn btn-warning" id="goToBackEnd">进入后台</button> -->                <a href="./html/admin.html" class="btn btn-info" style="margin-right: 150px"><span                        class="glyphicon glyphicon-plus"> </span>进入后台管理系统</a>            </div>        </div>    </div>    <div class="container">        <div class="row">            <h3 style="line-height: 50px" class="col-md-12 text-center h2">蜗牛学院明星学员</h3>        </div>        <div class="row text-center" id="showStuTable">            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">                <a href="#" style="text-decoration: none">                    <p style="margin-top:20px">                        <img src="images/281865fd78aef276cdbe70ed3ca10a4d.jpg" class=" img-circle" width="200px">                    </p>                    <p>姓名:张三</p>                    <p style="color: gray">                        2019-4月-2019-10进入蜗牛学院                    </p>                    <p style="color: orange">                        毕业薪资:12000￥                    </p>                </a>            </div>            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">                <a href="#" style="text-decoration: none">                    <p style="margin-top:20px">                        <img src="images/281865fd78aef276cdbe70ed3ca10a4d.jpg" class=" img-circle" width="200px">                    </p>                    <p>姓名:张三</p>                    <p style="color: gray">                        2019-4月-2019-10进入蜗牛学院                    </p>                    <p style="color: orange">                        毕业薪资:12000￥                    </p>                </a>            </div>            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">                <a href="#" style="text-decoration: none">                    <p style="margin-top:20px">                        <img src="images/281865fd78aef276cdbe70ed3ca10a4d.jpg" class=" img-circle" width="200px">                    </p>                    <p>姓名:张三</p>                    <p style="color: gray">                        2019-4月-2019-10进入蜗牛学院                    </p>                    <p style="color: orange">                        毕业薪资:12000￥                    </p>                </a>            </div>            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">                <a href="javascript:void(0)" style="text-decoration: none">                    <p style="margin-top:20px">                        <img src="images/281865fd78aef276cdbe70ed3ca10a4d.jpg" class=" img-circle" width="200px">                    </p>                    <p>姓名:张三</p>                    <p style="color: gray">                        2019-4月-2019-10进入蜗牛学院                    </p>                    <p style="color: orange">                        毕业薪资:12000￥                    </p>                </a>            </div>        </div>        <div class="row text-center">            <ul class="pagination">                <li><a>&laquo;</a></li>                <li><a>1</a></li>                <li><a>2</a></li>                <li><a>3</a></li>                <li><a>4</a></li>                <li><a>&raquo;</a></li>            </ul>        </div>    </div>    <script src="./script/jquery-3.5.1.js"></script>    <script type="text/javascript" src="script/bootstrap.js"></script>    <script src="./script/axios.js"></script>    <script src="./script/form.js"></script>    <script>        function queryUser(params) {            axios("/user/queryStu").then(res => {                console.log(res);                let str = ``;                res.forEach(element => {                    str += `<div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 table-bordered">                        <a href="javascript:void(0)" style="text-decoration: none">                            <p style="margin-top:20px">                                <img src="${element.stuImg}" class=" img-circle"  style="width:200px;height:200px">                            </p>                            <p>姓名:${element.stuName}</p>                            <p style="color: gray">                                ${element.stuTime}进入蜗牛学院                            </p>                            <p style="color: orange">                                毕业薪资:${element.stuSalary}                            </p>                        </a>                    </div>`                });                $('#showStuTable').html(str);            })        }        // 1. login modal login btn         let loginUserInfo;        $("#loginBtn").click(function () {            axios("/user/login", "post", $("#loginForm").serialize()).then(res => {                // loginUserInfo = JSON.parse(sessionStorage.getItem("loginUserInfo"))                if (res.length > 0) {                    alert("登录成功");                    sessionStorage.setItem("loginUserInfo", JSON.stringify(res))                    window.location.reload();                } else {                    alert("登录失败");                }            });        });        // 1.1 login user init        function loginInit(params) {            loginUserInfo = JSON.parse(sessionStorage.getItem("loginUserInfo"))            if (loginUserInfo) {                $('#goToBackEnd').css("display", "inline-block");                $('#logOut').css("display", "inline-block");                $('#userName').val(loginUserInfo[0].userName);                $('#userPass').val(loginUserInfo[0].userPass);                $('#avatar').attr("src", "./img/dog3.png");                // $('[data-target="#loginModal"]').css("display", "none");                $('[data-target="#regModal"]').css("display", "none");            } else {                $('#goToBackEnd').css("display", "none");                $('#logOut').css("display", "none");                $('#userName').html("");                $('#avatar').attr("src", "./img/dog5.png");                $('[data-target="#loginModal"]').css("display", "inline-block");                $('[data-target="#regModal"]').css("display", "inline-block");            }        }        loginInit();        queryUser();        // 3. logOut btn click        $("#logOut").click(function (e) {            e.preventDefault();            sessionStorage.removeItem("loginUserInfo");            window.location.reload();        });        // 4. go to back end page         $("#goToBackEnd").click(function (e) {            e.preventDefault();            window.location.href = "./main.html";        });    </script></body></html>

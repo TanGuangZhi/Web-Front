@@ -1,24 +1,21 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-14 19:50:07 Fri
- * @LastEditTime: 2022-01-18 19:47:02 Tue
+ * @LastEditTime: 2022-01-18 16:10:14 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 
-import { $ } from "./util/jquery-3.5.1.js";
-import { axios } from "./util/axios.js";
-// import { book } from "./book.js";
+import { axios } from "./axios.js";
 
-// book();
 // 0. queryStu
 let stuArr;
 function queryStu(nowPage = 1) {
     $('[name=nowPage]').val(nowPage);
     $("#allId").prop("checked", false);
 
-    axios("/stu/queryStu", "post", $("#searchForm").serialize()).then(res => {
+    axios("http://localhost:3000/stu/queryStu", "post", $("#searchForm").serialize()).then(res => {
         let str = ``;
         stuArr = res.queryResult;
         for (let stu of res.queryResult) {
@@ -36,11 +33,11 @@ function queryStu(nowPage = 1) {
         }
         $("#showTab").html(str);
 
-        let pageStr = `<li  class="page-item active changePage" data-change-page-id="-1" ><a href="javascript:void(0)" class="page-link" >&laquo;</a></li>`;
+        let pageStr = `<li  class="changePage" data-change-page-id="-1" ><a href="javascript:void(0)" >&laquo;</a></li>`;
         for (let i = 1; i <= res.lastPage; i++) {
-            pageStr += `<li class="page-item changePage" data-change-page-id="${i}"><a href="javascript:void(0)" class="page-link">${i}</a></li>`;
+            pageStr += `<li class="changePage" data-change-page-id="${i}"><a href="javascript:void(0)">${i}</a></li>`;
         }
-        pageStr += `<li class="page-item changePage" data-change-page-id="-2"><a href="javascript:void(0)" class="page-link" >&raquo;</a></li>`;
+        pageStr += `<li class="changePage" data-change-page-id="-2"><a href="javascript:void(0)" >&raquo;</a></li>`;
         $(".pagination").html(pageStr);
 
         delStu();
@@ -55,7 +52,7 @@ getAllStuType();
 
 // 0.1 get all stu learn type
 function getAllStuType(stuList) {
-    axios("/stu/getAllStuType").then((res) => {
+    axios("http://localhost:3000/stu/getAllStuType").then((res) => {
         let str = `<option value="">请选择方向</option>`;
         res.forEach((element) => {
             str += `  <option value="${element._id}">${element.name}</option>`;

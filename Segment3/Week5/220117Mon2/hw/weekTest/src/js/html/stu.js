@@ -9,3 +9,5 @@
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
+
+import { stuPackage } from "../util/stuPackage.js";

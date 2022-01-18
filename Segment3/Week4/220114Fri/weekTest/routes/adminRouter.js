@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-13 11:20:44 Thu
- * @LastEditTime: 2022-01-15 16:37:00 Sat
+ * @LastEditTime: 2022-01-18 19:49:20 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -69,7 +69,7 @@ router.post("/updateStu", upload.array("stuImg"), async (req, resp) => {
 });
 
 router.get("/downloadFile", async (req, resp) => {
-  let queryResult = await adminModel.queryStu(nowPage, req.query.pageCount, req.query);
+  let queryResult = await adminModel.queryStu(nowPage, 6, {});
   let csvData = commonUtil.jsonToCSV(JSON.parse(JSON.stringify(queryResult)));
   let path = "./public/file/app.csv";
   fs.writeFileSync(path, csvData);
