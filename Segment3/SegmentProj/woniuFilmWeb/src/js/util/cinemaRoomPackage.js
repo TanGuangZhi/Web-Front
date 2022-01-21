@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-01-21 15:33:56 Fri
+ * @LastEditTime: 2022-01-21 21:28:49 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -14,24 +14,27 @@ import { showImg } from "./showImg.js";
 
 // ## main content
 // 1. query
-let cinemaArr;
-function queryCinema(nowPage = 1) {
+let cinemaRoomArr;
+function queryCinemaRoom(nowPage = 1) {
     $('[name=nowPage]').val(nowPage);
     $("#allId").prop("checked", false);
-    axios("http://localhost:3000/cinema/query", "post", $('#searchForm').serialize()).then(res => {
+    axios("http://localhost:3000/cinemaRoom/query", "post", $('#searchForm').serialize()).then(res => {
         let str = ``;
-        cinemaArr = res.queryResult;
-        for (let cinema of res.queryResult) {
+        cinemaRoomArr = res.queryResult;
+        console.log(cinemaRoomArr);
+        for (let cinemaRoom of res.queryResult) {
             str += ` <tr>
-                        <td> <input type="checkbox" class="sel"  value="${cinema._id}"></td>
-                        <td>${cinema._id}</td>
-                        <td>${cinema.name}</td>
-                        <td>${cinema.address}</td>
-                        <td>${cinema.phone}</td>
-                        <td><img src="http://localhost:3000/${cinema.img}" width="40px"></td>
-                        <td>${cinema.district[0]?.name}</td>
-                        <td><button type="button" class="btn btn-danger delCinema"  data-cinema-id="${cinema._id}"><span class="glyphicon glyphicon-remove"></span> 删除</button></td>
-                        <td><button type="button" data-show-cinema-id="${cinema._id}" data-toggle="modal" data-target="#updateModal" class="btn btn-primary showCinema"><span class="glyphicon glyphicon-edit"></span> 修改</button></td>
+                        <td> <input type="checkbox" class="sel"  value="${cinemaRoom._id}"></td>
+                        <td>${cinemaRoom._id}</td>
+                        <td>${cinemaRoom.roomIdToDetails[0]?.name}</td>
+                        <td>${cinemaRoom.roomSize}</td>
+                        <td>${cinemaRoom.roomIdToDetails[0]?._id}</td>
+                        <td>${cinemaRoom.language}</td>
+                        <td>${cinemaRoom.filmIdToDetails[0]?.name}</td>
+                        <td>${cinemaRoom.session}</td>
+                        <td>${cinemaRoom.cinemaIdToDetails[0]?.name}</td>
+                        <td><button type="button" class="btn btn-danger delCinemaRoom"  data-cinemaRoom-id="${cinemaRoom._id}"><span class="glyphicon glyphicon-remove"></span> 删除</button></td>
+                        <td><button type="button" data-show-cinemaRoom-id="${cinemaRoom._id}" data-toggle="modal" data-target="#updateModal" class="btn btn-primary showCinemaRoom"><span class="glyphicon glyphicon-edit"></span> 修改</button></td>
                         </tr>`;
         }
         $("#showTab").html(str);
@@ -43,29 +46,29 @@ function queryCinema(nowPage = 1) {
         pageStr += `<li class="page-item  changePage" data-change-page-id="-2"><a href="javascript:void(0)" class="page-link" >&raquo;</a></li>`;
         $(".pagination").html(pageStr);
 
-        delCinema();
+        delCinemaRoom();
         changePage();
-        showCinema();
+        showCinemaRoom();
         checkAll();
     });
 }
 
-queryCinema();
+queryCinemaRoom();
 
 // 1.2. Multiple conditional search
 $("#searchBtn").click(() => {
-    queryCinema();
+    queryCinemaRoom();
     $("#sortId").val(0);
 });
 
 // 1.3. sort
 $("#sortId").change(() => {
-    queryCinema();
+    queryCinemaRoom();
 });
 
 // 1.4. pageCount change
 $("#pageCount").change(() => {
-    queryCinema();
+    queryCinemaRoom();
 });
 
 // 1.5. pagination
@@ -74,33 +77,32 @@ let changePage = function () {
     $(".changePage").click(function (e) {
         e.preventDefault();
         nowPage = $(this).attr("data-change-page-id");
-        queryCinema(nowPage);
+        queryCinemaRoom(nowPage);
     });
 }
 
 // 1.6. get all district
-function getDistrict() {
-    axios("http://localhost:3000/cinema/queryDistrict").then(res => {
-        let str = `<option value="">请选择区域</option>`;
+function getCinema() {
+    axios("http://localhost:3000/cinemaRoom/queryCinema").then(res => {
+        let str = `<option value="">请选择影院</option>`;
         res.forEach(element => {
             str += `<option value="${element._id}">${element.name}</option>`;
         });
-        $('[name=districtId]').html(str);
+        $('[name=cinemaId]').html(str);
     })
 }
-getDistrict();
-
+getCinema();
 
 
 // 2. insert
 $("#addForm").submit(function (e) {
     e.preventDefault();
-    axios("http://localhost:3000/cinema/insert", "post", false, new FormData($("#addForm")[0])).then(res => {
+    axios("http://localhost:3000/cinemaRoom/insert", "post", false, new FormData($("#addForm")[0])).then(res => {
         console.log(res);
         if (res == "1") {
             // $("#addModal").modal("hide");
             alert("添加成功");
-            queryCinema(nowPage);
+            queryCinemaRoom(nowPage);
         } else {
             alert("添加失败");
         }
@@ -108,12 +110,12 @@ $("#addForm").submit(function (e) {
 });
 
 // 3. del
-let delCinema = function () {
-    $(".delCinema").click(function (e) {
-        let _id = $(this).attr("data-cinema-id");
-        axios("http://localhost:3000/cinema/delete", "post", { "idArray": _id }, "text").then(res => {
+let delCinemaRoom = function () {
+    $(".delCinemaRoom").click(function (e) {
+        let _id = $(this).attr("data-cinemaRoom-id");
+        axios("http://localhost:3000/cinemaRoom/delete", "post", { "idArray": _id }, "text").then(res => {
             if (res == "1") {
-                queryCinema(nowPage);
+                queryCinemaRoom(nowPage);
             } else {
                 alert("删除失败");
             }
@@ -130,9 +132,9 @@ $("#deleteManyId").click(function () {
             $(".sel:checked").each(function () {
                 idArray.push($(this).val());
             });
-            axios("http://localhost:3000/cinema/delete", "post", "text", { "idArray": idArray.toString() }).then(res => {
+            axios("http://localhost:3000/cinemaRoom/delete", "post", "text", { "idArray": idArray.toString() }).then(res => {
                 if (res == "1") {
-                    queryCinema(nowPage);
+                    queryCinemaRoom(nowPage);
                 } else {
                     alert("批量删除失败");
                 }
@@ -145,10 +147,10 @@ $("#deleteManyId").click(function () {
 });
 
 // 4. update
-let showCinema = function () {
-    $(".showCinema").click(function (e) {
-        let _id = $(this).attr("data-show-cinema-id");
-        let newArr = cinemaArr.find(item => item._id == _id);
+let showCinemaRoom = function () {
+    $(".showCinemaRoom").click(function (e) {
+        let _id = $(this).attr("data-show-cinemaRoom-id");
+        let newArr = cinemaRoomArr.find(item => item._id == _id);
         $("#updateForm [name=_id]").val(newArr._id);
         $("#updateForm [name=name]").val(newArr.name);
         $("#updateForm [name=phone]").val(newArr.phone);
@@ -159,12 +161,12 @@ let showCinema = function () {
 }
 
 $("#updateForm").submit(function () {
-    axios("http://localhost:3000/cinema/update", "post", false, new FormData($("#updateForm")[0])).then(res => {
+    axios("http://localhost:3000/cinemaRoom/update", "post", false, new FormData($("#updateForm")[0])).then(res => {
         if (res == "1") {
             // #TODO this way will error , don't know why
             // $("#updateModal").modal("hide");
             alert("修改成功");
-            queryCinema(nowPage);
+            queryCinemaRoom(nowPage);
         } else {
             alert("修改失败");
         }

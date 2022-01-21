@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-01-20 15:55:27 Thu
+ * @LastEditTime: 2022-01-21 20:06:51 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -14,7 +14,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var cinemaRouter = require('./routes/cinemaRoutes');
+var cinemaRoutes = require('./routes/cinemaRoutes');
+let cinemaRoomRoutes = require('./routes/cinemaRoomRoutes');
+let filmRoutes = require('./routes/filmRoutes');
 
 var app = express();
 
@@ -42,7 +44,9 @@ app.use(allowCrossDomain);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/cinema', cinemaRouter);
+app.use('/cinema', cinemaRoutes);
+app.use('/cinemaRoom', cinemaRoomRoutes);
+app.use('/film', filmRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -65,4 +69,4 @@ let server = app.listen(3000, () => {
 });
 
 
-// module.exports = app;
+module.exports = app;

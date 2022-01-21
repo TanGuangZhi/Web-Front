@@ -1,72 +1,106 @@
+<!--
+ * @Author: TanGuangZhi
+ * @Date: 2022-01-20 09:13:25 Thu
+ * @LastEditTime: 2022-01-21 21:25:45 Fri
+ * @LastEditors: TanGuangZhi
+ * @Description: 
+ * @KeyWords: NodeJs, Express, MongoDB
+-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-<h2 class="text-center" style="line-height: 80px;">影厅管理</h2>
-<div class="container">
-    <div class="row" style="line-height: 100px">
-        <div class="col-md-8 form-inline">
-            影厅名称:<input type="text" placeholder="请输入影院名称" name="roomName" class="form-control">
-            影厅级别:
-            <select name="roomLevel" class="form-control">
-                <option value="">请选择级别</option>
-                <option value="1">普通2D</option>
-                <option value="2">豪华3D</option>
-                <option value="3">精品VIP</option>
-            </select>
-            <button type="button" class="btn btn-primary">搜索</button>
+    <h2 class="text-center" style="line-height: 80px;">影厅管理</h2>
+    <div class="container-fluid">
+        <div class="row" style="line-height: 100px">
+            <div class="col-md-8 form-inline">
+                <form class="form-inline justify-content-left" id="searchForm">
+                    <input type="hidden" name="nowPage" value="1">
+                    <input type="text" name="name" placeholder="请输入影厅名称" style="width:150px" class="form-control">
+                    <select name="cinemaId" class="form-control" style="width: 150px">
+                        <option value="">请选择影院</option>
+                        <option value="0">java</option>
+                        <option value="1">web</option>
+                    </select>
+                    <select name="sortType" id="sortId" class="form-control">
+                        <option value="0">请选择排序规则</option>
+                        <option value="1">按照场次顺序排列</option>
+                        <option value="-1">按照场次倒序排列</option>
+                    </select>
+                    <select name="pageCount" id="pageCount" class="form-control">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                    <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                    <span class="glyphicon glyphicon-plus"></span>添加
+                </button>
+                <button type="button" id="deleteManyId" class="btn btn-warning"><span
+                        class="glyphicon glyphicon-remove"></span>
+                    批量删除</button>
+                <!-- <button type="button" class="btn btn-success" id="downloadFileBtn">download</button> -->
+                <a href="http://localhost:3000/film/downloadFile" class="btn btn-primary">download</a>
+                <button type='button' class="btn btn-primary" data-toggle="modal"
+                    data-target="#uploadModal">upload</button>
+            </div>
         </div>
-        <div class="col-md-4 text-right">
-            <button type="button" class="btn btn-success">上传</button>
-            <button type="button" class="btn btn-info">下载</button>
-            <button type="button" class="btn btn-primary">添加</button>
-            <button type="button" class="btn btn-warning">批量删除</button>
+        <div class="row">
+            <table class="col-md-12 table-bordered text-center">
+                <tr style="line-height: 60px;background: lavenderblush;font-weight: bold;">
+                    <td>全选/全消 <input type="checkbox" id="allId"></td>
+                    <td>编号</td>
+                    <td>影厅名称
+                        <!--IMAX厅 -->
+                    </td>
+                    <td>影厅大小
+                        <!--10,10-->
+                    </td>
+                    <td>级别
+                        <!--(普通2D(1),3D(2),vip(3)) -->
+                    </td>
+                    <td>语言版本</td>
+                    <td>电影名称</td>
+                    <td>场次</td>
+                    <td>影院名称</td>
+                    <td colspan="2">操作</td>
+                </tr>
+                <tbody id="showTab">
+                    <tr>
+                        <td>选择<input type="checkbox" class="sel"></td>
+                        <td>1</td>
+                        <td>IMAX厅</td>
+                        <td>10行10列</td>
+                        <td>普通厅</td>
+                        <td>中文版本</td>
+                        <td>19:00-21:00</td>
+                        <td>夏洛特烦恼</td>
+                        <td>万达影院</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">删除</button>
+                            <button type="button" class="btn btn-info">修改</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="row" >
-        <table class="col-md-12 table-bordered text-center">
-            <tr style="line-height: 60px;background: lavenderblush;font-weight: bold;">
-                <td>全选/全消 <input type="checkbox" id="allId"></td>
-                <td>编号</td>
-                <td>影厅名称<!--IMAX厅 --></td>
-                <td>影厅大小<!--10,10--></td>
-                <td>级别<!--(普通2D(1),3D(2),vip(3)) --></td>
-                <td>语言版本</td>
-                <td>场次</td>
-                <td>电影名称</td>
-                <td>影院名称</td>
-                <td>操作</td>
-            </tr>
-            <tbody id="showTab">
-            <tr>
-                <td>选择<input type="checkbox" class="sel"></td>
-                <td>1</td>
-                <td>IMAX厅</td>
-                <td>10行10列</td>
-                <td>普通厅</td>
-                <td>中文版本</td>
-                <td>19:00-21:00</td>
-                <td>夏洛特烦恼</td>
-                <td>万达影院</td>
-                <td>
-                    <button type="button" class="btn btn-danger">删除</button>
-                    <button type="button" class="btn btn-info">修改</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<ul class="pagination justify-content-center" style="margin-top: 20px">
-    <li class="page-item"><a class="page-link" href="javascript:void(0)">&laquo;</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0)">&raquo;</a></li>
-</ul>
+    <ul class="pagination justify-content-center" style="margin-top: 20px">
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">&raquo;</a></li>
+    </ul>
 
 </body>
+
 </html>

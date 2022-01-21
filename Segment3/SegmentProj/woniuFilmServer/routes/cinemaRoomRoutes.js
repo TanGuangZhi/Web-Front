@@ -1,14 +1,14 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:27:44 Thu
- * @LastEditTime: 2022-01-21 14:39:12 Fri
+ * @LastEditTime: 2022-01-21 20:27:59 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 let express = require('express');
 let multer = require("multer");
-let CinemaModel = require('../model/cinemaModel.js');
+let CinemaRoomModel = require('../model/cinemaRoomModel.js');
 let commonUtil = require("../util/commonUtil");
 let fs = require('fs');
 
@@ -30,28 +30,28 @@ router.post('/query', async (req, res, next) => {
     } else {
         nowPage = temp;
     }
-    let queryResult = await CinemaModel.query(nowPage, req.body.pageCount, req.body);
-    let cinemaCount = await CinemaModel.getCount(req.body);
+    let queryResult = await CinemaRoomModel.query(nowPage, req.body.pageCount, req.body);
+    let cinemaCount = await CinemaRoomModel.getCount(req.body);
     lastPage = Math.ceil(cinemaCount / req.body.pageCount);
     res.send(JSON.stringify({ queryResult, lastPage }));
 });
 
-router.get('/queryDistrict', async (req, res, next) => {
-    let queryResult = await CinemaModel.queryDistrict();
+router.get('/queryCinema', async (req, res, next) => {
+    let queryResult = await CinemaRoomModel.queryCinema();
     res.send(JSON.stringify(queryResult));
 })
 
 router.post("/delete", async (req, resp) => {
     let idStr = req.body.idArray;
     let idArray = idStr.split(",");
-    let delObj = await CinemaModel.delete(idArray);
+    let delObj = await CinemaRoomModel.delete(idArray);
     resp.send(delObj.deletedCount > 0 ? "1" : "0");
 });
 
 router.post("/insert", upload.array("cinemaImg"), async (req, resp) => {
     let cinema = req.body;
     cinema.img = commonUtil.upload01(req, "images/cinema");
-    let arr = await CinemaModel.insert([cinema]);
+    let arr = await CinemaRoomModel.insert([cinema]);
     resp.send(arr.length > 0 ? "1" : "0");
 });
 
@@ -61,12 +61,12 @@ router.post("/update", upload.array("cinemaImg"), async (req, resp) => {
     //没有选择图片则使用原来的图片
     if (!cinema.img) { cinema.img = cinema.oldImg }
     delete cinema.oldImg;
-    let updateObj = await CinemaModel.update(cinema);
+    let updateObj = await CinemaRoomModel.update(cinema);
     resp.send(updateObj.modifiedCount > 0 ? "1" : "0");
 });
 
 router.get("/downloadFile", async (req, resp) => {
-    let queryResult = await CinemaModel.query(nowPage, 6, {});
+    let queryResult = await CinemaRoomModel.query(nowPage, 6, {});
     let csvData = commonUtil.jsonToCSV(JSON.parse(JSON.stringify(queryResult)));
     let path = "./public/file/app.csv";
     fs.writeFileSync(path, csvData);
@@ -82,7 +82,7 @@ router.post("/uploadFile", upload.array("uploadFile"), async (req, resp) => {
     let cinemaList = commonUtil.csvParse(data.toString());
 
     // 4. write data to db
-    let arr = await CinemaModel.add(cinemaList);
+    let arr = await CinemaRoomModel.add(cinemaList);
     resp.send(arr.length > 0 ? "1" : "0");
 })
 module.exports = router;

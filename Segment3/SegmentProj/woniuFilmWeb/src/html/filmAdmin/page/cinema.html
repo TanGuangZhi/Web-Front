@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-01-20 19:53:44 Thu
+ * @LastEditTime: 2022-01-21 15:36:53 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -74,12 +74,16 @@
                 <div class="modal-body">
                     <form class="text-center form-inline" id="updateForm">
 
+                        <input type="text" name="oldImg" class="form-control" hidden>
                         <p>
                             <img src="" height="200px" width="200px" id="updateImg">
                         </p>
                         <p>
+                            影院Id:<input type="text" name="_id" class="form-control" style="width:300px" readonly>
+                        </p>
+                        <p>
                             影院名称:<input type="text" name="name" class="form-control" style="width:300px"
-                                placeholder="请输入影院姓名" required pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的字母">
+                                placeholder="请输入影院姓名" required>
                         </p>
                         <p>
                             地址:<input type="text" name="address" class="form-control" style="width:400px"
@@ -98,12 +102,12 @@
                             </select>
                         </p>
                         <p>
-                            影院照片:<input type="file" required name="cinemaImg" class="form-control" id="updateFile"
+                            影院照片:<input type="file" name="cinemaImg" class="form-control" id="updateFile"
                                 style="width:300px" placeholder="请选择图片">
                         </p>
 
                         <p>
-                            <button type="button" class="btn btn-primary" id="updateStuBtn">确认修改</button>
+                            <button type="submit" class="btn btn-primary" id="updateCinemaBtn">确认修改</button>
                             <button type="button" class="btn btn-primary" data-dismiss="modal">返回首页</button>
                         </p>
                     </form>
@@ -133,10 +137,10 @@
                         <option value="20">20</option>
                         <option value="50">50</option>
                     </select>
+                    <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
                 </form>
             </div>
             <div class="col-md-4">
-                <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
                     <span class="glyphicon glyphicon-plus"></span>添加
                 </button>

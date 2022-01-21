@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-01-21 15:33:56 Fri
+ * @LastEditTime: 2022-01-21 19:51:53 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -14,24 +14,28 @@ import { showImg } from "./showImg.js";
 
 // ## main content
 // 1. query
-let cinemaArr;
-function queryCinema(nowPage = 1) {
+let filmArr;
+function queryFilm(nowPage = 1) {
     $('[name=nowPage]').val(nowPage);
     $("#allId").prop("checked", false);
-    axios("http://localhost:3000/cinema/query", "post", $('#searchForm').serialize()).then(res => {
+    axios("http://localhost:3000/film/query", "post", $('#searchForm').serialize()).then(res => {
         let str = ``;
-        cinemaArr = res.queryResult;
-        for (let cinema of res.queryResult) {
+        filmArr = res.queryResult;
+        // console.log(filmArr);
+        for (let film of res.queryResult) {
             str += ` <tr>
-                        <td> <input type="checkbox" class="sel"  value="${cinema._id}"></td>
-                        <td>${cinema._id}</td>
-                        <td>${cinema.name}</td>
-                        <td>${cinema.address}</td>
-                        <td>${cinema.phone}</td>
-                        <td><img src="http://localhost:3000/${cinema.img}" width="40px"></td>
-                        <td>${cinema.district[0]?.name}</td>
-                        <td><button type="button" class="btn btn-danger delCinema"  data-cinema-id="${cinema._id}"><span class="glyphicon glyphicon-remove"></span> 删除</button></td>
-                        <td><button type="button" data-show-cinema-id="${cinema._id}" data-toggle="modal" data-target="#updateModal" class="btn btn-primary showCinema"><span class="glyphicon glyphicon-edit"></span> 修改</button></td>
+                        <td> <input type="checkbox" class="sel"  value="${film._id}"></td>
+                        <td>${film._id}</td>
+                        <td>${film.name}</td>
+                        <td>${film.typeIdToName[0].type}</td>
+                        <td>${film.price}</td>
+                        <td>${film.districtIdToName[0].type}</td>
+                        <td><img src="http://localhost:3000/${film.img}" width="40px"></td>
+                        <td>${film.startTime}</td>
+                        <td>${film.director}</td>
+                        <td>${film.timeCount}分钟</td>
+                        <td><button type="button" class="btn btn-danger delFilm"  data-film-id="${film._id}"><span class="glyphicon glyphicon-remove"></span> 删除</button></td>
+                        <td><button type="button" data-show-film-id="${film._id}" data-toggle="modal" data-target="#updateModal" class="btn btn-primary showFilm"><span class="glyphicon glyphicon-edit"></span> 修改</button></td>
                         </tr>`;
         }
         $("#showTab").html(str);
@@ -43,29 +47,29 @@ function queryCinema(nowPage = 1) {
         pageStr += `<li class="page-item  changePage" data-change-page-id="-2"><a href="javascript:void(0)" class="page-link" >&raquo;</a></li>`;
         $(".pagination").html(pageStr);
 
-        delCinema();
+        delFilm();
         changePage();
-        showCinema();
+        showFilm();
         checkAll();
     });
 }
 
-queryCinema();
+queryFilm();
 
 // 1.2. Multiple conditional search
 $("#searchBtn").click(() => {
-    queryCinema();
+    queryFilm();
     $("#sortId").val(0);
 });
 
 // 1.3. sort
 $("#sortId").change(() => {
-    queryCinema();
+    queryFilm();
 });
 
 // 1.4. pageCount change
 $("#pageCount").change(() => {
-    queryCinema();
+    queryFilm();
 });
 
 // 1.5. pagination
@@ -74,53 +78,65 @@ let changePage = function () {
     $(".changePage").click(function (e) {
         e.preventDefault();
         nowPage = $(this).attr("data-change-page-id");
-        queryCinema(nowPage);
+        queryFilm(nowPage);
     });
 }
 
 // 1.6. get all district
-function getDistrict() {
-    axios("http://localhost:3000/cinema/queryDistrict").then(res => {
+function getAllDistrict() {
+    axios("http://localhost:3000/film/queryDistrict").then(res => {
         let str = `<option value="">请选择区域</option>`;
         res.forEach(element => {
-            str += `<option value="${element._id}">${element.name}</option>`;
+            str += `<option value="${element._id}">${element.type}</option>`;
         });
         $('[name=districtId]').html(str);
     })
 }
-getDistrict();
+getAllDistrict();
+
+// 1.6.2. get all type
+function getAllType() {
+    axios("http://localhost:3000/film/queryType").then(res => {
+        let str = `<option value="">请选择类型</option>`;
+        res.forEach(element => {
+            str += `<option value="${element._id}">${element.type}</option>`;
+        });
+        $('[name=typeId]').html(str);
+    });
+}
+getAllType();
 
 
 
 // 2. insert
 $("#addForm").submit(function (e) {
     e.preventDefault();
-    axios("http://localhost:3000/cinema/insert", "post", false, new FormData($("#addForm")[0])).then(res => {
+    axios("http://localhost:3000/film/insert", "post", false, new FormData($("#addForm")[0])).then(res => {
         console.log(res);
         if (res == "1") {
             // $("#addModal").modal("hide");
             alert("添加成功");
-            queryCinema(nowPage);
+            queryFilm(nowPage);
         } else {
             alert("添加失败");
         }
-    })
+    });
 });
 
 // 3. del
-let delCinema = function () {
-    $(".delCinema").click(function (e) {
-        let _id = $(this).attr("data-cinema-id");
-        axios("http://localhost:3000/cinema/delete", "post", { "idArray": _id }, "text").then(res => {
+let delFilm = function () {
+    $(".delFilm").click(function (e) {
+        let _id = $(this).attr("data-film-id");
+        axios("http://localhost:3000/film/delete", "post", { "idArray": _id }, "text").then(res => {
             if (res == "1") {
-                queryCinema(nowPage);
+                queryFilm(nowPage);
             } else {
                 alert("删除失败");
             }
         });
-
     });
 }
+
 // 3.1 del by batch
 $("#deleteManyId").click(function () {
     if (confirm("您确定要删除吗?")) {
@@ -130,9 +146,9 @@ $("#deleteManyId").click(function () {
             $(".sel:checked").each(function () {
                 idArray.push($(this).val());
             });
-            axios("http://localhost:3000/cinema/delete", "post", "text", { "idArray": idArray.toString() }).then(res => {
+            axios("http://localhost:3000/film/delete", "post", "text", { "idArray": idArray.toString() }).then(res => {
                 if (res == "1") {
-                    queryCinema(nowPage);
+                    queryFilm(nowPage);
                 } else {
                     alert("批量删除失败");
                 }
@@ -140,31 +156,32 @@ $("#deleteManyId").click(function () {
         } else {
             alert("请先选择");
         }
-
     }
 });
 
 // 4. update
-let showCinema = function () {
-    $(".showCinema").click(function (e) {
-        let _id = $(this).attr("data-show-cinema-id");
-        let newArr = cinemaArr.find(item => item._id == _id);
+let showFilm = function () {
+    $(".showFilm").click(function (e) {
+        let _id = $(this).attr("data-show-film-id");
+        let newArr = filmArr.find(item => item._id == _id);
         $("#updateForm [name=_id]").val(newArr._id);
         $("#updateForm [name=name]").val(newArr.name);
-        $("#updateForm [name=phone]").val(newArr.phone);
-        $("#updateForm [name=address]").val(newArr.address);
+        $("#updateForm [name=price]").val(newArr.price);
+        $("#updateForm [name=startTime]").val(newArr.startTime);
+        $("#updateForm [name=director]").val(newArr.director);
+        $("#updateForm [name=timeCount]").val(newArr.timeCount);
         $("#updateForm img").attr("src", `http://localhost:3000/${newArr.img}`);
         $("#updateForm [name=oldImg]").val(newArr.img);
     });
 }
 
 $("#updateForm").submit(function () {
-    axios("http://localhost:3000/cinema/update", "post", false, new FormData($("#updateForm")[0])).then(res => {
+    axios("http://localhost:3000/film/update", "post", false, new FormData($("#updateForm")[0])).then(res => {
         if (res == "1") {
             // #TODO this way will error , don't know why
             // $("#updateModal").modal("hide");
             alert("修改成功");
-            queryCinema(nowPage);
+            queryFilm(nowPage);
         } else {
             alert("修改失败");
         }

@@ -1,39 +1,56 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-01-21 16:53:51 Fri
+ * @LastEditTime: 2022-01-21 21:30:37 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 let dbUtil = require('../util/dbUtil');
+let dbCinemaRoomTable = require("../data/cinemaRoomSchema");
 let dbCinemaTable = require("../data/cinemaSchema.js");
-let dbCinemaDistrictTable = require("../data/cinemaDistrictSchema.js");
 let dbSequence = dbUtil.dbSequence;
 
-class CinemaModel {
+class CinemaRoomModel {
     static async query(nowPage, pageCount, data) {
         let sortObj = {};
         let matchObj = {};
         if (data.name != "") {
             matchObj.name = { $regex: data.name };
         }
+        if (data.cinemaId != "") {
+            matchObj.cinemaId = { $regex: data.cinemaId };
+        }
         if (data.sortType == 0) {
             sortObj._id = 1;
         } else if (data.sortType == 1 || data.sortType == -1) {
-            sortObj.districtId = data.sortType - 0;
+            sortObj.session = data.sortType - 0;
         } else {
             sortObj._id = 1;
         }
 
-        return await dbCinemaTable.aggregate([{
+        return await dbCinemaRoomTable.aggregate([{
             $match: matchObj
         }, {
             $lookup: {
-                from: "cinemaDistrict",
-                localField: "districtId",
+                from: "cinema",
+                localField: "cinemaId",
                 foreignField: "_id",
-                as: "district"
+                as: "cinemaIdToDetails"
+            }
+        }, {
+            $lookup: {
+                from: "film",
+                localField: "filmId",
+                foreignField: "_id",
+                as: "filmIdToDetails"
+            }
+        }, {
+            $lookup: {
+                from: "cinemaHallType",
+                localField: "roomId",
+                foreignField: "_id",
+                as: "roomIdToDetails"
             }
         }, {
             $sort: sortObj
@@ -49,7 +66,7 @@ class CinemaModel {
         if (data.name != "") {
             matchObj.name = { $regex: data.name };
         }
-        let list = await dbCinemaTable.aggregate([
+        let list = await dbCinemaRoomTable.aggregate([
             {
                 $match: matchObj
             },
@@ -57,12 +74,12 @@ class CinemaModel {
         return await list.length;
     }
 
-    static async queryDistrict(data) {
-        return await dbCinemaDistrictTable.find({});
+    static async queryCinema(data) {
+        return await dbCinemaTable.find({});
     }
 
     static async delete(delArr) {
-        return await dbCinemaTable.deleteMany({ _id: { $in: delArr } });
+        return await dbCinemaRoomTable.deleteMany({ _id: { $in: delArr } });
     }
 
     static async insert(cinema) {
@@ -70,11 +87,11 @@ class CinemaModel {
             let sequence = await dbSequence.findOneAndUpdate({ _id: "cinemaId" }, { $inc: { sequenceValue: 1 } });
             cinemaOne._id = sequence.sequenceValue;
         }
-        return await dbCinemaTable.insertMany(cinema);
+        return await dbCinemaRoomTable.insertMany(cinema);
     }
 
     static async update(cinema) {
-        return await dbCinemaTable.updateMany({ _id: parseInt(cinema._id) }, {
+        return await dbCinemaRoomTable.updateMany({ _id: parseInt(cinema._id) }, {
             $set:
             {
                 name: cinema.name,
@@ -91,4 +108,4 @@ class CinemaModel {
     }
 }
 
-module.exports = CinemaModel;
+module.exports = CinemaRoomModel;
