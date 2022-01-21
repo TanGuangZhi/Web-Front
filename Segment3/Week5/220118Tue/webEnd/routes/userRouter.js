@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-13 11:20:44 Thu
- * @LastEditTime: 2022-01-15 14:39:39 Sat
+ * @LastEditTime: 2022-01-19 12:50:17 Wed
  * @LastEditors: TanGuangZhi
  * @Description: to connect the model and deal data send and response
  * @KeyWords: NodeJs, Express, MongoDB
@@ -11,6 +11,7 @@ let UserModel = require('../model/userModel');
 let multer = require("multer");
 let commonUtil = require("../util/commonUtil");
 let fs = require('fs');
+let sendEmail = require('../util/sendMail');
 
 var router = express.Router();
 let userModel = new UserModel();
@@ -20,6 +21,10 @@ router.post('/login', async (req, res, next) => {
   let loginUserInfo = await userModel.login(req.body)
   res.send(JSON.stringify(loginUserInfo));
 });
+
+router.get('/register', async (req, res, next) => {
+  res.send(sendEmail(req.query.email, "111"));
+})
 
 let nowPage = 1;
 let pageCount = 6;

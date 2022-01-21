@@ -1,0 +1,89 @@
+<!--
+ * @Author: TanGuangZhi
+ * @Date: 2022-01-20 09:13:25 Thu
+ * @LastEditTime: 2022-01-20 15:00:04 Thu
+ * @LastEditors: TanGuangZhi
+ * @Description: 
+ * @KeyWords: NodeJs, Express, MongoDB
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <h2 class="text-center" style="line-height: 80px;">电影管理</h2>
+    <div class="container-fluid">
+        <div class="row" style="line-height: 100px">
+            <div class="col-md-8 form-inline">
+                影厅名称:<input type="text" placeholder="请输入影院名称" name="roomName" class="form-control">
+                影厅级别:
+                <select name="roomLevel" class="form-control">
+                    <option value="">请选择级别</option>
+                    <option value="1">普通2D</option>
+                    <option value="2">豪华3D</option>
+                    <option value="3">精品VIP</option>
+                </select>
+                <button type="button" class="btn btn-primary">搜索</button>
+            </div>
+            <div class="col-md-4 text-right">
+                <button type="button" class="btn btn-success">上传</button>
+                <button type="button" class="btn btn-info">下载</button>
+                <button type="button" class="btn btn-primary">添加</button>
+                <button type="button" class="btn btn-warning">批量删除</button>
+            </div>
+        </div>
+        <div class="row">
+            <table class="col-md-12 table-bordered text-center">
+                <tr style="line-height: 60px;background: lavenderblush;font-weight: bold;">
+                    <td>全选/全消 <input type="checkbox" id="allId"></td>
+                    <td>编号</td>
+                    <td>电影名称</td>
+                    <td>电影类型</td>
+                    <td>电影价格</td>
+                    <td>电影区域
+                        <!--中国,美国,日本-->
+                    </td>
+                    <td>电影图片</td>
+                    <td>上映时间</td>
+                    <td>导演</td>
+                    <td>放映时长</td>
+                    <!--电影详情介绍,导演，放映时长-->
+                    <td>操作</td>
+                </tr>
+                <tbody id="showTab">
+                    <tr>
+                        <td>选择<input type="checkbox" class="sel"></td>
+                        <td>1</td>
+                        <td>误杀</td>
+                        <td>犯罪</td>
+                        <td>66.66元</td>
+                        <td>中国</td>
+                        <td>
+                        </td>
+                        <td>2022-02-01</td>
+                        <td>张艺谋</td>
+                        <td>120分钟</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">删除</button>
+                            <button type="button" class="btn btn-info">修改</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ul class="pagination justify-content-center" style="margin-top: 20px">
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">&raquo;</a></li>
+    </ul>
+
+</body>
+
+</html>

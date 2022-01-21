@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-01-18 11:58:19 Tue
- * @LastEditTime: 2022-01-18 15:44:21 Tue
+ * @LastEditTime: 2022-01-19 11:05:43 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -19,8 +19,12 @@
     <div class="container-fluid" style="line-height:80px;background: black">
         <div class="row">
             <div class="col-md-12 text-right">
-                <a href="html/user.html" target="showFrame" class="btn btn-danger">用户管理</a>
-                <a href="html/film.html" target="showFrame" class="btn btn-info">电影管理</a>
+                <a href="html/stu.html" target="showFrame" class="btn btn-danger">用户管理</a>
+                <a href="html/user.html" target="showFrame" class="btn btn-info">电影管理</a>
+                <form action="http://localhost:3000/user/register" method="get">
+                    <input type="text" name="email" placeholder="email">
+                    <input type="submit" value="submit">
+                </form>
             </div>
         </div>
     </div>
@@ -28,7 +32,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <iframe src="html/film.html" name="showFrame" scrolling="yes" frameborder="0" width="100%"
+                <iframe src="html/user.html" name="showFrame" scrolling="yes" frameborder="0" width="100%"
                     height="750px"></iframe>
             </div>
         </div>

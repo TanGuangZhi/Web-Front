@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-14 19:50:07 Fri
- * @LastEditTime: 2022-01-18 16:10:14 Tue
+ * @LastEditTime: 2022-01-19 11:26:10 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -25,7 +25,7 @@ function queryStu(nowPage = 1) {
                         <td>${stu.stuName}</td>
                         <td>${stu.stuTime}</td>
                         <td>${stu.stuType[0]?.name}</td>
-                        <td><img src="../${stu.stuImg}" width="40px"></td>
+                        <td><img src="http://localhost:3000/${stu.stuImg}" width="40px"></td>
                         <td>${stu.stuSalary}</td>
                         <td><button type="button" class="btn btn-danger delStu"  data-stu-id="${stu._id}"><span class="glyphicon glyphicon-remove"></span> 删除</button></td>
                         <td><button type="button" data-show-stu-id="${stu._id}" data-toggle="modal" data-target="#updateModal" class="btn btn-primary showStu"><span class="glyphicon glyphicon-edit"></span> 修改</button></td>

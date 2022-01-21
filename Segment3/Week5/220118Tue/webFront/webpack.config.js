@@ -38,7 +38,7 @@ let webpack = require("webpack");
 let Path = require("path");
 let HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const pageList = ["index", "html/film", "html/user"];
+const pageList = ["index", "html/stu", "html/user"];
 function listEntry() {
     let obj = {};
     pageList.forEach(item => {

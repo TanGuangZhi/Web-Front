@@ -1,0 +1,303 @@
+[
+  {
+    "id": "1",
+    "name": "肖申克的救赎 / The Shawshank Redemption",
+    "score": "9.7",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p480747492.jpg"
+  },
+  {
+    "id": "2",
+    "name": "霸王别姬",
+    "score": "9.6",
+    "pic": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561716440.jpg"
+  },
+  {
+    "id": "3",
+    "name": "阿甘正传 / Forrest Gump",
+    "score": "9.5",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2372307693.jpg"
+  },
+  {
+    "id": "4",
+    "name": "泰坦尼克号 / Titanic",
+    "score": "9.4",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p457760035.jpg"
+  },
+  {
+    "id": "5",
+    "name": "这个杀手不太冷 / Léon",
+    "score": "9.4",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p511118051.jpg"
+  },
+  {
+    "id": "6",
+    "name": "美丽人生 / La vita è bella",
+    "score": "9.6",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2578474613.jpg"
+  },
+  {
+    "id": "7",
+    "name": "千与千寻 / 千と千尋の神隠し",
+    "score": "9.4",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2557573348.jpg"
+  },
+  {
+    "id": "8",
+    "name": "辛德勒的名单 / Schindler's List",
+    "score": "9.5",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p492406163.jpg"
+  },
+  {
+    "id": "9",
+    "name": "盗梦空间 / Inception",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2616355133.jpg"
+  },
+  {
+    "id": "10",
+    "name": "忠犬八公的故事 / Hachi: A Dog's Tale",
+    "score": "9.4",
+    "pic": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2587099240.jpg"
+  },
+  {
+    "id": "11",
+    "name": "星际穿越 / Interstellar",
+    "score": "9.4",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2614988097.jpg"
+  },
+  {
+    "id": "12",
+    "name": "楚门的世界 / The Truman Show",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p479682972.jpg"
+  },
+  {
+    "id": "13",
+    "name": "海上钢琴师 / La leggenda del pianista sull'oceano",
+    "score": "9.3",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2574551676.jpg"
+  },
+  {
+    "id": "14",
+    "name": "三傻大闹宝莱坞 / 3 Idiots",
+    "score": "9.2",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p579729551.jpg"
+  },
+  {
+    "id": "15",
+    "name": "机器人总动员 / WALL·E",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1461851991.jpg"
+  },
+  {
+    "id": "16",
+    "name": "放牛班的春天 / Les choristes",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1910824951.jpg"
+  },
+  {
+    "id": "17",
+    "name": "无间道 / 無間道",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2564556863.jpg"
+  },
+  {
+    "id": "18",
+    "name": "疯狂动物城 / Zootopia",
+    "score": "9.2",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2614500649.jpg"
+  },
+  {
+    "id": "19",
+    "name": "大话西游之大圣娶亲 / 西遊記大結局之仙履奇緣",
+    "score": "9.2",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2455050536.jpg"
+  },
+  {
+    "id": "20",
+    "name": "熔炉 / 도가니",
+    "score": "9.3",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1363250216.jpg"
+  },
+  {
+    "id": "21",
+    "name": "教父 / The Godfather",
+    "score": "9.3",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p616779645.jpg"
+  },
+  {
+    "id": "22",
+    "name": "当幸福来敲门 / The Pursuit of Happyness",
+    "score": "9.2",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2614359276.jpg"
+  },
+  {
+    "id": "23",
+    "name": "控方证人 / Witness for the Prosecution",
+    "score": "9.6",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1505392928.jpg"
+  },
+  {
+    "id": "24",
+    "name": "龙猫 / となりのトトロ",
+    "score": "9.2",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2540924496.jpg"
+  },
+  {
+    "id": "25",
+    "name": "怦然心动 / Flipped",
+    "score": "9.1",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p501177648.jpg"
+  }
+][
+  {
+    "id": "1",
+    "name": "肖申克的救赎 / The Shawshank Redemption",
+    "score": "9.7",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p480747492.jpg"
+  },
+  {
+    "id": "2",
+    "name": "霸王别姬",
+    "score": "9.6",
+    "pic": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561716440.jpg"
+  },
+  {
+    "id": "3",
+    "name": "阿甘正传 / Forrest Gump",
+    "score": "9.5",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2372307693.jpg"
+  },
+  {
+    "id": "4",
+    "name": "泰坦尼克号 / Titanic",
+    "score": "9.4",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p457760035.jpg"
+  },
+  {
+    "id": "5",
+    "name": "这个杀手不太冷 / Léon",
+    "score": "9.4",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p511118051.jpg"
+  },
+  {
+    "id": "6",
+    "name": "美丽人生 / La vita è bella",
+    "score": "9.6",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2578474613.jpg"
+  },
+  {
+    "id": "7",
+    "name": "千与千寻 / 千と千尋の神隠し",
+    "score": "9.4",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2557573348.jpg"
+  },
+  {
+    "id": "8",
+    "name": "辛德勒的名单 / Schindler's List",
+    "score": "9.5",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p492406163.jpg"
+  },
+  {
+    "id": "9",
+    "name": "盗梦空间 / Inception",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2616355133.jpg"
+  },
+  {
+    "id": "10",
+    "name": "忠犬八公的故事 / Hachi: A Dog's Tale",
+    "score": "9.4",
+    "pic": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2587099240.jpg"
+  },
+  {
+    "id": "11",
+    "name": "星际穿越 / Interstellar",
+    "score": "9.4",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2614988097.jpg"
+  },
+  {
+    "id": "12",
+    "name": "楚门的世界 / The Truman Show",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p479682972.jpg"
+  },
+  {
+    "id": "13",
+    "name": "海上钢琴师 / La leggenda del pianista sull'oceano",
+    "score": "9.3",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2574551676.jpg"
+  },
+  {
+    "id": "14",
+    "name": "三傻大闹宝莱坞 / 3 Idiots",
+    "score": "9.2",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p579729551.jpg"
+  },
+  {
+    "id": "15",
+    "name": "机器人总动员 / WALL·E",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1461851991.jpg"
+  },
+  {
+    "id": "16",
+    "name": "放牛班的春天 / Les choristes",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1910824951.jpg"
+  },
+  {
+    "id": "17",
+    "name": "无间道 / 無間道",
+    "score": "9.3",
+    "pic": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2564556863.jpg"
+  },
+  {
+    "id": "18",
+    "name": "疯狂动物城 / Zootopia",
+    "score": "9.2",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2614500649.jpg"
+  },
+  {
+    "id": "19",
+    "name": "大话西游之大圣娶亲 / 西遊記大結局之仙履奇緣",
+    "score": "9.2",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2455050536.jpg"
+  },
+  {
+    "id": "20",
+    "name": "熔炉 / 도가니",
+    "score": "9.3",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1363250216.jpg"
+  },
+  {
+    "id": "21",
+    "name": "教父 / The Godfather",
+    "score": "9.3",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p616779645.jpg"
+  },
+  {
+    "id": "22",
+    "name": "当幸福来敲门 / The Pursuit of Happyness",
+    "score": "9.2",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2614359276.jpg"
+  },
+  {
+    "id": "23",
+    "name": "控方证人 / Witness for the Prosecution",
+    "score": "9.6",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p1505392928.jpg"
+  },
+  {
+    "id": "24",
+    "name": "龙猫 / となりのトトロ",
+    "score": "9.2",
+    "pic": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2540924496.jpg"
+  },
+  {
+    "id": "25",
+    "name": "怦然心动 / Flipped",
+    "score": "9.1",
+    "pic": "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p501177648.jpg"
+  }
+]

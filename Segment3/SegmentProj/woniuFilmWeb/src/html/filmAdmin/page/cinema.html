@@ -1,0 +1,195 @@
+<!--
+ * @Author: TanGuangZhi
+ * @Date: 2022-01-20 09:13:25 Thu
+ * @LastEditTime: 2022-01-20 19:53:44 Thu
+ * @LastEditors: TanGuangZhi
+ * @Description: 
+ * @KeyWords: NodeJs, Express, MongoDB
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <!--1.添加的模态框-->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="addModalLabel">添加影院</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline" id="addForm">
+                        <p>
+                            <img src="" height="200px" width="200px" id="addImg">
+                        </p>
+                        <p>
+                            影院名称:<input type="text" name="name" class="form-control" style="width:300px"
+                                placeholder="请输入影院姓名" required pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的字母">
+                        </p>
+                        <p>
+                            地址:<input type="text" name="address" class="form-control" style="width:400px"
+                                placeholder="请输入地址" required>
+                        </p>
+                        <p>
+                            电话:<input type="text" name="phone" required class="form-control" style="width:400px"
+                                placeholder="请输入手机号">
+                        </p>
+                        <p>
+                            地区:
+                            <select name="districtId" class="form-control" required style="width: 400px">
+                                <option value="">请选择地区</option>
+                                <option value="0">海淀区</option>
+                                <option value="1">朝阳区</option>
+                            </select>
+                        </p>
+                        <p>
+                            影院照片:<input type="file" required name="cinemaImg" class="form-control" id="addFile"
+                                style="width:300px" placeholder="请选择图片">
+                        </p>
+                        <p>
+                            <button type="submit" class="btn btn-primary" id="addBtn">确认添加</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">返回首页</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--2.修改的模态框-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="updateModalLabel">修改影院</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="text-center form-inline" id="updateForm">
+
+                        <p>
+                            <img src="" height="200px" width="200px" id="updateImg">
+                        </p>
+                        <p>
+                            影院名称:<input type="text" name="name" class="form-control" style="width:300px"
+                                placeholder="请输入影院姓名" required pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的字母">
+                        </p>
+                        <p>
+                            地址:<input type="text" name="address" class="form-control" style="width:400px"
+                                placeholder="请输入地址" required>
+                        </p>
+                        <p>
+                            电话:<input type="text" name="phone" required class="form-control" style="width:400px"
+                                placeholder="请输入手机号">
+                        </p>
+                        <p>
+                            地区:
+                            <select name="districtId" class="form-control" required style="width: 400px">
+                                <option value="">请选择地区</option>
+                                <option value="0">海淀区</option>
+                                <option value="1">朝阳区</option>
+                            </select>
+                        </p>
+                        <p>
+                            影院照片:<input type="file" required name="cinemaImg" class="form-control" id="updateFile"
+                                style="width:300px" placeholder="请选择图片">
+                        </p>
+
+                        <p>
+                            <button type="button" class="btn btn-primary" id="updateStuBtn">确认修改</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">返回首页</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2 class="text-center" style="line-height: 80px;">影院管理</h2>
+    <div class="container-fluid">
+        <div class="row" style="line-height: 100px">
+            <div class="col-md-8 form-inline">
+                <form class="form-inline justify-content-left" id="searchForm">
+                    <input type="hidden" name="nowPage" value="1">
+                    影院名称: <input type="text" name="name" placeholder="请输入影院名称" style="width:150px" class="form-control">
+                    <select name="districtId" class="form-control" style="width: 150px">
+                        <option value="">请选择区域</option>
+                        <option value="0">java</option>
+                        <option value="1">web</option>
+                    </select>
+                    <select name="sortType" id="sortId" class="form-control">
+                        <option value="0">请选择排序规则</option>
+                        <option value="1">按照地区顺序排列</option>
+                        <option value="-1">按照地区倒序排列</option>
+                    </select>
+                    <select name="pageCount" id="pageCount" class="form-control">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                    <span class="glyphicon glyphicon-plus"></span>添加
+                </button>
+                <button type="button" id="deleteManyId" class="btn btn-warning"><span
+                        class="glyphicon glyphicon-remove"></span>
+                    批量删除</button>
+                <!-- <button type="button" class="btn btn-success" id="downloadFileBtn">download</button> -->
+                <a href="http://localhost:3000/cinema/downloadFile" class="btn btn-primary">download</a>
+                <button type='button' class="btn btn-primary" data-toggle="modal"
+                    data-target="#uploadModal">upload</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table class="col-md-12 table-bordered text-center">
+            <tr style="line-height: 60px;background: lavenderblush;font-weight: bold;">
+                <td><input type="checkbox" id="allId">全选</td>
+                <td>编号</td>
+                <td>影院名称</td>
+                <td>地址</td>
+                <td>电话</td>
+                <td>影院图片</td>
+                <td>地区</td>
+                <td colspan="2">操作</td>
+            </tr>
+            <tbody id="showTab">
+                <tr>
+                    <td>选择<input type="checkbox" class="sel"></td>
+                    <td>1</td>
+                    <td>万达影院</td>
+                    <td>浦东新区万达广场</td>
+                    <td>0799-10086</td>
+                    <td>
+                    </td>
+                    <td>
+                        浦东新区
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">删除</button>
+                        <button type="button" class="btn btn-info">修改</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <ul class="pagination justify-content-center" style="margin-top: 20px">
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">&raquo;</a></li>
+    </ul>
+</body>
+
+</html>
