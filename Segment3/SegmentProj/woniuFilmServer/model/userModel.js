@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 13:11:56 Sat
- * @LastEditTime: 2022-01-22 14:13:55 Sat
+ * @LastEditTime: 2022-01-22 14:54:15 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -50,6 +50,10 @@ class UserModel {
         let userName = data.userName;
         let userPass = data.userPass;
         return await dbUserTable.find({ userName: userName, userPass: userPass });
+    }
+
+    async loginUser(name) {
+        return await dbUserTable.find({ name });
     }
 
     async register(user) {

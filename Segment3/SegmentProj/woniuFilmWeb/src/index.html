@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<div id="app">
+    <div class="header">
+        <div class="header-inner">
+            <h1 >
+                <a href="index.html"  class="logo"></a></h1>
+            <div class="city-container" >
+                <div class="city-selected">
+                    <div class="city-name">
+                        <span class="caret"></span>
+                    </div>
+                </div>
+                <div class="city-list" >
+                    <div class="city-list-header">定位城市：<a class="js-geo-city">上海</a></div>
+                </div>
+            </div>
+
+            <div class="nav">
+                <ul class="navbar">
+                    <li><a href="index.html"  class="active">首页</a></li>
+                    <li><a href="movie.html">电影</a></li>
+                    <li><a href="cinema.html" >影院</a></li>
+                    <li><a href="javascript:alert('暂无数据')">榜单</a></li>
+                </ul>
+            </div>
+
+            <div class="user-info">
+                <div class="user-avatar has-login">
+                    <img src="./images/63957f10ae9679c95d4ba26ad1bd29c816882.png">
+                    <span class="caret"></span>
+                    <ul class="user-menu yes-login-menu">
+                        <li class="text"><a href="./orderlist.html">我的订单</a></li>
+                        <li class="text login-name"><a href="html/index.html" >联系管理员</a></li>
+                        <li class="text"><a href="javascript:void(0)" class="J-logout" >退出登录</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="user-info" >
+                <div class="user-avatar J-login">
+                    <img src="./images/7dd82a16316ab32c8359debdb04396ef2897.png">
+                    <span class="caret"></span>
+                    <ul class="user-menu no-login-menu">
+                        <li><a href="login.html">登录</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <form target="_blank" class="search-form" >
+                <input name="kw" class="search" type="search"  maxlength="32" placeholder="找影视剧、影人、影院" autocomplete="off">
+                <input class="submit" type="button" />
+            </form>
+
+
+        </div>
+    </div>
+    <div class="header-placeholder"></div>
+
+    <div class="banner">
+        <div class="slider single-item slider-banner slick-initialized slick-slider">
+            <div aria-live="polite" class="slick-list draggable">
+                <div class="slick-track" role="listbox" style="opacity: 1; width: 1600px;text-align: center">
+                        <a href="javascript:void(0)">
+                            <img src="images/bg.jpg">
+                        </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="aside">
+                <div class="ranking-box-wrapper">
+                    <div class="panel">
+                        <div class="panel-header">
+                          <span class="panel-title">
+                            <span class="textcolor_red"><h2>今日票房</h2></span>
+                          </span>
+                        </div>
+                        <div class="panel-content">
+                            <ul class="ranking-wrapper ranking-box">
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">1</i>
+                                        <span class="ranking-movie-name">海贼王</span>
+                                        <span class="ranking-num-info stonefont">800万</span>
+                                      </span>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">2</i>
+                                        <span class="ranking-movie-name">斗破苍穹</span>
+                                        <span class="ranking-num-info stonefont">500万</span>
+                                      </span>
+                                    </a>
+                                </li>
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">3</i>
+                                        <span class="ranking-movie-name">侠岚</span>
+                                        <span class="ranking-num-info stonefont">300万</span>
+                                      </span>
+                                    </a>
+                                </li>
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">4</i>
+                                        <span class="ranking-movie-name">侠岚</span>
+                                        <span class="ranking-num-info stonefont">300万</span>
+                                      </span>
+                                    </a>
+                                </li>
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">5</i>
+                                        <span class="ranking-movie-name">侠岚</span>
+                                        <span class="ranking-num-info stonefont">300万</span>
+                                      </span>
+                                    </a>
+                                </li>
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">6</i>
+                                        <span class="ranking-movie-name">侠岚</span>
+                                        <span class="ranking-num-info stonefont">300万</span>
+                                      </span>
+                                    </a>
+                                </li>
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">7</i>
+                                        <span class="ranking-movie-name">侠岚</span>
+                                        <span class="ranking-num-info stonefont">300万</span>
+                                      </span>
+                                    </a>
+                                </li>
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">8</i>
+                                        <span class="ranking-movie-name">侠岚</span>
+                                        <span class="ranking-num-info stonefont">300万</span>
+                                      </span>
+                                    </a>
+                                </li>
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">9</i>
+                                        <span class="ranking-movie-name">侠岚</span>
+                                        <span class="ranking-num-info stonefont">300万</span>
+                                      </span>
+                                    </a>
+                                </li>
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                            <i class="ranking-index">10</i>
+                                        <span class="ranking-movie-name">侠岚</span>
+                                        <span class="ranking-num-info stonefont">300万</span>
+                                      </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-total-wrapper clearfix">
+                    <h3>今日大盘</h3>
+                    <div>
+                        <p>
+                            <span class="num"><span class="stonefont">0.8</span></span>亿
+                            <a class="more" target="_blank" href="#">查看更多
+                                <span class="panel-arrow panel-arrow-red"></span></a>
+                        </p>
+                        <p class="meta-info">
+                            北京时间 00:00
+                            <span class="pull-right">实时票房数据</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="most-expect-wrapper">
+                    <div class="panel">
+                        <div class="panel-header">
+                          <span class="panel-more">
+                            <a href="javascript:void(0)" class="textcolor_orange" >
+                              <span>查看完整榜单</span>
+                            </a>
+                            <span class="panel-arrow panel-arrow-orange"></span>
+                          </span>
+                            <span class="panel-title">
+                            <span class="textcolor_orange"><h2>最受期待</h2></span>
+                          </span>
+                        </div>
+                        <div class="panel-content">
+                            <ul class="ranking-wrapper ranking-mostExpect">
+                                <li class="ranking-item ranking-top ranking-index-1">
+                                    <a href="javascript:void(0)" >
+                                        <div class="ranking-top-left">
+                                            <i class="ranking-top-icon"></i>
+                                            <img class="ranking-img  default-img"
+                                                 src="./images/ece9ff81e6f0af2c859aa151e42a33312706648.jpg@140w_194h_1e_1c.jpg">
+                                        </div>
+                                        <div class="ranking-top-right">
+                                            <div class="ranking-top-right-main">
+                                                <span class="ranking-top-moive-name">唐人街探案3</span>
+
+                                                <p class="ranking-release-time">上映时间：2021-02-12</p>
+
+                                                <p class="ranking-top-wish">
+                                                    <span class="stonefont">1</span>人想看
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-2">
+                                    <a href="javascript:void(0)">
+                                        <i class="ranking-index">2</i>
+                                        <span class="img-link"><img class="ranking-img default-img"
+                                                                    src="./images/91e71e812622267cbea1b79cd49bbe06670306.jpg@170w_118h_1e_1c.jpg"
+                                                                    alt="温暖的抱抱电影海报"></span>
+                                        <div class="name-link ranking-movie-name">温暖的抱抱</div>
+
+                                        <span class="ranking-num-info"><span
+                                                class="stonefont">1</span>人想看</span>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-3">
+                                    <a href="javascript:void(0)" >
+                                        <i class="ranking-index">3</i>
+                                        <span class="img-link"><img class="ranking-img default-img"
+                                                                    src="./images/9eab52255ce311e29672de5e35c09638424927.jpg@170w_118h_1e_1c.jpg"
+                                                                   ></span>
+                                        <div class="name-link ranking-movie-name">你好，李焕英</div>
+                                        <span class="ranking-num-info"><span
+                                                class="stonefont">1</span>人想看</span>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-4">
+                                    <a href="javascript:void(0)" >
+                                      <span class="normal-link">
+                                        <i class="ranking-index">4</i>
+                                        <span class="ranking-movie-name">崖上的波妞</span>
+                                        <span class="ranking-num-info">
+                                            <span class="stonefont">1</span>人想看
+                                          </span>
+                                      </span>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-5">
+                                    <a href="javascript:void(0)" >
+                                      <span class="normal-link">
+                                        <i class="ranking-index">5</i>
+                                        <span class="ranking-movie-name">刺杀小说家</span>
+                                        <span class="ranking-num-info">
+                                            <span class="stonefont">1</span>人想看
+                                          </span>
+                                      </span>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-6">
+                                    <a href="javascript:void(0)"  >
+                                      <span class="normal-link">
+                                        <i class="ranking-index">6</i>
+                                        <span class="ranking-movie-name">侍神令</span>
+
+                                        <span class="ranking-num-info">
+                                            <span class="stonefont">1</span>人想看
+                                          </span>
+                                      </span>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-7">
+                                    <a href="javascript:void(0)" >
+                                      <span class="normal-link">
+                                        <i class="ranking-index">7</i>
+                                        <span class="ranking-movie-name">熊出没·狂野大陆</span>
+
+                                        <span class="ranking-num-info">
+                                            <span class="stonefont">1</span>人想看
+                                          </span>
+                                      </span>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-8">
+                                    <a href="javascript:void(0)">
+                                          <span class="normal-link">
+                                            <i class="ranking-index">8</i>
+                                            <span class="ranking-movie-name">猎狐行动</span>
+
+                                            <span class="ranking-num-info">
+                                                <span class="stonefont">2</span>人想看
+                                              </span>
+                                          </span>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-9">
+                                    <a href="javascript:void(0)">
+                                      <span class="normal-link">
+                                        <i class="ranking-index">9</i>
+                                        <span class="ranking-movie-name">新神榜：哪吒重生</span>
+
+                                        <span class="ranking-num-info">
+                                            <span class="stonefont">2111</span>人想看
+                                          </span>
+                                      </span>
+                                    </a>
+                                </li>
+
+                                <li class="ranking-item ranking-index-10">
+                                    <a href="javascript:void(0)">
+                                          <span class="normal-link">
+                                            <i class="ranking-index">10</i>
+                                            <span class="ranking-movie-name">阳光劫匪</span>
+
+                                            <span class="ranking-num-info">
+                                                <span class="stonefont">2</span>人想看
+                                              </span>
+                                          </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="main">
+                <div class="movie-grid">
+                    <div class="panel">
+                        <div class="panel-header">
+                           <span class="panel-title">
+                            <span class="textcolor_red"><h2>正在热映</h2></span>
+                          </span>
+                        </div>
+                        <div class="panel-content">
+                            <dl class="movie-list" id="hotFilmList">
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="filmDetail.html" target="_blank">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img" src="images/movie/1d2b4985d0187b437d41a73994ba2e191607376.jpg@160w_220h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.9</i></div>
+                                                        <div class="movie-title movie-title-padding">
+                                                            海贼王
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-detail-strong movie-sale">
+                                            <a href="filmDetail.html" class="active" target="_blank">购 票</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+
+                                </dd>
+                                <!--<dd>
+                                    <div class="movie-item">
+                                        <a href="filmDetail.html" target="_blank">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img" src="images/movie/1d2b4985d0187b437d41a73994ba2e191607376.jpg@160w_220h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.9</i></div>
+                                                        <div class="movie-title movie-title-padding">
+                                                            海贼王
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-detail-strong movie-sale">
+                                            <a href="filmDetail.html" class="active" target="_blank">购 票</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="filmDetail.html" target="_blank">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img" src="images/movie/1d2b4985d0187b437d41a73994ba2e191607376.jpg@160w_220h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.9</i></div>
+                                                        <div class="movie-title movie-title-padding">
+                                                            海贼王
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-detail-strong movie-sale">
+                                            <a href="filmDetail.html" class="active" target="_blank">购 票</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="filmDetail.html" target="_blank">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img" src="images/movie/1d2b4985d0187b437d41a73994ba2e191607376.jpg@160w_220h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.9</i></div>
+                                                        <div class="movie-title movie-title-padding">
+                                                            海贼王
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-detail-strong movie-sale">
+                                            <a href="filmDetail.html" class="active" target="_blank">购 票</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="filmDetail.html" target="_blank">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img" src="images/movie/1d2b4985d0187b437d41a73994ba2e191607376.jpg@160w_220h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.9</i></div>
+                                                        <div class="movie-title movie-title-padding">
+                                                            海贼王
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-detail-strong movie-sale">
+                                            <a href="filmDetail.html" class="active" target="_blank">购 票</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="filmDetail.html" target="_blank">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img" src="images/movie/1d2b4985d0187b437d41a73994ba2e191607376.jpg@160w_220h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.9</i></div>
+                                                        <div class="movie-title movie-title-padding">
+                                                            海贼王
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-detail-strong movie-sale">
+                                            <a href="filmDetail.html" class="active" target="_blank">购 票</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="filmDetail.html" target="_blank">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img" src="images/movie/1d2b4985d0187b437d41a73994ba2e191607376.jpg@160w_220h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.9</i></div>
+                                                        <div class="movie-title movie-title-padding">
+                                                            海贼王
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-detail-strong movie-sale">
+                                            <a href="filmDetail.html" class="active" target="_blank">购 票</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="filmDetail.html" target="_blank">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img" src="images/movie/1d2b4985d0187b437d41a73994ba2e191607376.jpg@160w_220h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.9</i></div>
+                                                        <div class="movie-title movie-title-padding">
+                                                            海贼王
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-detail-strong movie-sale">
+                                            <a href="filmDetail.html" class="active" target="_blank">购 票</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                </dd>-->
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                             <span class="panel-title">
+                            <span class="textcolor_blue"><h2>即将上映</h2></span>
+                          </span>
+                        </div>
+                        <div class="panel-content">
+                            <dl class="movie-list" id="afterFilmList">
+                                <dd>
+                                    <div class="movie-item" >
+                                        <a href="filmDetail.html" target="_blank" >
+                                            <div class="movie-poster" >
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"  src="./images/ecca4f0b95340b2c57006a1bace4c3f91386100.jpg@464w_644h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-title">斗破苍穹</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-wish"><span class="stonefont">10000</span>人想看
+                                        </div>
+                                        <div class="movie-detail movie-detail-strong movie-presale">
+                                            <a class="movie-presale-sep">预告片
+                                            </a><a href="javascript:void(0)" class="active" >预 售</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                    <div class="movie-detail movie-rt">2020-02-01上映</div>
+                                </dd>
+                                <!--<dd>
+                                    <div class="movie-item" >
+                                        <a href="filmDetail.html" target="_blank" >
+                                            <div class="movie-poster" >
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"  src="./images/ecca4f0b95340b2c57006a1bace4c3f91386100.jpg@464w_644h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-title">斗破苍穹</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-wish"><span class="stonefont">10000</span>人想看
+                                        </div>
+                                        <div class="movie-detail movie-detail-strong movie-presale">
+                                            <a class="movie-presale-sep">预告片
+                                            </a><a href="javascript:void(0)" class="active" >预 售</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                    <div class="movie-detail movie-rt">2020-02-01上映</div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item" >
+                                        <a href="filmDetail.html" target="_blank" >
+                                            <div class="movie-poster" >
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"  src="./images/ecca4f0b95340b2c57006a1bace4c3f91386100.jpg@464w_644h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-title">斗破苍穹</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-wish"><span class="stonefont">10000</span>人想看
+                                        </div>
+                                        <div class="movie-detail movie-detail-strong movie-presale">
+                                            <a class="movie-presale-sep">预告片
+                                            </a><a href="javascript:void(0)" class="active" >预 售</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                    <div class="movie-detail movie-rt">2020-02-01上映</div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item" >
+                                        <a href="filmDetail.html" target="_blank" >
+                                            <div class="movie-poster" >
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"  src="./images/ecca4f0b95340b2c57006a1bace4c3f91386100.jpg@464w_644h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-title">斗破苍穹</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-wish"><span class="stonefont">10000</span>人想看
+                                        </div>
+                                        <div class="movie-detail movie-detail-strong movie-presale">
+                                            <a class="movie-presale-sep">预告片
+                                            </a><a href="javascript:void(0)" class="active" >预 售</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                    <div class="movie-detail movie-rt">2020-02-01上映</div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item" >
+                                        <a href="filmDetail.html" target="_blank" >
+                                            <div class="movie-poster" >
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"  src="./images/ecca4f0b95340b2c57006a1bace4c3f91386100.jpg@464w_644h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-title">斗破苍穹</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-wish"><span class="stonefont">10000</span>人想看
+                                        </div>
+                                        <div class="movie-detail movie-detail-strong movie-presale">
+                                            <a class="movie-presale-sep">预告片
+                                            </a><a href="javascript:void(0)" class="active" >预 售</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                    <div class="movie-detail movie-rt">2020-02-01上映</div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item" >
+                                        <a href="filmDetail.html" target="_blank" >
+                                            <div class="movie-poster" >
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"  src="./images/ecca4f0b95340b2c57006a1bace4c3f91386100.jpg@464w_644h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-title">斗破苍穹</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-wish"><span class="stonefont">10000</span>人想看
+                                        </div>
+                                        <div class="movie-detail movie-detail-strong movie-presale">
+                                            <a class="movie-presale-sep">预告片
+                                            </a><a href="javascript:void(0)" class="active" >预 售</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                    <div class="movie-detail movie-rt">2020-02-01上映</div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item" >
+                                        <a href="filmDetail.html" target="_blank" >
+                                            <div class="movie-poster" >
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"  src="./images/ecca4f0b95340b2c57006a1bace4c3f91386100.jpg@464w_644h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-title">斗破苍穹</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-wish"><span class="stonefont">10000</span>人想看
+                                        </div>
+                                        <div class="movie-detail movie-detail-strong movie-presale">
+                                            <a class="movie-presale-sep">预告片
+                                            </a><a href="javascript:void(0)" class="active" >预 售</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                    <div class="movie-detail movie-rt">2020-02-01上映</div>
+                                </dd>
+                                <dd>
+                                    <div class="movie-item" >
+                                        <a href="filmDetail.html" target="_blank" >
+                                            <div class="movie-poster" >
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"  src="./images/ecca4f0b95340b2c57006a1bace4c3f91386100.jpg@464w_644h_1e_1c.jpg">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-title">斗破苍穹</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-detail movie-wish"><span class="stonefont">10000</span>人想看
+                                        </div>
+                                        <div class="movie-detail movie-detail-strong movie-presale">
+                                            <a class="movie-presale-sep">预告片
+                                            </a><a href="javascript:void(0)" class="active" >预 售</a>
+                                        </div>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                    <div class="movie-detail movie-rt">2020-02-01上映</div>
+                                </dd>-->
+                            </dl>
+
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                           <span class="panel-title">
+                            <span class="textcolor_red"><h2>热播电影</h2></span>
+                          </span>
+                            <span class="panel-subtitle">
+                            <a href="javascript:void(0)">爱情</a>
+                          </span> <span class="panel-subtitle">
+                            <a href="javascript:void(0)">喜剧</a>
+                          </span> <span class="panel-subtitle">
+                            <a href="javascript:void(0)">动作</a>
+                          </span> <span class="panel-subtitle">
+                            <a href="javascript:void(0)">恐怖</a>
+                          </span> <span class="panel-subtitle">
+                            <a href="javascript:void(0)">动画</a>
+                          </span></div>
+                        <div class="panel-content">
+                            <dl class="movie-list">
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="javascript:void(0)">
+                                            <div class="movie-poster movie-poster-long">
+                                                <img class="poster-default"
+                                                     src="images/3ee52ce5d15a09e07eaa346d1230f97f55997.jpg@350w_220h_1e_1c.jpg">
+                                                <img class="movie-poster-img"
+                                                     src="images/3ee52ce5d15a09e07eaa346d1230f97f55997.jpg@350w_220h_1e_1c.jpg"
+                                                     alt="厉鬼将映海报封面">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">7.</i><i
+                                                                class="fraction">1</i></div>
+                                                        <div class="movie-title movie-title-padding" title="厉鬼将映">厉鬼将映
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-ver"></div>
+                                    </div>
+                                </dd>
+
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="javascript:void(0)">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"
+                                                     src="images/0392753ae13c818c97accdc374823fdf656030.jpg@160w_220h_1e_1c.jpg"
+                                                     alt="魁拔Ⅲ战神崛起海报封面">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.</i><i
+                                                                class="fraction">4</i></div>
+                                                        <div class="movie-title movie-title-padding" title="魁拔Ⅲ战神崛起">
+                                                            魁拔Ⅲ战神崛起
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-ver"><i class="m3d"></i></div>
+                                    </div>
+
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="javascript:void(0)">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"
+                                                     src="images/c2cf0bed1a824b5820e439c40879e4fc605923.jpg@160w_220h_1e_1c.jpg"
+                                                     alt="七月半之恐怖宿舍海报封面">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">4.</i><i
+                                                                class="fraction">7</i></div>
+                                                        <div class="movie-title movie-title-padding" title="七月半之恐怖宿舍">
+                                                            七月半之恐怖宿舍
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-ver"></div>
+                                    </div>
+
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="javascript:void(0)">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"
+                                                     src="images/43d0e1bfbda2b50d7be2b70873a87e59386692.jpg@160w_220h_1e_1c.jpg"
+                                                     alt="夏洛特烦恼海报封面">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.</i><i
+                                                                class="fraction">3</i></div>
+                                                        <div class="movie-title movie-title-padding" title="夏洛特烦恼">
+                                                            夏洛特烦恼
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-ver"></div>
+                                    </div>
+
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="javascript:void(0)">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"
+                                                     src="images/54e87a3bbbfcefa3e972b3e66a9f1f4b568509.jpg@160w_220h_1e_1c.jpg"
+                                                     alt="战狼海报封面">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.</i><i
+                                                                class="fraction">3</i></div>
+                                                        <div class="movie-title movie-title-padding" title="战狼">战狼</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-ver"><i class="m3d"></i></div>
+                                    </div>
+
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="javascript:void(0)">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"
+                                                     src="images/07b4127cff2289cd91b65628f4417ac37666558.jpg@160w_220h_1e_1c.jpg"
+                                                     alt="西游记之大圣归来海报封面">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-score"><i class="integer">9.</i><i
+                                                                class="fraction">3</i></div>
+                                                        <div class="movie-title movie-title-padding" title="西游记之大圣归来">
+                                                            西游记之大圣归来
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-ver"><i class="m3d"></i></div>
+                                    </div>
+
+                                </dd>
+                                <dd>
+                                    <div class="movie-item">
+                                        <a href="javascript:void(0)">
+                                            <div class="movie-poster">
+                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
+                                                <img class="movie-poster-img"
+                                                     src="images/283801f7ee19f9905ce7f1d094056c31520798.jpg@160w_220h_1e_1c.jpg"
+                                                     alt="十二生肖海报封面">
+                                                <div class="movie-overlay movie-overlay-bg">
+                                                    <div class="movie-info">
+                                                        <div class="movie-title" title="十二生肖">十二生肖</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="movie-ver"></div>
+                                    </div>
+
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

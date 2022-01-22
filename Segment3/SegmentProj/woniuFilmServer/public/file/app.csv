@@ -1,0 +1,7 @@
+_id,name,address,img,phone,districtId
+1,万达影城（龙德广场店）,昌平区天通苑南街道立汤路186号龙德广场5层,images/cinema/14.jpg,930869908,2
+2,东融国际影城（西小口店）,朝阳区劲松街道东四环中路195号华腾新天地5层,images/cinema/10.jpg,930869908,2
+3,东都影城,海淀区东升地区文龙家园四里悦茂购物中心4层,images/cinema/12.jpg,930869908,2
+4,CGV影城（天宫院凯德4DX店）,大兴区华佗路与新源大街交叉口凯德MALL6F,images/cinema/1642741555401image_87.png,93086988011,11
+5,CGV影城（清河IMAX店）,海淀区清河街道清河中街68号清河万象汇东区7层,images/cinema/5.jpg,93086988111,16
+6,CGV影城（顺义ScreenX店）,顺义区胜利街道新顺南大街8号华联购物中心4层,images/cinema/6.jpg,930869882,1

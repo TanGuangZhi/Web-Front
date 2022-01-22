@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-01-22 12:21:00 Sat
+ * @LastEditTime: 2022-01-22 15:59:51 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -13,15 +13,21 @@ let dbCinemaTable = require("../data/cinemaSchema.js");
 let dbFilmTable = require("../data/filmSchema.js");
 let dbSequence = dbUtil.dbSequence;
 
+let sortObj = {};
+let matchObj = {};
 class CinemaRoomModel {
     static async query(nowPage, pageCount, data) {
-        let sortObj = {};
-        let matchObj = {};
+        sortObj = {};
+        matchObj = {};
         if (data.name != "") {
-            matchObj.name = { $regex: data.name };
+            // matchObj.name = { $regex: data.name };
+            let queryResult = await dbRoomTable.find({ name: data.name });
+            queryResult = JSON.parse(JSON.stringify(queryResult));
+            matchObj.roomId = queryResult[0]?._id;
+
         }
         if (data.cinemaId != "") {
-            matchObj.cinemaId = { $regex: data.cinemaId };
+            matchObj.cinemaId = data.cinemaId - 0;
         }
         if (data.sortType == 0) {
             sortObj._id = 1;
@@ -64,10 +70,6 @@ class CinemaRoomModel {
     }
 
     static async getCount(data) {
-        let matchObj = {};
-        if (data.name != "") {
-            matchObj.name = { $regex: data.name };
-        }
         let list = await dbCinemaRoomTable.aggregate([
             {
                 $match: matchObj

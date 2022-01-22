@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>电影</title>
+    <link rel="stylesheet" href="css/common1.css">
+    <link rel="stylesheet" href="./css/movie-list.79052e3e.css">
+
+</head>
+<body>
+
+<div id="app">
+    <div class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo" ></a>
+            <div class="city-container" >
+                <div class="city-selected">
+                    <div class="city-name">
+                        <span class="caret"></span>
+                    </div>
+                </div>
+                <div class="city-list" >
+                    <div class="city-list-header">定位城市：<a class="js-geo-city">上海</a></div>
+                </div>
+            </div>
+
+            <div class="nav">
+                <ul class="navbar">
+                    <li><a href="index.html" >首页</a></li>
+                    <li><a href="movie.html" class="active">电影</a></li>
+                    <li><a href="cinema.html" >影院</a></li>
+                    <li><a href="javascript:alert('暂无数据')">榜单</a></li>                </ul>
+            </div>
+
+            <div class="user-info">
+                <div class="user-avatar has-login">
+                    <img src="./images/63957f10ae9679c95d4ba26ad1bd29c816882.png">
+                    <span class="caret"></span>
+                    <ul class="user-menu yes-login-menu">
+                        <li class="text"><a href="./orderlist.html">我的订单</a></li>
+                        <li class="text login-name"><a href="javascript:void(0)" >基本信息</a></li>
+                        <li class="text"><a href="javascript:void(0)" class="J-logout" @click="logout">退出登录</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar J-login">
+                    <img src="./images/7dd82a16316ab32c8359debdb04396ef2897.png">
+                    <span class="caret"></span>
+                    <ul class="user-menu no-login-menu">
+                        <li><a href="javascript:void(0)" >登录</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <form target="_blank" class="search-form" >
+                <input name="kw" class="search" type="search"  maxlength="32" placeholder="找影视剧、影人、影院"
+                       autocomplete="off">
+                <input class="submit" type="button"/>
+            </form>
+
+        </div>
+    </div>
+    <div class="header-placeholder"></div>
+
+    <div class="subnav">
+        <ul class="navbar">
+            <li>
+                <a class="active"  href="javascript:void(0);">正在热映</a>
+            </li>
+            <li>
+                <a  href="javascript:void(0)">即将上映</a>
+            </li>
+            <li>
+                <a  href="javascript:void(0)">经典影片</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="container">
+        <div class="movies-channel">
+            <div class="tags-panel">
+                <ul class="tags-lines">
+                    <li class="tags-line">
+                        <div class="tags-title">类型 :</div>
+                        <ul class="tags" id="movieTypeUl">
+                            <li>
+                                <a href="javascript:void(0);" style="cursor: pointer">全部</a>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0);">喜剧</a>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0);">犯罪</a>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0);">爱情</a>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0);">悬疑</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="tags-line tags-line-border">
+                        <div class="tags-title">区域 :</div>
+                        <ul class="tags">
+                            <li>
+                                <a href="javascript:void(0);" style="cursor: pointer">全部</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">中国</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">美国</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">日本</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">泰国</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">意大利</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="tags-line tags-line-border">
+                        <div class="tags-title">年代 :</div>
+                        <ul class="tags">
+                            <li>
+                                <a href="javascript:void(0);" style="cursor: pointer">全部</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">2022</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">2021</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">2020</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">2019</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="movies-panel">
+                <div class="movies-sorter">
+                    <div class="cat-sorter">
+                        <ul>
+                            <li>
+                                <span class="sort-control-group"  style="cursor: pointer">
+                                  <span class="sort-control sort-radio sort-radio-checked"></span>
+                                  <span class="sort-control-label">按热门排序</span>
+                                </span>
+                            </li>
+                            <li>
+                            <span class="sort-control-group">
+                              <span class="sort-control sort-radio"></span>
+                              <span class="sort-control-label">按时间排序</span>
+                            </span>
+                            </li>
+                            <li>
+                                <span class="sort-control-group">
+                                  <span class="sort-control sort-radio"></span>
+                                  <span class="sort-control-label">按评价排序</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="movies-list">
+                    <dl class="movie-list">
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                        <dd>
+                            <div class="movie-item film-channel">
+                                <a href="filmDetail.html" target="_blank">
+                                    <div class="movie-poster">
+                                        <img class="poster-default" src="./images/movie/loading_2.e3d934bf.png">
+                                        <img src="./images/movie/6a21e35ad7106c60967954b165c09b92915222.jpg@464w_644h_1e_1c.jpg">
+                                    </div>
+                                </a>
+                                <div class="channel-action channel-action-sale">
+                                    <a>购票</a>
+                                </div>
+                                <div class="movie-ver"></div>
+                            </div>
+                            <div class="channel-detail movie-item-title">
+                                <a href="filmDetail.html" target="_blank">海贼王</a>
+                            </div>
+                            <div class="channel-detail channel-detail-orange">
+                                <i class="integer">9.9分</i></div>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="movies-pager">
+                    <ul class="list-pager">
+                        <li class="active">
+                            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">上一页</a>
+                        </li>
+                        <li>
+                            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">1</a>
+                        </li>
+                        <li>
+                            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">2</a>
+                        </li>
+                        <li>
+                            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">3</a>
+                        </li>
+                        <li class="active">
+                            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

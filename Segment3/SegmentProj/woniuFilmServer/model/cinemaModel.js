@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-01-21 16:53:51 Fri
+ * @LastEditTime: 2022-01-22 16:54:18 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -15,7 +15,7 @@ class CinemaModel {
     static async query(nowPage, pageCount, data) {
         let sortObj = {};
         let matchObj = {};
-        if (data.name != "") {
+        if (data.name) {
             matchObj.name = { $regex: data.name };
         }
         if (data.sortType == 0) {

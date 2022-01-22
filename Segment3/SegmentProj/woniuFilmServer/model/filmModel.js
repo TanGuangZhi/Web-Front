@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-01-21 19:57:25 Fri
+ * @LastEditTime: 2022-01-22 17:24:33 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -77,6 +77,18 @@ class FilmModel {
 
     static async queryDistrict(data) {
         return await dbFilmDistrictTable.find({});
+    }
+
+    static async queryFilmDetail(data) {
+        return await dbFilmTable.find({ _id: data });
+    }
+
+    static async queryHotPlayerFilm(nowTime, beforeTime) {
+        return await dbFilmTable.find({ startTime: { $gte: beforeTime, $lte: nowTime } }).skip(0).limit(8);
+    }
+
+    static async queryAfterPlayerFilm(time) {
+        return await dbFilmTable.find({ startTime: { $gte: time } }).skip(0).limit(8);
     }
 
     static async delete(delArr) {

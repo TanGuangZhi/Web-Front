@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>电影详情</title>
+    <link rel="stylesheet" href="css/common1.css">
+    <link rel="stylesheet" href="css/movie-detail.86416149.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="header-inner">
+                <a href="index.html" class="logo"></a>
+                <div class="city-container">
+                    <div class="city-selected">
+                        <div class="city-name">
+                            <span class="caret"></span>
+                        </div>
+                    </div>
+                    <div class="city-list">
+                        <div class="city-list-header">定位城市：<a id="shanghai" class="js-geo-city">上海</a></div>
+                    </div>
+                </div>
+
+                <div class="nav">
+                    <ul class="navbar">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="movie.html">电影</a></li>
+                        <li><a href="cinema.html">影院</a></li>
+                        <li><a href="javascript:alert('暂无数据')">榜单</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="user-info">
+                    <div class="user-avatar has-login">
+                        <img src="images/63957f10ae9679c95d4ba26ad1bd29c816882.png">
+                        <span class="caret"></span>
+                        <ul class="user-menu yes-login-menu">
+                            <li class="text"><a href="./orderlist.html">我的订单</a></li>
+                            <li class="text login-name"><a href="javascript:void(0)">基本信息</a></li>
+                            <li class="text"><a href="javascript:void(0)" class="J-logout">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar J-login">
+                        <img src="./images/7dd82a16316ab32c8359debdb04396ef2897.png">
+                        <span class="caret"></span>
+                        <ul class="user-menu no-login-menu">
+                            <li><a href="login.html">登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <form target="_blank" class="search-form">
+                    <input name="kw" class="search" type="search" maxlength="32" placeholder="找影视剧、影人、影院"
+                        autocomplete="off">
+                    <input class="submit" type="button" />
+                </form>
+            </div>
+        </div>
+        <div class="header-placeholder"></div>
+        <div class="banner">
+            <div class="wrapper clearfix">
+                <div class="celeInfo-left">
+                    <div class="avatar-shadow">
+                        <img class="avatar"
+                            src="images/movie/9a0cc541dba6851c92143f0cc0d97bbe270276.jpg@464w_644h_1e_1c.jpg">
+                        <div class="movie-ver"></div>
+                    </div>
+                </div>
+                <div class="celeInfo-right clearfix">
+                    <div class="movie-brief-container">
+                        <h1 class="name">海贼王</h1>
+                        <div class="ename ellipsis">One Piece </div>
+                        <ul>
+                            <li class="ellipsis">
+                                <span>动漫</span>
+                            </li>
+                            <li class="ellipsis">
+                                时长120分钟
+                            </li>
+                            <li class="ellipsis">2022-02-01 19:00上映</li>
+                        </ul>
+                    </div>
+                    <div class="action-buyBtn">
+                        <div class="action clearfix">
+                            <a class="wishCls">
+                                <div>
+                                    <i class="icon wish-icon"></i>
+                                    <span class="wish-msg">想看</span>
+                                </div>
+                            </a>
+                            <a class="scoreCls" href="javascript:void(0)">
+                                <div>
+                                    <i class="icon score-btn-icon"></i>
+                                    <span class="score-btn-msg">评分</span>
+                                </div>
+                            </a>
+                        </div>
+                        <a class="btn buy" href="cinema.html" target="_blank">特惠购票</a>
+                    </div>
+                    <div class="movie-stats-container">
+                        <div class="movie-index">
+                            <p class="movie-index-title">口碑</p>
+                            <div class="movie-index-content score normal-score">
+                                <span class="index-left info-num">
+                                    <span class="stonefont">9分</span>
+                                </span>
+                                <div class="index-right">
+                                    <div class="star-wrapper">
+                                        <div class="star-on" style="width:79%;"></div>
+                                    </div>
+                                    <span class="score-num">1000万人评分</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="movie-index">
+                            <p class="movie-index-title">累计票房</p>
+                            <div class="movie-index-content box">
+                                <span class="stonefont">30000万</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="main-content-container clearfix">
+                <div class="main-content">
+                    <div class="tab-container tab-movie-info">
+                        <div class="crumbs-nav-container">
+                            <a href="javascript:void(0)">电影</a> &gt; <a href="javascript:void(0)">电影</a> &gt;
+                            <span>海贼王</span>
+                        </div>
+                        <div class="tab-title-container clearfix">
+                            <div class="tab-title active">介绍</div>
+                            <div class="tab-title ">演职人员</div>
+                            <div class="tab-title tab-disabled">奖项</div>
+                            <div class="tab-title ">图集</div>
+                        </div>
+                        <div class="tab-content-container">
+                            <div class="tab-desc tab-content active">
+                                <div class="module">
+                                    <div class="mod-title">
+                                        <h2>剧情简介</h2>
+                                    </div>
+                                    <div class="mod-content">
+                                        <span class="dra">暂无简介</span>
+                                    </div>
+                                </div>
+                                <div class="module">
+                                    <div class="mod-title">
+                                        <h2>演职人员</h2>
+                                    </div>
+                                    <div class="mod-content">
+                                        <div class="celebrity-container clearfix">
+                                            <div class="celebrity-group">
+                                                <div class="celebrity-type">
+                                                    <span>导演</span>
+                                                </div>
+                                                <ul class="celebrity-list clearfix">
+                                                    <li class="celebrity">
+                                                        <a href="javascript:void(0)" class="portrait">
+                                                            <img class="default-img"
+                                                                src="images/8be831bc85f16e813090ff7b931d679f151515.jpg@128w_170h_1e_1c.jpg">
+                                                        </a>
+                                                        <div class="info">
+                                                            <a href="javascript:void(0)" class="name"
+                                                                id="director-name">
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="celebrity-group">
+                                                <div class="celebrity-type">
+                                                    <span>演员</span>
+                                                </div>
+                                                <ul class="celebrity-list clearfix">
+                                                    <li class="celebrity actor">
+                                                        <a href="javascript:void(0)" class="portrait">
+                                                            <img class="default-img"
+                                                                src="images/7c4ba9633635503044a8f8fb6426aa8d416264.jpg@160w_220h_1e_1c.jpg">
+                                                        </a>
+                                                        <div class="info">
+                                                            <a href="javascript:void(0)" class="name">
+                                                                刘德华
+                                                            </a>
+                                                            <br><span class="role">饰演:xxx</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module">
+                                    <div class="mod-title">
+                                        <h2>图集</h2>
+                                    </div>
+                                    <div class="mod-content">
+                                        <div class="album clearfix">
+                                            <div class="img1">
+                                                <img class="default-img"
+                                                    src="images/a0c6d6e130abe399e4cba58be2b1f871840268.jpg@218w_300h_1e_1c.jpg">
+                                            </div>
+                                            <div class="img2">
+                                                <img class="default-img"
+                                                    src="images/b00b72b9bd1c32bc5d608739b07fdb9d1956828.jpg@120w_80h_1e_1c.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="module">
+                                    <div class="mod-title">
+                                        <h2>热门短评</h2>
+                                    </div>
+                                    <div class="mod-content">
+                                        <div class="comment-list-container">
+                                            <ul>
+                                                <li class="comment-container">
+                                                    <!--<div class="portrait-container">
+                                                    <img src="images/movie/7b437e3a0d08d10e374ddc34f71b88fe3379132.jpg@464w_644h_1e_1c.jpg" alt="">
+                                                    <i class="level-3-icon"></i>
+                                                </div>-->
+                                                    <div class="main">
+                                                        <div class="main-header clearfix">
+                                                            <div class="user">
+                                                                <span class="name">小三</span>
+                                                                <span class="tag">购</span>
+                                                            </div>
+                                                            <div class="time">
+                                                                <span>2022-01-20 19:00</span>
+                                                                <ul class="score-star clearfix">
+                                                                    <li>
+                                                                        <i class="half-star left active"></i><i
+                                                                            class="half-star right active"></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <i class="half-star left active"></i><i
+                                                                            class="half-star right active"></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <i class="half-star left active"></i><i
+                                                                            class="half-star right active"></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <i class="half-star left active"></i><i
+                                                                            class="half-star right active"></i>
+                                                                    </li>
+                                                                    <li>
+                                                                        <i class="half-star left active"></i>
+                                                                        <!--<i class="half-star right active"></i>-->
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-content">这个也太好看了吧!!!</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="related">
+                    <div class="tab-container tab-relate-info">
+                        <div class="tab-title-container related-tab-title clearfix">
+                            <div class="tab-title active ">预告片</div>
+
+                        </div>
+                        <div class="tab-content-container">
+                            <div class="tab-preview tab-content active">
+                                <div class="module">
+                                    <div class="mod-title">
+                                        <h2>预告片</h2>
+                                    </div>
+                                    <div class="mod-content">
+                                        <div class="preview-container">
+                                            <ul>
+                                                <li class="top-list">
+                                                    <div>
+                                                        <div class="top-info-thumb">
+                                                            <a href="javascript:void(0)">
+                                                                <img src="./images/movie/226adc16504f7aab46b6ee8593357748.jpg"
+                                                                    alt="">
+                                                                <i class="ranking top-info-icon orange-bg">1</i>
+                                                                <i class="play-icon"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="top5-video-info">
+                                                            <p class="one-line">
+                                                                <a href="javascript:void(0)">
+                                                                    《如果声音不记得》
+                                                                </a>
+                                                            </p>
+                                                            <div class="video-view">
+                                                                <span class="video-play-count">235.1万</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="top-list">
+                                                    <div>
+                                                        <div class="top-info-thumb">
+                                                            <a href="javascript:void(0)">
+                                                                <img src="./images/movie/2199e628bb4d6fc49e1ce13fddc15e5d1634782.jpg@160w_220h_1e_1c.jpg"
+                                                                    alt="">
+                                                                <i class="ranking top-info-icon orange-bg">2</i>
+                                                                <i class="play-icon"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="top5-video-info">
+                                                            <p class="one-line">
+                                                                <a href="javascript:void(0)">
+                                                                    《缉魂》
+                                                                </a>
+                                                            </p>
+                                                            <div class="video-view">
+                                                                <span class="video-play-count">71.2万</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="top-list">
+                                                    <div>
+                                                        <div class="top-info-thumb">
+                                                            <a href="javascript:void(0)">
+                                                                <img src="./images/movie/4c01895cfd53e82f7c3048c407974a6b4739229.jpg@464w_644h_1e_1c.jpg"
+                                                                    alt="">
+                                                                <i class="ranking top-info-icon orange-bg">3</i>
+                                                                <i class="play-icon"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="top5-video-info">
+                                                            <p class="one-line">
+                                                                <a href="javascript:void(0)">
+                                                                    《攀登者》
+                                                                </a>
+                                                            </p>
+                                                            <div class="video-view">
+                                                                <span class="video-play-count">26万</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="module">
+                            <div class="mod-title">
+                                <h2>相关电影</h2>
+                            </div>
+                            <div class="mod-content">
+                                <div class="related-movies">
+                                    <dl class="movie-list">
+                                        <dd>
+                                            <div class="movie-item film-channel">
+                                                <a href="javascript:void(0)">
+                                                    <div class="movie-poster">
+                                                        <img class="poster-default"
+                                                            src="./images/movie/loading_2.e3d934bf.png">
+                                                        <img alt="晴雅集海报封面"
+                                                            src="./images/movie/be4418055735904a43e41ddf4c364db81444834.jpg@106w_145h_1e_1c.jpg">
+                                                    </div>
+                                                </a>
+                                                <div class="movie-ver"></div>
+                                                <div class="movie-item-hover">
+                                                    <a href="javascript:void(0)">
+                                                        <img class="movie-hover-img"
+                                                            src="./images/movie/be4418055735904a43e41ddf4c364db81444834.jpg@218w_300h_1e_1c.jpg"
+                                                            alt="晴雅集">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="channel-detail movie-item-title" title="晴雅集">
+                                                <a href="javascript:void(0)">晴雅集</a>
+                                            </div>
+                                            <div class="channel-detail channel-detail-orange"><i
+                                                    class="integer">9.</i><i class="fraction">0</i></div>
+
+                                        </dd>
+                                        <dd>
+                                            <div class="movie-item film-channel">
+                                                <a href="javascript:void(0)">
+                                                    <div class="movie-poster">
+                                                        <img class="poster-default"
+                                                            src="./images/movie/loading_2.e3d934bf.png">
+                                                        <img alt="真假美猴王之大圣无双海报封面"
+                                                            src="./images/movie/0210d0f7b580f42ab8318d1828178a674979894.jpg@106w_145h_1e_1c.jpg">
+                                                    </div>
+                                                </a>
+                                                <div class="movie-ver"></div>
+                                                <div class="movie-item-hover">
+                                                    <a href="javascript:void(0)">
+                                                        <img class="movie-hover-img"
+                                                            src="./images/movie/0210d0f7b580f42ab8318d1828178a674979894.jpg@218w_300h_1e_1c.jpg"
+                                                            alt="真假美猴王之大圣无双">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="channel-detail movie-item-title" title="真假美猴王之大圣无双">
+                                                <a href="javascript:void(0)">真假美猴王之大圣无双</a>
+                                            </div>
+                                            <div class="channel-detail channel-detail-orange">暂无评分</div>
+                                        </dd>
+                                        <dd>
+                                            <div class="movie-item film-channel">
+                                                <a href="javascript:void(0)">
+                                                    <div class="movie-poster">
+                                                        <img class="poster-default"
+                                                            src="./images/movie/loading_2.e3d934bf.png">
+                                                        <img alt="月半爱丽丝海报封面"
+                                                            src="./images/movie/3b15b45b97c8b134e5b9cce8492231613207907.jpg@106w_145h_1e_1c.jpg">
+                                                    </div>
+                                                </a>
+                                                <div class="movie-ver"></div>
+                                            </div>
+                                            <div class="channel-detail movie-item-title" title="月半爱丽丝">
+                                                <a href="javascript:void(0)">月半爱丽丝</a>
+                                            </div>
+                                            <div class="channel-detail channel-detail-orange"><i
+                                                    class="integer">7.</i><i class="fraction">6</i></div>
+                                        </dd>
+                                        <dd>
+                                            <div class="movie-item film-channel">
+                                                <a href="javascript:void(0)">
+                                                    <div class="movie-poster">
+                                                        <img class="poster-default"
+                                                            src="./images/movie/loading_2.e3d934bf.png">
+                                                        <img alt="指挥家海报封面"
+                                                            src="./images/movie/3252dee97808fd77d1649ac1659b027c728790.jpg@106w_145h_1e_1c.jpg">
+                                                    </div>
+                                                </a>
+                                                <div class="movie-ver"></div>
+                                            </div>
+                                            <div class="channel-detail movie-item-title" title="指挥家">
+                                                <a href="javascript:void(0)">指挥家</a>
+                                            </div>
+                                            <div class="channel-detail channel-detail-orange">暂无评分</div>
+                                        </dd>
+                                        <dd>
+                                            <div class="movie-item film-channel">
+                                                <a href="javascript:void(0)">
+                                                    <div class="movie-poster">
+                                                        <img class="poster-default"
+                                                            src="./images/movie/loading_2.e3d934bf.png">
+                                                        <img alt="大红包海报封面"
+                                                            src="./images/movie/f83b5229e22b7b3781df33373864401e951844.jpg@106w_145h_1e_1c.jpg">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="channel-detail movie-item-title" title="大红包">
+                                                <a href="javascript:void(0)">大红包</a>
+                                            </div>
+                                            <div class="channel-detail channel-detail-orange">暂无评分</div>
+                                        </dd>
+                                        <dd>
+                                            <div class="movie-item film-channel">
+                                                <a href="javascript:void(0)">
+                                                    <div class="movie-poster">
+                                                        <img class="poster-default"
+                                                            src="./images/movie/loading_2.e3d934bf.png">
+                                                        <img alt="老爷保号海报封面"
+                                                            src="./images/movie/156f93f2f4150c45c7ec29bb870b95744572563.jpg@106w_145h_1e_1c.jpg">
+                                                    </div>
+                                                </a>
+                                                <div class="movie-ver"></div>
+                                            </div>
+                                            <div class="channel-detail movie-item-title" title="老爷保号">
+                                                <a href="javascript:void(0)">老爷保号</a>
+                                            </div>
+                                            <div class="channel-detail channel-detail-orange">暂无评分</div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer" style="visibility: visible;"></div>
+        <div class="commentFormCls" id="comment-container" style="display: none">
+            <div id="comment-form-container" class="jBox-wrapper jBox-Modal jBox-Default"
+                style="position: fixed;  opacity: 1; z-index: 10000; left: 50%; top: 50%; margin-left: -285px; margin-top: -235px;">
+                <div class="jBox-container">
+                    <div class="jBox-content" style="width: 550px; height: 450px;">
+                        <form id="comment-form">
+                            <div class="score-msg-container active">
+                                <div class="score"><span class="num">9</span>分</div>
+                                <div class="no-score">
+                                    请点击星星评分
+                                </div>
+                            </div>
+                            <div class="score-star-contaienr">
+                                <ul class="score-star clearfix">
+                                    <li><i></i><i></i></li>
+                                </ul>
+                            </div>
+                            <div class="content-container">
+                                <textarea placeholder="请输入评论内容" cols="30" rows="10"></textarea>
+                                <span class="word-count-info"></span>
+                            </div>
+
+                            <input class="btn" type="button" value="提交">
+                        </form>
+                        <div class="close">×</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

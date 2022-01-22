@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:27:44 Thu
- * @LastEditTime: 2022-01-21 19:29:00 Fri
+ * @LastEditTime: 2022-01-22 16:34:28 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -46,6 +46,45 @@ router.get('/queryDistrict', async (req, res, next) => {
     res.send(JSON.stringify(queryResult));
 })
 
+router.get('/queryFilmDetail', async (req, res, next) => {
+    let queryResult = await FilmModel.queryFilmDetail(req.query._id);
+    res.send(JSON.stringify(queryResult));
+})
+
+router.get("/queryHotFilm", async (req, resp) => {
+    let nowTime = new Date();
+    let beforeTime = new Date();
+    beforeTime.setDate(beforeTime.getDate() - 360);
+    console.log(getTimeString(nowTime), getTimeString(beforeTime));
+    let filmList = await FilmModel.queryHotPlayerFilm(getTimeString(nowTime), getTimeString(beforeTime));
+    resp.send(JSON.stringify(filmList));
+});
+
+router.get("/queryAfterFilm", (req, resp) => {
+    (async () => {
+        let nowTime = new Date();
+        let filmList = await FilmModel.queryAfterPlayerFilm(getTimeString(nowTime));
+        resp.send(JSON.stringify(filmList));
+    })();
+});
+
+function getTimeString(date) {
+    let dateStr = date.toLocaleDateString();
+    while (true) {
+        dateStr = dateStr.replace("/", "-");
+        if (dateStr.indexOf("/") == -1) {
+            break;
+        }
+    }
+    let dateArr = dateStr.split("-");
+    for (let i = 0; i < dateArr.length; i++) {
+        if (dateArr[i].length == 1) {
+            dateArr[i] = "0" + dateArr[i];
+        }
+    }
+    dateStr = dateArr.join("-");
+    return dateStr + " 00:00";
+}
 router.post("/delete", async (req, resp) => {
     let idStr = req.body.idArray;
     let idArray = idStr.split(",");
