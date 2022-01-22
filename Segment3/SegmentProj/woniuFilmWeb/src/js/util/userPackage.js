@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-01-20 09:48:24 Thu
+ * @LastEditTime: 2022-01-22 14:22:43 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -26,19 +26,24 @@ function queryUser(nowPage = 1) {
             str += ` <tr>
                         <td> <input type="checkbox" class="sel"  value="${user._id}"></td>
                         <td>${user._id}</td>
-                        <td>${user.userName}</td>
-                        <td>${user.userPhone}</td>
+                        <td>${user.name}</td>
+                        <td><img src="http://localhost:3000/${user.avatar}" width="40px"></td>
+                        <td>${user.score}</td>
+                        <td>${user.state}</td>
+                        <td>${user.phone}</td>
+                        <td>${user.email}</td>
+                        <td>${user.uuid}</td>
                         <td><button type="button" class="btn btn-danger delUser"  data-user-id="${user._id}"><span class="glyphicon glyphicon-remove"></span> 删除</button></td>
                         <td><button type="button" data-show-user-id="${user._id}" data-toggle="modal" data-target="#updateModal" class="btn btn-primary showUser"><span class="glyphicon glyphicon-edit"></span> 修改</button></td>
                         </tr>`;
         }
         $("#showTab").html(str);
 
-        let pageStr = `<li  class="page-item active changePage" data-change-page-id="-1" ><a href="javascript:void(0)" class="page-link" >&laquo;</a></li>`;
+        let pageStr = `<li  class="page-item  changePage" data-change-page-id="-1" ><a href="javascript:void(0)" class="page-link" >&laquo;</a></li>`;
         for (let i = 1; i <= res.lastPage; i++) {
             pageStr += `<li class="page-item changePage" data-change-page-id="${i}"><a href="javascript:void(0)" class="page-link">${i}</a></li>`;
         }
-        pageStr += `<li class="page-item active changePage" data-change-page-id="-2"><a href="javascript:void(0)" class="page-link" >&raquo;</a></li>`;
+        pageStr += `<li class="page-item  changePage" data-change-page-id="-2"><a href="javascript:void(0)" class="page-link" >&raquo;</a></li>`;
         $(".pagination").html(pageStr);
 
         delUser();

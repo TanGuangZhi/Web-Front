@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:27:44 Thu
- * @LastEditTime: 2022-01-21 20:27:59 Fri
+ * @LastEditTime: 2022-01-22 10:33:28 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -41,6 +41,16 @@ router.get('/queryCinema', async (req, res, next) => {
     res.send(JSON.stringify(queryResult));
 })
 
+router.get('/queryRoomLevel', async (req, res, next) => {
+    let queryResult = await CinemaRoomModel.queryRoomLevel();
+    res.send(JSON.stringify(queryResult));
+})
+
+router.get('/queryFilm', async (req, res, next) => {
+    let queryResult = await CinemaRoomModel.queryFilm();
+    res.send(JSON.stringify(queryResult));
+})
+
 router.post("/delete", async (req, resp) => {
     let idStr = req.body.idArray;
     let idArray = idStr.split(",");
@@ -48,9 +58,8 @@ router.post("/delete", async (req, resp) => {
     resp.send(delObj.deletedCount > 0 ? "1" : "0");
 });
 
-router.post("/insert", upload.array("cinemaImg"), async (req, resp) => {
+router.post("/insert", async (req, resp) => {
     let cinema = req.body;
-    cinema.img = commonUtil.upload01(req, "images/cinema");
     let arr = await CinemaRoomModel.insert([cinema]);
     resp.send(arr.length > 0 ? "1" : "0");
 });

@@ -1,14 +1,16 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-01-21 21:30:37 Fri
+ * @LastEditTime: 2022-01-22 12:21:00 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 let dbUtil = require('../util/dbUtil');
 let dbCinemaRoomTable = require("../data/cinemaRoomSchema");
+let dbRoomTable = require("../data/roomSchema.js");
 let dbCinemaTable = require("../data/cinemaSchema.js");
+let dbFilmTable = require("../data/filmSchema.js");
 let dbSequence = dbUtil.dbSequence;
 
 class CinemaRoomModel {
@@ -47,7 +49,7 @@ class CinemaRoomModel {
             }
         }, {
             $lookup: {
-                from: "cinemaHallType",
+                from: "room",
                 localField: "roomId",
                 foreignField: "_id",
                 as: "roomIdToDetails"
@@ -78,27 +80,65 @@ class CinemaRoomModel {
         return await dbCinemaTable.find({});
     }
 
+    static async queryRoomLevel(data) {
+        return await dbRoomTable.aggregate([
+            { $group: { _id: "$level" } },
+            { $sort: { _id: 1 } }
+        ])
+    }
+
+    static async queryFilm(data) {
+        return await dbFilmTable.find({});
+    }
+
     static async delete(delArr) {
         return await dbCinemaRoomTable.deleteMany({ _id: { $in: delArr } });
     }
 
     static async insert(cinema) {
+        let room = {};
+        for (const roomOne of cinema) {
+            let sequence = await dbSequence.findOneAndUpdate({ _id: "roomId" },
+                { $inc: { sequenceValue: 1 } });
+            room._id = sequence.sequenceValue;
+            room.level = roomOne.roomLevel - 0;
+            room.name = roomOne.roomName;
+        }
+        await dbRoomTable.insertMany([room]);
+
         for (const cinemaOne of cinema) {
-            let sequence = await dbSequence.findOneAndUpdate({ _id: "cinemaId" }, { $inc: { sequenceValue: 1 } });
+            delete cinemaOne.roomLevel;
+            delete cinemaOne.roomName;
+            let sequence = await dbSequence.findOneAndUpdate({ _id: "cinemaRoomId" },
+                { $inc: { sequenceValue: 1 } });
             cinemaOne._id = sequence.sequenceValue;
+            cinemaOne.roomId = room._id - 0;
         }
         return await dbCinemaRoomTable.insertMany(cinema);
     }
 
     static async update(cinema) {
+        let room = {};
+        for (const roomOne of [cinema]) {
+            room._id = roomOne.roomId - 0;
+            room.level = roomOne.roomLevel - 0;
+            room.name = roomOne.roomName;
+        }
+        await dbRoomTable.updateMany({ _id: room._id }, {
+            $set:
+            {
+                name: room.name,
+                level: room.level,
+            }
+        });
         return await dbCinemaRoomTable.updateMany({ _id: parseInt(cinema._id) }, {
             $set:
             {
-                name: cinema.name,
-                address: cinema.address,
-                img: cinema.img,
-                phone: cinema.phone,
-                districtId: cinema.districtId - 0,
+                roomSize: cinema.roomSize,
+                language: cinema.language,
+                session: cinema.session,
+                filmId: cinema.filmId - 0,
+                cinemaId: cinema.cinemaId - 0,
             }
         });
     }

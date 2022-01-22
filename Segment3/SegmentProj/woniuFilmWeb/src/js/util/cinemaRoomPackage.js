@@ -1,14 +1,12 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-01-21 21:28:49 Fri
+ * @LastEditTime: 2022-01-22 12:59:14 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 
-// jquery
-// axios
 import { axios } from "./axios.js";
 import { showImg } from "./showImg.js";
 
@@ -28,7 +26,7 @@ function queryCinemaRoom(nowPage = 1) {
                         <td>${cinemaRoom._id}</td>
                         <td>${cinemaRoom.roomIdToDetails[0]?.name}</td>
                         <td>${cinemaRoom.roomSize}</td>
-                        <td>${cinemaRoom.roomIdToDetails[0]?._id}</td>
+                        <td>${cinemaRoom.roomIdToDetails[0]?.level}</td>
                         <td>${cinemaRoom.language}</td>
                         <td>${cinemaRoom.filmIdToDetails[0]?.name}</td>
                         <td>${cinemaRoom.session}</td>
@@ -81,7 +79,7 @@ let changePage = function () {
     });
 }
 
-// 1.6. get all district
+// 1.6.1. get all cinema
 function getCinema() {
     axios("http://localhost:3000/cinemaRoom/queryCinema").then(res => {
         let str = `<option value="">请选择影院</option>`;
@@ -93,11 +91,34 @@ function getCinema() {
 }
 getCinema();
 
+// 1.6.2. get all roomLevel
+function getRoomLevel() {
+    axios("http://localhost:3000/cinemaRoom/queryRoomLevel").then(res => {
+        let str = `<option value="">请选择级别</option>`;
+        res.forEach(element => {
+            str += `<option value="${element._id}">${element._id}</option>`;
+        });
+        $('[name=roomLevel]').html(str);
+    })
+}
+getRoomLevel();
+
+// 1.6.3. get all film
+function getFilm() {
+    axios("http://localhost:3000/cinemaRoom/queryFilm").then(res => {
+        let str = `<option value="">请选择电影</option>`;
+        res.forEach(element => {
+            str += `<option value="${element._id}">${element.name}</option>`;
+        });
+        $('[name=filmId]').html(str);
+    })
+}
+getFilm();
 
 // 2. insert
 $("#addForm").submit(function (e) {
     e.preventDefault();
-    axios("http://localhost:3000/cinemaRoom/insert", "post", false, new FormData($("#addForm")[0])).then(res => {
+    axios("http://localhost:3000/cinemaRoom/insert", "post", $('#addForm').serialize()).then(res => {
         console.log(res);
         if (res == "1") {
             // $("#addModal").modal("hide");
@@ -152,15 +173,16 @@ let showCinemaRoom = function () {
         let _id = $(this).attr("data-show-cinemaRoom-id");
         let newArr = cinemaRoomArr.find(item => item._id == _id);
         $("#updateForm [name=_id]").val(newArr._id);
-        $("#updateForm [name=name]").val(newArr.name);
-        $("#updateForm [name=phone]").val(newArr.phone);
-        $("#updateForm [name=address]").val(newArr.address);
-        $("#updateForm img").attr("src", `http://localhost:3000/${newArr.img}`);
-        $("#updateForm [name=oldImg]").val(newArr.img);
+        $("#updateForm [name=roomId]").val(newArr.roomId);
+        $("#updateForm [name=roomName]").val(newArr.roomIdToDetails[0].name);
+        $("#updateForm [name=roomSize]").val(newArr.roomSize);
+        $("#updateForm [name=language]").val(newArr.language);
+        $("#updateForm [name=session]").val(newArr.session);
     });
 }
 
-$("#updateForm").submit(function () {
+$("#updateForm").submit(function (e) {
+    e.preventDefault();
     axios("http://localhost:3000/cinemaRoom/update", "post", false, new FormData($("#updateForm")[0])).then(res => {
         if (res == "1") {
             // #TODO this way will error , don't know why

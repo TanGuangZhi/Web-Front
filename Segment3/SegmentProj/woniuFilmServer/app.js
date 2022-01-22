@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-01-21 20:06:51 Fri
+ * @LastEditTime: 2022-01-22 14:09:41 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -13,7 +13,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var userRouter = require('./routes/userRoutes');
 var cinemaRoutes = require('./routes/cinemaRoutes');
 let cinemaRoomRoutes = require('./routes/cinemaRoomRoutes');
 let filmRoutes = require('./routes/filmRoutes');
@@ -43,7 +43,7 @@ var allowCrossDomain = function (req, res, next) {
 app.use(allowCrossDomain);
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
 app.use('/cinema', cinemaRoutes);
 app.use('/cinemaRoom', cinemaRoomRoutes);
 app.use('/film', filmRoutes);
@@ -64,9 +64,9 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-let server = app.listen(3000, () => {
-  console.log(`服务器已经开启(${server.address().port})...`);
-});
+// let server = app.listen(3000, () => {
+//   console.log(`服务器已经开启(${server.address().port})...`);
+// });
 
 
 module.exports = app;
