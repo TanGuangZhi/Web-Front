@@ -1,253 +1,166 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>电影院</title>
-    <link rel="stylesheet" href="css/common1.css">
-    <link rel="stylesheet" href="./css/cinemas-list.0350856d.css">
-    <link rel="stylesheet" href="./css/font.css">
-
 </head>
+
 <body>
-<div id="app">
-    <div class="header">
-        <div class="header-inner">
-            <a href="index.html" class="logo"></a>
-            <div class="city-container" >
-                <div class="city-selected">
-                    <div class="city-name">
-                        <span class="caret"></span>
+    <div id="app">
+        <div class="header">
+            <div class="header-inner">
+                <a href="index.html" class="logo"></a>
+                <div class="city-container">
+                    <div class="city-selected">
+                        <div class="city-name">
+                            <span class="caret"></span>
+                        </div>
+                    </div>
+                    <div class="city-list">
+                        <div class="city-list-header">定位城市：<a class="js-geo-city">上海</a></div>
                     </div>
                 </div>
-                <div class="city-list" >
-                    <div class="city-list-header">定位城市：<a class="js-geo-city">上海</a></div>
-                </div>
-            </div>
 
-            <div class="nav">
-                <ul class="navbar">
-                    <li><a href="index.html" >首页</a></li>
-                    <li><a href="movie.html" >电影</a></li>
-                    <li><a href="cinema.html"  class="active">影院</a></li>
-                    <li><a href="javascript:alert('暂无数据')">榜单</a></li>
+                <div class="nav">
+                    <ul class="navbar">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="movie.html">电影</a></li>
+                        <li><a href="cinema.html" class="active">影院</a></li>
+                        <li><a href="javascript:alert('暂无数据')">榜单</a></li>
+                    </ul>
+                </div>
+
+                <div class="user-info">
+                    <div class="user-avatar has-login">
+                        <img src="./images/63957f10ae9679c95d4ba26ad1bd29c816882.png">
+                        <span class="caret"></span>
+                        <ul class="user-menu yes-login-menu">
+                            <li class="text"><a href="./orderlist.html">我的订单</a></li>
+                            <li class="text login-name"><a href="javascript:void(0)">基本信息</a></li>
+                            <li class="text"><a href="javascript:void(0)" class="J-logout">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar J-login">
+                        <img src="./images/7dd82a16316ab32c8359debdb04396ef2897.png">
+                        <span class="caret"></span>
+                        <ul class="user-menu no-login-menu">
+                            <li><a href="javascript:void(0)">登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <form target="_blank" class="search-form">
+                    <input name="kw" class="search" type="search" maxlength="32" placeholder="找影视剧、影人、影院"
+                        autocomplete="off">
+                    <input class="submit" type="button" />
+                </form>
+
+
+            </div>
+        </div>
+        <div class="header-placeholder"></div>
+
+        <div class="container">
+            <div class="tags-panel">
+                <ul class="tags-lines">
+                    <li class="tags-line" data-type="brand">
+                        <div class="tags-title">品牌:</div>
+                        <ul class="tags" id="brandId">
+                            <li class="active">
+                                <a href="javascript:void(0)">全部</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">万达影城</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">大地影院</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">博纳国际影城</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">耀莱成龙国际影城</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">保利国际影城</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="tags-line tags-line-border">
+                        <div class="tags-title">行政区:</div>
+                        <ul class="tags" id="districtId">
+                            <li class="active"><a href="javascript:void(0)">全部</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">黄浦区</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">浦东新区</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">徐汇区</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">杨浦区</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li class="tags-line tags-line-border">
+                        <div class="tags-title">特殊厅:</div>
+                        <ul class="tags">
+                            <li class="active">
+                                <a href="javascript:void(0)">全部</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">普通厅</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">3D厅</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Vip厅</a>
+                            </li>
+                        </ul>
+                    </li> -->
                 </ul>
             </div>
-
-            <div class="user-info">
-                <div class="user-avatar has-login">
-                    <img src="./images/63957f10ae9679c95d4ba26ad1bd29c816882.png">
-                    <span class="caret"></span>
-                    <ul class="user-menu yes-login-menu">
-                        <li class="text"><a href="./orderlist.html">我的订单</a></li>
-                        <li class="text login-name"><a href="javascript:void(0)" >基本信息</a></li>
-                        <li class="text"><a href="javascript:void(0)" class="J-logout" >退出登录</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="user-info">
-                <div class="user-avatar J-login">
-                    <img src="./images/7dd82a16316ab32c8359debdb04396ef2897.png">
-                    <span class="caret"></span>
-                    <ul class="user-menu no-login-menu">
-                        <li><a href="javascript:void(0)" >登录</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <form target="_blank" class="search-form" >
-                <input name="kw" class="search" type="search"  maxlength="32" placeholder="找影视剧、影人、影院"
-                       autocomplete="off">
-                <input class="submit" type="button" />
-            </form>
-
-
-        </div>
-    </div>
-    <div class="header-placeholder"></div>
-
-    <div class="container">
-        <div class="tags-panel">
-            <ul class="tags-lines">
-                <li class="tags-line" data-type="brand">
-                    <div class="tags-title">品牌:</div>
-                    <ul class="tags">
-                        <li class="active">
-                            <a href="javascript:void(0)">全部</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">万达影城</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">大地影院</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">博纳国际影城</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">耀莱成龙国际影城</a>
-                        </li> <li>
-                        <a href="javascript:void(0)">保利国际影城</a>
-                    </li>
-
-                    </ul>
-                </li>
-                <li class="tags-line tags-line-border" >
-                    <div class="tags-title">行政区:</div>
-                    <ul class="tags">
-                        <li class="active"><a href="javascript:void(0)">全部</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">黄浦区</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">浦东新区</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">徐汇区</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">杨浦区</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="tags-line tags-line-border">
-                    <div class="tags-title">特殊厅:</div>
-                    <ul class="tags">
-                        <li class="active">
-                            <a href="javascript:void(0)">全部</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">普通厅</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">3D厅</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">Vip厅</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
 
             <div class="cinemas-list">
                 <h2 class="cinemas-list-header">
                     <span>影院列表</span>
                 </h2>
-                <div class="cinema-cell">
-                    <div class="cinema-info">
-                        <a href="cinemadetail.html">万达影院</a>
-                        <p class="cinema-address">地址：海淀区文慧园北路9号今典花园9号楼二层</p>
-                        <span class="cinema-tags-item">IMAX厅</span>
-                        <span class="cinema-tags-item">RealD厅</span>
-                        <span class="cinema-tags-item">4D厅</span>
-                    </div>
-                    <div class="buy-btn">
-                        <a href="chooseseat.html">选座购票</a>
-                    </div>
-                    <div class="price">
-                        <span class="rmb red">￥</span>
-                        <span class="price-num red stonefont">50</span>
-                        <span>起</span>
-                    </div>
-                </div>
+                <div class="cinema-info-list">
 
-                <div class="cinema-cell">
-                    <div class="cinema-info">
-                        <a href="cinemadetail.html">万达影院</a>
-                        <p class="cinema-address">地址：海淀区文慧园北路9号今典花园9号楼二层</p>
-                        <span class="cinema-tags-item">IMAX厅</span>
-                        <span class="cinema-tags-item">RealD厅</span>
-                        <span class="cinema-tags-item">4D厅</span>
-                    </div>
-                    <div class="buy-btn">
-                        <a href="chooseseat.html">选座购票</a>
-                    </div>
-                    <div class="price">
-                        <span class="rmb red">￥</span>
-                        <span class="price-num red stonefont">50</span>
-                        <span>起</span>
-                    </div>
                 </div>
-
-                <div class="cinema-cell">
-                    <div class="cinema-info">
-                        <a href="cinemadetail.html">万达影院</a>
-                        <p class="cinema-address">地址：海淀区文慧园北路9号今典花园9号楼二层</p>
-                        <span class="cinema-tags-item">IMAX厅</span>
-                        <span class="cinema-tags-item">RealD厅</span>
-                        <span class="cinema-tags-item">4D厅</span>
-                    </div>
-                    <div class="buy-btn">
-                        <a href="chooseseat.html">选座购票</a>
-                    </div>
-                    <div class="price">
-                        <span class="rmb red">￥</span>
-                        <span class="price-num red stonefont">50</span>
-                        <span>起</span>
-                    </div>
-                </div>
-
-                <div class="cinema-cell">
-                    <div class="cinema-info">
-                        <a href="cinemadetail.html">万达影院</a>
-                        <p class="cinema-address">地址：海淀区文慧园北路9号今典花园9号楼二层</p>
-                        <span class="cinema-tags-item">IMAX厅</span>
-                        <span class="cinema-tags-item">RealD厅</span>
-                        <span class="cinema-tags-item">4D厅</span>
-                    </div>
-                    <div class="buy-btn">
-                        <a href="chooseseat.html">选座购票</a>
-                    </div>
-                    <div class="price">
-                        <span class="rmb red">￥</span>
-                        <span class="price-num red stonefont">50</span>
-                        <span>起</span>
-                    </div>
-                </div>
-
-                <div class="cinema-cell">
-                    <div class="cinema-info">
-                        <a href="cinemadetail.html">万达影院</a>
-                        <p class="cinema-address">地址：海淀区文慧园北路9号今典花园9号楼二层</p>
-                        <span class="cinema-tags-item">IMAX厅</span>
-                        <span class="cinema-tags-item">RealD厅</span>
-                        <span class="cinema-tags-item">4D厅</span>
-                    </div>
-                    <div class="buy-btn">
-                        <a href="chooseseat.html">选座购票</a>
-                    </div>
-                    <div class="price">
-                        <span class="rmb red">￥</span>
-                        <span class="price-num red stonefont">50</span>
-                        <span>起</span>
-                    </div>
-                </div>
-
+            </div>
         </div>
     </div>
-</div>
-<div class="movies-pager" style="text-align: center">
-    <ul class="list-pager">
-        <li class="active">
-            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">上一页</a>
-        </li>
-        <li>
-            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">1</a>
-        </li>
-        <li>
-            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">2</a>
-        </li>
-        <li>
-            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">3</a>
-        </li>
-        <li class="active">
-            <a class="page_1" href="javascript:void(0);" style="cursor: pointer">下一页</a>
-        </li>
-    </ul>
-</div>
-<div class="footer" style="visibility: visible;"></div>
-</div>
+    <div class="movies-pager" style="text-align: center">
+        <ul class="list-pager">
+            <li class="active">
+                <a class="page_1" href="javascript:void(0);" style="cursor: pointer">上一页</a>
+            </li>
+            <li>
+                <a class="page_1" href="javascript:void(0);" style="cursor: pointer">1</a>
+            </li>
+            <li>
+                <a class="page_1" href="javascript:void(0);" style="cursor: pointer">2</a>
+            </li>
+            <li>
+                <a class="page_1" href="javascript:void(0);" style="cursor: pointer">3</a>
+            </li>
+            <li class="active">
+                <a class="page_1" href="javascript:void(0);" style="cursor: pointer">下一页</a>
+            </li>
+        </ul>
+    </div>
+    <div class="footer" style="visibility: visible;"></div>
+    </div>
 </body>
+
 </html>

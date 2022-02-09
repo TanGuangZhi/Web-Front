@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-01-21 15:33:56 Fri
+ * @LastEditTime: 2022-01-25 19:13:40 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -89,8 +89,6 @@ function getDistrict() {
     })
 }
 getDistrict();
-
-
 
 // 2. insert
 $("#addForm").submit(function (e) {

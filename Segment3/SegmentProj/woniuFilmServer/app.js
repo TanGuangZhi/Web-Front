@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-01-22 16:57:59 Sat
+ * @LastEditTime: 2022-02-08 23:47:40 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -17,18 +17,9 @@ var userRouter = require('./routes/userRoutes');
 var cinemaRoutes = require('./routes/cinemaRoutes');
 let cinemaRoomRoutes = require('./routes/cinemaRoomRoutes');
 let filmRoutes = require('./routes/filmRoutes');
+let orderRoutes = require('./routes/orderRoutes');
 
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 var allowCrossDomain = function (req, res, next) {
   // 设置允许跨域访问的请求源（* 表示接受任意域名的请求）   
   res.header("Access-Control-Allow-Origin", "*");
@@ -40,6 +31,16 @@ var allowCrossDomain = function (req, res, next) {
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 };
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(allowCrossDomain);
 
 app.use('/', indexRouter);
@@ -47,6 +48,7 @@ app.use('/user', userRouter);
 app.use('/cinema', cinemaRoutes);
 app.use('/cinemaRoom', cinemaRoomRoutes);
 app.use('/film', filmRoutes);
+app.use('/order', orderRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -63,6 +65,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 // let server = app.listen(3000, () => {
 //   console.log(`服务器已经开启(${server.address().port})...`);

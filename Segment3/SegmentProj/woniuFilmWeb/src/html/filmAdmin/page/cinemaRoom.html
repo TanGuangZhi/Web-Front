@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-01-22 12:20:10 Sat
+ * @LastEditTime: 2022-01-26 09:53:37 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -10,7 +10,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Title</title>
 </head>
 
@@ -21,20 +21,22 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
                     <h4 class="modal-title" id="addModalLabel">添加影厅</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-inline justify-content-center mt-3" id="addForm">
                         <p>
                             影厅名称:　
-                            <input type="text" name="roomName" class="form-control" style="width:300px"
-                                placeholder="请输入影厅名称" required>
+                            <input type="text" name="roomName" class="form-control" style="width: 300px"
+                                placeholder="请输入影厅名称" required />
                         </p>
                         <p>
                             影厅大小:　
-                            <input type="text" name="roomSize" required class="form-control" style="width:300px"
-                                placeholder="影厅大小">
+                            <input type="text" name="roomSize" required class="form-control" style="width: 300px"
+                                placeholder="影厅大小" />
                         </p>
                         <p>
                             级　　别:　
@@ -46,8 +48,8 @@
                         </p>
                         <p>
                             语言版本:　
-                            <input type="text" name="language" required class="form-control" style="width:300px"
-                                placeholder="请输入语言版本">
+                            <input type="text" name="language" required class="form-control" style="width: 300px"
+                                placeholder="请输入语言版本" />
                         </p>
                         <p>
                             电　　影:　
@@ -59,8 +61,8 @@
                         </p>
                         <p>
                             场　　次:　
-                            <input type="text" name="session" required class="form-control" style="width:300px"
-                                placeholder="场次">
+                            <input type="text" name="session" required class="form-control" style="width: 300px"
+                                placeholder="场次" />
                         </p>
                         <p>
                             影　　院:　
@@ -71,8 +73,12 @@
                             </select>
                         </p>
                         <p>
-                            <button type="submit" class="btn btn-primary" id="addBtn">确认添加</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">返回首页</button>
+                            <button type="submit" class="btn btn-primary" id="addBtn">
+                                确认添加
+                            </button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                返回首页
+                            </button>
                         </p>
                     </form>
                 </div>
@@ -85,24 +91,26 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
                     <h4 class="modal-title" id="updateModalLabel">修改电影</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-inline justify-content-center mt-3" id="updateForm">
-                        <input type="text" name="roomId" hidden>
+                        <input type="text" name="roomId" hidden />
                         <p>
-                            编　　号:　<input type="text" name="_id" class="form-control" style="width:300px" readonly>
+                            编　　号:　<input type="text" name="_id" class="form-control" style="width: 300px" readonly />
                         </p>
                         <p>
                             影厅名称:　
-                            <input type="text" name="roomName" class="form-control" style="width:300px"
-                                placeholder="请输入影厅名称" required>
+                            <input type="text" name="roomName" class="form-control" style="width: 300px"
+                                placeholder="请输入影厅名称" required />
                         </p>
                         <p>
                             影厅大小:　
-                            <input type="text" name="roomSize" required class="form-control" style="width:300px"
-                                placeholder="影厅大小">
+                            <input type="text" name="roomSize" required class="form-control" style="width: 300px"
+                                placeholder="影厅大小" />
                         </p>
                         <p>
                             级　　别:　
@@ -114,8 +122,8 @@
                         </p>
                         <p>
                             语言版本:　
-                            <input type="text" name="language" required class="form-control" style="width:300px"
-                                placeholder="请输入语言版本">
+                            <input type="text" name="language" required class="form-control" style="width: 300px"
+                                placeholder="请输入语言版本" />
                         </p>
                         <p>
                             电　　影:　
@@ -127,8 +135,8 @@
                         </p>
                         <p>
                             场　　次:　
-                            <input type="text" name="session" required class="form-control" style="width:300px"
-                                placeholder="场次">
+                            <input type="text" name="session" required class="form-control" style="width: 300px"
+                                placeholder="场次" />
                         </p>
                         <p>
                             影　　院:　
@@ -139,21 +147,25 @@
                             </select>
                         </p>
                         <p>
-                            <button type="submit" class="btn btn-primary" id="updateBtn">确认修改</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">返回首页</button>
+                            <button type="submit" class="btn btn-primary" id="updateBtn">
+                                确认修改
+                            </button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                返回首页
+                            </button>
                         </p>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <h2 class="text-center" style="line-height: 80px;">影厅管理</h2>
+    <h2 class="text-center" style="line-height: 80px">影厅管理</h2>
     <div class="container-fluid">
         <div class="row" style="line-height: 100px">
             <div class="col-md-8 form-inline">
                 <form class="form-inline justify-content-left" id="searchForm">
-                    <input type="hidden" name="nowPage" value="1">
-                    <input type="text" name="name" placeholder="请输入影厅名称" style="width:150px" class="form-control">
+                    <input type="hidden" name="nowPage" value="1" />
+                    <input type="text" name="name" placeholder="请输入影厅名称" style="width: 150px" class="form-control" />
                     <select name="cinemaId" class="form-control" style="width: 150px">
                         <option value="">请选择影院</option>
                         <option value="0">java</option>
@@ -169,34 +181,44 @@
                         <option value="20">20</option>
                         <option value="50">50</option>
                     </select>
-                    <button type="button" class="btn btn-primary" id="searchBtn">搜索</button>
+                    <button type="button" class="btn btn-primary" id="searchBtn">
+                        搜索
+                    </button>
                 </form>
             </div>
             <div class="col-md-4">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
                     <span class="glyphicon glyphicon-plus"></span>添加
                 </button>
-                <button type="button" id="deleteManyId" class="btn btn-warning"><span
-                        class="glyphicon glyphicon-remove"></span>
-                    批量删除</button>
+                <button type="button" id="deleteManyId" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-remove"></span> 批量删除
+                </button>
                 <!-- <button type="button" class="btn btn-success" id="downloadFileBtn">download</button> -->
                 <a href="http://localhost:3000/film/downloadFile" class="btn btn-primary">download</a>
-                <button type='button' class="btn btn-primary" data-toggle="modal"
-                    data-target="#uploadModal">upload</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                    upload
+                </button>
             </div>
         </div>
         <div class="row">
             <table class="col-md-12 table-bordered text-center">
-                <tr style="line-height: 60px;background: lavenderblush;font-weight: bold;">
-                    <td>全选/全消 <input type="checkbox" id="allId"></td>
+                <tr style="
+              line-height: 60px;
+              background: lavenderblush;
+              font-weight: bold;
+            ">
+                    <td>全选/全消 <input type="checkbox" id="allId" /></td>
                     <td>编号</td>
-                    <td>影厅名称
+                    <td>
+                        影厅名称
                         <!--IMAX厅 -->
                     </td>
-                    <td>影厅大小
+                    <td>
+                        影厅大小
                         <!--10,10-->
                     </td>
-                    <td>级别
+                    <td>
+                        级别
                         <!--(普通2D(1),3D(2),vip(3)) -->
                     </td>
                     <td>语言版本</td>
@@ -207,7 +229,7 @@
                 </tr>
                 <tbody id="showTab">
                     <tr>
-                        <td>选择<input type="checkbox" class="sel"></td>
+                        <td>选择<input type="checkbox" class="sel" /></td>
                         <td>1</td>
                         <td>IMAX厅</td>
                         <td>10行10列</td>
@@ -226,13 +248,22 @@
         </div>
     </div>
     <ul class="pagination justify-content-center" style="margin-top: 20px">
-        <li class="page-item"><a class="page-link" href="javascript:void(0)">&laquo;</a></li>
-        <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-        <li class="page-item"><a class="page-link" href="javascript:void(0)">&raquo;</a></li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0)">&laquo;</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0)">1</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0)">2</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0)">3</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0)">&raquo;</a>
+        </li>
     </ul>
-
 </body>
 
 </html>

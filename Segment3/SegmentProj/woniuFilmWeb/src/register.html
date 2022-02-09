@@ -1,9 +1,19 @@
+<!--
+ * @Author: TanGuangZhi
+ * @Date: 2022-01-22 14:30:35 Sat
+ * @LastEditTime: 2022-02-09 13:32:31 Wed
+ * @LastEditors: TanGuangZhi
+ * @Description: 
+ * @KeyWords: NodeJs, Express, MongoDB
+-->
 <!DOCTYPE html>
 <html lang="zxx">
+
 <head>
     <title>用户注册</title>
     <meta charset="UTF-8">
 </head>
+
 <body>
     <section class="main">
         <div class="bottom-grid">
@@ -13,42 +23,43 @@
         </div>
         <div class="w3lhny-register">
             <div class="iconhny">
-               <span class="fa fa-user-plus"></span>
-             </div>
+                <span class="fa fa-user-plus"></span>
+            </div>
             <form id="addForm" class="register-form">
                 <fieldset>
                     <div class="form">
                         <div class="form-row">
                             <span class="fa fa-user"></span>
-                            <input type="text" name=userName class="form-text" placeholder="Name" required="">
+                            <input type="text" name=name class="form-text" placeholder="Name" required="">
                         </div>
                         <div class="form-row">
                             <span class="fa fa-lock"></span>
-                            <input type="password" name="userPass" class="form-text" placeholder="Password" required="">
+                            <input type="password" name="password" class="form-text" placeholder="Password" required="">
                         </div>
                         <div class="form-row">
                             <span class="fa fa-envelope"></span>
-                            <input type="email"  name="email" class="form-text" placeholder="Email Address" required="">
+                            <input type="email" name="email" class="form-text" placeholder="Email Address" required="">
                         </div>
-                        <div class="form-row">
+                        <!-- <div class="form-row">
                             <span class="fa fa-phone"></span>
                             <input type="text" class="form-text" name="userPhone" placeholder="Phone" required="">
-                        </div>
+                        </div> -->
                         <div class="form-row button-login">
                             <button type="button" id="addBtn" class="btn btn-login">Sign Up</button>
                         </div>
                     </div>
                 </fieldset>
-                </form>
+            </form>
 
             <a href="index.html" class="create-account">Return Home</a>
+            <a href="#" class="create-account" id="togglePhoneRegister">切换至手机号注册</a>
 
-                <div class="social-media">
-                    <a href="#facebook" class="fb"><span class="fa fa-facebook"></span></a>
-                    <a href="#twitter" class="tw"><span class="fa fa-twitter"></span></a>
-                    <a href="#pinterest" class="pi"><span class="fa fa-pinterest"></span></a>
-                </div>
-                <p class="already">Already have an account <a href="login.html">Sign In</a></p>
+            <div class="social-media">
+                <a href="#facebook" class="fb"><span class="fa fa-facebook"></span></a>
+                <a href="#twitter" class="tw"><span class="fa fa-twitter"></span></a>
+                <a href="#pinterest" class="pi"><span class="fa fa-pinterest"></span></a>
+            </div>
+            <p class="already">Already have an account <a href="login.html">Sign In</a></p>
         </div>
 
         <div class="w3l-copyright">
@@ -57,4 +68,5 @@
         </div>
     </section>
 </body>
+
 </html>

@@ -1,278 +1,283 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>订单列表</title>
-    <link rel="stylesheet" href="css/common1.css">
-    <link rel="stylesheet" href="./css/profile-profile.772600de.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>订单列表</title>
 </head>
+
 <body>
 
-<div id="app">
-<div class="header">
-  <div class="header-inner">
-          <a href="index.html" class="logo" ></a>
-      <div class="city-container" >
-          <div class="city-selected">
-              <div class="city-name">
-                  <span class="caret"></span>
-              </div>
-          </div>
-          <div class="city-list" >
-              <div class="city-list-header">定位城市：<a class="js-geo-city">上海</a></div>
-          </div>
-      </div>
-
-      <div class="nav">
-          <ul class="navbar">
-              <li><a href="index.html" >首页</a></li>
-              <li><a href="movie.html" >电影</a></li>
-              <li><a href="cinema.html" >影院</a></li>
-              <li><a href="javascript:alert('暂无数据')" >榜单</a></li>
-
-          </ul>
-      </div>
-
-      <div class="user-info">
-          <div class="user-avatar has-login">
-              <img src="./images/63957f10ae9679c95d4ba26ad1bd29c816882.png">
-              <span class="caret"></span>
-              <ul class="user-menu yes-login-menu">
-                  <li class="text"><a href="./orderlist.html">我的订单</a></li>
-                  <li class="text login-name"><a href="javascript:void(0)" >基本信息</a></li>
-                  <li class="text"><a href="javascript:void(0)" class="J-logout" >退出登录</a></li>
-              </ul>
-          </div>
-      </div>
-      <div class="user-info" >
-          <div class="user-avatar J-login">
-              <img src="./images/7dd82a16316ab32c8359debdb04396ef2897.png">
-              <span class="caret"></span>
-              <ul class="user-menu no-login-menu">
-                  <li><a href="javascript:void(0)" >登录</a></li>
-              </ul>
-          </div>
-      </div>
-
-      <form target="_blank" action="search.html" class="search-form" >
-          <input name="kw" class="search" type="search" maxlength="32" placeholder="找影视剧、影人、影院"
-                 autocomplete="off">
-          <input class="submit" type="button"  />
-      </form>
-
-
-  </div>
-</div>
-<div class="header-placeholder"></div>
-
-    <div class="container">
-    <div class="content">
-      <div class="main">
-        <div class="info-content clearfix">
-          <div class="user-profile-nav">
-            <h1>个人中心</h1>
-            <a href="orderlist.html" class="orders active">我的订单</a>
-            <a href="#" class="profile ">基本信息</a>
-          </div>
-
-<div class="orders-container">
-  <div class="profile-title">我的订单</div>
-    <div class="order-box">
-        <div class="order-header">
-            <span class="order-date">2022-02-01</span>
-            <span class="order-id">订单号:202202011800</span>
-            <a href="javascript:void(0)" class="del-order"></a>
-        </div>
-
-        <div class="order-body">
-            <div class="poster" style="width: 66px;height: 91px">
-                <img src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
-            </div>
-            <div class="order-content">
-                <div class="movie-name">海贼王</div>
-                <div class="cinema-name">万达影院</div>
-                <div class="hall-ticket">
-                    <span>3D厅</span>
-                    <span>10排5座</span>
+    <div id="app">
+        <div class="header">
+            <div class="header-inner">
+                <a href="index.html" class="logo"></a>
+                <div class="city-container">
+                    <div class="city-selected">
+                        <div class="city-name">
+                            <span class="caret"></span>
+                        </div>
+                    </div>
+                    <div class="city-list">
+                        <div class="city-list-header">定位城市：<a class="js-geo-city">上海</a></div>
+                    </div>
                 </div>
-                <div class="show-time">2022-01-20</div>
-            </div>
-            <div class="order-price">￥66</div>
-            <div class="order-status">
-                <span>待付款</span>
-            </div>
-            <div class="actions">
-                <div>
-                    <a href="#" class="pay-btn" >付款</a>
+
+                <div class="nav">
+                    <ul class="navbar">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="movie.html">电影</a></li>
+                        <li><a href="cinema.html">影院</a></li>
+                        <li><a href="javascript:alert('暂无数据')">榜单</a></li>
+                    </ul>
                 </div>
+
+                <div class="user-info">
+                    <div class="user-avatar has-login">
+                        <img src="./images/63957f10ae9679c95d4ba26ad1bd29c816882.png">
+                        <span class="caret"></span>
+                        <ul class="user-menu yes-login-menu">
+                            <li class="text"><a href="./orderlist.html">我的订单</a></li>
+                            <li class="text login-name"><a href="javascript:void(0)">基本信息</a></li>
+                            <li class="text"><a href="javascript:void(0)" class="J-logout">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar J-login">
+                        <img src="./images/7dd82a16316ab32c8359debdb04396ef2897.png">
+                        <span class="caret"></span>
+                        <ul class="user-menu no-login-menu">
+                            <li><a href="javascript:void(0)">登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <form target="_blank" action="search.html" class="search-form">
+                    <input name="kw" class="search" type="search" maxlength="32" placeholder="找影视剧、影人、影院"
+                        autocomplete="off">
+                    <input class="submit" type="button" />
+                </form>
+
+
             </div>
         </div>
+        <div class="header-placeholder"></div>
 
-        <div class="order-body">
-            <div class="poster" style="width: 66px;height: 91px">
-                <img src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
-            </div>
-            <div class="order-content">
-                <div class="movie-name">海贼王</div>
-                <div class="cinema-name">万达影院</div>
-                <div class="hall-ticket">
-                    <span>3D厅</span>
-                    <span>10排5座</span>
+        <div class="container">
+            <div class="content">
+                <div class="main">
+                    <div class="info-content clearfix">
+                        <div class="user-profile-nav">
+                            <h1>个人中心</h1>
+                            <a href="orderlist.html" class="orders active">我的订单</a>
+                            <a href="#" class="profile">基本信息</a>
+                        </div>
+
+                        <div class="orders-container">
+                            <div class="profile-title">我的订单</div>
+                            <div class="order-box">
+                                <div class="order-header">
+                                    <span class="order-date">2022-02-01</span>
+                                    <span class="order-id">订单号:202202011800</span>
+                                    <a href="javascript:void(0)" class="del-order"></a>
+                                </div>
+
+                                <div class="order-body">
+                                    <div class="poster" style="width: 66px;height: 91px">
+                                        <img
+                                            src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
+                                    </div>
+                                    <div class="order-content">
+                                        <div class="movie-name">海贼王</div>
+                                        <div class="cinema-name">万达影院</div>
+                                        <div class="hall-ticket">
+                                            <span>3D厅</span>
+                                            <span>10排5座</span>
+                                        </div>
+                                        <div class="show-time">2022-01-20</div>
+                                    </div>
+                                    <div class="order-price">￥66</div>
+                                    <div class="order-status">
+                                        <span>待付款</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="pay-btn">付款</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="order-body">
+                                    <div class="poster" style="width: 66px;height: 91px">
+                                        <img
+                                            src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
+                                    </div>
+                                    <div class="order-content">
+                                        <div class="movie-name">海贼王</div>
+                                        <div class="cinema-name">万达影院</div>
+                                        <div class="hall-ticket">
+                                            <span>3D厅</span>
+                                            <span>10排5座</span>
+                                        </div>
+                                        <div class="show-time">2022-01-20</div>
+                                    </div>
+                                    <div class="order-price">￥66</div>
+                                    <div class="order-status">
+                                        <span>待付款</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="pay-btn">付款</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-body">
+                                    <div class="poster" style="width: 66px;height: 91px">
+                                        <img
+                                            src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
+                                    </div>
+                                    <div class="order-content">
+                                        <div class="movie-name">海贼王</div>
+                                        <div class="cinema-name">万达影院</div>
+                                        <div class="hall-ticket">
+                                            <span>3D厅</span>
+                                            <span>10排5座</span>
+                                        </div>
+                                        <div class="show-time">2022-01-20</div>
+                                    </div>
+                                    <div class="order-price">￥66</div>
+                                    <div class="order-status">
+                                        <span>待付款</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="pay-btn">付款</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-body">
+                                    <div class="poster" style="width: 66px;height: 91px">
+                                        <img
+                                            src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
+                                    </div>
+                                    <div class="order-content">
+                                        <div class="movie-name">海贼王</div>
+                                        <div class="cinema-name">万达影院</div>
+                                        <div class="hall-ticket">
+                                            <span>3D厅</span>
+                                            <span>10排5座</span>
+                                        </div>
+                                        <div class="show-time">2022-01-20</div>
+                                    </div>
+                                    <div class="order-price">￥66</div>
+                                    <div class="order-status">
+                                        <span>待付款</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="pay-btn">付款</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-body">
+                                    <div class="poster" style="width: 66px;height: 91px">
+                                        <img
+                                            src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
+                                    </div>
+                                    <div class="order-content">
+                                        <div class="movie-name">海贼王</div>
+                                        <div class="cinema-name">万达影院</div>
+                                        <div class="hall-ticket">
+                                            <span>3D厅</span>
+                                            <span>10排5座</span>
+                                        </div>
+                                        <div class="show-time">2022-01-20</div>
+                                    </div>
+                                    <div class="order-price">￥66</div>
+                                    <div class="order-status">
+                                        <span>待付款</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="pay-btn">付款</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-body">
+                                    <div class="poster" style="width: 66px;height: 91px">
+                                        <img
+                                            src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
+                                    </div>
+                                    <div class="order-content">
+                                        <div class="movie-name">海贼王</div>
+                                        <div class="cinema-name">万达影院</div>
+                                        <div class="hall-ticket">
+                                            <span>3D厅</span>
+                                            <span>10排5座</span>
+                                        </div>
+                                        <div class="show-time">2022-01-20</div>
+                                    </div>
+                                    <div class="order-price">￥66</div>
+                                    <div class="order-status">
+                                        <span>待付款</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div>
+                                            <a href="#" class="pay-btn">付款</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
-                <div class="show-time">2022-01-20</div>
             </div>
-            <div class="order-price">￥66</div>
-            <div class="order-status">
-                <span>待付款</span>
-            </div>
-            <div class="actions">
-                <div>
-                    <a href="#" class="pay-btn" >付款</a>
+            <div class="mask3">
+                <div id="delete-confirm-container" class="modal-container" style="display:none">
+                    <div class="modal">
+                        <span class="icon"></span>
+                        <p class="tip">您确定要删除该订单嘛？删除后，不可恢复～</p>
+                        <div class="short btn ok-btn">确定</div>
+                        <div class="short btn cancel-btn">取消</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="order-body">
-            <div class="poster" style="width: 66px;height: 91px">
-                <img src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
-            </div>
-            <div class="order-content">
-                <div class="movie-name">海贼王</div>
-                <div class="cinema-name">万达影院</div>
-                <div class="hall-ticket">
-                    <span>3D厅</span>
-                    <span>10排5座</span>
+            <div class="mask1">
+                <div class="modal-container" style="display:none">
+                    <div class="modal">
+                        <span class="icon"></span>
+                        <p class="tip">请注意，注销账号会清空所有订单信息、影评、积分、<br>账户余额等信息且无法找回，是否继续？</p>
+                        <div class="short btn ok-btn">确定</div>
+                        <div class="short btn cancel-btn">取消</div>
+                    </div>
                 </div>
-                <div class="show-time">2022-01-20</div>
+
             </div>
-            <div class="order-price">￥66</div>
-            <div class="order-status">
-                <span>待付款</span>
-            </div>
-            <div class="actions">
-                <div>
-                    <a href="#" class="pay-btn" >付款</a>
+
+            <div class="mask2">
+                <div class="modal-container" style="display:none">
+                    <div class="modal">
+                        <span class="icon"></span>
+
+                        <p class="tip">请联系客服8888-8888</p>
+
+                        <div class="ok-btn btn">我知道了</div>
+                    </div>
                 </div>
+
             </div>
-        </div>
-        <div class="order-body">
-            <div class="poster" style="width: 66px;height: 91px">
-                <img src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
-            </div>
-            <div class="order-content">
-                <div class="movie-name">海贼王</div>
-                <div class="cinema-name">万达影院</div>
-                <div class="hall-ticket">
-                    <span>3D厅</span>
-                    <span>10排5座</span>
-                </div>
-                <div class="show-time">2022-01-20</div>
-            </div>
-            <div class="order-price">￥66</div>
-            <div class="order-status">
-                <span>待付款</span>
-            </div>
-            <div class="actions">
-                <div>
-                    <a href="#" class="pay-btn" >付款</a>
-                </div>
-            </div>
-        </div>
-        <div class="order-body">
-            <div class="poster" style="width: 66px;height: 91px">
-                <img src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
-            </div>
-            <div class="order-content">
-                <div class="movie-name">海贼王</div>
-                <div class="cinema-name">万达影院</div>
-                <div class="hall-ticket">
-                    <span>3D厅</span>
-                    <span>10排5座</span>
-                </div>
-                <div class="show-time">2022-01-20</div>
-            </div>
-            <div class="order-price">￥66</div>
-            <div class="order-status">
-                <span>待付款</span>
-            </div>
-            <div class="actions">
-                <div>
-                    <a href="#" class="pay-btn" >付款</a>
-                </div>
-            </div>
-        </div>
-        <div class="order-body">
-            <div class="poster" style="width: 66px;height: 91px">
-                <img src="images/movie/80b9ec1d4bc6bb7e727a252d9e4e54432714531.jpg@160w_220h_1e_1c.jpg">
-            </div>
-            <div class="order-content">
-                <div class="movie-name">海贼王</div>
-                <div class="cinema-name">万达影院</div>
-                <div class="hall-ticket">
-                    <span>3D厅</span>
-                    <span>10排5座</span>
-                </div>
-                <div class="show-time">2022-01-20</div>
-            </div>
-            <div class="order-price">￥66</div>
-            <div class="order-status">
-                <span>待付款</span>
-            </div>
-            <div class="actions">
-                <div>
-                    <a href="#" class="pay-btn" >付款</a>
-                </div>
-            </div>
+
         </div>
 
-</div>
+        <div class="footer" style="visibility: visible;">
 
-
-</div>
         </div>
-  </div>
-</div>
-<div class="mask3">
-    <div id="delete-confirm-container" class="modal-container" style="display:none">
-    <div class="modal">
-      <span class="icon"></span>
-      <p class="tip">您确定要删除该订单嘛？删除后，不可恢复～</p>
-      <div class="short btn ok-btn">确定</div>
-      <div class="short btn cancel-btn">取消</div>
     </div>
-  </div>
-</div>
-<div class="mask1">
-    <div class="modal-container" style="display:none">
-    <div class="modal">
-      <span class="icon"></span>
-      <p class="tip">请注意，注销账号会清空所有订单信息、影评、积分、<br>账户余额等信息且无法找回，是否继续？</p>
-        <div class="short btn ok-btn" >确定</div>
-        <div class="short btn cancel-btn">取消</div>
-    </div>
-  </div>
-
-</div>
-
-<div class="mask2">
-    <div class="modal-container" style="display:none">
-    <div class="modal">
-      <span class="icon"></span>
-
-      <p class="tip">请联系客服8888-8888</p>
-
-        <div class="ok-btn btn">我知道了</div>
-    </div>
-  </div>
-
-</div>
-
-    </div>
-
-<div class="footer" style="visibility: visible;">
-
-</div>
-</div>
 </body>
 
 </html>

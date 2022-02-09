@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-14 09:28:51 Fri
- * @LastEditTime: 2022-01-14 19:52:24 Fri
+ * @LastEditTime: 2022-01-26 10:30:38 Wed
  * @LastEditors: TanGuangZhi
  * @Description: export to let package file to use
  * @KeyWords: NodeJs, Express, MongoDB
@@ -29,7 +29,10 @@ export let axios = function (url, ...params) {
                 resolve(result);
             }, error: (error) => {
                 reject(error);
-            }
+            },
+            // xhrFields: {
+            //     withCredentials: true,
+            // }
         }
         if (params.indexOf(false) != -1) {
             obj.contentType = false;

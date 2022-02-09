@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-01-22 16:54:18 Sat
+ * @LastEditTime: 2022-01-24 16:43:52 Mon
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -11,10 +11,12 @@ let dbCinemaTable = require("../data/cinemaSchema.js");
 let dbCinemaDistrictTable = require("../data/cinemaDistrictSchema.js");
 let dbSequence = dbUtil.dbSequence;
 
+let sortObj = {};
+let matchObj = {};
 class CinemaModel {
     static async query(nowPage, pageCount, data) {
-        let sortObj = {};
-        let matchObj = {};
+        sortObj = {};
+        matchObj = {};
         if (data.name) {
             matchObj.name = { $regex: data.name };
         }
@@ -45,10 +47,6 @@ class CinemaModel {
     }
 
     static async getCount(data) {
-        let matchObj = {};
-        if (data.name != "") {
-            matchObj.name = { $regex: data.name };
-        }
         let list = await dbCinemaTable.aggregate([
             {
                 $match: matchObj

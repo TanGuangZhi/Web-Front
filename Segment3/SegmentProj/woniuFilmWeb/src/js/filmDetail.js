@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-01-22 17:35:33 Sat
+ * @LastEditTime: 2022-01-24 20:31:52 Mon
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -12,7 +12,6 @@ import "../css/movie-detail.86416149.css";
 
 let url = window.location.href;
 // alert(url);
-console.log(url.split("?"));
 let temp = url.split("?");
 let tempArr = [];
 for (let i = 1; i < temp.length; i++) {
@@ -65,7 +64,7 @@ function showDetails() {
                             </div>
                         </a>
                     </div>
-                    <a class="btn buy" href="cinema.html" target="_blank">特惠购票</a>
+                    <a class="btn buy" href="cinema.html?filmId=${filmId}" target="_blank">特惠购票</a>
                 </div>
                 <div class="movie-stats-container">
                     <div class="movie-index">

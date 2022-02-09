@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-01-22 14:36:10 Sat
+ * @LastEditTime: 2022-01-25 16:21:31 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -10,7 +10,7 @@ let Path = require("path");
 let HtmlWebpackPlugin = require("html-webpack-plugin");
 let webpack = require("webpack");
 
-let pageList = ["index", "cinema", "chooseseat", "cinemadetail", "movie", "orderlist",
+let pageList = ["index", "alitest", "userInfo", "cinema", "chooseseat", "cinemadetail", "movie", "orderlist",
     "filmDetail", "login", "register",
     "html/index", "html/admin/admin", "html/admin/page/user",
     "html/filmAdmin/filmAdmin", "html/filmAdmin/page/cinema",

@@ -1,13 +1,14 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 13:11:56 Sat
- * @LastEditTime: 2022-01-22 14:54:15 Sat
+ * @LastEditTime: 2022-02-08 18:24:11 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 let dbUtil = require('../util/dbUtil');
 let dbUserTable = require('../data/userSchema.js');
+let dbUserOrderTable = require('../data/orderSchema.js');
 let dbSequence = dbUtil.dbSequence;
 
 class UserModel {
@@ -18,8 +19,11 @@ class UserModel {
     async queryUser(nowPage, pageCount, data) {
         let sortObj = {};
         let matchObj = {};
-        if (data.name != "") {
+        if (data.name) {
             matchObj.name = { $regex: data.name };
+        }
+        if (data.userId) {
+            matchObj._id = data.userId;
         }
 
         return await dbUserTable.find(matchObj)
@@ -28,9 +32,41 @@ class UserModel {
             .limit(pageCount - 0);
     }
 
+    async queryUserOrder(userId) {
+        let sortObj = {};
+        let matchObj = {};
+        matchObj._id = userId - 0;
+        return await dbUserOrderTable.aggregate([
+            {
+                $match: matchObj
+            }, {
+                $lookup: {
+                    from: "film",
+                    localField: "filmId",
+                    foreignField: "_id",
+                    as: "filmIdToDetail"
+                }
+            }, {
+                $lookup: {
+                    from: "cinema",
+                    localField: "cinemaId",
+                    foreignField: "_id",
+                    as: "cinemaIdToDetail"
+                }
+            }, {
+                $lookup: {
+                    from: "room",
+                    localField: "roomId",
+                    foreignField: "_id",
+                    as: "roomIdToDetail"
+                }
+            }
+        ]);
+    }
+
     async getUserCount(data) {
         let matchObj = {};
-        if (data.name != "") {
+        if (data.name) {
             matchObj.userName = { $regex: data.userName };
         }
         let userList = await dbUserTable.aggregate([
@@ -47,9 +83,9 @@ class UserModel {
     }
 
     async login(data) {
-        let userName = data.userName;
-        let userPass = data.userPass;
-        return await dbUserTable.find({ userName: userName, userPass: userPass });
+        let name = data.name;
+        let password = data.password;
+        return await dbUserTable.find({ name, password });
     }
 
     async loginUser(name) {
@@ -57,9 +93,13 @@ class UserModel {
     }
 
     async register(user) {
-        let sequence = await dbSequence.findOneAndUpdate({ _id: "uId" }, { $inc: { sequenceValue: 1 } });
+        let sequence = await dbSequence.findOneAndUpdate({ _id: "userId" }, { $inc: { sequenceValue: 1 } });
         user._id = sequence.sequenceValue;
         return await dbUserTable.insertMany([user]);
+    }
+
+    async updateStatus(uuid) {
+        return await dbUserTable.updateMany({ uuid }, { state: 1 }, { multi: true });
     }
 
     async insert(user) {

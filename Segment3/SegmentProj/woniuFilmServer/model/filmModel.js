@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-01-22 17:24:33 Sat
+ * @LastEditTime: 2022-02-07 20:39:24 Mon
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -12,27 +12,46 @@ let dbFilmTypeTable = require("../data/filmTypeSchema.js");
 let dbFilmDistrictTable = require("../data/filmDistrictSchema.js");
 let dbSequence = dbUtil.dbSequence;
 
+let sortObj = {};
+let matchObj = {};
 class FilmModel {
     static async query(nowPage, pageCount, data) {
-        let sortObj = {};
-        let matchObj = {};
-        if (data.name != "") {
+        sortObj = {};
+        matchObj = {};
+        if (data.name) {
             matchObj.name = { $regex: data.name };
         }
-        if (data.typeId != "") {
+        if (data.typeId) {
             matchObj.typeId = data.typeId - 0;
         }
-        if (data.districtId != "") {
+        if (data.districtId) {
             matchObj.districtId = data.districtId - 0;
         }
-        if (data.sortType == 0) {
-            sortObj._id = 1;
-        } else if (data.sortType == 1 || data.sortType == -1) {
-            sortObj.districtId = data.sortType - 0;
+
+        if (data.startTime) {
+            matchObj.startTime = { $gt: data.startTime };
+        }
+
+        if (data.classicFlag) {
+            matchObj.startTime = { $lt: data.startTime };
+        }
+
+        if (data.sortType) {
+            if (data.sortType == 0) {
+                sortObj._id = 1;
+            } else if (data.sortType == 1 || data.sortType == -1) {
+                sortObj.districtId = data.sortType - 0;
+            } else {
+                sortObj._id = 1;
+            }
         } else {
             sortObj._id = 1;
         }
 
+        if (data.sortCondition) {
+            sortObj[data.sortCondition] = 1;
+            delete sortObj._id;
+        }
         return await dbFilmTable.aggregate([{
             $match: matchObj
         }, {
@@ -58,11 +77,11 @@ class FilmModel {
         }]);
     }
 
+    static async queryWantSeeNum(data) {
+        return await dbFilmTable.find({});
+    }
+
     static async getCount(data) {
-        let matchObj = {};
-        if (data.name != "") {
-            matchObj.name = { $regex: data.name };
-        }
         let list = await dbFilmTable.aggregate([
             {
                 $match: matchObj
@@ -80,11 +99,27 @@ class FilmModel {
     }
 
     static async queryFilmDetail(data) {
-        return await dbFilmTable.find({ _id: data });
+        return await dbFilmTable.aggregate([{
+            $match: { _id: data - 0 }
+        }, {
+            $lookup: {
+                from: "filmType",
+                localField: "typeId",
+                foreignField: "_id",
+                as: "typeIdToName"
+            }
+        }, {
+            $lookup: {
+                from: "filmDistrict",
+                localField: "districtId",
+                foreignField: "_id",
+                as: "districtIdToName"
+            }
+        }]);
     }
 
     static async queryHotPlayerFilm(nowTime, beforeTime) {
-        return await dbFilmTable.find({ startTime: { $gte: beforeTime, $lte: nowTime } }).skip(0).limit(8);
+        return await dbFilmTable.find({ startTime: { $gte: beforeTime, $lte: nowTime } }).skip(0).limit(10);
     }
 
     static async queryAfterPlayerFilm(time) {
@@ -101,6 +136,16 @@ class FilmModel {
             filmOne._id = sequence.sequenceValue;
         }
         return await dbFilmTable.insertMany(film);
+    }
+
+    static async updateTemp(film) {
+        let random = parseInt(Math.random() * 1000000) + 100000;
+        return await dbFilmTable.updateMany({ _id: film._id - 0 }, {
+            $set:
+            {
+                wantSeeNum: random
+            }
+        });
     }
 
     static async update(film) {

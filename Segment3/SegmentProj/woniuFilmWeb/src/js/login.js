@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-01-22 15:24:56 Sat
+ * @LastEditTime: 2022-01-26 10:47:24 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -19,7 +19,7 @@ $("#loginForm [name=name]").val(userName);
 $("#loginForm [name=password]").val(userPass);
 
 $("#loginBtn").click(function () {
-    axios("http://localhost:3000/user/loginUser", $("#loginForm").serialize(), "text").then(res => {
+    axios("http://localhost:3000/user/loginUser", $("#loginForm").serialize(), "json").then(res => {
         if (res == "200") {
             alert("登录成功");
             window.location.href = "../index.html";

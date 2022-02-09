@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-01-21 19:51:53 Fri
+ * @LastEditTime: 2022-01-21 19:46:26 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -55,6 +55,8 @@ function queryFilm(nowPage = 1) {
 }
 
 queryFilm();
+
+
 
 // 1.2. Multiple conditional search
 $("#searchBtn").click(() => {

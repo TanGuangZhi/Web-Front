@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:27:44 Thu
- * @LastEditTime: 2022-01-22 16:34:28 Sat
+ * @LastEditTime: 2022-02-07 20:42:53 Mon
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -28,13 +28,27 @@ router.post('/query', async (req, res, next) => {
             nowPage++;
         }
     } else {
-        nowPage = temp;
+        if (temp) {
+            nowPage = temp;
+        }
     }
     let queryResult = await FilmModel.query(nowPage, req.body.pageCount, req.body);
     let filmCount = await FilmModel.getCount(req.body);
     lastPage = Math.ceil(filmCount / req.body.pageCount);
     res.send(JSON.stringify({ queryResult, lastPage }));
 });
+
+router.get('/queryWantSeeNum', async (req, res, next) => {
+    let queryResult = await FilmModel.queryWantSeeNum();
+    queryResult.forEach(async element => {
+        element = JSON.parse(JSON.stringify(element));
+        if (element.wantSeeNum == 0 || !element.wantSeeNum) {
+            let updateObj = await FilmModel.updateTemp(element);
+            console.log(updateObj);
+        }
+    });
+    res.send(JSON.stringify(queryResult));
+})
 
 router.get('/queryType', async (req, res, next) => {
     let queryResult = await FilmModel.queryType();

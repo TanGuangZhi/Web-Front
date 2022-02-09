@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-01-22 15:59:51 Sat
+ * @LastEditTime: 2022-02-08 21:02:41 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -11,24 +11,31 @@ let dbCinemaRoomTable = require("../data/cinemaRoomSchema");
 let dbRoomTable = require("../data/roomSchema.js");
 let dbCinemaTable = require("../data/cinemaSchema.js");
 let dbFilmTable = require("../data/filmSchema.js");
+let dbCinemaBrandTable = require("../data/cinemaBrandSchema.js");
 let dbSequence = dbUtil.dbSequence;
 
 let sortObj = {};
 let matchObj = {};
+let queryResult;
 class CinemaRoomModel {
     static async query(nowPage, pageCount, data) {
         sortObj = {};
         matchObj = {};
-        if (data.name != "") {
+        if (data.name) {
             // matchObj.name = { $regex: data.name };
             let queryResult = await dbRoomTable.find({ name: data.name });
             queryResult = JSON.parse(JSON.stringify(queryResult));
             matchObj.roomId = queryResult[0]?._id;
-
         }
-        if (data.cinemaId != "") {
+
+        if (data.cinemaId) {
             matchObj.cinemaId = data.cinemaId - 0;
         }
+
+        if (data.filmId) {
+            matchObj.filmId = data.filmId - 0;
+        }
+
         if (data.sortType == 0) {
             sortObj._id = 1;
         } else if (data.sortType == 1 || data.sortType == -1) {
@@ -37,7 +44,7 @@ class CinemaRoomModel {
             sortObj._id = 1;
         }
 
-        return await dbCinemaRoomTable.aggregate([{
+        queryResult = await dbCinemaRoomTable.aggregate([{
             $match: matchObj
         }, {
             $lookup: {
@@ -66,7 +73,18 @@ class CinemaRoomModel {
             $skip: (nowPage - 1) * (pageCount - 0)
         }, {
             $limit: pageCount - 0
-        }])
+        }]);
+
+        if (data.districtId) {
+            let temp = [];
+            queryResult.forEach(element => {
+                if (element.cinemaIdToDetails[0].districtId == data.districtId) {
+                    temp.push(element);
+                }
+            });
+            queryResult = temp;
+        }
+        return queryResult;
     }
 
     static async getCount(data) {
@@ -75,11 +93,14 @@ class CinemaRoomModel {
                 $match: matchObj
             },
         ]);
+        if (data.districtId) {
+            return queryResult.length;
+        }
         return await list.length;
     }
 
     static async queryCinema(data) {
-        return await dbCinemaTable.find({});
+        return await dbCinemaBrandTable.find({});
     }
 
     static async queryRoomLevel(data) {
