@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:47:35 Sat
- * @LastEditTime: 2022-01-22 14:25:30 Sat
+ * @LastEditTime: 2022-02-11 10:54:26 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -30,27 +30,27 @@
                 <div class="modal-body">
                     <form class="text-center form-inline justify-content-center" id="addForm">
                         <p>
-                            <img src="" height="200px" width="200px" id="updateImg">
+                            <img src="" height="200px" width="200px" id="addImg">
                         </p>
                         <p>
-                            用户名称:<input type="text" name="userName" class="form-control" style="width:300px"
+                            用户名称:<input type="text" name="name" class="form-control" style="width:300px"
                                 placeholder="请输入用户姓名" required pattern="^[a-zA-Z ]{3,20}$" title="请输入3-20位长度的字母">
                         </p>
                         <p>
-                            毕业薪资:<input type="text" name="userSalary" class="form-control" style="width:300px"
-                                placeholder="请输入毕业薪资" required pattern="^[1-9]\d{3,9}$" title="请输入符合我认知的薪资">
+                            用户密码:<input type="text" name="password" class="form-control" style="width:300px"
+                                placeholder="请输入密码" required>
                         </p>
                         <p>
-                            毕业时间:<input type="text" name="userTime" class="form-control" style="width:300px"
-                                placeholder="请输入入学-毕业时间">
+                            手机号:<input type="text" name="phone" class="form-control" style="width:300px"
+                                placeholder="请输入手机号">
                         </p>
                         <p>
-                            学习方向:<input type="text" name="type" class="form-control" style="width:300px"
-                                placeholder="请输入学习方向">
+                            email:<input type="text" name="email" class="form-control" style="width:300px"
+                                placeholder="请输入email">
                         </p>
                         <p>
-                            用户照片:<input type="file" onchange="getImg(this,updateImg)" name="userImg"
-                                class="form-control" style="width:300px" placeholder="请选择宣传图片">
+                            用户照片:<input type="file" name="img" id="addFile" class="form-control" style="width:300px"
+                                placeholder="请选择宣传图片">
                         </p>
                         <p>
                             <button type="submit" class="btn btn-info" id="addBtn">确认添加</button>
@@ -71,7 +71,7 @@
                     <h4 class="modal-title" id="updateModalLabel">修改用户</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="text-center form-inline" id="updateForm">
+                    <form class="form-inline justify-content-center mt-3" id="updateForm">
                         <p>
                             用户编号:<input readonly type="text" name="_id" class="form-control" style="width:400px"
                                 placeholder="请输入用户名称">
@@ -81,7 +81,8 @@
                                 placeholder="请输入用户姓名">
                         </p>
                         <p>
-                            手机号:<input type="text" name="userPhone" class="form-control" style="width:400px"
+                            手机号　:
+                            <input type="text" name="userPhone" class="form-control" style="width:400px"
                                 placeholder="请输入手机号">
                         </p>
                         <p>
@@ -127,8 +128,8 @@
                     </select> -->
                     <select name="sortType" id="sortId" class="form-control">
                         <option value="0">请选择排序规则</option>
-                        <option value="1">按照薪资顺序排列</option>
-                        <option value="-1">按照薪资倒序排列</option>
+                        <option value="1">按照积分顺序排列</option>
+                        <option value="-1">按照积分倒序排列</option>
                     </select>
                     <select name="pageCount" id="pageCount" class="form-control">
                         <option value="10">10</option>
@@ -145,7 +146,7 @@
                 <button type="button" id="deleteManyId" class="btn btn-warning"><span
                         class="glyphicon glyphicon-remove"></span>
                     批量删除</button>
-                <a class="btn btn-success" href="http://localhost:3000/user/downloadData">download</a>
+                <a class="btn btn-success" href="http://localhost:3000/user/downloadFile">download</a>
                 <button type='button' class="btn btn-primary" data-toggle="modal"
                     data-target="#uploadModal">upload</button>
             </div>

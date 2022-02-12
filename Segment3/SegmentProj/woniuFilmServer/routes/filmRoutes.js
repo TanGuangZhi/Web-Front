@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:27:44 Thu
- * @LastEditTime: 2022-02-07 20:42:53 Mon
+ * @LastEditTime: 2022-02-11 12:04:52 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -47,6 +47,21 @@ router.get('/queryWantSeeNum', async (req, res, next) => {
             console.log(updateObj);
         }
     });
+    res.send(JSON.stringify(queryResult));
+})
+
+router.get('/getFilmIdByName', async (req, res, next) => {
+    let queryResult = await FilmModel.getFilmIdByName(req.query.name);
+    res.send(JSON.stringify(queryResult));
+})
+
+router.get('/getFilmIdByName', async (req, res, next) => {
+    let queryResult = await FilmModel.getFilmIdByName(req.query.name);
+    res.send(JSON.stringify(queryResult));
+})
+
+router.get('/wantSeeAdd', async (req, res, next) => {
+    let queryResult = await FilmModel.wantSeeAdd(req.query.filmId);
     res.send(JSON.stringify(queryResult));
 })
 
@@ -140,7 +155,7 @@ router.post("/uploadFile", upload.array("uploadFile"), async (req, resp) => {
     let filmList = commonUtil.csvParse(data.toString());
 
     // 4. write data to db
-    let arr = await FilmModel.add(filmList);
+    let arr = await FilmModel.insert(filmList);
     resp.send(arr.length > 0 ? "1" : "0");
 })
 module.exports = router;

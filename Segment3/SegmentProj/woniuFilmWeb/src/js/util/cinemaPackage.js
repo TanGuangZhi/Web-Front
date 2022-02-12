@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-01-25 19:13:40 Tue
+ * @LastEditTime: 2022-02-11 12:01:07 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -167,6 +167,22 @@ $("#updateForm").submit(function () {
             alert("修改失败");
         }
     });
+});
+
+// 5. upload file
+$("#uploadFileBtn").click(function (e) {
+    e.preventDefault();
+    axios("http://localhost:3000/cinema/uploadFile", "post", false, new FormData($("#uploadForm")[0])).then(res => {
+        console.log(res);
+        if (res == "1") {
+            // #TODO this way will error , don't know why
+            // $("#updateModal").modal("hide");
+            alert("批量上传成功");
+            queryCinema();
+        } else {
+            alert("上传失败");
+        }
+    })
 });
 
 // ## other

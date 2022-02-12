@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-01-26 09:53:37 Wed
+ * @LastEditTime: 2022-02-11 11:24:05 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -159,6 +159,26 @@
             </div>
         </div>
     </div>
+    <!-- upload modal -->
+    <div>
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="updateModalLabel">upload batch</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="uploadForm">
+                            <input type="file" name="uploadFile" id="">
+                            <button type='button' class="btn btn-primary" id="uploadFileBtn">upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <h2 class="text-center" style="line-height: 80px">影厅管理</h2>
     <div class="container-fluid">
         <div class="row" style="line-height: 100px">
@@ -166,7 +186,7 @@
                 <form class="form-inline justify-content-left" id="searchForm">
                     <input type="hidden" name="nowPage" value="1" />
                     <input type="text" name="name" placeholder="请输入影厅名称" style="width: 150px" class="form-control" />
-                    <select name="cinemaId" class="form-control" style="width: 150px">
+                    <select name="cinemaId" class="form-control" style="width: 150px" id="cinemaId">
                         <option value="">请选择影院</option>
                         <option value="0">java</option>
                         <option value="1">web</option>
@@ -194,7 +214,7 @@
                     <span class="glyphicon glyphicon-remove"></span> 批量删除
                 </button>
                 <!-- <button type="button" class="btn btn-success" id="downloadFileBtn">download</button> -->
-                <a href="http://localhost:3000/film/downloadFile" class="btn btn-primary">download</a>
+                <a href="http://localhost:3000/cinemaRoom/downloadFile" class="btn btn-primary">download</a>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
                     upload
                 </button>

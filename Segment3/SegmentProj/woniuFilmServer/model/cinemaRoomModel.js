@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-02-08 21:02:41 Tue
+ * @LastEditTime: 2022-02-11 12:57:42 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -103,6 +103,21 @@ class CinemaRoomModel {
         return await dbCinemaBrandTable.find({});
     }
 
+    static async queryCinemaRoom(data) {
+        return await dbCinemaRoomTable.aggregate([
+            {
+                $match: { cinemaId: data.cinemaId - 0 }
+            }, {
+                $lookup: {
+                    from: "film",
+                    localField: "filmId",
+                    foreignField: "_id",
+                    as: "filmIdToDetails"
+                }
+            }
+        ]);
+    }
+
     static async queryRoomLevel(data) {
         return await dbRoomTable.aggregate([
             { $group: { _id: "$level" } },
@@ -119,27 +134,59 @@ class CinemaRoomModel {
     }
 
     static async insert(cinema) {
+        let roomArr = [];
         let room = {};
-        for (const roomOne of cinema) {
+        for (let roomOne of cinema) {
+            room = {};
             let sequence = await dbSequence.findOneAndUpdate({ _id: "roomId" },
                 { $inc: { sequenceValue: 1 } });
             room._id = sequence.sequenceValue;
-            room.level = roomOne.roomLevel - 0;
+            // room.level = roomOne.roomLevel - 0;
+            room.level = 1;
             room.name = roomOne.roomName;
+            roomArr.push(room);
         }
-        await dbRoomTable.insertMany([room]);
+        await dbRoomTable.insertMany(roomArr);
 
-        for (const cinemaOne of cinema) {
+        let temp = {}
+        let tempArr = [];
+        for (let cinemaOne of cinema) {
             delete cinemaOne.roomLevel;
             delete cinemaOne.roomName;
             let sequence = await dbSequence.findOneAndUpdate({ _id: "cinemaRoomId" },
                 { $inc: { sequenceValue: 1 } });
             cinemaOne._id = sequence.sequenceValue;
             cinemaOne.roomId = room._id - 0;
+            // temp._id = cinemaOne._id;
+            // temp.cinemaId = cinemaOne.cinemaId;
+            // temp.language = cinemaOne.detailsPosition;
+            // temp.filmId = cinemaOne.language;
+            // temp.detailsPosition = cinemaOne.undefined;
+            // temp.roomId = room._id - 0;
+            // temp.session = cinemaOne.filmId;
+            // temp.roomSize = cinemaOne.roomSize + "," + cinemaOne.session;
+            // // cinemaOne = temp;
+            // tempArr.push(temp);
         }
         return await dbCinemaRoomTable.insertMany(cinema);
     }
 
+    static async insert2(cinema) {
+        let room = {};
+        let cinemaRoom = {};
+        let film = {};
+        cinema.forEach(element => {
+            room.roomId = element.roomId - 0;
+            // room.roomSize = element.roomSize - 0;
+            room.level = 1;
+            cinemaRoom.cinemaId = element.cinemaId - 0;
+            cinemaRoom.roomSize = element.roomSize + "," + element.session;
+            cinemaRoom.language = element.details;
+            film.filmId = element.language;
+        });
+        await dbRoomTable.insertMany([room]);
+        return await dbCinemaRoomTable.insertMany(cinema);
+    }
     static async update(cinema) {
         let room = {};
         for (const roomOne of [cinema]) {

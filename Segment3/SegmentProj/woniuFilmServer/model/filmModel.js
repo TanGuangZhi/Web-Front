@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-02-07 20:39:24 Mon
+ * @LastEditTime: 2022-02-11 14:35:38 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -69,6 +69,13 @@ class FilmModel {
                 as: "districtIdToName"
             }
         }, {
+            $lookup: {
+                from: "comment",
+                localField: "_id",
+                foreignField: "filmId",
+                as: "scoreToAvg"
+            }
+        }, {
             $sort: sortObj
         }, {
             $skip: (nowPage - 1) * (pageCount - 0)
@@ -77,8 +84,16 @@ class FilmModel {
         }]);
     }
 
+    static async getFilmIdByName(name) {
+        return await dbFilmTable.find({ name: { $regex: name } });
+    }
+
     static async queryWantSeeNum(data) {
         return await dbFilmTable.find({});
+    }
+
+    static async wantSeeAdd(filmId) {
+        return await dbFilmTable.findOneAndUpdate({ _id: parseInt(filmId) }, { $inc: { wantSeeNum: 1 } });
     }
 
     static async getCount(data) {
@@ -114,6 +129,13 @@ class FilmModel {
                 localField: "districtId",
                 foreignField: "_id",
                 as: "districtIdToName"
+            }
+        }, {
+            $lookup: {
+                from: "comment",
+                localField: "_id",
+                foreignField: "filmId",
+                as: "scoreToAvg"
             }
         }]);
     }

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-24 14:39:40 Mon
- * @LastEditTime: 2022-02-08 23:53:43 Tue
+ * @LastEditTime: 2022-02-10 19:56:08 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -37,7 +37,7 @@ const createOrder = async (goods) => {
     // 调用 setMethod 并传入 get，会返回可以跳转到支付页面的 url
     formData.setMethod('get')
     // 客户支付成功之后会同步跳回的地址 看自己的
-    formData.addField('returnUrl', `http://localhost:8000/chooseseat.html?filmId=${goods.temp.filmId}&cinemaId=${goods.temp.cinemaId}&roomId=${goods.temp.roomId}&orderId=${goods.orderNumber}`);
+    formData.addField('returnUrl', `http://localhost:8000/chooseseat.html?filmId=${goods.temp.filmId}&cinemaId=${goods.temp.cinemaId}&roomId=${goods.temp.roomId}&orderId=${goods.orderNumber}&allTotal=${goods.allTotal}`);
     // 支付宝在用户支付成功之后会异步通知的回调地址，必须在公网ip 才能收到 根据自己的网址
     // formData.addField('notifyUrl', `http://192.168.1.12:3000/order/updateOrder?orderId=${goods.orderNumber}`)
     // 将必要的参数集合添加进 form 表.addField('bizContent', bizContent)

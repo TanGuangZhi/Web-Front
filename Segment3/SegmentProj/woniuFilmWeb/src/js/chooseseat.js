@@ -1,13 +1,14 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-08 23:08:09 Tue
+ * @LastEditTime: 2022-02-11 13:04:03 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 import "../css/common1.css";
 import { axios } from "./util/axios.js";
+import { cookie } from "./util/jquery.cookie.js";
 import "../css/cinemas-seat.b8adee6e.css";
 import { formatDate } from "./util/myUtil.js";
 
@@ -49,7 +50,7 @@ function showMovieInfo() {
                             <p class="name text-ellipsis">${element.name}</p>
                             <div class="info-item">
                                 <span>类型 :</span>
-                                <span class="value">${element.typeIdToName[0].name}</span>
+                                <span class="value">动漫</span>
                             </div>
                             <div class="info-item">
                                 <span>时长 :</span>
@@ -60,7 +61,7 @@ function showMovieInfo() {
 
                     <div class="show-info">
                         <div class="info-item">
-                            <span>影院 :</span>
+                            <span>导演 :</span>
                             <span class="value text-ellipsis">${element.director}</span>
                         </div>
                         <div class="info-item">
@@ -127,13 +128,14 @@ let soldSeatArr = [
     { seatX: 3, seatY: 3 },
     { seatX: 3, seatY: 4 },
 ];
+
 // query all saled seat 
 axios(`http://localhost:3000/order/queryAllSaledSeat`, { temp }).then(res => {
     // console.log(res);
     res.forEach(element => {
         let roomSeatList = element.roomSeat.split("-");
         roomSeatList.forEach(element2 => {
-            let roomSeat = element2.split(",");
+            let roomSeat = element2.split("_");
             soldSeatArr.push({ seatX: roomSeat[0] - 0, seatY: roomSeat[1] - 0 });
         });
     });
@@ -205,10 +207,10 @@ function buySeatButton(params) {
         // jump to alipay page 
         let orderId = Date.now();
         temp.orderId = orderId;
-        axios(`http://localhost:3000/user/pay`, { temp }).then(res => {
+        axios(`http://localhost:3000/user/pay`, { temp }).then(async res => {
             let orderInfoList = {};
             // ##TODO user id
-            orderInfoList.userId = 1;
+            orderInfoList.userId = userId;
             orderInfoList.price = totalPrice;
             orderInfoList.orderId = orderId;
             orderInfoList.startTime = new Date().Format("yyyy-MM-dd HH:mm");
@@ -217,15 +219,15 @@ function buySeatButton(params) {
             orderInfoList.roomId = temp.roomId;
             let selSeatListToString = "";
             selSeatList.forEach(element => {
-                let temp = element.seatX + "," + element.seatY;
+                let temp = element.seatX + "_" + element.seatY;
                 selSeatListToString += temp + "-";
             });
             selSeatListToString = selSeatListToString.substr(0, selSeatListToString.length - 1);
             orderInfoList.roomSeat = selSeatListToString;
             orderInfoList.cinemaId = temp.cinemaId;
-            orderInfoList.status = "wait";
+            orderInfoList.status = "unPay";
             console.log(orderInfoList);
-            window.location.href = res;
+            window.parent.location.href = res;
             // record order info
             axios(`http://localhost:3000/order/insertOrder`, "post", orderInfoList).then(res => {
                 console.log(res);
@@ -233,3 +235,16 @@ function buySeatButton(params) {
         })
     });
 }
+
+// 2.1 get userId by userName
+let userId;
+function getUserIdByName(name) {
+    axios(`http://localhost:3000/user/getUserIdByName`, { name }).then(res => {
+        userId = res[0]?._id;
+        // console.log(userId);
+    });
+    // return userId;
+}
+
+let name = $.cookie("userName");
+getUserIdByName(name);

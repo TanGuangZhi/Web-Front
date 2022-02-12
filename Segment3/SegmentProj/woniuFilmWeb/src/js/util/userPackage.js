@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-02-07 16:08:21 Mon
+ * @LastEditTime: 2022-02-11 11:14:27 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -10,6 +10,7 @@
 // jquery
 // axios
 import { axios } from "./axios.js";
+import { showImg } from "./showImg.js";
 
 // ## main content
 // 1. query
@@ -87,6 +88,7 @@ $("#addForm").submit(function (e) {
     axios("http://localhost:3000/user/insertUser", "post", false, new FormData($("#addForm")[0])).then(res => {
         if (res == "1") {
             // $("#addModal").modal("hide");
+            alert("添加成功");
             queryUser();
         } else {
             alert("添加失败");
@@ -137,10 +139,10 @@ let showUser = function () {
         let _id = $(this).attr("data-show-user-id");
         let newArr = userArr.find(item => item._id == _id);
         $("#updateForm [name=_id]").val(newArr._id);
-        $("#updateForm [name=userName]").val(newArr.userName);
-        $("#updateForm [name=userPhone]").val(newArr.userPhone);
-        $("#updateForm img").attr("src", `../${newArr.userImg}`);
-        $("#updateForm [name=oldImg]").val(newArr.userImg);
+        $("#updateForm [name=userName]").val(newArr.name);
+        $("#updateForm [name=userPhone]").val(newArr.phone);
+        $("#updateForm img").attr("src", `../${newArr.img}`);
+        $("#updateForm [name=oldImg]").val(newArr.img);
     });
 }
 
@@ -149,6 +151,7 @@ $("#updateUserBtn").click(function () {
         if (res == "1") {
             // #TODO this way will error , don't know why
             // $("#updateModal").modal("hide");
+            alert("修改成功");
             queryUser();
         } else {
             alert("修改失败");
@@ -156,12 +159,31 @@ $("#updateUserBtn").click(function () {
     });
 });
 
+// 5. upload file
+$("#uploadFileBtn").click(function (e) {
+    e.preventDefault();
+    axios("http://localhost:3000/user/uploadFile", "post", false, new FormData($("#uploadForm")[0])).then(res => {
+        console.log(res);
+        if (res == "1") {
+            // #TODO this way will error , don't know why
+            // $("#updateModal").modal("hide");
+            alert("批量上传成功");
+            queryUser();
+        } else {
+            alert("上传失败");
+        }
+    })
+});
 // ## other
 // oth.1. sel all and better
 $("#allId").change(() => {
     $(".sel").prop("checked",
         $("#allId").prop("checked"));
 });
+
+$("#addFile").change(function () {
+    showImg(this, $("#addImg")[0]);
+})
 
 let checkAll = () => {
     $('.sel').click(() => {

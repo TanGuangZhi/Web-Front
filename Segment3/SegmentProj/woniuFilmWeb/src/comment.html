@@ -1,0 +1,85 @@
+<!--
+ * @Author: TanGuangZhi
+ * @Date: 2022-02-09 20:19:24 Wed
+ * @LastEditTime: 2022-02-09 21:18:46 Wed
+ * @LastEditors: TanGuangZhi
+ * @Description: 
+ * @KeyWords: NodeJs, Express, MongoDB
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <form action="">
+                <textarea name="" id="comment-content" cols="50" rows="10" placeholder="请输入评论内容"></textarea>
+
+                <button type='button' id="comment-btn">提交</button>
+            </form>
+        </div>
+    </div>
+    <div class="rating" data-vote="0">
+        <div class="star hidden">
+            <span class="full" data-value="0"></span>
+            <span class="half" data-value="0"></span>
+        </div>
+
+        <div class="star">
+
+            <span class="full" data-value="2"></span>
+            <span class="half" data-value="1"></span>
+            <span class="selected"></span>
+
+        </div>
+
+        <div class="star">
+
+            <span class="full" data-value="4"></span>
+            <span class="half" data-value="3"></span>
+            <span class="selected"></span>
+
+        </div>
+
+        <div class="star">
+
+            <span class="full" data-value="6"></span>
+            <span class="half" data-value="5"></span>
+            <span class="selected"></span>
+
+        </div>
+
+        <div class="star">
+
+            <span class="full" data-value="8"></span>
+            <span class="half" data-value="7"></span>
+            <span class="selected"></span>
+
+        </div>
+
+        <div class="star">
+
+            <span class="full" data-value="10"></span>
+            <span class="half" data-value="9"></span>
+            <span class="selected"></span>
+
+        </div>
+
+        <div class="score">
+            <span class="score-rating js-score">0</span>
+            <span>/</span>
+            <span class="total">10</span>
+        </div>
+    </div>
+</body>
+
+</html>

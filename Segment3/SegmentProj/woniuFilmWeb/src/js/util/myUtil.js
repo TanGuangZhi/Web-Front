@@ -1,11 +1,13 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-25 11:16:36 Tue
- * @LastEditTime: 2022-01-25 11:24:31 Tue
+ * @LastEditTime: 2022-02-11 09:22:36 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
+import { cookie } from "./jquery.cookie.js";
+import { axios } from "./axios.js";
 
 // 1. formatDate
 Date.prototype.Format = function (fmt) { //author: meizz 
@@ -23,4 +25,15 @@ Date.prototype.Format = function (fmt) { //author: meizz
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
-    // nowDate = new Date().Format("yyyy-MM-dd HH:mm");
+// nowDate = new Date().Format("yyyy-MM-dd HH:mm");
+
+// 2. get user id by name
+let name = $.cookie("userName");
+export let getUserIdByName = async function () {
+    let userId;
+    await axios(`http://localhost:3000/user/getUserIdByName`, { name }).then(res => {
+        userId = res[0]?._id;
+        // console.log(userId);
+    });
+    return userId;
+}

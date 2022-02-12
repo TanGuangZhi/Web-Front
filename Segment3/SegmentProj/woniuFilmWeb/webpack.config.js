@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-01-25 16:21:31 Tue
+ * @LastEditTime: 2022-02-11 19:32:32 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -10,12 +10,13 @@ let Path = require("path");
 let HtmlWebpackPlugin = require("html-webpack-plugin");
 let webpack = require("webpack");
 
-let pageList = ["index", "alitest", "userInfo", "cinema", "chooseseat", "cinemadetail", "movie", "orderlist",
+let pageList = ["index", "alitest", "iframe-index", "showSearchResult", "comment", "userInfo", "cinema", "chooseseat", "cinemadetail", "movie", "orderlist",
     "filmDetail", "login", "register",
     "html/index", "html/admin/admin", "html/admin/page/user",
     "html/filmAdmin/filmAdmin", "html/filmAdmin/page/cinema",
     "html/filmAdmin/page/cinemaRoom", "html/filmAdmin/page/film"
 ];
+
 function listEntry() {
     let obj = {};
     pageList.forEach(item => {
@@ -23,6 +24,7 @@ function listEntry() {
     });
     return obj;
 }
+
 function listHtmlPage() {
     let newArr = pageList.map(item => {
         return new HtmlWebpackPlugin({
@@ -33,6 +35,7 @@ function listHtmlPage() {
     });
     return newArr;
 }
+
 module.exports = {
     entry: {//参与打包的js文件路径
         ...listEntry()

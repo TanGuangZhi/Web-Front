@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-01-21 19:46:26 Fri
+ * @LastEditTime: 2022-02-11 12:04:09 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -27,9 +27,9 @@ function queryFilm(nowPage = 1) {
                         <td> <input type="checkbox" class="sel"  value="${film._id}"></td>
                         <td>${film._id}</td>
                         <td>${film.name}</td>
-                        <td>${film.typeIdToName[0].type}</td>
+                        <td>${film.typeIdToName[0]?.type}</td>
                         <td>${film.price}</td>
-                        <td>${film.districtIdToName[0].type}</td>
+                        <td>${film.districtIdToName[0]?.type}</td>
                         <td><img src="http://localhost:3000/${film.img}" width="40px"></td>
                         <td>${film.startTime}</td>
                         <td>${film.director}</td>
@@ -190,6 +190,21 @@ $("#updateForm").submit(function () {
     });
 });
 
+// 5. upload file
+$("#uploadFileBtn").click(function (e) {
+    e.preventDefault();
+    axios("http://localhost:3000/film/uploadFile", "post", false, new FormData($("#uploadForm")[0])).then(res => {
+        console.log(res);
+        if (res == "1") {
+            // #TODO this way will error , don't know why
+            // $("#updateModal").modal("hide");
+            alert("批量上传成功");
+            queryFilm();
+        } else {
+            alert("上传失败");
+        }
+    })
+});
 // ## other
 // oth.1. sel all and better
 $("#allId").change(() => {

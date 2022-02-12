@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:27:44 Thu
- * @LastEditTime: 2022-01-22 10:33:28 Sat
+ * @LastEditTime: 2022-02-11 11:41:21 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -38,6 +38,11 @@ router.post('/query', async (req, res, next) => {
 
 router.get('/queryCinema', async (req, res, next) => {
     let queryResult = await CinemaRoomModel.queryCinema();
+    res.send(JSON.stringify(queryResult));
+})
+
+router.get('/queryCinemaRoom', async (req, res, next) => {
+    let queryResult = await CinemaRoomModel.queryCinemaRoom(req.query);
     res.send(JSON.stringify(queryResult));
 })
 
@@ -91,7 +96,8 @@ router.post("/uploadFile", upload.array("uploadFile"), async (req, resp) => {
     let cinemaList = commonUtil.csvParse(data.toString());
 
     // 4. write data to db
-    let arr = await CinemaRoomModel.add(cinemaList);
+    let arr = await CinemaRoomModel.insert(cinemaList);
     resp.send(arr.length > 0 ? "1" : "0");
 })
+
 module.exports = router;

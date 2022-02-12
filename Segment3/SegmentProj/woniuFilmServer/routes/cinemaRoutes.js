@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:27:44 Thu
- * @LastEditTime: 2022-01-21 14:39:12 Fri
+ * @LastEditTime: 2022-02-11 12:01:39 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -35,6 +35,16 @@ router.post('/query', async (req, res, next) => {
     lastPage = Math.ceil(cinemaCount / req.body.pageCount);
     res.send(JSON.stringify({ queryResult, lastPage }));
 });
+
+router.get('/queryCinemaDetail', async (req, res, next) => {
+    let queryResult = await CinemaModel.queryCinemaDetail(req.query);
+    res.send(JSON.stringify(queryResult));
+})
+
+router.get('/getCinemaIdByName', async (req, res, next) => {
+    let queryResult = await CinemaModel.getCinemaIdByName(req.query.name);
+    res.send(JSON.stringify(queryResult));
+})
 
 router.get('/queryDistrict', async (req, res, next) => {
     let queryResult = await CinemaModel.queryDistrict();
@@ -82,7 +92,7 @@ router.post("/uploadFile", upload.array("uploadFile"), async (req, resp) => {
     let cinemaList = commonUtil.csvParse(data.toString());
 
     // 4. write data to db
-    let arr = await CinemaModel.add(cinemaList);
+    let arr = await CinemaModel.insert(cinemaList);
     resp.send(arr.length > 0 ? "1" : "0");
 })
 module.exports = router;

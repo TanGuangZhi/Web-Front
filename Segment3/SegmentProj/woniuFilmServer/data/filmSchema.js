@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:14:28 Thu
- * @LastEditTime: 2022-01-21 17:02:42 Fri
+ * @LastEditTime: 2022-02-11 13:09:09 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -18,6 +18,9 @@ let filmSchema = dbUtil.mongoose.Schema({
     timeCount: Number,
     director: String,
     details: String,
+    wantSeeNum: Number,
+    views: Number,
+    rating: Number,
 });
 
 let dbFilmSchemaTable = dbUtil.mongoose.model("Film", filmSchema, "film");

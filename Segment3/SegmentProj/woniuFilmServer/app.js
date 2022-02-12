@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-02-08 23:47:40 Tue
+ * @LastEditTime: 2022-02-10 11:23:50 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -18,6 +18,7 @@ var cinemaRoutes = require('./routes/cinemaRoutes');
 let cinemaRoomRoutes = require('./routes/cinemaRoomRoutes');
 let filmRoutes = require('./routes/filmRoutes');
 let orderRoutes = require('./routes/orderRoutes');
+let commentRoutes = require('./routes/commentRoutes');
 
 var app = express();
 var allowCrossDomain = function (req, res, next) {
@@ -49,6 +50,7 @@ app.use('/cinema', cinemaRoutes);
 app.use('/cinemaRoom', cinemaRoomRoutes);
 app.use('/film', filmRoutes);
 app.use('/order', orderRoutes);
+app.use('/comment', commentRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

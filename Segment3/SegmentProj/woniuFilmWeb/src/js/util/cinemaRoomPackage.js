@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-15 11:54:23 Sat
- * @LastEditTime: 2022-01-22 12:59:14 Sat
+ * @LastEditTime: 2022-02-11 14:22:48 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -20,11 +20,13 @@ function queryCinemaRoom(nowPage = 1) {
         let str = ``;
         cinemaRoomArr = res.queryResult;
         console.log(cinemaRoomArr);
+        let tempArr = ["杜比声厅", "IMAX厅", "CGS中国巨幕厅", "杜比全景声厅", "RealD厅", "Dolby Cinema厅"];
         for (let cinemaRoom of res.queryResult) {
+            let randomNum = parseInt(Math.random() * 5) + 1;
             str += ` <tr>
                         <td> <input type="checkbox" class="sel"  value="${cinemaRoom._id}"></td>
                         <td>${cinemaRoom._id}</td>
-                        <td>${cinemaRoom.roomIdToDetails[0]?.name}</td>
+                        <td>${cinemaRoom.roomIdToDetails[0]?.name ?? tempArr[randomNum]}</td>
                         <td>${cinemaRoom.roomSize}</td>
                         <td>${cinemaRoom.roomIdToDetails[0]?.level}</td>
                         <td>${cinemaRoom.language}</td>
@@ -65,7 +67,7 @@ $("#sortId").change(() => {
 });
 
 // 1.4. pageCount change
-$("#pageCount").change(() => {
+$("#pageCount,#cinemaId").change(() => {
     queryCinemaRoom();
 });
 
@@ -193,6 +195,22 @@ $("#updateForm").submit(function (e) {
             alert("修改失败");
         }
     });
+});
+
+// 5. upload file
+$("#uploadFileBtn").click(function (e) {
+    e.preventDefault();
+    axios("http://localhost:3000/cinemaRoom/uploadFile", "post", false, new FormData($("#uploadForm")[0])).then(res => {
+        console.log(res);
+        if (res == "1") {
+            // #TODO this way will error , don't know why
+            // $("#updateModal").modal("hide");
+            alert("批量上传成功");
+            queryCinemaRoom();
+        } else {
+            alert("上传失败");
+        }
+    })
 });
 
 // ## other

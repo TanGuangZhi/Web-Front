@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-09 16:11:41 Wed
+ * @LastEditTime: 2022-02-10 14:39:15 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -12,7 +12,8 @@ import { axios } from "./util/axios.js";
 
 let randomCode;
 function signUpBtnClick(params) {
-    $("#addBtn").click(function () {
+    $("#addForm").submit(function (e) {
+        e.preventDefault();
         // regular check
         if (randomCode) {
             // console.log(randomCode);
@@ -20,9 +21,6 @@ function signUpBtnClick(params) {
                 alert("验证码不正确!");
                 return;
             }
-        } else {
-            alert("请输入验证码");
-            return;
         }
         axios("http://localhost:3000/user/register", $("#addForm").serialize(), "text").then(res => {
             if (res == "1") {
@@ -59,7 +57,7 @@ $("#togglePhoneRegister").click(function (e) {
                             <input type="text" name="checkCode" class="form-text" placeholder="Check Code" required="">
                         </div>
                         <div class="form-row button-login">
-                            <button type="button" id="addBtn" class="btn btn-login">Sign Up</button>
+                            <button type="submit" id="addBtn" class="btn btn-login">Sign Up</button>
                         </div>
                     </div>
                 </fieldset>`);

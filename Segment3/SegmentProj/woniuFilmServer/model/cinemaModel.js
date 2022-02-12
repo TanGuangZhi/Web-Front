@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:20:09 Thu
- * @LastEditTime: 2022-01-24 16:43:52 Mon
+ * @LastEditTime: 2022-02-11 08:58:17 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -26,6 +26,10 @@ class CinemaModel {
             sortObj.districtId = data.sortType - 0;
         } else {
             sortObj._id = 1;
+        }
+
+        if (data.districtId) {
+            matchObj.districtId = data.districtId - 0;
         }
 
         return await dbCinemaTable.aggregate([{
@@ -53,6 +57,14 @@ class CinemaModel {
             },
         ]);
         return await list.length;
+    }
+
+    static async getCinemaIdByName(name) {
+        return await dbCinemaTable.find({ name: { $regex: name } });
+    }
+
+    static async queryCinemaDetail(data) {
+        return await dbCinemaTable.find({ _id: data.cinemaId });
     }
 
     static async queryDistrict(data) {

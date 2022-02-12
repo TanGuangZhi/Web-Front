@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-07 20:09:22 Mon
+ * @LastEditTime: 2022-02-11 14:31:20 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -18,12 +18,13 @@ let lastPage;
 function queryMovie(nowPage = 1, typeId, districtId, sortCondition = null, startTime, classicFlag = null) {
     axios("http://localhost:3000/film/query", "post", { nowPage, pageCount: 10, typeId, districtId, sortCondition, startTime, classicFlag }).then(res => {
         let str = ``;
-        // console.log(res);
+        console.log("==============");
+        console.log(res);
         lastPage = res.lastPage;
         for (let film of res.queryResult) {
             str += `   <dd>
                             <div class="movie-item film-channel">
-                                <a href="filmDetail.html?id=${film._id}" target="_blank">
+                                <a href="filmDetail.html?id=${film._id}" >
                                     <div class="movie-poster">
                                         <img class="" src="http://localhost:3000/${film.img}">
                                     </div>
@@ -34,10 +35,10 @@ function queryMovie(nowPage = 1, typeId, districtId, sortCondition = null, start
                                 <div class="movie-ver"></div>
                             </div>
                             <div class="channel-detail movie-item-title">
-                                <a href="filmDetail.html?id=${film._id}" target="_blank">${film.name}</a>
+                                <a href="filmDetail.html?id=${film._id}">${film.name}</a>
                             </div>
                             <div class="channel-detail channel-detail-orange">
-                                <i class="integer">9.9分</i></div>
+                                <i class="integer">${film.rating}分</i></div>
                         </dd>
                        `;
         }
@@ -110,7 +111,7 @@ $('#coming-soon').click(function (e) {
     }
     nowDate = new Date().Format("yyyy-MM-dd HH:mm");
 
-    console.log(nowDate);
+    // console.log(nowDate);
     queryMovie(undefined, undefined, undefined, undefined, nowDate);
 })
 

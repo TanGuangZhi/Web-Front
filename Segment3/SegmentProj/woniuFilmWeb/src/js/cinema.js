@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-08 21:00:19 Tue
+ * @LastEditTime: 2022-02-11 19:36:02 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -32,16 +32,16 @@ function query(nowPage = 1, cinemaBrandId = null, districtId = null) {
         queryResult.forEach((element, index) => {
             str += `<div class="cinema-cell">
                     <div class="cinema-info">
-                        <a href="cinemadetail.html">${element.cinemaIdToDetails[0].name}</a>
+                        <a href="cinemadetail.html?cinemaId=${element.cinemaId}">${element.cinemaIdToDetails[0].name}</a>
                         <p class="cinema-address">${element.cinemaIdToDetails[0].address}</p>
                         <span class="cinema-tags-item">${element.roomIdToDetails[0].name}</span>
                     </div>
                     <div class="buy-btn">
-                        <a href="chooseseat.html?filmId=${filmId}&cinemaId=${element.cinemaId}&roomId=${element.roomId}&price=${element.filmIdToDetails[0].price}" >选座购票</a>
+                        <a href="chooseseat.html?filmId=${filmId}&cinemaId=${element.cinemaId}&roomId=${element.roomId}&price=${element.filmIdToDetails[0]?.price}" >选座购票</a>
                     </div>
                     <div class="price">
                         <span class="rmb red">￥</span>
-                        <span class="price-num red stonefont">${element.filmIdToDetails[0].price}</span>
+                        <span class="price-num red stonefont">${element.filmIdToDetails[0]?.price}</span>
                         <span>起</span>
                     </div>
                 </div>`;

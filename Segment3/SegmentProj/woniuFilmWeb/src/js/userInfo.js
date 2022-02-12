@@ -1,16 +1,32 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-25 16:23:01 Tue
- * @LastEditTime: 2022-02-07 16:24:41 Mon
+ * @LastEditTime: 2022-02-10 14:37:05 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 import "../css/userInfo.css";
 import { axios } from "./util/axios.js";
+import { cookie } from "./util/jquery.cookie.js";
 
-let userId = 1;
+// ## get userId by userName
+let userId;
+function getUserIdByName(name) {
+    axios(`http://localhost:3000/user/getUserIdByName`, { name }).then(res => {
+        userId = res[0]._id;
+        // console.log(userId);
+        getUserInfo(userId);
+    });
+    // return userId;
+}
 
+let name = $.cookie("userName");
+console.log(name);
+getUserIdByName(name);
+
+// ## user
+// query user info
 function getUserInfo(userId) {
     axios(`http://localhost:3000/user/queryUser`, "post", { userId }).then(res => {
         let userInfo = res.queryResult;
@@ -28,5 +44,3 @@ function getUserInfo(userId) {
         $(".general").html(str);
     });
 }
-
-getUserInfo(userId);

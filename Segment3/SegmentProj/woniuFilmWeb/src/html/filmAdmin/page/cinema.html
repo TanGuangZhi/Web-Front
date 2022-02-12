@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:25 Thu
- * @LastEditTime: 2022-01-21 15:36:53 Fri
+ * @LastEditTime: 2022-02-11 12:00:11 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -111,6 +111,26 @@
                             <button type="button" class="btn btn-primary" data-dismiss="modal">返回首页</button>
                         </p>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- upload modal -->
+    <div>
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="updateModalLabel">upload batch</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="uploadForm">
+                            <input type="file" name="uploadFile" id="">
+                            <button type='button' class="btn btn-primary" id="uploadFileBtn">upload</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
- * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-01-22 16:35:48 Sat
+ * @Date: 2022-02-10 14:44:08 Thu
+ * @LastEditTime: 2022-02-11 14:05:55 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -10,65 +10,137 @@ import "../css/common1.css";
 import "../css/homeIndex1.css";
 import "../css/font.css";
 import { axios } from "./util/axios.js";
+import { getUserIdByName } from "./util/myUtil.js";
 
-// 1. 正在热映
-axios("http://localhost:3000/film/queryHotFilm").then(res => {
-    let str = ``;
-    for (let film of res) {
-        str += `<dd>
-               <div class="movie-item">
-                                        <a href="./filmDetail.html?filmId=${film._id}">
+// ## header area method
+// 1. multiple condition query
+$("#search-btn").click(function (e) {
+    e.preventDefault();
+    let searchContent = $("#search-content").val();
+    let name = searchContent;
+    getFilmIdByName(name);
+    getCinemaIdByName(name);
+    // console.log(searchContent);
+});
+
+function getCinemaIdByName(name) {
+    axios(`http://localhost:3000/cinema/getCinemaIdByName`, { name }).then(res => {
+        console.log(res);
+        if (res.length == 1) {
+            let cinemaId = res[0]._id;
+            window.open(
+                `cinemadetail.html?cinemaId=${cinemaId}`,
+                'main-iframe'
+            );
+            // window.parent.location.target = `main-iframe`;
+            // console.log(cinemaId);
+        } else if (res.length > 1) {
+            let str = `<h1 style="margin:20px">影院</h1>`;
+            for (let cinema of res) {
+                str += `    <div class="movie-item" style="display:inline-block; margin-left:20px">
+                                        <a href="./cinemadetail.html?cinemaId=${cinema._id}">
                                             <div class="movie-poster">
-                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
-                                                <img class="movie-poster-img" src="http://localhost:3000/${film.img}">
+                                                <img class="movie-poster-img" style="width:200px" src="http://localhost:3000/${cinema.img}">
                                                 <div class="movie-overlay movie-overlay-bg">
                                                     <div class="movie-info">
-                                                        <div class="movie-score"><i class="integer">9.0</i></div>
                                                         <div class="movie-title movie-title-padding">
-                                                            ${film.name}
+                                                            ${cinema.name}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
-                                        <div class="movie-detail movie-detail-strong movie-sale">
-                                            <a href="./filmDetail.html?filmId=${film._id}" class="active" >购 票</a>
-                                        </div>
-                                        <div class="movie-ver"></div>
-                                   </div>                     
+                                   </div>  `    ;
+            }
 
-                       </dd>`;
-    }
-    $("#hotFilmList").html(str);
-});
+            // $('iframe').attr('src', "./showSearchResult.html");
+            $('iframe').contents().find("#app").append(str)
+        }
+    })
+}
 
-// 2. 即将上映
-axios("http://localhost:3000/film/queryAfterFilm").then(res => {
-    let str = ``;
-    for (let film of res) {
-        str += ` <dd>
-                                    <div class="movie-item" >
-                                        <a href="./filmDetail.html?filmId=${film._id}" target="_blank" >
-                                            <div class="movie-poster" >
-                                                <img class="poster-default" src="./images/loading_2.e3d934bf.png">
-                                                <img class="movie-poster-img"  src="http://localhost:3000/${film.img}">
+function getFilmIdByName(name) {
+    axios(`http://localhost:3000/film/getFilmIdByName`, { name }).then(res => {
+        if (res.length == 1) {
+            let filmId = res[0]._id;
+            window.open(
+                `filmDetail.html?id =${filmId}`,
+                'main-iframe'
+            );
+            // console.log(filmId);
+        } else if (res.length > 1) {
+            let str = `<h1 style="margin:20px">影视</h1>`;
+            for (let cinema of res) {
+                str += `    <div class="movie-item" style="display:inline-block; margin-left:20px">
+                                        <a href="./filmDetail.html?filmId=${cinema._id}">
+                                            <div class="movie-poster">
+                                                <img class="movie-poster-img" src="http://localhost:3000/${cinema.img}">
                                                 <div class="movie-overlay movie-overlay-bg">
                                                     <div class="movie-info">
-                                                        <div class="movie-title">${film.name}</div>
+                                                        <div class="movie-score"><i class="integer">${cinema.name}</i></div>
+                                                        <div class="movie-title movie-title-padding">
+                                                            ${cinema.name}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
-                                        <div class="movie-detail movie-wish"><span class="stonefont">10000</span>人想看
-                                        </div>
-                                        <div class="movie-detail movie-detail-strong movie-presale">
-                                            <a class="movie-presale-sep">预告片
-                                            </a><a href="javascript:void(0)" class="active" >预 售</a>
-                                        </div>
-                                        <div class="movie-ver"></div>
-                                    </div>
-                                    <div class="movie-detail movie-rt">${film.startTime}上映</div>
-                                </dd>`;
-    }
-    $("#afterFilmList").html(str);
+                                   </div>  `    ;
+            }
+
+            // $('iframe').attr('src', "./showSearchResult.html");
+            $('iframe').contents().find("#app").html(str)
+        }
+    })
+}
+
+// 2. echo user avatar
+let userId;
+getUserIdByName().then(res => {
+    userId = res;
+    axios("http://localhost:3000/user/queryUserById", { userId }).then(res => {
+        // console.log(res);
+        // if user is logined then hidden this element
+        if (res.length > 0) {
+            $(".user-info").eq(1).prop('hidden', true);
+            $(".user-avatar img").attr("src", `http://localhost:3000/${res[0].avatar}`);
+        }
+    })
 });
+
+// 3. login out
+$('.J-logout').click(function (e) {
+    $.ajax({
+        url: "http://localhost:3000/user/clearCookie",
+        data: $("#loginForm").serialize(),
+        xhrFields: {
+            withCredentials: true
+        },//支持跨域
+        dataType: "jsonp",//接受跨域的数据
+        success: function (res) {
+            window.location.reload();
+            console.log(res);
+        }
+    });
+})
+
+// ## other
+// 1. active navbar toggle
+$(".navbar li").click(function (e) {
+    // e.preventDefault();
+    $(".navbar li a").removeClass("active");
+    $(this).find("a").addClass("active");
+});
+
+// 2. get iframe height and width
+function getIframeHeightAndWidth(params) {
+    let ifr = document.querySelector('iframe');
+    ifr.onload = function () {
+        let oHeight = Math.max(ifr.contentWindow.document.documentElement.offsetHeight, ifr.contentWindow.document.body.offsetHeight);
+        let cHeight = Math.max(ifr.contentWindow.document.documentElement.clientHeight, ifr.contentWindow.document.body.clientHeight);
+        let height = Math.min(oHeight, cHeight);
+        ifr.height = height + 'px';
+        console.log(height);
+    }
+}
+getIframeHeightAndWidth();
