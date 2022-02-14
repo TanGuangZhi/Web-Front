@@ -1,0 +1,72 @@
+<!--
+ * @Author: TanGuangZhi
+ * @Date: 2022-02-14 15:47:03 Mon
+ * @LastEditTime: 2022-02-14 16:11:04 Mon
+ * @LastEditors: TanGuangZhi
+ * @Description: 
+ * @KeyWords: NodeJs, Express, MongoDB
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <ul>
+            <li v-for="hobby in hobbyList">
+                {{hobby}}
+            </li>
+        </ul>
+    </div>
+
+    <div id="app2">
+        <h1>{{title2}}</h1>
+        <ul>
+            <li v-for="hobby2 in hobbyList">
+                {{hobby2}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#app', // 挂载
+            // 1. data():return 的数据,与html标签用来双向绑定
+            data() {
+                return {
+                    title: 'hello world!!!',
+                    hobbyList: ["sleep", "gaming", "eating"]
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app2', // 挂载
+            // 1. data():return 的数据,与html标签用来双向绑定
+            data() {
+                return {
+                    title2: 'hello world!!!!!!!!',
+                    hobbyList: ["sleep", "gaming", "eating"]
+                }
+            }, methods: {
+                query() {
+                    console.log(`打开页面查询`);
+                }
+            }, created() {
+                // this 代表整个vue对象
+                this.query();
+            }
+        });
+
+    </script>
+</body>
+
+</html>
