@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-11 14:50:53 Fri
+ * @LastEditTime: 2022-02-12 16:35:38 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -80,18 +80,19 @@ axios("http://localhost:3000/film/queryAfterFilm").then(res => {
 function todayBoxOffice() {
     // 1. query all office from db
     axios("http://localhost:3000/order/queryTodayBoxOffice").then(res => {
-        console.log(res);
+        console.log('res:', res)
         // todayBoxOffice = res;
         let str = ``;
         res.forEach((element, index) => {
             // console.log(nowPlayFilm);
-            let nowFilm = nowPlayFilm.find(element2 => element2._id == element._id);
+            // let nowFilm = nowPlayFilm.find(element2 => element2._id == element._id);
+            // console.log('nowFilm:', nowFilm)
             // console.log(nowFilm);
             str += ` <li class="ranking-item ranking-index-2">
                                         <a href="javascript:void(0)">
                                             <span class="normal-link">
                                                 <i class="ranking-index">${index + 1}</i>
-                                                 <span class="ranking-movie-name">${nowFilm.name}</span>
+                                                 <span class="ranking-movie-name">${element.filmIdToDetail[0].name}</span>
                                                 <span class="ranking-num-info stonefont">${element.sum.toFixed(2)}万</span>
                                             </span>
                                         </a>

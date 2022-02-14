@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 13:11:56 Sat
- * @LastEditTime: 2022-02-10 21:57:32 Thu
+ * @LastEditTime: 2022-02-12 16:33:52 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -48,18 +48,21 @@ class OrderModel {
             $match:
                 { $and: [{ completeTime: { $gt: todayStart } }, { completeTime: { $lt: todayEnd } }] }
         }, {
+            $group: {
+                _id: "$filmId",
+                sum: {
+                    $sum: "$price"
+                }
+            }
+        },
+        {
             $lookup: {
                 from: "film",
-                localField: "filmId",
+                localField: "_id",
                 foreignField: "_id",
                 as: "filmIdToDetail"
             }
-        }, {
-            $group: {
-                _id: "$filmId",
-                sum: { $sum: "$price" }
-            }
-        }])
+        },])
     }
 
     static async queryAllSaledSeat(data) {

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-11 14:49:50 Fri
+ * @LastEditTime: 2022-02-12 17:00:13 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -17,7 +17,7 @@ let tempArr = [];
 for (let i = 1; i < temp.length; i++) {
     tempArr.push(temp[i].split("=")[1] - 0);
 }
-console.log(tempArr);
+// console.log(tempArr);
 
 // ## film detail
 // 1. show detail
@@ -110,11 +110,13 @@ function wantSeeBtnClick() {
             console.log(res);
         })
     });
-
 }
 
 // 1.2 calculateAverage
 function calculateAverage(data) {
+    if (data.length == 0) {
+        return;
+    }
     let sum = 0;
     data.forEach(element => {
         sum += element.score;

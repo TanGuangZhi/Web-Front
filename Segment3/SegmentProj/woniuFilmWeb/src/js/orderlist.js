@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-11 14:47:11 Fri
+ * @LastEditTime: 2022-02-12 16:24:37 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -83,8 +83,9 @@ function payBtnClick() {
         temp.filmId = $(this).parent().parent().parent().find("input").attr("data-film-id");
         temp.cinemaId = $(this).parent().parent().parent().find("input").attr("data-cinema-id");
         temp.roomId = $(this).parent().parent().parent().find("input").attr("data-room-id");
-        console.log(temp);
-        if ($(this).html == "unPay") {
+        // console.log(temp);
+        console.log($(this).html());
+        if ($(this).html() == "付款") {
             axios(`http://localhost:3000/user/pay`, { temp }).then(async res => {
                 console.log(res);
                 window.location.href = res;
