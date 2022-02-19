@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-25 11:16:36 Tue
- * @LastEditTime: 2022-02-11 09:22:36 Fri
+ * @LastEditTime: 2022-02-18 12:55:12 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -36,4 +36,12 @@ export let getUserIdByName = async function () {
         // console.log(userId);
     });
     return userId;
+}
+
+// 3. judge is user logined
+export function judgeIsUserLogined() {
+    if (!name) {
+        return false;
+    }
+    return true;
 }

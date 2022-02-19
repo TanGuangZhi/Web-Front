@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-html="title">你好</h1>
+        <h1>你好{{title}}</h1>
+        <!--v-bind:src  简写为  :src
+            省略冒号获取不到数据
+        -->
+        <img :src="filmImg" :userId="userId" width="100px">
+        <button type="button" v-on:click="query">查询</button>
+        <button type="button" @click="deleteUser(101)">删除</button>
+        <div>
+            订单状态:
+            <span v-if="status==0">未支付</span>
+            <span v-else-if="status==1">已支付</span>
+            <span v-else-if="status==2">已收货</span>
+            <span v-else>已评论</span>
+        </div>
+        <ul>
+            <li v-for="hobby in hobbyList">
+                {{hobby}}
+            </li>
+        </ul>
+        <div>
+            <table>
+                <tr v-for="user in userList">
+                    <td>{{user.id}}</td>
+                    <td>{{user.userName}}</td>
+                    <td>{{user.userPass}}</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table>
+                <tr v-for="(user,index) in userList" :key="index">
+                    <td>{{user.id}}</td>
+                    <td>{{user.userName}}</td>
+                    <td>{{user.userPass}}</td>
+                    <td><button type="button" @click="showUser(index)">获取数据</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+           el:"#app",
+           data(){
+               return {
+                   userId:101,
+                   title:"蜗牛学苑",
+                   filmImg:"images/1.jpg",
+                   status:3,//0未支付   1 已支付   2 已收货  3 已评论
+                   hobbyList:["篮球","羽毛球","乒乓球"],
+                   userList:[
+                       {id:1,userName:"jack",userPass:"1234"},
+                       {id:2,userName:"rouse",userPass:"1234"},
+                       {id:3,userName:"rouse",userPass:"1234"}
+                   ]
+               }
+           },methods:{
+               query(){
+                   alert("查询...");
+               }, deleteUser(id){
+                   alert(id);
+                },showUser(index){
+                   console.log(this.userList[index]);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-11 19:36:02 Fri
+ * @LastEditTime: 2022-02-18 13:11:27 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -10,6 +10,7 @@ import "../css/common1.css";
 import { axios } from "./util/axios.js";
 import "../css/cinemas-list.0350856d.css";
 import "../css/font.css";
+import { judgeIsUserLogined } from "./util/myUtil.js";
 
 let url = window.location.href;
 // alert(url);
@@ -37,7 +38,7 @@ function query(nowPage = 1, cinemaBrandId = null, districtId = null) {
                         <span class="cinema-tags-item">${element.roomIdToDetails[0].name}</span>
                     </div>
                     <div class="buy-btn">
-                        <a href="chooseseat.html?filmId=${filmId}&cinemaId=${element.cinemaId}&roomId=${element.roomId}&price=${element.filmIdToDetails[0]?.price}" >选座购票</a>
+                        <a href="" class="buy" >选座购票</a>
                     </div>
                     <div class="price">
                         <span class="rmb red">￥</span>
@@ -46,7 +47,6 @@ function query(nowPage = 1, cinemaBrandId = null, districtId = null) {
                     </div>
                 </div>`;
         });
-
         let pageStr = ` <li>
                                 <a class="page_1 changePage"data-change-page-id="-1" href="javascript:void(0);" style="cursor: pointer">上一页</a>
                             </li> `
@@ -68,6 +68,7 @@ function query(nowPage = 1, cinemaBrandId = null, districtId = null) {
         $(".list-pager").html(pageStr);
         $('.cinema-info-list').html(str);
         changePage();
+        buyTicketClick();
     })
 }
 query();
@@ -167,5 +168,20 @@ let clickDistrict = function () {
 
         $(this).parent().addClass("active");
         query(1, null, districtId);
+    });
+}
+
+// 1.5 buy ticket
+function buyTicketClick(params) {
+    $(".buy").click(function (e) {
+        e.preventDefault();
+        if (!judgeIsUserLogined()) {
+            alert("请先登录");
+            return;
+        };
+        window.open(
+            `chooseseat.html ? filmId = ${filmId}& cinemaId=${element.cinemaId}& roomId=${element.roomId}& price=${element.filmIdToDetails[0]?.price} `,
+            'main-iframe'
+        );
     });
 }

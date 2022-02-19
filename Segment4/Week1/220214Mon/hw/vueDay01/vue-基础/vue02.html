@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <p>
+                编　号: <input type="text" name="id" readonly v-model="user.id">
+            </p>
+            <p>
+                用户名:<input type="text" name="userName" v-model="user.userName">
+            </p>
+            <p>
+                密　码: <input type="text" name="userPass" v-model="user.userPass">
+            </p>
+            <p>
+                性　别:
+                <input type="radio" name="sex" v-model="user.sex" value="男">男
+                <input type="radio" name="sex" v-model="user.sex" value="女">女
+            </p>
+            <p>
+                爱　好:
+                <input type="checkbox" name="hobby" value="篮球" v-model="user.hobbyList">篮球
+                <input type="checkbox" name="hobby" value="足球" v-model="user.hobbyList">足球
+                <input type="checkbox" name="hobby" value="羽毛球" v-model="user.hobbyList">羽毛球
+            </p>
+            <p>
+                <button type="button" @click="getData">获取表单数据</button>
+            </p>
+        </form>
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el:"#app",
+           data(){
+               return{
+                   user:{id:"101",userName:"",userPass:"",sex:"女",hobbyList:["篮球"]}
+               }
+           },methods:{
+                getData(){
+                    console.log(this.user);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-09 12:35:24 Wed
- * @LastEditTime: 2022-02-09 16:10:49 Wed
+ * @LastEditTime: 2022-02-16 12:18:45 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -19,8 +19,8 @@ const client = new smsClient({
          * 你也可以直接在代码中写死密钥对，但是小心不要将代码复制、上传或者分享给他人，
          * 以免泄露密钥对危及你的财产安全。
          * CAM密匙查询: https://console.cloud.tencent.com/cam/capi */
-        secretId: 'AKIDLTkpdAkDYcMtTeeQ2OWhbEahpb6K46dt',
-        secretKey: 'CXUK4Zo57ud6IEd1B7mEQP8aS8YhrfMm',
+        secretId: 'AKID61h7G9l6AxTigNnwoPjmY3IK6bplRqxn',
+        secretKey: 'auxkGWVEhuqUrxnMefPs4zd187wUllVy',
     },
     /* 必填：地域信息，可以直接填写字符串ap-guangzhou，或者引用预设的常量 */
     region: "ap-guangzhou",

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 13:11:56 Sat
- * @LastEditTime: 2022-02-11 11:16:53 Fri
+ * @LastEditTime: 2022-02-19 15:11:59 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -90,9 +90,8 @@ class UserModel {
         return await userList.length;
     }
 
-    async queryUserExists(user) {
-        let userName = user.userName;
-        return await dbUserTable.find({});
+    async judgeIsUserNameExist(name) {
+        return await dbUserTable.find({ name });
     }
 
     async queryUserById(_id) {

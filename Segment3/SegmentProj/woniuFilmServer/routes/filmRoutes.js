@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 15:27:44 Thu
- * @LastEditTime: 2022-02-11 12:04:52 Fri
+ * @LastEditTime: 2022-02-18 11:50:49 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -55,10 +55,6 @@ router.get('/getFilmIdByName', async (req, res, next) => {
     res.send(JSON.stringify(queryResult));
 })
 
-router.get('/getFilmIdByName', async (req, res, next) => {
-    let queryResult = await FilmModel.getFilmIdByName(req.query.name);
-    res.send(JSON.stringify(queryResult));
-})
 
 router.get('/wantSeeAdd', async (req, res, next) => {
     let queryResult = await FilmModel.wantSeeAdd(req.query.filmId);

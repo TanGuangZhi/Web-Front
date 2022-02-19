@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-10 14:39:15 Thu
+ * @LastEditTime: 2022-02-19 15:18:46 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -16,7 +16,7 @@ function signUpBtnClick(params) {
         e.preventDefault();
         // regular check
         if (randomCode) {
-            // console.log(randomCode);
+            console.log(randomCode);
             if ($("[name=checkCode]").val() != randomCode) {
                 alert("验证码不正确!");
                 return;
@@ -25,8 +25,10 @@ function signUpBtnClick(params) {
         axios("http://localhost:3000/user/register", $("#addForm").serialize(), "text").then(res => {
             if (res == "1") {
                 alert("注册成功");
+            } else if (res = "userNameAlreadyExist") {
+                alert("用户名已存在");
             } else {
-                alert("注册失败");
+                alert("注册失败,请检查输入或联系管理员");
             }
         });
     });

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:31 Thu
- * @LastEditTime: 2022-02-11 11:06:38 Fri
+ * @LastEditTime: 2022-02-19 15:17:22 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -68,6 +68,12 @@ router.get("/clearCookie", (req, resp) => {
 })
 
 router.get('/register', async (req, resp, next) => {
+  // judge is userName exist
+  let judgeIsUserNameExistResult = await userModel.judgeIsUserNameExist(req.query.name);
+  if (judgeIsUserNameExistResult.length > 0) {
+    resp.send("userNameAlreadyExist");
+    return;
+  }
   let user = req.query;
   user.uuid = uuid.v1();//唯一字符串
   user.state = 0;//默认是未激活的状态
@@ -79,6 +85,7 @@ router.get('/register', async (req, resp, next) => {
   sendEmail(user.email, `http://localhost:3000/user/updateStatus?uuid=${user.uuid}`);
   resp.send(addObj.length > 0 ? "1" : "0");
 })
+
 
 router.get("/updateStatus", (req, resp) => {
   (async () => {
