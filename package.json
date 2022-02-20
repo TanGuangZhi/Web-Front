@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "webpack-dev-server": "^4.7.4"
-  },
-  "dependencies": {
-    "webpack-cli": "^4.9.2"
-  }
-}
