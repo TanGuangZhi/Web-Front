@@ -1,10 +1,18 @@
+<!--
+ * @Author: TanGuangZhi
+ * @Date: 2022-02-21 10:18:54 Mon
+ * @LastEditTime: 2022-02-21 13:08:28 Mon
+ * @LastEditors: TanGuangZhi
+ * @Description: 
+ * @KeyWords: NodeJs, Express, MongoDB
+-->
 <template>
   <div id="app">
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
