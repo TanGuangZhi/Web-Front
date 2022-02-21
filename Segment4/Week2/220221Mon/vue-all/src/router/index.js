@@ -1,35 +1,52 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-21 10:18:54 Mon
- * @LastEditTime: 2022-02-21 13:15:19 Mon
+ * @LastEditTime: 2022-02-21 15:56:09 Mon
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Home from '../views/HomeView.vue'
+import Details from '../views/Details.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: "/index/home"
   },
   {
-    path: '/about',
-    name: 'about',
+    path: '/index',
+    name: 'Index',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../components/Head.vue'),
+    children: [{
+      path: "home",
+      name: "Home",
+      component: Home
+    }, {
+      path: "details",
+      name: "Details",
+      component: Details,
+      meta: {
+        title: "详情"
+      }
+    }]
+  }, {
+    path: "*",
+    name: "error",
+    component: () => import("../views/Register.vue")
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: "history"
 })
 
 export default router
