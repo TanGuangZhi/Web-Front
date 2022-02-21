@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-18 18:51:40 Fri
- * @LastEditTime: 2022-02-21 09:59:25 Mon
+ * @LastEditTime: 2022-02-18 19:19:55 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -39,6 +39,7 @@ router.post("/updateFilm", upload.array("filmImg"), async (req, resp) => {
     if (filmImg) {
         film.filmImg = filmImg;
     }
+    console.log(film);
     let modifyObj = await filmModel.updateFilm(film);
     resp.send(modifyObj.modifiedCount > 0 ? "1" : "0");
 
