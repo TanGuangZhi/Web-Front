@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-12 17:00:13 Sat
+ * @LastEditTime: 2022-02-19 16:10:33 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -9,6 +9,7 @@
 import "../css/common1.css";
 import { axios } from "./util/axios.js";
 import "../css/movie-detail.86416149.css";
+import { judgeIsUserLogined } from "./util/myUtil.js";
 
 let url = window.location.href;
 // alert(url);
@@ -29,8 +30,6 @@ function showDetails() {
         tempArr.push(temp[i].split("=")[1] - 0);
     }
     axios(`http://localhost:3000/film/queryFilmDetail?_id=${filmId}`).then(res => {
-        console.log("===============");
-        console.log(res);
         let filmDetailArr = res[0];
         let filmScoreArr = filmDetailArr.scoreToAvg;
         let averageScore = calculateAverage(filmScoreArr);
@@ -69,7 +68,7 @@ function showDetails() {
                             </div>
                         </a>
                     </div>
-                    <a class="btn buy" href="cinema.html?filmId=${filmId}" target="main-iframe">特惠购票</a>
+                    <a class="btn buy"  target="main-iframe">特惠购票</a>
                 </div>
                 <div class="movie-stats-container">
                     <div class="movie-index">
@@ -94,6 +93,7 @@ function showDetails() {
         $('.dra').html(filmDetailArr.details);
         $('#director-name').html(filmDetailArr.director);
         wantSeeBtnClick();
+        buyTicketClick();
     });
 }
 
@@ -103,6 +103,10 @@ showDetails();
 function wantSeeBtnClick() {
     $(".wishCls").click(function (e) {
         e.preventDefault();
+        if (!judgeIsUserLogined()) {
+            alert("请先登录");
+            return;
+        };
         // console.log(1);
         alert("已想看,想看+1");
         axios(`http://localhost:3000/film/wantSeeAdd`, { filmId }).then(res => {
@@ -125,10 +129,24 @@ function calculateAverage(data) {
     return average;
 }
 
+// 1.3 buy ticket click
+function buyTicketClick() {
+    $(".buy").click(function (e) {
+        e.preventDefault();
+        if (!judgeIsUserLogined()) {
+            alert("请先登录");
+            return;
+        };
+        window.open(
+            `cinema.html?filmId=${filmId}`,
+            'main-iframe'
+        );
+    });
+}
+
 // 2. echo comment
 function echoComment(params) {
     axios(`http://localhost:3000/comment/queryComment`, { filmId: tempArr }).then(res => {
-        console.log(res)
         let str = ``;
         res.forEach(element => {
             str += ` <li class="comment-container">

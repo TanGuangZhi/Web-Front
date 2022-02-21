@@ -1,138 +1,90 @@
+$unchecked-star: "\2606";
+$unchecked-color: #888;
+$checked-star: "\2605";
+$checked-color: #e52;
+
+.star-cb-group {
+  /* remove inline-block whitespace */
+  font-size: 0;
+  * {
+    font-size: 1rem;
+  }
+  /* flip the order so we can use the + and ~ combinators */
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  & > input {
+    display: none;
+    & + label {
+      /* only enough room for the star */
+      display: inline-block;
+      overflow: hidden;
+      text-indent: 9999px;
+      width: 1em;
+      white-space: nowrap;
+      cursor: pointer;
+      &:before {
+        display: inline-block;
+        text-indent: -9999px;
+        content: $unchecked-star;
+        color: $unchecked-color;
+      }
+    }
+    &:checked ~ label:before,
+    & + label:hover ~ label:before,
+    & + label:hover:before {
+      content: $checked-star;
+      color: #e52;
+      text-shadow: 0 0 1px #333;
+    }
+  }
+
+  /* the hidden clearer */
+  & > .star-cb-clear + label {
+    text-indent: -9999px;
+    width: 0.5em;
+    margin-left: -0.5em;
+  }
+  & > .star-cb-clear + label:before {
+    width: 0.5em;
+  }
+
+  &:hover > input + label:before {
+    content: $unchecked-star;
+    color: $unchecked-color;
+    text-shadow: none;
+  }
+  &:hover > input + label:hover ~ label:before,
+  &:hover > input + label:hover:before {
+    content: $checked-star;
+    color: $checked-color;
+    text-shadow: 0 0 1px #333;
+  }
+}
+
+// extra styles
+:root {
+  font-size: 2em;
+  font-family: Helvetica, arial, sans-serif;
+}
+
 body {
-  background-color: lightblue;
+  background: #333;
+  color: $unchecked-color;
 }
-
-.rating {
+fieldset {
+  border: 0;
+  background: #222;
+  width: 5em;
+  border-radius: 1px;
+  padding: 1em 1.5em 0.9em;
+  margin: 1em auto;
+}
+#log {
+  margin: 1em auto;
+  width: 5em;
   text-align: center;
-  margin-top: 120px;
-  position: relative;
-  width: 50%;
-  float: left;
+  background: transparent;
 }
-
-.hidden {
-  opacity: 0;
-}
-
-.star {
-  display: inline-block;
-  margin: 5px;
-  font-size: 30px;
-  color: whitesmoke;
-  position: relative;
-
-  &.animate {
-    -webkit-animation: stretch-bounce 0.5s ease-in-out;
-  }
-
-  &.hidden {
-    opacity: 0;
-  }
-}
-
-.full {
-  &:before {
-    font-family: fontAwesome;
-    display: inline-block;
-    content: "\f005";
-    position: relative;
-    float: right;
-    z-index: 2;
-  }
-}
-
-.half {
-  &:before {
-    font-family: fontAwesome;
-    content: "\f089";
-    position: absolute;
-    float: left;
-    z-index: 3;
-  }
-}
-
-.star-colour {
-  color: #ffd700;
-}
-
-@-webkit-keyframes stretch-bounce {
-  0% {
-    -webkit-transform: scale(1);
-  }
-  25% {
-    -webkit-transform: scale(1.5);
-  }
-  50% {
-    -webkit-transform: scale(0.9);
-  }
-  75% {
-    -webkit-transform: scale(1.2);
-  }
-  100% {
-    -webkit-transform: scale(1);
-  }
-}
-
-.selected {
-  &:before {
-    font-family: fontAwesome;
-    display: inline-block;
-    content: "\f005";
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-transform: scale(1);
-    opacity: 1;
-    z-index: 1;
-  }
-
-  &.pulse {
-    &:before {
-      -webkit-transform: scale(3);
-      opacity: 0;
-    }
-  }
-
-  &.is-animated {
-    &:before {
-      transition: 1s ease-out;
-    }
-  }
-}
-
-.score {
-  font-family: arial;
-  font-size: 20px;
-  color: green;
-  margin-top: 20px;
-  margin-left: 50px;
-}
-
-.score-rating {
-  vertical-align: sup;
-  top: -5px;
-  position: relative;
-  font-size: 150%;
-}
-
-.total {
-  vertical-align: sub;
-  top: 0px;
-  position: relative;
-  font-size: 100%;
-}
-
-.average {
-  font-family: arial;
-  font-size: 20px;
-  color: indianred;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+h1 {
   text-align: center;
-
-  .score-average {
-    padding-top: 30px;
-  }
 }

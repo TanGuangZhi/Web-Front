@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-02-09 20:19:24 Wed
- * @LastEditTime: 2022-02-09 21:18:46 Wed
+ * @LastEditTime: 2022-02-19 16:03:21 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -20,66 +20,31 @@
 
 <body>
     <div class="container">
-        <div class="main">
+        <div class="main" style="display: flex">
             <form action="">
-                <textarea name="" id="comment-content" cols="50" rows="10" placeholder="请输入评论内容"></textarea>
+                <textarea name="" id="comment-content" cols="30" rows="7" placeholder="请输入评论内容"></textarea>
 
                 <button type='button' id="comment-btn">提交</button>
             </form>
+            <form style="margin-left: 50px;">
+                <fieldset>
+                    <span class="star-cb-group">
+                        <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
+                        <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label
+                            for="rating-4">4</label>
+                        <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
+                        <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
+                        <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
+                        <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label
+                            for="rating-0">0</label>
+                        <span id="rating" style="text-align: center;margin-left: 50%;">4</span>
+                    </span>
+                </fieldset>
+            </form>
         </div>
+
     </div>
-    <div class="rating" data-vote="0">
-        <div class="star hidden">
-            <span class="full" data-value="0"></span>
-            <span class="half" data-value="0"></span>
-        </div>
 
-        <div class="star">
-
-            <span class="full" data-value="2"></span>
-            <span class="half" data-value="1"></span>
-            <span class="selected"></span>
-
-        </div>
-
-        <div class="star">
-
-            <span class="full" data-value="4"></span>
-            <span class="half" data-value="3"></span>
-            <span class="selected"></span>
-
-        </div>
-
-        <div class="star">
-
-            <span class="full" data-value="6"></span>
-            <span class="half" data-value="5"></span>
-            <span class="selected"></span>
-
-        </div>
-
-        <div class="star">
-
-            <span class="full" data-value="8"></span>
-            <span class="half" data-value="7"></span>
-            <span class="selected"></span>
-
-        </div>
-
-        <div class="star">
-
-            <span class="full" data-value="10"></span>
-            <span class="half" data-value="9"></span>
-            <span class="selected"></span>
-
-        </div>
-
-        <div class="score">
-            <span class="score-rating js-score">0</span>
-            <span>/</span>
-            <span class="total">10</span>
-        </div>
-    </div>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-11 13:04:03 Fri
+ * @LastEditTime: 2022-02-18 12:59:15 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -226,7 +226,6 @@ function buySeatButton(params) {
             orderInfoList.roomSeat = selSeatListToString;
             orderInfoList.cinemaId = temp.cinemaId;
             orderInfoList.status = "unPay";
-            console.log(orderInfoList);
             window.parent.location.href = res;
             // record order info
             axios(`http://localhost:3000/order/insertOrder`, "post", orderInfoList).then(res => {
@@ -248,3 +247,7 @@ function getUserIdByName(name) {
 
 let name = $.cookie("userName");
 getUserIdByName(name);
+
+// test
+import { judgeIsUserLogined } from "./util/myUtil.js";
+judgeIsUserLogined();

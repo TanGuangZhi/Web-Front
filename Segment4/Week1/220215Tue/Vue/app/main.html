@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+</head>
+
+<body>
+    <!--
+    v-model: 只能作用在表单上面 (双向绑定的)
+    v-model.number:自动转成数值类型
+    v-model.trim:去掉作用空格
+
+    v-model.lazy: 默认值
+    v-model.input: 当失去焦点是时，修改data中json对象对应的属性值
+    注意:
+        <1>.查询的过程中 原数据不能有变化
+        <2>.增删改之后,一定要记得刷新数据
+        <3>.created() 函数中记得调用初始化数据的函数
+        <4>.一定要记得设置挂载范围 (建议使用 el的方式 绑定id选择器 具有唯一性)
+            vue实例中的数据只能作用在挂载范围中的任意标签上面
+        <5>.使用vue绑定属性的时候一定要记得加 :(冒号)
+        <6>.绑定事件的时候记得去掉标签的默认事件 (超链接,按钮type:button)
+        <7>.绑定事件的时候 记得不要使用一些关键字 尽可能带上对象名字
+        <8>.methods中没有定义的函数，不要提前给事件进行绑定
+-->
+    <div id="app">
+        <!--添加app的模态框-->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">添加app</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <form class="text-center form-inline" id="addForm">
+                            <p>
+                                <img :src="addApp.appImg" alt="" width="100px">
+                            </p>
+                            <p>
+                                app名称:<input type="text" v-model="addApp.appName" name="appName" placeholder="请输入app名称"
+                                    class="form-control" style="width: 260px">
+                            </p>
+                            <p>
+                                app类型:
+                                <select name="appTypeId" v-model="addApp.appTypeId" class="form-control"
+                                    style="width: 260px">
+                                    <option value="">请选择类型</option>
+                                    <option v-for="(type,index) in appTypeList" :key="index" :value="type._id">
+                                        {{type.type}}</option>
+                                </select>
+                            </p>
+
+                            <p>
+                                app平台:
+                                <select name="appPlatformId" v-model="addApp.appPlatformId" class="form-control"
+                                    style="width: 260px">
+                                    <option value="">请选择平台</option>
+                                    <option v-for="(platform,index) in appPlatformList" :key="index"
+                                        :value="platform._id">{{platform.platform}}</option>
+                                </select>
+                            </p>
+                            <p>
+                                app大小:<input type="text" name="appSize" v-model.number="addApp.appSize"
+                                    placeholder="请输入软件大小" class="form-control" style="width: 260px">
+                            </p>
+                            <p>
+                                app图片:<input type="text" name="appImg" v-model="addApp.appImg" style="width: 200px"
+                                    readonly placeholder="请上传图片" class="form-control">
+                                <button type="button" class="btn btn-default" id="addImgBtn"
+                                    @click="upAddImg">上传</button>
+                            </p>
+                            <p>
+                                <button type="button" class="btn btn-primary" id="addBtn" @click="insertApp">添加</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--修改app的模态框-->
+        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">修改app</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <form class="text-center form-inline" id="updateForm">
+                            <p>
+                                <img :src="lookApp.appImg" alt="" width="100px">
+                            </p>
+                            <p>
+                                app编号:<input type="text" name="id" v-model="lookApp._id" readonly class="form-control"
+                                    style="width: 260px">
+                            </p>
+                            <p>
+                                app名称:<input type="text" name="appName" v-model="lookApp.appName" placeholder="请输入app名称"
+                                    class="form-control" style="width: 260px">
+                            </p>
+                            <p>
+                                app类型:
+                                <select name="appTypeId" class="form-control" style="width: 260px"
+                                    v-model="lookApp.appTypeId">
+                                    <option value="">请选择类型</option>
+                                    <option v-for="(type,index) in appTypeList" :key="index" :value="type._id">
+                                        {{type.type}}</option>
+                                </select>
+                            </p>
+
+                            <p>
+                                app平台:
+                                <select name="appPlatformId" class="form-control" style="width: 260px"
+                                    v-model="lookApp.appPlatformId">
+                                    <option value="">请选择平台</option>
+                                    <option v-for="(platform,index) in appPlatformList" :key="index"
+                                        :value="platform._id">{{platform.platform}}</option>
+                                </select>
+                            </p>
+                            <p>
+                                app大小:<input type="text" name="appSize" v-model="lookApp.appSize" placeholder="请输入软件大小"
+                                    class="form-control" style="width: 260px">
+                            </p>
+                            <p>
+                                app次数:<input type="text" readonly name="appDownLoadCount"
+                                    v-model="lookApp.appDownLoadCount" placeholder="下载次数" class="form-control"
+                                    style="width: 260px">
+                            </p>
+                            <p>
+                                app图片:<input type="text" name="appImg" v-model="lookApp.appImg" style="width: 200px"
+                                    readonly placeholder="请上传图片" class="form-control">
+                                <button type="button" class="btn btn-default" id="updateUpImgBtn"
+                                    @click="upUpDateImg">上传</button>
+                            </p>
+                            <p>
+                                <button type="button" class="btn btn-primary" id="updateAppBtn"
+                                    @click="updateApp">修改</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="text-center">app后台管理</h1>
+        <div class="container">
+            <div class="row table-bordered" style="line-height: 100px">
+                <div class="col-md-8">
+                    <form class="form-inline">
+                        app名称:
+                        <input type="text" v-model.trim="searchForm.appName" name="appName" placeholder="请输入app名称"
+                            class="form-control">
+                        　　app类型:
+                        <select name="appType" class="form-control" v-model="searchForm.appTypeId">
+                            <option value="">请选择类型</option>
+                            <option v-for="(type,index) in appTypeList" :key="index" :value="type._id">{{type.type}}
+                            </option>
+                        </select>
+                        　　app平台:
+                        <select name="app" class="form-control" v-model="searchForm.appPlatformId">
+                            <option value="">请选择平台</option>
+                            <option v-for="(platform,index) in appPlatformList" :key="index" :value="platform._id">
+                                {{platform.platform}}</option>
+                        </select>
+                        <button type="button" class="btn btn-primary" @click="searchApp">搜索</button>
+                    </form>
+                </div>
+                <div class="col-md-4 text-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><span
+                            class="glyphicon glyphicon-plus"></span> 添加</button>
+                    <button type="button" class="btn btn-warning" @click="deleteManyApp"><span
+                            class="glyphicon glyphicon-remove"></span> 批量删除</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <table class="col-md-12 table-bordered text-center" style="margin-top: 30px">
+                    <tr style="line-height: 60px;background: gray;color: white">
+                        <td>全选/全消 <input type="checkbox" id="allId" v-model="allChecked" @change="allSel"></td>
+                        <td>编号</td>
+                        <td>名称</td>
+                        <td>软件大小</td>
+                        <td>软件类型</td>
+                        <td>软件平台</td>
+                        <td>下载次数</td>
+                        <td>图片</td>
+                        <td colspan="2">操作</td>
+                    </tr>
+                    <tbody id="showTab">
+                        <tr v-for="(app,index) in searchAppList" :key="index">
+                            <td>选择 <input type="checkbox" class="sel" v-model.number="idArray" :value="app._id"></td>
+                            <td>{{app._id}}</td>
+                            <td>{{app.appName}}</td>
+                            <td>{{app.appSize}}M</td>
+                            <td>{{getTypeName(app.appTypeId)}}</td>
+                            <td>{{getPlatformName(app.appPlatformId)}}</td>
+                            <td>{{app.appDownLoadCount}}万次</td>
+                            <td><img :src="app.appImg" width="40px"></td>
+                            <td><button type="button" class="btn btn-danger" @click="deleteApp(app._id)"><span
+                                        class="glyphicon glyphicon-remove"></span> 删除</button></td>
+                            <td><button type="button" data-toggle="modal" @click="showApp(app._id)"
+                                    data-target="#updateModal" class="btn btn-primary"><span
+                                        class="glyphicon glyphicon-edit"></span> 修改</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    appList: [],
+                    appTypeList: [],
+                    appPlatformList: [],
+                    lookApp: {},
+                    addApp: { appTypeId: "", appPlatformId: "", appImg: "" },
+                    searchForm: { appName: "", appTypeId: "", appPlatformId: "" },
+                    searchAppList: [],
+                    allChecked: false,
+                    idArray: []
+                }
+            },
+            methods: {
+                queryApp() {
+                    this.appList = [
+                        // 1
+                        {
+                            "_id": 2,
+                            "appName": "Susan Jackson",
+                            "appTypeId": 3,
+                            "appPlatformId": 3,
+                            "appDownLoadCount": 914,
+                            "appSize": 2414,
+                            "appImg": "images/app/10.png"
+                        }
+                        ,
+                        {
+                            "_id": 5,
+                            "appName": "Angela Thompson",
+                            "appTypeId": 1,
+                            "appPlatformId": 1,
+                            "appDownLoadCount": 161,
+                            "appSize": 1429,
+                            "appImg": "images/app/11.png"
+                        }
+                        ,
+                        {
+                            "_id": 6,
+                            "appName": "Kimberly Thompson",
+                            "appTypeId": 1,
+                            "appPlatformId": 2,
+                            "appDownLoadCount": 332,
+                            "appSize": 1735,
+                            "appImg": "images/app/6.png"
+                        }
+                        ,
+                        {
+                            "_id": 7,
+                            "appName": "Margaret Hernandez",
+                            "appTypeId": 3,
+                            "appPlatformId": 2,
+                            "appDownLoadCount": 313,
+                            "appSize": 423,
+                            "appImg": "images/app/5.png"
+                        }
+                        ,
+                        {
+                            "_id": 8,
+                            "appName": "George Walker",
+                            "appTypeId": 3,
+                            "appPlatformId": 3,
+                            "appDownLoadCount": 720,
+                            "appSize": 1362,
+                            "appImg": "images/app/11.png"
+                        }
+                        ,
+                        {
+                            "_id": 9,
+                            "appName": "Jennifer Brown",
+                            "appTypeId": 3,
+                            "appPlatformId": 3,
+                            "appDownLoadCount": 716,
+                            "appSize": 2820,
+                            "appImg": "images/app/2.png"
+                        }
+                        ,
+                        {
+                            "_id": 10,
+                            "appName": "Frank Clark",
+                            "appTypeId": 1,
+                            "appPlatformId": 2,
+                            "appDownLoadCount": 487,
+                            "appSize": 3008,
+                            "appImg": "images/app/3.png"
+                        }
+                        ,
+                        {
+                            "_id": 11,
+                            "appName": "Donna Hernandez",
+                            "appTypeId": 4,
+                            "appPlatformId": 1,
+                            "appDownLoadCount": 146,
+                            "appSize": 589,
+                            "appImg": "images/app/11.png"
+                        }
+                        ,
+                        {
+                            "_id": 12,
+                            "appName": "Nancy Martinez",
+                            "appTypeId": 2,
+                            "appPlatformId": 3,
+                            "appDownLoadCount": 886,
+                            "appSize": 1245,
+                            "appImg": "images/app/11.png"
+                        }
+                        ,
+                        {
+                            "_id": 13,
+                            "appName": "Steven Brown",
+                            "appTypeId": 1,
+                            "appPlatformId": 3,
+                            "appDownLoadCount": 278,
+                            "appSize": 1656,
+                            "appImg": "images/app/7.png"
+                        }
+                        ,
+                        {
+                            "_id": 14,
+                            "appName": "Gary Young",
+                            "appTypeId": 1,
+                            "appPlatformId": 4,
+                            "appDownLoadCount": 804,
+                            "appSize": 1178,
+                            "appImg": "images/app/5.png"
+                        }
+                        ,
+                        {
+                            "_id": 15,
+                            "appName": "Angela Hernandez",
+                            "appTypeId": 3,
+                            "appPlatformId": 4,
+                            "appDownLoadCount": 328,
+                            "appSize": 2526,
+                            "appImg": "images/app/8.png"
+                        }
+                        ,
+                        {
+                            "_id": 16,
+                            "appName": "Brian Miller",
+                            "appTypeId": 2,
+                            "appPlatformId": 4,
+                            "appDownLoadCount": 898,
+                            "appSize": 4947,
+                            "appImg": "images/app/3.png"
+                        }
+                        ,
+                        {
+                            "_id": 17,
+                            "appName": "Robert Perez",
+                            "appTypeId": 2,
+                            "appPlatformId": 3,
+                            "appDownLoadCount": 166,
+                            "appSize": 4276,
+                            "appImg": "images/app/10.png"
+                        }
+                        ,
+                        {
+                            "_id": 18,
+                            "appName": "Linda Young",
+                            "appTypeId": 2,
+                            "appPlatformId": 2,
+                            "appDownLoadCount": 272,
+                            "appSize": 458,
+                            "appImg": "images/app/11.png"
+                        }
+                        ,
+                        {
+                            "_id": 19,
+                            "appName": "Helen Hernandez",
+                            "appTypeId": 2,
+                            "appPlatformId": 2,
+                            "appDownLoadCount": 270,
+                            "appSize": 247,
+                            "appImg": "images/app/11.png"
+                        }
+                        ,
+                        {
+                            "_id": 20,
+                            "appName": "Margaret Taylor",
+                            "appTypeId": 3,
+                            "appPlatformId": 2,
+                            "appDownLoadCount": 221,
+                            "appSize": 939,
+                            "appImg": "images/app/2.png"
+                        }
+                        ,
+                        {
+                            "_id": 21,
+                            "appName": "Michael Hernandez",
+                            "appTypeId": 1,
+                            "appPlatformId": 2,
+                            "appDownLoadCount": 688,
+                            "appSize": 3750,
+                            "appImg": "images/app/10.png"
+                        }
+                        ,
+                        {
+                            "_id": 22,
+                            "appName": "Daniel Davis",
+                            "appTypeId": 1,
+                            "appPlatformId": 3,
+                            "appDownLoadCount": 925,
+                            "appSize": 1771,
+                            "appImg": "images/app/11.png"
+                        }
+                    ];
+                },
+                queryAppType() {
+                    this.appTypeList = [
+                        {
+                            "_id": 1,
+                            "type": "娱乐"
+                        }
+                        ,
+                        {
+                            "_id": 2,
+                            "type": "办公"
+                        }
+                        ,
+                        {
+                            "_id": 3,
+                            "type": "休闲"
+                        }
+                        ,
+                        {
+                            "_id": 4,
+                            "type": "教育"
+                        }
+                        ,
+                        {
+                            "_id": 5,
+                            "type": "新闻"
+                        }
+                    ];
+                },
+                queryAppPlatform() {
+                    this.appPlatformList = [
+                        {
+                            "_id": 1,
+                            "platform": "魔方云"
+                        }
+                        ,
+                        {
+                            "_id": 2,
+                            "platform": "云表"
+                        }
+                        ,
+                        {
+                            "_id": 3,
+                            "platform": "软件云"
+                        }
+                        ,
+                        {
+                            "_id": 4,
+                            "platform": "狐表"
+                        }
+                    ];
+                },
+                deleteApp(_id) {
+                    this.appList = this.appList.filter(item => {
+                        return item._id != _id;
+                    });
+                    this.searchApp();
+                    alert("删除成功");
+                },
+                showApp(_id) {
+                    //1.深拷贝
+                    this.lookApp = {
+                        ...this.appList.filter(item => {
+                            return item._id == _id;
+                        })[0]
+                    };
+                },
+                getTypeName(typeId) {
+                    return this.appTypeList.filter(item => { return item._id == typeId })[0].type;
+                },
+                getPlatformName(platformId) {
+                    return this.appPlatformList.filter(item => { return item._id == platformId })[0].platform;
+                },
+                updateApp() {
+                    this.appList = this.appList.map(item => {
+                        if (item._id == this.lookApp._id) {
+                            return this.lookApp;
+                        }
+                        return item;
+                    });
+                    this.searchApp();
+                    $("#updateModal").modal("hide");
+                    alert("修改成功");
+                },
+                upUpDateImg() {
+                    this.lookApp.appImg = "images/app/" + parseInt(Math.random() * 10 + 1) + ".png";
+                },
+                upAddImg() {
+                    this.addApp.appImg = "images/app/" + parseInt(Math.random() * 10 + 1) + ".png";
+                },
+                insertApp() {
+                    this.addApp._id = Date.now();
+                    this.appList.push({ ...this.addApp });
+                    this.searchApp();
+                },
+                searchApp() {
+                    //0.默认查询全部
+                    this.searchAppList = [...this.appList];
+                    //1.根据名字模糊搜索
+                    if (this.searchForm.appName) {
+                        this.searchAppList = this.searchAppList.filter(item => {
+                            return item.appName.indexOf(this.searchForm.appName) != -1;
+                        });
+                    }
+                    //2.根据类型搜索
+                    if (this.searchForm.appTypeId) {
+                        this.searchAppList = this.searchAppList.filter(item => {
+                            return item.appTypeId == this.searchForm.appTypeId;
+                        });
+                    }
+                    //3.根据平台搜索
+                    if (this.searchForm.appPlatformId) {
+                        this.searchAppList = this.searchAppList.filter(item => {
+                            return item.appPlatformId == this.searchForm.appPlatformId;
+                        });
+                    }
+                },
+                allSel() {
+                    if (this.allChecked) {//说明选中了全选
+                        this.idArray = this.searchAppList.map(item => {
+                            return item._id;
+                        });
+                        console.log(this.idArray);
+                    } else {
+                        this.idArray = [];
+                    }
+                },
+                checkAll() {
+                    this.allChecked = this.idArray.length == this.searchAppList.length;
+                },
+                deleteManyApp() {
+                    console.log(this.idArray);
+                    this.appList = this.appList.filter(item => {
+                        return this.idArray.indexOf(item._id) == -1;
+                    });
+                    this.searchApp();
+                }
+            }, created() {
+                this.queryApp();
+                this.searchApp();
+                this.queryAppPlatform();
+                this.queryAppType();
+            }
+        });
+    </script>
+</body>
+
+</html>
