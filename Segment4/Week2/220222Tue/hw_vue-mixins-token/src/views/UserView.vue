@@ -15,6 +15,7 @@
               name="userName"
               class="form-control"
               v-model="searchCondition.userName"
+              v-focus
             />
             手机号:<input
               type="text"
@@ -63,7 +64,7 @@
             <td>用户类型</td>
             <td colspan="2">操作</td>
           </tr>
-          <tr v-for="(user, index) in userList" :key="index">
+          <tr v-for="(user, index) in pageData.showDataList" :key="index">
             <td>
               选择<input
                 type="checkbox"
@@ -80,13 +81,15 @@
             <td>{{ user.userScore }}</td>
             <td>{{ user.uuid }}</td>
             <td>
-              <span v-if="user.status == 0">未激活</span>
-              <span v-else>已激活</span>
+              <!-- <span v-if="user.status == 0">未激活</span>
+              <span v-else>已激活</span> -->
+              <span>{{ user.status | userStatusFilter }}</span>
             </td>
             <td>
-              <span v-if="user.userType == 1">普通用户</span>
-              <span v-else-if="user.userType == 2">影院管理员</span>
+              <!-- <span v-if="user.userType == 1">普通用户</span>
+              <span v-else-if="user.userType == 2">影院管理员</span> -->
               <!-- <span v-else="user.userType==3">管理员</span> -->
+              <span>{{ user.userType | userTypeFilter }}</span>
             </td>
             <td>
               <button
@@ -114,7 +117,7 @@
           每页　
           <select
             class="form-control"
-            v-model.number="pageSize"
+            v-model.number="pageData.pageSize"
             @change="queryUser"
           >
             <option
@@ -133,7 +136,7 @@
         </li>
         <li
           class="page-item"
-          v-for="(pageNum, index) in totalPageNum"
+          v-for="(pageNum, index) in pageData.totalPageNum"
           :key="index"
           @click="pageNumChange(pageNum)"
         >
@@ -152,10 +155,12 @@
 import AddUser from "./user/AddUser.vue";
 import UpdateUser from "./user/UpdateUser.vue";
 import { createNamespacedHelpers } from "vuex";
+import pageMixin from "../mixins/pageMixins.js";
 import $ from "jquery";
 
 const { mapState, mapActions } = createNamespacedHelpers("user");
 export default {
+  mixins: [pageMixin],
   name: "UserView",
   data() {
     return {
@@ -183,10 +188,12 @@ export default {
     // 1. queryUser
     async queryUser(nowPageNum) {
       await this.queryUserAsync(this.searchCondition);
-      this.userList = [...this.pageInfo.userList];
+      this.pageData.originDataList = [...this.pageInfo.userList];
       // this.userList = this.queryUserByCondition();
-      this.totalPageNum = Math.ceil(this.userList.length / this.pageSize);
-      this.userList = this.pagination(nowPageNum);
+      this.pageData.totalPageNum = Math.ceil(
+        this.pageData.originDataList.length / this.pageData.pageSize
+      );
+      this.pageData.showDataList = this.pagination(nowPageNum);
     },
 
     // 1.1 multi condition query
@@ -198,32 +205,23 @@ export default {
     //   );
     // },
 
-    // 1.2 get pagination data
-    /**
-     * @description:
-     * @param {*} nowPageNum: 用于重置nowPageNum为1,防止点击第二页后,再点击多条件搜索,受到nowPageNum变为2产生的影响
-     * @return {*}
-     */
-    pagination(nowPageNum) {
-      return [...this.pageInfo.userList].splice(
-        ((nowPageNum ?? this.nowPageNum) - 1) * this.pageSize,
-        this.pageSize
-      );
-    },
+    // // 1.2 get pagination data
+    // /**
+    //  * @description:
+    //  * @param {*} nowPageNum: 用于重置nowPageNum为1,防止点击第二页后,再点击多条件搜索,受到nowPageNum变为2产生的影响
+    //  * @return {*}
+    //  */
+    // pagination(nowPageNum) {
+    //   return [...this.pageInfo.userList].splice(
+    //     ((nowPageNum ?? this.nowPageNum) - 1) * this.pageSize,
+    //     this.pageSize
+    //   );
+    // },
 
     // 1.3 pageNumChange
-    pageNumChange(pageNum) {
-      if (pageNum < 0) {
-        if (pageNum == -1 && this.nowPageNum > 1) {
-          this.nowPageNum -= 1;
-        } else if (pageNum == -2 && this.nowPageNum < this.totalPageNum) {
-          this.nowPageNum += 1;
-        }
-      } else {
-        this.nowPageNum = pageNum;
-      }
-      this.userList = this.pagination();
-    },
+    // pageNumChange1(pageNum) {
+    //   this.pageData.dataList = this.pageNumChange(pageNum);
+    // },
 
     // 2. del user
     async delUserById(_idArr) {
@@ -250,9 +248,12 @@ export default {
     // 4. update user
     async updateUser(user) {
       let status = await this.updateUserAsync(user);
+      console.log(status);
       if (status == "1") {
         $("#updateModal").modal("hide");
         this.queryUser();
+      } else if (status == "userNameAlreadyExist") {
+        alert("用户名已存在");
       } else {
         alert("修改失败...");
       }
@@ -261,7 +262,9 @@ export default {
     // 4.1 update modal show back data
     updateShowBack(_id) {
       this.updateShowBackObj = {
-        ...this.userList.filter((element) => element._id == _id)[0],
+        ...this.pageData.showDataList.filter(
+          (element) => element._id == _id
+        )[0],
       };
       this.$store.commit("user/SET_UPDATE_SHOW_BACK", this.updateShowBackObj);
     },
@@ -283,6 +286,8 @@ export default {
   },
   created() {
     this.queryUser();
+    // console.log(this.pageData.pageSizeList);
+    this.initMixinsData();
   },
   computed: {
     ...mapState(["pageInfo"]),

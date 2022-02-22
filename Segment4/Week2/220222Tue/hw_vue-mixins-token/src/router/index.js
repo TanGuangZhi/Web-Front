@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-22 09:55:55 Tue
- * @LastEditTime: 2022-02-22 15:07:06 Tue
+ * @LastEditTime: 2022-02-22 19:24:22 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -46,23 +46,23 @@ const router = new VueRouter({
 })
 
 // set global guider
-let noCheckTokenArray = ["/login", "/userView"]
-router.beforeEach((to, from, next) => {
-    if (noCheckTokenArray.includes(to.path)) {
-        next();
-    } else {
-        let token = localStorage.getItem("token");
-        if (token) {
-            api.user.checkTokenApi(token).then(res => {
-                next();
-            }).catch(err => {
-                localStorage.removeItem("token");
-                // store.commit("SET_USER_INFO", {});
-                next("/login");
-            })
-        } else {
-            alert("请先登录");
-        }
-    }
-})
+// let noCheckTokenArray = ["/login"]
+// router.beforeEach((to, from, next) => {
+//     if (noCheckTokenArray.includes(to.path)) {
+//         next();
+//     } else {
+//         let token = localStorage.getItem("token");
+//         if (token) {
+//             api.user.checkTokenApi(token).then(res => {
+//                 next();
+//             }).catch(err => {
+//                 localStorage.removeItem("token");
+//                 // store.commit("SET_USER_INFO", {});
+//                 next("/login");
+//             })
+//         } else {
+//             alert("请先登录");
+//         }
+//     }
+// })
 export default router

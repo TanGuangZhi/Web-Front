@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-02-22 15:08:27 Tue
- * @LastEditTime: 2022-02-22 15:51:42 Tue
+ * @LastEditTime: 2022-02-22 19:18:36 Tue
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -28,7 +28,13 @@ export default {
   methods: {
     ...mapActions(["loginAsync"]),
     async login() {
-      await this.loginAsync(this.user);
+      let data = await this.loginAsync(this.user);
+      if (data.user) {
+        alert("login success");
+      } else {
+        alert("login failed");
+      }
+      // console.log("data:", data);
     },
   },
 };
