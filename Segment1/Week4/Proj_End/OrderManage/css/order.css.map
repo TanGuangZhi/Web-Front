@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,CAAC,CAAA;EACG,KAAK,EAAE,IAAI;CACd",
-    "sources": [
-        "order.scss"
-    ],
-    "names": [],
-    "file": "order.css"
-}

@@ -1,7 +1,0 @@
-_id,bookName,bookPrice,bookType,bookImg,bookCount,bookNum
-1,Anthony Lee,138.77,励志,images/book/9.jpg,834,212
-2,Margaret Young,108.21,小说,images/book/9.jpg,177,286
-3,Kimberly Taylor,86.34,人物,images/book/5.jpg,885,735
-4,Richard Gonzalez,65.71,历史,images/book/2.jpg,757,685
-5,Daniel Perez,183.59,励志,images/book/2.jpg,691,991
-6,John Harris,165.74,小说,images/book/3.jpg,425,685
