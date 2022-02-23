@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-18 19:51:30 Fri
- * @LastEditTime: 2022-02-22 20:52:35 Tue
+ * @LastEditTime: 2022-02-23 20:47:16 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -18,6 +18,9 @@ class UserModel {
         }
         if (data.userPhone) {
             multipleQueryObj.userPhone = data.userPhone;
+        }
+        if (data.userType) {
+            multipleQueryObj.userType = data.userType - 0;
         }
         return await dbUser.find(multipleQueryObj);
     }
