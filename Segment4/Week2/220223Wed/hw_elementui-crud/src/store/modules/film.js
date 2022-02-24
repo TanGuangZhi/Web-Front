@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-21 18:26:36 Mon
- * @LastEditTime: 2022-02-21 19:32:34 Mon
+ * @LastEditTime: 2022-02-24 19:05:11 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -27,8 +27,8 @@ export default {
 
     },
     actions: {
-        async queryFilmAsync(context) {
-            let data = await api.film.queryFilmApi();
+        async queryFilmAsync(context, queryData) {
+            let data = await api.film.queryFilmApi(queryData);
             context.commit("SET_FILM_LIST", data.data);
         },
         async insertFilmAsync(context, _id) {

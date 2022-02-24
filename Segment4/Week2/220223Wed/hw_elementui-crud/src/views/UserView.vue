@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-02-23 18:40:52 Wed
- * @LastEditTime: 2022-02-23 20:45:06 Wed
+ * @LastEditTime: 2022-02-24 20:26:17 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -10,12 +10,14 @@
   <div id="app">
     <el-row style="text-align: center; line-height: 150px">
       <el-col :span="18">
-        用户名:<el-input
+        用户名:
+        <el-input
           placeholder="请输入用户名"
           v-model="searchCondition.userName"
           style="width: 200px"
         ></el-input>
-        手机号:<el-input
+        手机号:
+        <el-input
           placeholder="请输入手机号"
           v-model="searchCondition.userPhone"
           style="width: 200px"
@@ -27,20 +29,20 @@
           <el-option label="超级管理员" value="3"></el-option>
         </el-select>
 
-        <el-button type="primary" icon="el-icon-search" @click="queryUser"
-          >搜索</el-button
-        >
+        <el-button type="primary" icon="el-icon-search" @click="queryUser">
+          搜索
+        </el-button>
       </el-col>
       <el-col :span="6">
-        <el-button type="success" size="default" @click="insertDialog = true"
-          >添加</el-button
-        >
-        <el-button type="danger" size="default" @click="delUserById()"
-          >批量删除</el-button
-        >
+        <el-button type="success" size="default" @click="insertDialog = true">
+          添加
+        </el-button>
+        <el-button type="danger" size="default" @click="delUserById()">
+          批量删除
+        </el-button>
       </el-col>
     </el-row>
-    <el-row type="flex" justify="end"> </el-row>
+    <el-row type="flex" justify="end"></el-row>
     <el-table
       :data="pageData.showDataList"
       border
@@ -79,15 +81,17 @@
             plain
             size="mini"
             @click="updateShowBack(scope.row._id)"
-            >修改</el-button
           >
+            修改
+          </el-button>
           <el-button
             type="danger"
             plain
             size="mini"
             @click="delUserById([scope.row._id])"
-            >删除</el-button
           >
+            删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -124,9 +128,9 @@
             <el-row>
               <el-col :span="24" style="text-align: center">
                 <el-button type="primary" @click="insertUser">添加</el-button>
-                <el-button type="danger" @click="insertDialog = false"
-                  >取消</el-button
-                >
+                <el-button type="danger" @click="insertDialog = false">
+                  取消
+                </el-button>
               </el-col>
             </el-row>
           </el-form>
@@ -174,9 +178,9 @@
             <el-row>
               <el-col :span="24" style="text-align: center">
                 <el-button type="primary" @click="updateUser">修改</el-button>
-                <el-button type="danger" @click="changeDialog = false"
-                  >取消</el-button
-                >
+                <el-button type="danger" @click="changeDialog = false">
+                  取消
+                </el-button>
               </el-col>
             </el-row>
           </el-form>
@@ -233,7 +237,6 @@ export default {
     ]),
     // 1. queryUser
     async queryUser(nowPageNum) {
-      console.log(this.searchCondition);
       await this.queryUserAsync(this.searchCondition);
       this.pageData.originDataList = [...this.pageInfo.userList];
       // this.userList = this.queryUserByCondition();
@@ -250,7 +253,10 @@ export default {
       if (status == "1") {
         this.queryUser();
       } else {
-        alert("删除失败...");
+        this.$message({
+          type: "error",
+          message: "删除失败",
+        });
       }
     },
 
@@ -261,7 +267,10 @@ export default {
         this.insertDialog = false;
         this.queryUser();
       } else {
-        alert("添加失败...");
+        this.$message({
+          type: "error",
+          message: "添加失败",
+        });
       }
     },
 
@@ -272,9 +281,15 @@ export default {
         this.changeDialog = false;
         this.queryUser();
       } else if (status == "userNameAlreadyExist") {
-        alert("用户名已存在");
+        this.$message({
+          type: "error",
+          message: "用户名已存在,请修改",
+        });
       } else {
-        alert("修改失败...");
+        this.$message({
+          type: "error",
+          message: "修改失败",
+        });
       }
     },
 
@@ -309,5 +324,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

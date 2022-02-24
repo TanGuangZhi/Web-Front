@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-22 18:57:11 Tue
- * @LastEditTime: 2022-02-23 18:46:18 Wed
+ * @LastEditTime: 2022-02-24 14:14:00 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -11,6 +11,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from "axios";
+import Utils from './common/utils'
 import "./filters/filter.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -24,6 +25,8 @@ import "./directives/directive.js";
 import './plugins/element.js'
 
 Vue.config.productionTip = false
+Vue.prototype.$http = axios
+Vue.prototype.Utils = Utils
 //1.配置后端接口的基础路径
 axios.defaults.baseURL = "http://localhost:3000/";
 

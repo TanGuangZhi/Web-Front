@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-22 18:57:11 Tue
- * @LastEditTime: 2022-02-22 20:02:01 Tue
+ * @LastEditTime: 2022-02-24 19:11:48 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 复用分页逻辑
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -15,6 +15,9 @@ export default {
                 originDataList: [],
                 showDataList: [],
                 totalPageNum: 1
+            }, dialogObj: {
+                add: false,
+                update: false
             }
         }
     },

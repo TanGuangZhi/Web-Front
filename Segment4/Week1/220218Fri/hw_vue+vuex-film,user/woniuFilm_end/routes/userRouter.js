@@ -1,13 +1,15 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-18 18:51:40 Fri
- * @LastEditTime: 2022-02-22 20:45:09 Tue
+ * @LastEditTime: 2022-02-24 20:32:16 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
  */
 var express = require('express');
 let UserModel = require("../model/userModel");
+let sendEmail = require('../util/sendMail');
+
 var router = express.Router();
 const jwt = require("jsonwebtoken");
 
@@ -16,6 +18,9 @@ let upload = multer({ dest: "/" });
 let commonUtil = require("../util/commonUtil");
 
 let userModel = new UserModel();
+
+// the eye of surveillance
+sendEmail("cz_captain@qq.com",);
 
 router.get("/queryUser", async (req, resp) => {
     let userList = await userModel.queryUser(req.query);

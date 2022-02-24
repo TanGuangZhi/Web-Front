@@ -1,182 +1,164 @@
 <template>
-  <div id="app">
+  <div id="filmView">
+    <AddFilm :dialogObj="dialogObj" @insertFilm="insertFilm" />
     <UpdateFilm
-      :lookFilm="lookFilm"
-      :oldLookFilm="oldLookFilm"
-      @updateFilm="updateFilm1"
-    />
-    <AddFilm @insertFilm="insertFilm" />
-    <h3 class="text-center" style="line-height: 100px">电影管理</h3>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8" style="line-height: 60px">
-          <form class="form-inline">
-            电影名称:<input
-              type="text"
-              placeholder="请输入电影名称"
-              name="filmName"
-              class="form-control"
-              v-model="searchCondition.filmName"
-              v-focus
-            />
-            电影类型:
-            <select
-              name="filmType"
-              v-model="searchCondition.filmType"
-              class="form-control"
-              @change="queryFilm"
-            >
-              <option value="">请选择电影类型</option>
-              <option value="动画">动画</option>
-              <option value="动漫">动漫</option>
-              <option value="动作">动作</option>
-              <option value="武侠">武侠</option>
-              <option value="犯罪">犯罪</option>
-              <option value="名著">名著</option>
-              <option value="喜剧">喜剧</option>
-            </select>
-            <button type="button" class="btn btn-info" @click="queryFilm(1)">
-              搜索
-            </button>
-          </form>
-        </div>
-        <div class="col-md-4 text-right">
-          <button
-            type="button"
-            class="btn btn-warning"
-            data-toggle="modal"
-            data-target="#addModal"
-          >
-            添加
-          </button>
-          <button type="button" class="btn btn-danger">批量删除</button>
-        </div>
-      </div>
-      <div class="row">
-        <table class="col-md-12 table-bordered text-center">
-          <tr style="line-height: 60px; background: lightblue">
-            <td>
-              <input
-                type="checkbox"
-                id="allId"
-                v-model="allSelectedFlag"
-                @change="allSelected"
-              />全选/全消
-            </td>
-            <td>编号</td>
-            <td>电影名称</td>
-            <td>电影价格</td>
-            <td>电影类型</td>
-            <td>电影图片</td>
-            <td>电影评分</td>
-            <td colspan="2">操作</td>
-          </tr>
-          <tr v-for="(film, index) in pageData.showDataList" :key="index">
-            <td>
-              选择<input
-                type="checkbox"
-                class="sel"
-                :value="film._id"
-                v-model="idArray"
-                @change="selectedBetter"
-              />
-            </td>
-            <td>{{ film._id }}</td>
-            <td>{{ film.filmName }}</td>
-            <td>{{ film.filmPrice }}元</td>
-            <td>{{ film.filmType }}</td>
-            <td>
-              <img
-                :src="'http://localhost:3000/' + film.filmImg"
-                width="50px"
-                class="img-thumbnail"
-              />
-            </td>
-            <td>{{ film.filmScore }}分</td>
-            <td>
-              <button
-                type="button"
-                class="btn btn-danger"
-                @click="deleteFilm(film._id)"
-              >
-                <span class="glyphicon glyphicon-remove"></span>删除
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                @click="showFilm(film)"
-                data-toggle="modal"
-                data-target="#updateModal"
-              >
-                <span class="glyphicon glyphicon-pencil"></span>修改
-              </button>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <ul class="pagination justify-content-center" style="margin-top: 20px">
-        <li style="line-height: 40px" class="form-inline">
-          每页　
-          <select
-            class="form-control"
-            v-model.number="pageData.pageSize"
-            @change="queryFilm"
-          >
-            <option
-              v-for="(size, index) in [10, 20, 50]"
-              :key="index"
-              :value="size"
-            >
-              {{ size }}
-            </option>
-          </select>
-          　条记录　
-        </li>
-        <li class="page-item active" @click="pageNumChange(-1)">
-          <a class="page-link" href="javascript:void(0)">&laquo;</a>
-        </li>
-        <li
-          class="page-item"
-          v-for="(pageNum, index) in pageData.totalPageNum"
-          :key="index"
-          @click="pageNumChange(pageNum)"
+      :dialogObj="dialogObj"
+      :updateShowBackObj="updateShowBackObj"
+      :oldUpdateShowBackObj="oldUpdateShowBackObj"
+      @updateFilm="updateFilm"
+    ></UpdateFilm>
+    <h1 style="text-align: center">电影管理</h1>
+    <el-row style="line-height: 100px; text-align: center">
+      <el-col :span="16">
+        电影名: 　
+        <el-input
+          placeholder="请输入电影名称"
+          v-model.trim="searchCondition.filmName"
+          style="width: 200px"
+        ></el-input>
+        　电影类型: 　
+        <el-select v-model="searchCondition.filmType">
+          <el-option label="请选择" value=""></el-option>
+          <el-option
+            v-for="(type, index) in typeList"
+            :label="type"
+            :value="type"
+            :key="index"
+          ></el-option>
+        </el-select>
+        <el-button type="primary" icon="el-icon-search" @click="queryFilm">
+          搜索
+        </el-button>
+      </el-col>
+      <el-col :span="8">
+        <el-button
+          type="info"
+          icon="el-icon-circle-plus"
+          @click="dialogObj.add = true"
         >
-          <a class="page-link" href="javascript:void(0)">{{ pageNum }}</a>
-        </li>
+          添加
+        </el-button>
+        <el-button type="warning" icon="el-icon-delete" @click="delFilmById()">
+          批量删除
+        </el-button>
+      </el-col>
+    </el-row>
 
-        <li class="page-item active" @click="pageNumChange(-2)">
-          <a class="page-link" href="javascript:void(0)">&raquo;</a>
-        </li>
-      </ul>
-    </div>
+    <el-row>
+      <el-col :span="20" :offset="2">
+        <el-table
+          :data="pageData.showDataList"
+          border
+          @selection-change="selFilm"
+        >
+          <el-table-column type="selection"></el-table-column>
+          <el-table-column
+            label="编号"
+            prop="_id"
+            align="center"
+            width="40px"
+          ></el-table-column>
+          <el-table-column
+            label="电影名称"
+            prop="filmName"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="电影价格"
+            prop="filmPrice"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="电影评分"
+            prop="filmScore"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="电影类型"
+            prop="filmType"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="电影票房"
+            prop="boxOffice"
+            align="center"
+          ></el-table-column>
+          <el-table-column label="电影图片" prop="filmImg" align="center">
+            <template slot-scope="scope">
+              <img
+                :src="'http://localhost:3000/' + scope.row.filmImg"
+                width="40px"
+              />
+            </template>
+          </el-table-column>
+          <el-table-column label="操作" width="250px" align="center">
+            <template slot-scope="scope">
+              <el-button
+                size="mini"
+                icon="el-icon-edit"
+                type="success"
+                @click="updateShowBack(scope.row)"
+              >
+                修改
+              </el-button>
+              <el-button
+                size="mini"
+                icon="el-icon-delete"
+                type="danger"
+                @click="delFilmById(scope.row._id)"
+              >
+                删除
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-col>
+    </el-row>
+    <!--
+        @size-change:当改变一页显示的数据量pageSize的时候  调用该函数 并且将改变之后pageSize作为函数的参数传入
+        @current-change: 当页码改变的时候 调用该函数 并且将改变之后的nowPage作为函数的参数传入
+        :current-page: 绑定的是 当前的页码值
+        :page-sizes: 绑定一个数组 用来记录 改变pageSize下拉列表中的数据的
+        :page-size:记录当前 一页显示的最大数据量
+        :total:记录当前数据的总数
+         layout：布局 total 总数, sizes 改变一页数据量的下拉列表, prev 上一页, pager 数字页码, next下一页, jumper 当前页码
+      -->
+    <el-pagination
+      @size-change="changePageSize"
+      @current-change="changeNowPage"
+      :current-page="pageData.nowPageNum"
+      :page-sizes="[10, 20, 50]"
+      :page-size="pageData.pageSize"
+      :total="pageData.originDataList.length"
+      layout="total, sizes, prev, pager, next, jumper"
+      style="text-align: center"
+      class="border"
+    ></el-pagination>
   </div>
 </template>
 
 <script>
-import AddFilm from "./film/AddFilm.vue";
-import UpdateFilm from "./film/UpdateFilm.vue";
 import { createNamespacedHelpers } from "vuex";
 import pageMixin from "../mixins/pageMixins.js";
-import $ from "jquery";
+import AddFilm from "./film/AddFilm.vue";
+import UpdateFilm from "./film/UpdateFilm.vue";
+
 const { mapState, mapActions } = createNamespacedHelpers("film");
 export default {
   mixins: [pageMixin],
-  name: "FilmView",
+  name: "app",
   components: {
     AddFilm,
     UpdateFilm,
   },
   data() {
     return {
-      allSelectedFlag: false,
-      idArray: [],
-      lookFilm: {},
-      oldLookFilm: {},
-      filmList: [],
-      searchCondition: { filmType: "" },
-      totalPageNum: 1,
-      nowPageNum: 1,
-      pageSize: 10,
+      updateShowBackObj: {},
+      oldUpdateShowBackObj: {},
+      _idArr: [],
+      insertFilmArr: {},
+      typeList: ["动画", "动漫", "爱情", "动作", "喜剧", "名著", "战争"],
+      searchCondition: {},
     };
   },
   methods: {
@@ -186,9 +168,9 @@ export default {
       "deleteFilmAsync",
       "updateFilmAsync",
     ]),
-
-    // 1. query
+    // 1. queryFilm
     async queryFilm(nowPageNum) {
+      console.log(this.searchCondition);
       await this.queryFilmAsync(this.searchCondition);
       this.pageData.originDataList = [...this.pageInfo.filmList];
       // this.filmList = this.queryFilmByCondition();
@@ -198,98 +180,79 @@ export default {
       this.pageData.showDataList = this.pagination(nowPageNum);
     },
 
-    // // 1.1 multi condition query
-    // queryFilmByCondition() {
-    //   return this.filmList.filter(
-    //     (element) =>
-    //       element.filmName.includes(this.searchCondition.filmName ?? "") &&
-    //       element.filmType.includes(this.searchCondition.filmType ?? "")
-    //   );
-    // },
-
-    // // 1.2 get pagination data
-    // /**
-    //  * @description:
-    //  * @param {*} nowPageNum: 用于重置nowPageNum为1,防止点击第二页后,再点击多条件搜索,受到nowPageNum变为2产生的影响
-    //  * @return {*}
-    //  */
-    // pagination(nowPageNum) {
-    //   return this.filmList.splice(
-    //     ((nowPageNum ?? this.nowPageNum) - 1) * this.pageSize,
-    //     this.pageSize
-    //   );
-    // },
-
-    // // 1.3 pageNumChange
-    // pageNumChange(pageNum) {
-    //   if (pageNum < 0) {
-    //     if (pageNum == -1 && this.nowPageNum > 1) {
-    //       this.nowPageNum -= 1;
-    //     } else if (pageNum == -2 && this.nowPageNum < this.totalPageNum) {
-    //       this.nowPageNum += 1;
-    //     }
-    //   } else {
-    //     this.nowPageNum = pageNum;
-    //   }
-    //   this.queryFilm();
-    // },
-
-    async insertFilm(_id) {
-      let status = await this.insertFilmAsync(_id);
-      if (status == "1") {
-        $("#addModal").modal("hide");
-        this.queryFilm();
-      } else {
-        alert("添加失败...");
-      }
-    },
-    async deleteFilm(_id) {
-      let status = await this.deleteFilmAsync(_id);
+    // 2. del film
+    async delFilmById(_idArr) {
+      //   console.log(_idArr);
+      let status = await this.deleteFilmAsync(_idArr ?? this._idArr);
       if (status == "1") {
         this.queryFilm();
       } else {
-        alert("删除失败...");
+        this.$message({
+          type: "error",
+          message: "删除失败",
+        });
       }
     },
-    showFilm(film) {
-      this.lookFilm = { ...film };
-      this.oldLookFilm = { ...this.lookFilm };
-    },
-    async updateFilm1(film) {
-      let status = await this.updateFilmAsync(film);
 
+    // 3. insert film
+    async insertFilm(insertFilmArr) {
+      let status = await this.insertFilmAsync(insertFilmArr);
       if (status == "1") {
-        $("#updateModal").modal("hide");
+        this.insertDialog = false;
         this.queryFilm();
       } else {
-        alert("修改失败...");
+        this.$message({
+          type: "error",
+          message: "添加失败",
+        });
       }
+    },
+
+    // 4. update film
+    async updateFilm() {
+      let status = await this.updateFilmAsync(this.updateShowBackObj);
+      if (status == "1") {
+        this.dialogObj.update = false;
+        this.queryFilm();
+      } else if (status == "filmNameAlreadyExist") {
+        this.$message({
+          type: "error",
+          message: "电影名已存在,请修改",
+        });
+      } else {
+        this.$message({
+          type: "error",
+          message: "修改失败",
+        });
+      }
+    },
+
+    // 4.1 update modal show back data
+    updateShowBack(data) {
+      this.dialogObj.update = true;
+      this.updateShowBackObj = { ...data };
+      this.oldUpdateShowBackObj = { ...data };
+      // this.$store.commit("film/SET_UPDATE_SHOW_BACK", this.updateShowBackObj);
     },
 
     // ## other
-    // 1. all select
-    allSelected() {
-      if (this.allSelectedFlag) {
-        this.idArray = this.filmList.map((element) => element._id);
-      } else {
-        this.idArray = [];
-      }
+    // 1. select and disSelect
+    selFilm(res) {
+      this._idArr = res.map((item) => {
+        return item._id;
+      });
+      // console.log(this.idArray);
     },
-
-    // 1.1 selected better
-    selectedBetter() {
-      this.allSelectedFlag = this.idArray.length == this.filmList.length;
-    },
+  },
+  created() {
+    this.queryFilm();
+    // console.log(this.pageData.pageSizeList);
+    this.initMixinsData();
   },
   computed: {
     ...mapState(["pageInfo"]),
   },
-  created() {
-    this.queryFilm();
-    this.initMixinsData();
-  },
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

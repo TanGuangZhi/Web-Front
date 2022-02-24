@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-22 09:55:55 Tue
- * @LastEditTime: 2022-02-22 19:24:22 Tue
+ * @LastEditTime: 2022-02-24 18:03:30 Thu
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -12,25 +12,38 @@ import VueRouter from 'vue-router'
 import Login from "../views/Login.vue";
 import UserView from "../views/UserView.vue";
 import FilmView from "../views/FilmView.vue";
+import Index from "../views/Index.vue";
+import Home from "../views/Home.vue";
 import api from '../http/api';
 
 Vue.use(VueRouter)
 
 const routes = [
     {
-        path: "/login",
-        name: "Login",
-        component: Login
-    },
-    {
-        path: "/userView",
-        name: "UserView",
-        component: UserView
-    },
-    {
-        path: "/filmView",
-        name: "FilmView",
-        component: FilmView
+        path: '/',
+        redirect: "/home",
+        component: Index,
+        // name: "index",
+        // meta: { title: "首页" },
+        children: [
+            {
+                path: "/home",
+                name: "Home",
+                component: Home,
+                meta: { title: "Home" }
+            },
+            {
+                path: "/userView",
+                name: "UserView",
+                component: UserView,
+                meta: { title: "用户管理" }
+            },
+            {
+                path: "/filmView",
+                name: "FilmView",
+                component: FilmView
+            },
+        ]
     },
     {
         path: "*",
