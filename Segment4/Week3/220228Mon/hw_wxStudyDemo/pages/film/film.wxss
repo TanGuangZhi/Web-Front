@@ -1,0 +1,19 @@
+/* pages/film/film.wxss */
+.left,.right{
+    border: 1px solid; 
+    height:1230rpx
+}
+.left{
+    width: 20%;
+}
+
+.right{
+    width: 80%;
+}
+
+.leftText{
+    border: 1px solid;
+    width: 100%;
+    line-height: 30px;
+    background-color: #fff;
+}

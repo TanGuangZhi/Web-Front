@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-02-24 13:08:32 Thu
- * @LastEditTime: 2022-02-24 13:13:31 Thu
+ * @LastEditTime: 2022-02-26 15:44:04 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -22,11 +22,11 @@
     </el-menu-item>
     <el-menu-item index="/userView">
       <i class="el-icon-menu"></i>
-      <span slot="title">用户</span>
+      <span slot="title">用户管理</span>
     </el-menu-item>
     <el-menu-item index="/filmView">
       <i class="el-icon-document"></i>
-      <span slot="title">电影</span>
+      <span slot="title">电影管理</span>
     </el-menu-item>
     <el-submenu index="4">
       <template slot="title">

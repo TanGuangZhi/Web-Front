@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-22 09:55:55 Tue
- * @LastEditTime: 2022-02-24 18:03:30 Thu
+ * @LastEditTime: 2022-02-26 15:08:44 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -21,10 +21,9 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        redirect: "/home",
         component: Index,
-        // name: "index",
-        // meta: { title: "首页" },
+        name: "index",
+        meta: { title: "首页" },
         children: [
             {
                 path: "/home",
@@ -41,9 +40,14 @@ const routes = [
             {
                 path: "/filmView",
                 name: "FilmView",
-                component: FilmView
+                component: FilmView,
+                meta: { title: "电影管理" }
             },
         ]
+    }, {
+        path: "/login",
+        name: "Login",
+        component: Login
     },
     {
         path: "*",
@@ -59,23 +63,27 @@ const router = new VueRouter({
 })
 
 // set global guider
-// let noCheckTokenArray = ["/login"]
-// router.beforeEach((to, from, next) => {
-//     if (noCheckTokenArray.includes(to.path)) {
-//         next();
-//     } else {
-//         let token = localStorage.getItem("token");
-//         if (token) {
-//             api.user.checkTokenApi(token).then(res => {
-//                 next();
-//             }).catch(err => {
-//                 localStorage.removeItem("token");
-//                 // store.commit("SET_USER_INFO", {});
-//                 next("/login");
-//             })
-//         } else {
-//             alert("请先登录");
-//         }
-//     }
-// })
-export default router
+let noCheckTokenArray = ["/login"]
+router.beforeEach((to, from, next) => {
+    if (noCheckTokenArray.includes(to.path)) {
+        next();
+    } else {
+        let token = localStorage.getItem("token");
+        if (token) {
+            api.user.checkTokenApi(token).then(res => {
+                next();
+            }).catch(err => {
+                localStorage.removeItem("token");
+                // store.commit("SET_USER_INFO", {});
+                next("/login");
+            })
+        } else {
+            this.$message({
+                type: "error",
+                message: "登录信息失效,请重新登录...",
+            });
+            next("/login");
+        }
+    }
+})
+export default router;

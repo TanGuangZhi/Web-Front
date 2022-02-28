@@ -1,7 +1,11 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-21 10:18:54 Mon
+<<<<<<< Updated upstream
  * @LastEditTime: 2022-02-21 15:56:09 Mon
+=======
+ * @LastEditTime: 2022-02-21 14:20:34 Mon
+>>>>>>> Stashed changes
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -16,7 +20,18 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+<<<<<<< Updated upstream
     redirect: "/index/home"
+=======
+    name: 'home',
+    component: HomeView,
+    // 配置子路由
+    children: [{
+
+    }
+
+    ]
+>>>>>>> Stashed changes
   },
   {
     path: '/index',

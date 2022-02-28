@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-18 18:51:40 Fri
- * @LastEditTime: 2022-02-24 20:32:16 Thu
+ * @LastEditTime: 2022-02-26 15:42:26 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -20,7 +20,7 @@ let commonUtil = require("../util/commonUtil");
 let userModel = new UserModel();
 
 // the eye of surveillance
-sendEmail("cz_captain@qq.com",);
+// sendEmail("cz_captain@qq.com",);
 
 router.get("/queryUser", async (req, resp) => {
     let userList = await userModel.queryUser(req.query);
@@ -61,37 +61,35 @@ router.post("/updateUser", async (req, resp) => {
  * @apiVersion 1.0.0
  */
 router.get("/loginUser", async (req, resp) => {
-    (async () => {
-        let userName = req.query.userName;
-        let userPass = req.query.userPass;
-        let userArray = await userModel.loginUser(userName);
-        if (userArray.length > 0) {
-            let user = userArray[0];
-            if (user.status != 1) {
-                resp.send("2");//用户未激活
-            } else if (user.userType != 3) {
-                resp.send("3");//用户权限不够无法登录
-            } else if (user.userPass != userPass) {
-                resp.send("4");//用户密码不正确
-            } else {
-                //1.th1:token保存的用户信息
-                //2. th2:加密的唯一标识
-                //3.token的存活时间(单位/s)  支持字符串的写法   "1h" 一小时 "1days" 一天
-                const token = jwt.sign({ user }, "user", { expiresIn: 10 });
-                console.log(token);
-                resp.send(JSON.stringify({ token, user }));
-            }
+    let userName = req.query.userName;
+    let userPass = req.query.userPass;
+    let userArray = await userModel.loginUser(userName);
+    if (userArray.length > 0) {
+        let user = userArray[0];
+        if (user.status != 1) {
+            resp.send("用户未激活");//用户未激活
+        } else if (user.userType != 3) {
+            resp.send("用户权限不够");//用户权限不够无法登录
+        } else if (user.userPass != userPass) {
+            resp.send("密码不正确");//用户密码不正确
         } else {
-            resp.send("1");//用户名不正确...
+            //1.th1:token保存的用户信息
+            //2. th2:加密的唯一标识
+            //3.token的存活时间(单位/s)  支持字符串的写法   "1h" 一小时 "1days" 一天
+            // 1296000 = 15day
+            const token = jwt.sign({ user }, "user", { expiresIn: 1296000 });
+            // console.log(token);
+            resp.send(JSON.stringify({ token, user }));
         }
-    })();
+    } else {
+        resp.send("用户名不正确");//用户名不正确...
+    }
 });
 
-router.post("/getUserInfo", (req, resp) => {
+router.post("/checkToken", (req, resp) => {
     let token = req.body.token;
     // //解密 会把token生成时传入的用户信息解密出来
     let user = jwt.verify(token, 'user');
-    console.log(user);
     resp.send({
         code: 200,
         ...user

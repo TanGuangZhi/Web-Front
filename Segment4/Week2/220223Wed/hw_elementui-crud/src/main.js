@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-22 18:57:11 Tue
- * @LastEditTime: 2022-02-24 14:14:00 Thu
+ * @LastEditTime: 2022-02-26 14:13:09 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -28,7 +28,7 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.prototype.Utils = Utils
 //1.配置后端接口的基础路径
-axios.defaults.baseURL = "http://localhost:3000/";
+axios.defaults.baseURL = "http://localhost:7777/";
 
 new Vue({
   router,

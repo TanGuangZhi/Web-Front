@@ -30,13 +30,14 @@
             ></el-input>
           </el-form-item>
 
-          <el-form-item label="电影评分:">
+          <el-form-item label="电影评分:" justify="center">
             <el-rate
               v-model="updateShowBackObj.filmScore"
               :colors="colors"
               :max="5"
               :low-threshold="2"
               :high-threshold="4"
+              justify="center"
             ></el-rate>
           </el-form-item>
 

@@ -1,0 +1,26 @@
+<!--pages/film/film.wxml-->
+<view style="display:flex">
+    <scroll-view class="left" scroll-y>
+        <view class="leftText" wx:for="{{20}}">
+            111
+        </view>
+    </scroll-view>
+
+    <scroll-view class="right" scroll-y>
+
+        <view class="progress-box">
+            <swiper>
+                <swiper-item wx:for="{{3}}">
+                    <image src="{{filmList.image}}"></image>
+                </swiper-item>
+            </swiper>
+            <progress percent="20" show-info stroke-width="3" />
+        </view>
+        <view>{{ msg }}</view>
+        <button bindtap="clickMe">点击我</button>
+        <map></map>
+        <view class="rightText" wx:for="{{20}}">
+            {{filmList.name}}{{index+1}}
+        </view>
+    </scroll-view>
+</view>

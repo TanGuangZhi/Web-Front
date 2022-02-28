@@ -1,44 +1,152 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-02-22 15:08:27 Tue
- * @LastEditTime: 2022-02-22 19:18:36 Tue
+ * @LastEditTime: 2022-02-26 15:42:57 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
 -->
 <template>
-  <div id="app">
-    <form action="">
-      userName:<input type="text" name="userName" v-model="user.userName" />
-      userPass:<input type="text" name="userPass" v-model="user.userPass" />
-      <button @click="login" type="button">login</button>
-    </form>
+  <div>
+    <el-row :gutter="15" style="width: 300px; margin: 50px 0 0 40%">
+      <el-form
+        ref="elForm"
+        :model="formData"
+        :rules="rules"
+        size="medium"
+        label-width="100px"
+        label-position="top"
+      >
+        <el-col :span="24">
+          <el-form-item label="用户名" prop="userName">
+            <el-input
+              v-model="formData.userName"
+              placeholder="请输入用户名"
+              clearable
+              prefix-icon="el-icon-user-solid"
+              :style="{ width: '100%' }"
+            ></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="24">
+          <el-form-item label="密码" prop="userPass">
+            <el-input
+              v-model="formData.userPass"
+              placeholder="请输入密码"
+              clearable
+              prefix-icon="el-icon-lock"
+              show-password
+              :style="{ width: '100%' }"
+            ></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="4">
+          <el-checkbox v-model="rememberMe">15天内记住我</el-checkbox>
+        </el-col>
+
+        <el-col :span="24">
+          <el-form-item size="large">
+            <el-button type="primary" @click="loginBtnClick">登录</el-button>
+            <el-button @click="resetForm">重置</el-button>
+          </el-form-item>
+        </el-col>
+      </el-form>
+    </el-row>
   </div>
 </template>
-
 <script>
 import { createNamespacedHelpers } from "vuex";
-
+import Index from "./Index.vue";
 const { mapState, mapActions } = createNamespacedHelpers("user");
+
 export default {
-  name: "Login",
+  components: {},
+  props: [],
   data() {
-    return { user: {} };
+    return {
+      formData: {
+        userName: "",
+        userPass: undefined,
+        field104: 0,
+        loginBtn: undefined,
+      },
+      rememberMe: false,
+      rules: {
+        userName: [
+          {
+            required: true,
+            message: "请输入用户名",
+            trigger: "blur",
+          },
+        ],
+        userPass: [
+          {
+            required: true,
+            message: "请输入密码",
+            trigger: "blur",
+          },
+        ],
+      },
+    };
+  },
+  computed: {},
+  watch: {},
+  created() {},
+  mounted() {
+    let loginUserInfo = localStorage.getItem("loginUserInfo");
+    // console.log(loginUserInfo);
+    if (loginUserInfo) {
+      loginUserInfo = JSON.parse(loginUserInfo);
+      this.formData.userName = loginUserInfo.userName;
+      this.formData.userPass = loginUserInfo.userPass;
+      this.rememberMe = true;
+    }
   },
   methods: {
     ...mapActions(["loginAsync"]),
-    async login() {
-      let data = await this.loginAsync(this.user);
+    async loginBtnClick() {
+      let data = await this.loginAsync(this.formData);
+      // console.log(data.user);
+      // 1. login success
       if (data.user) {
-        alert("login success");
-      } else {
-        alert("login failed");
+        localStorage.setItem("token", data.token);
+        this.$message({
+          type: "success",
+          message: "登录成功,正在跳转...",
+        });
+        // 1.2. remember me?
+        if (this.rememberMe) {
+          localStorage.setItem(
+            "loginUserInfo",
+            JSON.stringify({
+              userName: data.user.userName,
+              userPass: data.user.userPass,
+            })
+          );
+        }
+        // 1-YH. wait some time and then to jump
+        setTimeout(() => {
+          this.$router.push({
+            path: "/home",
+          });
+        }, 600);
+      } // 1-FM. login fail
+      else {
+        this.$message({
+          type: "error",
+          message: data,
+        });
       }
-      // console.log("data:", data);
+    },
+    submitForm() {
+      this.$refs["elForm"].validate((valid) => {
+        if (!valid) return;
+        // TODO 提交表单
+      });
+    },
+    resetForm() {
+      this.$refs["elForm"].resetFields();
     },
   },
 };
 </script>
-
-<style scoped>
-</style>

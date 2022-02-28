@@ -52,5 +52,6 @@ export default {
             }
             return data.data;
         },
+
     }
 }

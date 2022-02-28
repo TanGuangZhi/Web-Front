@@ -1,43 +1,49 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-02-23 18:40:52 Wed
- * @LastEditTime: 2022-02-24 20:26:17 Thu
+ * @LastEditTime: 2022-02-26 16:27:22 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
 -->
 <template>
   <div id="app">
-    <el-row style="text-align: center; line-height: 150px">
-      <el-col :span="18">
-        用户名:
+    <el-row style="line-height: 150px" justify="space-around">
+      <el-col :span="20">
+        用户名:　
         <el-input
           placeholder="请输入用户名"
           v-model="searchCondition.userName"
-          style="width: 200px"
+          style="width: 120px"
         ></el-input>
-        手机号:
+        　手机号:　
         <el-input
           placeholder="请输入手机号"
           v-model="searchCondition.userPhone"
           style="width: 200px"
         ></el-input>
-
-        <el-select v-model="searchCondition.userType">
+        　用户类型:　
+        <el-select v-model="searchCondition.userType" style="width: 150px">
+          <el-option label="请选择" value=""></el-option>
           <el-option label="普通用户" value="1"></el-option>
           <el-option label="影院管理员" value="2"></el-option>
           <el-option label="超级管理员" value="3"></el-option>
         </el-select>
 
-        <el-button type="primary" icon="el-icon-search" @click="queryUser">
+        <el-button
+          type="primary"
+          size="mini"
+          icon="el-icon-search"
+          @click="queryUser"
+        >
           搜索
         </el-button>
       </el-col>
-      <el-col :span="6">
-        <el-button type="success" size="default" @click="insertDialog = true">
+      <el-col :span="4">
+        <el-button type="success" size="mini" @click="insertDialog = true">
           添加
         </el-button>
-        <el-button type="danger" size="default" @click="delUserById()">
+        <el-button type="danger" size="mini" @click="delUserById()">
           批量删除
         </el-button>
       </el-col>
@@ -52,7 +58,12 @@
       <!--1.设置一个全选全消，可以实现批量删除操作-->
       <el-table-column type="selection" align="center"></el-table-column>
 
-      <el-table-column align="center" prop="_id" label="编号"></el-table-column>
+      <el-table-column
+        align="center"
+        prop="_id"
+        width="50px"
+        label="编号"
+      ></el-table-column>
       <el-table-column
         align="center"
         prop="userName"

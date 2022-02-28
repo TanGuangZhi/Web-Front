@@ -20,6 +20,11 @@ router.get("/queryFilm", async (req, resp) => {
     resp.send(JSON.stringify(filmList));
 });
 
+router.get("/queryFilmType", async (req, resp) => {
+    let filmList = await filmModel.queryFilmType();
+    resp.send(JSON.stringify(filmList));
+});
+
 router.post("/insertFilm", upload.array("filmImg"), async (req, resp) => {
     let film = req.body.film;
     film.boxOffice = (Math.random() * 15).toFixed(2);

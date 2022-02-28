@@ -1,0 +1,26 @@
+<!--pages/center/center.wxml-->
+<view>
+    view1
+</view>
+
+<text>
+    text1
+</text>
+<!-- <image src="../../assets/images/icon/个人中心.png" alt="" /> -->
+<input type="text" placeholder="111" />
+
+<button type="default">default</button>
+<button type="primary" loadingk>primary</button>
+<button type="warn" plain>danger</button>
+
+<swiper autoplay circular>
+    <swiper-item>
+        <image src="../../assets/images/film/1.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+        <image src="../../assets/images/film/2.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+        <image src="../../assets/images/film/3.jpg"></image>
+    </swiper-item>
+</swiper>

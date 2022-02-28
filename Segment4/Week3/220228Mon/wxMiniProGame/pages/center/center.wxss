@@ -1,0 +1,10 @@
+/* pages/center/center.wxss */
+/* image {
+    width: 80rpx;
+    height: 80rpx;
+} */
+
+input {
+    border: 1px solid black;
+    width: 300rpx;
+}

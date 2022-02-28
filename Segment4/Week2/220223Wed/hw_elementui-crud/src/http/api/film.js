@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-21 18:26:36 Mon
- * @LastEditTime: 2022-02-24 20:19:46 Thu
+ * @LastEditTime: 2022-02-26 17:52:30 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -36,5 +36,12 @@ export default {
             method: "GET",
             params: { _id }
         });
-    }
+    },
+    queryFilmTypeApi(params) {
+        return axios({
+            url: "film/queryFilmType",
+            method: "GET",
+            params
+        });
+    },
 }

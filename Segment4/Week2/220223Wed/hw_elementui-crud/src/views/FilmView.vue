@@ -14,7 +14,7 @@
         <el-input
           placeholder="请输入电影名称"
           v-model.trim="searchCondition.filmName"
-          style="width: 200px"
+          style="width: 150px"
         ></el-input>
         　电影类型: 　
         <el-select v-model="searchCondition.filmType">
@@ -26,19 +26,31 @@
             :key="index"
           ></el-option>
         </el-select>
-        <el-button type="primary" icon="el-icon-search" @click="queryFilm">
+        　
+        <el-button
+          type="primary"
+          size="mini"
+          icon="el-icon-search"
+          @click="queryFilm"
+        >
           搜索
         </el-button>
       </el-col>
       <el-col :span="8">
         <el-button
           type="info"
+          size="mini"
           icon="el-icon-circle-plus"
           @click="dialogObj.add = true"
         >
           添加
         </el-button>
-        <el-button type="warning" icon="el-icon-delete" @click="delFilmById()">
+        <el-button
+          size="mini"
+          type="warning"
+          icon="el-icon-delete"
+          @click="delFilmById()"
+        >
           批量删除
         </el-button>
       </el-col>
@@ -86,7 +98,7 @@
           <el-table-column label="电影图片" prop="filmImg" align="center">
             <template slot-scope="scope">
               <img
-                :src="'http://localhost:3000/' + scope.row.filmImg"
+                :src="'http://localhost:7777/' + scope.row.filmImg"
                 width="40px"
               />
             </template>
@@ -230,6 +242,7 @@ export default {
     // 4.1 update modal show back data
     updateShowBack(data) {
       this.dialogObj.update = true;
+      data.filmScore /= 2;
       this.updateShowBackObj = { ...data };
       this.oldUpdateShowBackObj = { ...data };
       // this.$store.commit("film/SET_UPDATE_SHOW_BACK", this.updateShowBackObj);

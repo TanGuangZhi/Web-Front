@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-21 18:26:36 Mon
- * @LastEditTime: 2022-02-22 15:26:27 Tue
+ * @LastEditTime: 2022-02-26 15:01:02 Sat
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -46,7 +46,7 @@ export default {
     },
     checkTokenApi(token) {
         return axios({
-            url: "user/getUserInfo",
+            url: "user/checkToken",
             method: "post",
             data: { token }
         });
