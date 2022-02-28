@@ -7,7 +7,6 @@
     </scroll-view>
 
     <scroll-view class="right" scroll-y>
-
         <view class="progress-box">
             <swiper>
                 <swiper-item wx:for="{{3}}">
