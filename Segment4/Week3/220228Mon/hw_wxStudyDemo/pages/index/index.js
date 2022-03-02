@@ -17,12 +17,24 @@ Page({
       url: '../logs/logs'
     })
   },
+  apiTest() {
+    wx.request({
+      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
+      method:"GET",
+      success:({data})=>{
+        console.log(data);
+      }
+    })
+  },
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
       })
     }
+  },
+  attached(){
+    this.apiTest();
   },
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
