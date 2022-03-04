@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-12 16:35:38 Sat
+ * @LastEditTime: 2022-03-02 21:05:25 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -50,7 +50,7 @@ axios("http://localhost:3000/film/queryAfterFilm").then(res => {
     for (let film of res) {
         str += ` <dd>
                                     <div class="movie-item" >
-                                        <a href="./filmDetail.html?filmId=${film._id}" target="_blank" >
+                                        <a href="./filmDetail.html?filmId=${film._id}" >
                                             <div class="movie-poster" >
                                                 <img class="poster-default" src="./images/loading_2.e3d934bf.png">
                                                 <img class="movie-poster-img"  src="http://localhost:3000/${film.img}">

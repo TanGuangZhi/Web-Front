@@ -1,0 +1,46 @@
+<!--
+ * @Author: TanGuangZhi
+ * @Date: 2022-03-04 14:04:53 Fri
+ * @LastEditTime: 2022-03-04 14:27:04 Fri
+ * @LastEditors: TanGuangZhi
+ * @Description: 
+ * @KeyWords: Vue, Web-Server, ElementUI
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./mock.js"></script>
+    <script>
+        let user2 = Mock.mock({
+            "footList|99": [{
+                _id: "@increment(1)",
+                "foodName|1": [
+                    "尖椒鸡",
+                    "土豆排骨",
+                    "韭菜香干",
+                    "手撕包菜",
+                    "鸡腿",
+                    "红烧茄子",
+                    "鱼丸",
+                    "火腿肠炒蛋",
+                    "毛豆肉沫",
+                    "水煮肉片",
+                ],
+                "foodType|1": ["素菜", "荤菜"],
+                "foodTag|1": ["酸", "甜", "辣", "其他"],
+                foodImg: /images\/food\/food[1-9]\.jpg/g,
+            },],
+        });
+        console.table(user2.footList);
+    </script>
+</body>
+
+</html>

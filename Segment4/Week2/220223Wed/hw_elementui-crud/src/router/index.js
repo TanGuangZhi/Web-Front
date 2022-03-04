@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-22 09:55:55 Tue
- * @LastEditTime: 2022-02-26 15:08:44 Sat
+ * @LastEditTime: 2022-03-02 19:58:06 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -13,7 +13,7 @@ import Login from "../views/Login.vue";
 import UserView from "../views/UserView.vue";
 import FilmView from "../views/FilmView.vue";
 import Index from "../views/Index.vue";
-import Home from "../views/Home.vue";
+import Dashboard from "../views/Home.vue";
 import api from '../http/api';
 
 Vue.use(VueRouter)
@@ -26,10 +26,10 @@ const routes = [
         meta: { title: "首页" },
         children: [
             {
-                path: "/home",
-                name: "Home",
-                component: Home,
-                meta: { title: "Home" }
+                path: "/dashboard",
+                name: "Dashboard",
+                component: Dashboard,
+                meta: { title: "Dashboard" }
             },
             {
                 path: "/userView",

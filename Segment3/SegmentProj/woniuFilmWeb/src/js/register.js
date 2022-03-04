@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-19 15:18:46 Sat
+ * @LastEditTime: 2022-03-02 21:15:00 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -16,7 +16,7 @@ function signUpBtnClick(params) {
         e.preventDefault();
         // regular check
         if (randomCode) {
-            console.log(randomCode);
+            // console.log(randomCode);
             if ($("[name=checkCode]").val() != randomCode) {
                 alert("验证码不正确!");
                 return;
@@ -70,7 +70,7 @@ $("#togglePhoneRegister").click(function (e) {
         axios("http://localhost:3000/user/sendCheckCode", $("#addForm").serialize()).then(function (res) {
             randomCode = res;
             // console.log(randomCode);
-            signUpBtnClick(randomCode);
+            // signUpBtnClick(randomCode);
         })
 
         let waitTime = 60;

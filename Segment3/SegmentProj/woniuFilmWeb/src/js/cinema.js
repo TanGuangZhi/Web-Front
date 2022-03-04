@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-22 14:34:30 Sat
- * @LastEditTime: 2022-02-18 13:11:27 Fri
+ * @LastEditTime: 2022-03-02 20:55:43 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -38,7 +38,7 @@ function query(nowPage = 1, cinemaBrandId = null, districtId = null) {
                         <span class="cinema-tags-item">${element.roomIdToDetails[0].name}</span>
                     </div>
                     <div class="buy-btn">
-                        <a href="" class="buy" >选座购票</a>
+                        <a href="" class="buy" data-cinema-id=${element.cinemaId} data-room-id=${element.roomId} data-price=${element.filmIdToDetails[0]?.price} >选座购票</a>
                     </div>
                     <div class="price">
                         <span class="rmb red">￥</span>
@@ -179,8 +179,11 @@ function buyTicketClick(params) {
             alert("请先登录");
             return;
         };
+        let cinemaId = $(this).attr("data-cinema-id");
+        let roomId = $(this).attr("data-room-id");
+        let price = $(this).attr("price");
         window.open(
-            `chooseseat.html ? filmId = ${filmId}& cinemaId=${element.cinemaId}& roomId=${element.roomId}& price=${element.filmIdToDetails[0]?.price} `,
+            `chooseseat.html?filmId=${filmId}&cinemaId=${cinemaId}&roomId=${roomId}&price=${price}`,
             'main-iframe'
         );
     });

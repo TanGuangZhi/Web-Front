@@ -1,7 +1,7 @@
 <!--
  * @Author: TanGuangZhi
  * @Date: 2022-02-24 13:08:32 Thu
- * @LastEditTime: 2022-02-26 15:44:04 Sat
+ * @LastEditTime: 2022-03-02 19:57:46 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: Vue, Web-Server, ElementUI
@@ -16,9 +16,9 @@
     active-text-color="#ffd04b"
     :collapse="isCollapse"
   >
-    <el-menu-item index="/home">
+    <el-menu-item index="/dashboard">
       <i class="el-icon-location"></i>
-      <span slot="title">Home</span>
+      <span slot="title">Dashboard</span>
     </el-menu-item>
     <el-menu-item index="/userView">
       <i class="el-icon-menu"></i>
