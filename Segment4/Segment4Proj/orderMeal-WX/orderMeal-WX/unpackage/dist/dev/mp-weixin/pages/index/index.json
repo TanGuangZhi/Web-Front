@@ -2,7 +2,7 @@
   "navigationBarTitleText": "暴龙餐饮店",
   "navigationBarBackgroundColor": "#F7D45F",
   "usingComponents": {
-    "cart": "/pages/index/components/shopping-cart",
+    "shopping-car": "/pages/index/components/shopping-cart",
     "details": "/pages/index/components/goods-details"
   }
 }

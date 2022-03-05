@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-18 18:51:40 Fri
- * @LastEditTime: 2022-03-04 14:35:11 Fri
+ * @LastEditTime: 2022-03-04 14:45:32 Fri
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -14,6 +14,7 @@ var logger = require('morgan');
 var bodyParser = require("body-parser");
 var filmRouter = require('./routes/filmRouter');
 var userRouter = require('./routes/userRouter');
+var foodRouter = require('./routes/foodRouter');
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/film', filmRouter);
 app.use('/user', userRouter);
+app.use('/food', foodRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
