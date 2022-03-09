@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-02-18 18:51:40 Fri
- * @LastEditTime: 2022-02-26 15:42:26 Sat
+ * @LastEditTime: 2022-03-07 10:21:18 Mon
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -66,7 +66,7 @@ router.get("/loginUser", async (req, resp) => {
     let userArray = await userModel.loginUser(userName);
     if (userArray.length > 0) {
         let user = userArray[0];
-        if (user.status != 1) {
+        if (user.userStatus != 1) {
             resp.send("用户未激活");//用户未激活
         } else if (user.userType != 3) {
             resp.send("用户权限不够");//用户权限不够无法登录

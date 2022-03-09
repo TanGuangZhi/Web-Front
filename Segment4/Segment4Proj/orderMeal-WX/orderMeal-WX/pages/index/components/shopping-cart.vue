@@ -5,7 +5,7 @@
     <view class="goods-details coup-anim">
       <view class="empty">
         <image src="/static/tab/qingkong.svg" mode="widthFix"></image>
-        <text @click="empTy()">清空已点</text>
+        <text @click="emptyShoppingCar()">清空已点</text>
       </view>
       <!-- 商品列表 -->
       <block v-for="(item, index) in shoppingCarList" :key="index">
@@ -26,41 +26,21 @@
               <text>{{ item.total_price }}</text>
             </view> -->
           </view>
-          <!-- <view class="goods-quantity">
+          <view class="goods-quantity">
             <view>
               <image
                 src="/static/tab/jianhao.png"
                 mode="widthFix"
-                @click="
-                  reduce(
-                    index,
-                    item.quantity,
-                    item._id,
-                    item.cid,
-                    item.good_index,
-                    item.unitprice
-                  )
-                "
               ></image>
             </view>
-            <view>{{ item.quantity }}</view>
+            <view>{{ item.foodQuantity }}</view>
             <view>
               <image
                 src="/static/tab/jia.png"
                 mode="widthFix"
-                @click="
-                  plus(
-                    index,
-                    item.quantity,
-                    item._id,
-                    item.cid,
-                    item.good_index,
-                    item.unitprice
-                  )
-                "
               ></image>
             </view>
-          </view> -->
+          </view>
         </view>
       </block>
       <view style="height: 100rpx"></view>
@@ -76,35 +56,10 @@ export default {
       // 调用父组件的pop_Shopping()
       this.$parent.showShoppingCar(false);
     },
-    // -
-    reduce(index, quantity, _id, cid, good_index, unitprice) {
-      console.log(this.shoppingCarList[index]);
-      const QU = quantity - 1;
-      this.$parent.shopping_Cart_add_sub(
-        index,
-        QU,
-        _id,
-        cid,
-        good_index,
-        unitprice
-      );
-    },
-    // +
-    plus(index, quantity, _id, cid, good_index, unitprice) {
-      console.log(this.shoppingCarList[index]);
-      const QU = quantity + 1;
-      this.$parent.shopping_Cart_add_sub(
-        index,
-        QU,
-        _id,
-        cid,
-        good_index,
-        unitprice
-      );
-    },
+   
     // 清空已点
-    empTy() {
-      this.$parent.empty_data();
+    emptyShoppingCar() {
+      this.$parent.emptyShoppingCar();
     },
   },
 };

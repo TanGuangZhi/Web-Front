@@ -100,7 +100,7 @@ var render = function() {
   if (!_vm._isMounted) {
     _vm.e0 = function($event) {
       $event.stopPropagation()
-      _vm.total_quantity == 0 ? false :  true && _vm.placean_order()
+      _vm.shoppingCarTotalNum == 0 ? false :  true && _vm.readyToPay()
     }
   }
 }
@@ -137,6 +137,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 40));
+
+
 
 
 
@@ -494,9 +496,11 @@ var _Date_analysis = __webpack_require__(/*! ../../config/Date_analysis.js */ 14
 //
 //
 //
+//
+//
 var app = getApp();var Modelmes = app.globalData.Modelmes; // 小程序端一次性只返回20条数据；云函数段100条；外部nodejs，java返回10条
 // 引入购物车子组件
-var ShoppingCar = function ShoppingCar() {__webpack_require__.e(/*! require.ensure | pages/index/components/shopping-cart */ "pages/index/components/shopping-cart").then((function () {return resolve(__webpack_require__(/*! ./components/shopping-cart.vue */ 152));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Details = function Details() {__webpack_require__.e(/*! require.ensure | pages/index/components/goods-details */ "pages/index/components/goods-details").then((function () {return resolve(__webpack_require__(/*! ./components/goods-details.vue */ 159));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { ShoppingCar: ShoppingCar, Details: Details }, data: function data() {return { exist: true, Modelmes: Modelmes, trigger: 0, //类目选中的值
+var ShoppingCar = function ShoppingCar() {__webpack_require__.e(/*! require.ensure | pages/index/components/shopping-cart */ "pages/index/components/shopping-cart").then((function () {return resolve(__webpack_require__(/*! ./components/shopping-cart.vue */ 161));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Details = function Details() {__webpack_require__.e(/*! require.ensure | pages/index/components/goods-details */ "pages/index/components/goods-details").then((function () {return resolve(__webpack_require__(/*! ./components/goods-details.vue */ 168));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { ShoppingCar: ShoppingCar, Details: Details }, data: function data() {return { exist: true, Modelmes: Modelmes, trigger: 0, //类目选中的值
       heightset: [], //存储右边每一个分类菜品的高度
       tophei: 0, //滚动时距离顶部的高度
       scroll_into: "", isShowShoppingCar: false, // hide shopping car component
@@ -504,16 +508,27 @@ var ShoppingCar = function ShoppingCar() {__webpack_require__.e(/*! require.ensu
       popupitem: false, //单个商品弹出框隐藏
       pro_details: {}, //单个商品弹出框里的数据
       tmplIds: "vyGKdrSGBzESZiILr4aD8cxwSOox6W6xrUfDInWx9aQ", //模板id
-      foodList: [], foodTypeList: [], choosedMealNum: { 荤菜: 0, 素菜: 0 } // 为了显示左侧选择的总数量
-    };}, methods: { // ## main
+      foodList: [], foodTypeList: [], choosedMealNum: { 荤菜: 0, 素菜: 0 }, // 为了显示左侧选择的总数量
+      shoppingCarTotalNum: 0 };}, methods: { // ## main
     // 1. query food type
-    queryFoodType: function queryFoodType() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return _this.$api.food.queryFoodTypeApi();case 2:_this.foodTypeList = _context.sent;_this.queryFood(_this.foodTypeList[0]._id); //   console.log(this.foodTypeList);
-              case 4:case "end":return _context.stop();}}}, _callee);}))();}, // 1.1.  query food
-    queryFood: function queryFood(foodType) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var queryCondition;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:queryCondition = {};queryCondition.foodType = foodType; //   console.log(queryCondition);
-                _context2.next = 4;return _this2.$api.food.queryFoodApi(queryCondition);case 4:_this2.foodList = _context2.sent;case 5:case "end":return _context2.stop();}}}, _callee2);}))();}, // 2. add to shopping car
-    addToShoppingCar: function addToShoppingCar(foodIndex, food) {var _nowFood$foodQuantity;var nowFood = this.foodList[foodIndex];nowFood.foodQuantity = (_nowFood$foodQuantity = nowFood.foodQuantity) !== null && _nowFood$foodQuantity !== void 0 ? _nowFood$foodQuantity : 0;nowFood.foodQuantity += 1;this.choosedMealNum[food.foodType] += 1;this.shoppingCarList.push(nowFood);}, // 2-FD. reduce shopping car
-    reduce: function reduce(foodIndex, food) {var nowFood = this.foodList[foodIndex];nowFood.foodQuantity -= 1;this.choosedMealNum[food.foodType] -= 1;this.shoppingCarList.push(nowFood);}, // 2-oth1. show shopping car
-    showShoppingCar: function showShoppingCar() {var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;this.isShowShoppingCar = value;}, // ## other
+    queryFoodType: function queryFoodType() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return _this.$api.food.queryFoodTypeApi();case 2:_this.foodTypeList = _context.sent;_this.queryFood(_this.foodTypeList[0]._id);case 4:case "end":return _context.stop();}}}, _callee);}))();}, // 1.1.  query food
+    queryFood: function queryFood(foodType) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var queryCondition;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:queryCondition = {};queryCondition.foodType = foodType;_context2.next = 4;return _this2.$api.food.queryFoodApi(queryCondition);case 4:_this2.foodList = _context2.sent;case 5:case "end":return _context2.stop();}}}, _callee2);}))();}, // 2. add to shopping car
+    addToShoppingCar: function addToShoppingCar(foodIndex, food) {var nowFood = this.foodList[foodIndex];if (nowFood.foodQuantity > 0) {nowFood.foodQuantity += 1;} else {nowFood.foodQuantity = 1;this.shoppingCarList.push(nowFood);}this.choosedMealNum[food.foodType] += 1;this.shoppingCarTotalNum += 1;}, // 2.1. reduce shopping car
+    reduce: function reduce(foodIndex, food) {var nowFood = this.foodList[foodIndex];nowFood.foodQuantity -= 1;this.choosedMealNum[food.foodType] -= 1;this.shoppingCarTotalNum -= 1;if (nowFood.foodQuantity == 0) {this.shoppingCarList = this.shoppingCarList.filter(function (item) {return item._id !== nowFood._id;});}}, // 2-oth1.
+    showShoppingCar: function showShoppingCar() {var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;this.isShowShoppingCar = value;}, // 2-oth2.
+    emptyShoppingCar: function emptyShoppingCar() {var _this3 = this;this.shoppingCarList = [];this.shoppingCarTotalNum = 0;this.foodList.map(function (item) {return item.foodQuantity = 0;});Object.keys(this.choosedMealNum).forEach(function (key) {return _this3.choosedMealNum[key] = 0;});}, // 3.
+    readyToPay: function readyToPay() {var _this4 = this;wx.showModal({ title: "提示", content: "是否确认下单", success: function success(res) {if (res.confirm) {console.log("用户点击确定"); // 消息弹窗
+            // wx.requestSubscribeMessage({
+            //   tmplIds: [this.tmplIds],
+            //   success: (res) => {
+            //     this.sub_database();
+            //   },
+            //   fail: (err) => {
+            //     console.log(err);
+            //   },
+            // });
+            _this4.jumpToOrderPage();} else if (res.cancel) {console.log("用户点击取消");}} });}, // 3-BC.
+    jumpToOrderPage: function jumpToOrderPage() {wx.showLoading({ title: "正在下单", mask: true });wx.redirectTo({ url: "/pages/orderDetails/orderDetails" });wx.hideLoading();}, // ## other
     // oth1. 点击类目加上背景色
     foodTypeClick: function foodTypeClick(index, foodType) {this.trigger = index;this.queryFood(foodType);}, // oth2. 右边菜品滚动时触发
     scroLl: function scroLl(event) {// console.log(event.detail.scrollTop)

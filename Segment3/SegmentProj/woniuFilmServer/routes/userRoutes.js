@@ -1,7 +1,7 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-01-20 09:13:31 Thu
- * @LastEditTime: 2022-02-19 15:17:22 Sat
+ * @LastEditTime: 2022-03-02 20:00:52 Wed
  * @LastEditors: TanGuangZhi
  * @Description: 
  * @KeyWords: NodeJs, Express, MongoDB
@@ -44,8 +44,8 @@ router.get("/loginUser", async (req, resp) => {
     } else {
       //1.能够登录 并且缓存用户名以及密码
       let days = 7;
-      resp.cookie("userName", name, { maxAge: 3600 * 1000 * 24 * days, path: "/", domain: "localhost" });
-      resp.cookie("userPass", password, { maxAge: 3600 * 1000 * 24 * days, path: "/", domain: "localhost" });
+      resp.cookie("userName", name, { maxAge: 3600 * 1000 * 24 * days, path: "/", domain: "42.192.86.106" });
+      resp.cookie("userPass", password, { maxAge: 3600 * 1000 * 24 * days, path: "/", domain: "42.192.86.106" });
       // resp.redirect("./success.html");
       resp.jsonp("200");//可以登录
     }

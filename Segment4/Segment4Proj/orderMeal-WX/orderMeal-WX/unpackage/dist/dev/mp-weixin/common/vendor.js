@@ -18139,6 +18139,40 @@ analysis = /*#__PURE__*/function () {
 
                   '出错');case 19:case "end":return _context.stop();}}}, _callee, null, [[0, 16]]);}));function sameday(_x, _x2) {return _sameday.apply(this, arguments);}return sameday;}() }]);return analysis;}();exports.analysis = analysis;
 
+/***/ }),
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */
+/*!********************************************************************************************************************************************************************!*\
+  !*** D:/www.tanguangzhi.com/D_MyLibrary/MyCode/MyWorkspace/VSCode/WebFront/Segment4/Segment4Proj/orderMeal-WX/orderMeal-WX/node_modules/e-commerce_price/index.js ***!
+  \********************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var Price = function Price(price) {
+  var num = parseFloat(price.toFixed(10));
+  var s = num.toString();
+  var rs = s.indexOf('.');
+
+  // 没有小数点时：
+  if (rs < 0) {
+    rs = s.length;
+    s += '.';
+  }
+  while (s.length <= rs + 2) {
+    s += '0';
+  }
+  return s;
+};
+
+module.exports = Price;
+
 /***/ })
 ]]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

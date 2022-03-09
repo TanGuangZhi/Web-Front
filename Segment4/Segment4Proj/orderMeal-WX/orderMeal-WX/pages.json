@@ -11,7 +11,16 @@
         "navigationBarBackgroundColor": "#F7D45F"
       }
     }
-  ],
+      ,{
+            "path" : "pages/orderDetails/orderDetails",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

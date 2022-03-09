@@ -143,18 +143,20 @@
           <view class="Shopping-left">
             <image src="/static/tab/gouwuche.png" mode="widthFix"></image>
           </view>
-          <view class="Shopping-number" v-if="total_quantity > 0">
-            {{ total_quantity }}
+          <view class="Shopping-number" v-if="shoppingCarTotalNum > 0">
+            {{ shoppingCarTotalNum }}
           </view>
         </view>
-        <view class="Shopping-title" v-if="total_quantity > 0">
-          已点{{ total_quantity }}份菜品
+        <view class="Shopping-title" v-if="shoppingCarTotalNum > 0">
+          已点{{ shoppingCarTotalNum }}份菜品
         </view>
         <view
           class="place-order"
-          @click.stop="total_quantity == 0 ? false : true && placean_order()"
+          @click.stop="shoppingCarTotalNum == 0 ? false : true && readyToPay()"
         >
-          <button plain="true" open-type="getUserInfo">选好了</button>
+          <button plain="true" @click="readyToPay" open-type="getUserInfo">
+            付款
+          </button>
         </view>
       </view>
     </view>
@@ -205,7 +207,11 @@ export default {
       tmplIds: "vyGKdrSGBzESZiILr4aD8cxwSOox6W6xrUfDInWx9aQ", //模板id
       foodList: [],
       foodTypeList: [],
-      choosedMealNum: { 荤菜: 0, 素菜: 0 }, // 为了显示左侧选择的总数量
+      choosedMealNum: {
+        荤菜: 0,
+        素菜: 0,
+      }, // 为了显示左侧选择的总数量
+      shoppingCarTotalNum: 0,
     };
   },
   methods: {
@@ -214,40 +220,95 @@ export default {
     async queryFoodType() {
       this.foodTypeList = await this.$api.food.queryFoodTypeApi();
       this.queryFood(this.foodTypeList[0]._id);
-      //   console.log(this.foodTypeList);
     },
 
     // 1.1.  query food
     async queryFood(foodType) {
       let queryCondition = {};
       queryCondition.foodType = foodType;
-      //   console.log(queryCondition);
       this.foodList = await this.$api.food.queryFoodApi(queryCondition);
-      //   console.log("this.foodList:", this.foodList);
     },
 
     // 2. add to shopping car
     addToShoppingCar(foodIndex, food) {
       let nowFood = this.foodList[foodIndex];
-      nowFood.foodQuantity = nowFood.foodQuantity ?? 0;
-      nowFood.foodQuantity += 1;
+      if (nowFood.foodQuantity > 0) {
+        nowFood.foodQuantity += 1;
+      } else {
+        nowFood.foodQuantity = 1;
+        this.shoppingCarList.push(nowFood);
+      }
       this.choosedMealNum[food.foodType] += 1;
-      this.shoppingCarList.push(nowFood);
+      this.shoppingCarTotalNum += 1;
     },
 
-    // 2-FD. reduce shopping car
+    // 2.1. reduce shopping car
     reduce(foodIndex, food) {
       let nowFood = this.foodList[foodIndex];
       nowFood.foodQuantity -= 1;
       this.choosedMealNum[food.foodType] -= 1;
-      this.shoppingCarList.push(nowFood);
+      this.shoppingCarTotalNum -= 1;
+
+      if (nowFood.foodQuantity == 0) {
+        this.shoppingCarList = this.shoppingCarList.filter(
+          (item) => item._id !== nowFood._id
+        );
+      }
     },
 
-    // 2-oth1. show shopping car
+    // 2-oth1.
     showShoppingCar(value = true) {
       this.isShowShoppingCar = value;
     },
 
+    // 2-oth2.
+    emptyShoppingCar() {
+      this.shoppingCarList = [];
+      this.shoppingCarTotalNum = 0;
+      this.foodList.map((item) => (item.foodQuantity = 0));
+      Object.keys(this.choosedMealNum).forEach(
+        (key) => (this.choosedMealNum[key] = 0)
+      );
+    },
+
+    // 3.
+    readyToPay() {
+      wx.showModal({
+        title: "提示",
+        content: "是否确认下单",
+        success: (res) => {
+          if (res.confirm) {
+            console.log("用户点击确定");
+            // 消息弹窗
+            // wx.requestSubscribeMessage({
+            //   tmplIds: [this.tmplIds],
+            //   success: (res) => {
+            //     this.sub_database();
+            //   },
+            //   fail: (err) => {
+            //     console.log(err);
+            //   },
+            // });
+            this.jumpToOrderPage();
+          } else if (res.cancel) {
+            console.log("用户点击取消");
+          }
+        },
+      });
+    },
+
+    // 3-BC.
+    jumpToOrderPage() {
+      wx.showLoading({
+        title: "正在下单",
+        mask: true,
+      });
+
+      wx.redirectTo({
+        url: "/pages/orderDetails/orderDetails",
+      });
+      wx.hideLoading();
+    },
     // ## other
     // oth1. 点击类目加上背景色
     foodTypeClick(index, foodType) {
