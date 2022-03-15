@@ -46,7 +46,6 @@ class UserModel {
         return await dbUserTable.find({ name });
     }
 
-
     async queryUserOrder(userId) {
         matchObj.userId = userId - 0;
         return await dbUserOrderTable.aggregate([
