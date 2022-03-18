@@ -1,67 +1,15 @@
 /*
  * @Author: TanGuangZhi
  * @Date: 2022-03-15 14:45:25 Tue
- * @LastEditTime: 2022-03-15 20:50:52 Tue
+ * @LastEditTime: 2022-03-16 19:54:43 Wed
  * @LastEditors: TanGuangZhi
  * @Description:
  * @KeyWords: Vue, Web-Server, ElementUI
  */
 import React from "react";
 import ReactDOM from "react-dom";
+import Square from "./Square.js";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
-
-function Square(props) {
-  return (
-    <button className="square"
-      onClick={() => props.onClick()}>
-      {/* {this.props["data-value"]} */}
-      {props["data-value"]}
-    </button>
-  );
-}
-
-class Board extends React.Component {
-  renderSquare(i) {
-    return <Square data-value={this.props.squares[i]}
-      onClick={() => this.props.onClick(i)} />;
-  }
-
-  handleClick(i) {
-    const squares = [...this.state.squares];
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    if (this.state.xIsNext) {
-      squares[i] = "X";
-    } else {
-      squares[i] = 'O';
-    }
-    this.setState({ squares: squares, xIsNext: !this.state.xIsNext });
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
 
 class Game extends React.Component {
   constructor(props) {
@@ -98,6 +46,7 @@ class Game extends React.Component {
       xIsNext: (step % 2) === 0,
     });
   }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -124,7 +73,7 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board squares={current.squares}
+          <Square squares={current.squares}
             onClick={(i) => this.handleClick(i)}
           />
         </div>
@@ -160,8 +109,3 @@ function calculateWinner(squares) {
 // ========================================
 
 ReactDOM.render(<Game />, document.getElementById("root"));
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
